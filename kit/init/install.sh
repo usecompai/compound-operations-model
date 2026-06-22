@@ -48,7 +48,7 @@ ${c_gold}${c_bold}
 / /_/ / /_/ /  __/ /    / ___ \\ | |
 \\____/ .___/\\___/_/    /_/   \\_\\___|
     /_/
-${c_reset}${c_dim}Brand Bootstrap · v3.1.1 · usecompai.com${c_reset}
+${c_reset}${c_dim}Brand Bootstrap · v3.2 · usecompai.com${c_reset}
 
 EOF
 }

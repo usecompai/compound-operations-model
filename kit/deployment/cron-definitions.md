@@ -28,6 +28,16 @@ All crons that run in the reference deployment. Adapt paths and times to your se
 | Weekly P&L | `0 6 * * 1` | Finance Agent | Full P&L compiled and posted to Slack (Monday) |
 | Pattern extraction | `0 5 * * 0` | System | Auto-extract anonymized patterns for the pattern library (Sunday) |
 
+## Loop Governance
+
+Recurring workflows should be registered as `Loop` objects before being enabled as crons. A cron is only the trigger; the loop contract defines allowed inputs, allowed actions, verification, audit receipt, and terminal state.
+
+Recommended rule:
+
+- internal knowledge loops can run automatically after source, authority, verification, and record gates are defined;
+- business-system, customer-facing, regulated, and production-admin loops require explicit owner approval before mutating anything;
+- every consequential run should append an `AuditEvent` using `scripts/ops/log-audit-event.sh`.
+
 ## Setup
 
 ```bash

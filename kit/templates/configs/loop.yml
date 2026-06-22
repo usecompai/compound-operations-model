@@ -1,0 +1,87 @@
+kind: Loop
+api_version: compai/v0.1
+id: example-loop
+name: Example Loop
+owner: Platform
+risk_class: internal_knowledge
+status: draft
+
+trigger:
+  type: manual
+  cadence: null
+  timezone: Europe/Madrid
+  manual_command: null
+
+scope:
+  objective: Describe the repeatable outcome this loop must produce.
+  allowed_inputs:
+    - Brain docs explicitly listed for the workflow
+    - source-system query outputs captured during the run
+    - local artifacts under an approved run directory
+  allowed_actions:
+    - write Brain docs
+    - create internal task cards
+    - update loop memory
+  blocked_actions:
+    - external messages
+    - customer-facing actions
+    - finance, HR, legal or production mutations without approval
+
+observe:
+  evidence_required:
+    - source identity verified
+    - fresh artifacts or source query available
+    - expected record count is non-zero unless clean_noop is valid
+  stale_after: P7D
+
+choose:
+  selection_criteria:
+    - repeated signal across 2+ records or direct fit to a known gap
+    - concrete artifact can be created
+    - output can be verified
+  reject_if:
+    - pure hype
+    - no source path or query evidence
+    - no concrete action boundary
+
+act:
+  action_boundary: one bounded artifact or task set per run
+  output_paths:
+    digest: knowledge/platform/strategy/example-digest-YYYY-MM-DD.md
+    records: knowledge/platform/intelligence/example/records-YYYY-MM-DD.md
+    tasks: knowledge/<brand>/_tasks/todo/
+
+verify:
+  acceptance_checks:
+    - command exit code == 0
+    - source counts match output records
+    - Brain docs or task cards exist when claimed
+    - blocked actions were not attempted
+  failure_states:
+    - blocked_capture
+    - wrong_account
+    - empty_artifacts
+    - no_actionable_signal
+    - brain_write_failed
+
+record:
+  audit_log_path: /opt/operai/logs/audit-events.jsonl
+  memory_path: memory/YYYY-MM-DD.md
+  required_fields:
+    - run_id
+    - loop_id
+    - command
+    - counts
+    - source identity
+    - artifact paths
+    - Brain writes
+    - task cards
+    - blockers
+
+stop:
+  terminal_states:
+    success: accepted artifacts and required records complete
+    clean_noop: valid source, no actionable signal
+    blocked: required source, auth or tool unavailable
+    approval_required: proposed action crosses authority boundary
+    failed: verification failed

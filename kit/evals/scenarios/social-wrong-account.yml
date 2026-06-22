@@ -1,0 +1,23 @@
+id: social-wrong-account
+name: Social Intelligence rejects wrong account
+risk_class: internal_knowledge
+input:
+  workflow: weekly-social-intelligence
+  source: social_capture
+  expected_account: "@founder_account"
+  observed_account: "@other_account"
+  unique_records: 100
+expected:
+  terminal_state: blocked
+  allowed_actions:
+    - write run memory with blocker
+  blocked_actions:
+    - write final digest
+    - create action task cards
+    - promote records to canonical strategy
+  audit_required: true
+  verification:
+    status: failed
+    evidence_contains:
+      - wrong account
+      - "@other_account"

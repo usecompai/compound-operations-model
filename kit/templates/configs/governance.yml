@@ -1,0 +1,144 @@
+kind: GovernancePack
+api_version: compai/v0.1
+id: default-governance-pack
+owner: Platform
+applies_to:
+  - Agent
+  - Skill
+  - Loop
+  - Task
+
+authority_matrix:
+  read_only:
+    can_read:
+      - Brain
+      - logs
+      - local artifacts
+    can_draft: true
+    can_write_internal: false
+    can_write_external: false
+    approval_required: false
+  internal_knowledge:
+    can_read:
+      - Brain
+      - approved source systems
+      - local artifacts
+    can_draft: true
+    can_write_internal:
+      - Brain docs
+      - internal task cards
+      - run memory
+    can_write_external: false
+    approval_required: false
+  internal_system_write:
+    can_read:
+      - relevant config
+      - runtime state
+    can_draft: true
+    can_write_internal:
+      - explicitly scoped internal configs
+    can_write_external: false
+    approval_required: true
+  business_system:
+    can_read:
+      - ecommerce platform
+      - ERP or inventory system
+      - accounting system
+      - email marketing platform
+      - ad platforms
+      - analytics tools
+      - customer support tool
+      - spend management tool
+      - logistics provider
+    can_draft: true
+    can_write_internal: false
+    can_write_external: false
+    approval_required: true
+  customer_facing:
+    can_read:
+      - approved customer context
+      - order context
+      - policy sources
+    can_draft: true
+    can_write_internal:
+      - CS drafts
+      - SOP drafts
+    can_write_external: false
+    approval_required: true
+  regulated:
+    can_read:
+      - finance
+      - HR
+      - legal
+      - payroll
+      - contracts
+    can_draft: true
+    can_write_internal: false
+    can_write_external: false
+    approval_required: true
+  production_admin:
+    can_read:
+      - infrastructure
+      - runtime configs
+      - deployment logs
+    can_draft: true
+    can_write_internal:
+      - explicitly scoped production config
+    can_write_external: false
+    approval_required: true
+
+action_gates:
+  source_gate:
+    pass_if:
+      - source paths or system query outputs are present
+      - source freshness is acceptable for the workflow
+      - account or workspace identity is verified where relevant
+      - empty or wrong-account artifacts fail loudly
+  authority_gate:
+    pass_if:
+      - action is listed in allowed_actions
+      - risk class permits the mutation
+      - approval exists when required
+      - blocked actions are not attempted
+  verification_gate:
+    pass_if:
+      - command, test or query succeeds
+      - output paths exist
+      - counts match expected records
+      - acceptance criteria are met
+  record_gate:
+    required_receipt_fields:
+      - run_id
+      - loop_id
+      - started_at
+      - completed_at
+      - actor
+      - sources
+      - inputs_summary
+      - actions_taken
+      - outputs
+      - verification
+      - terminal_state
+      - residual_risk
+      - next_action
+
+incident_states:
+  - source_unavailable
+  - wrong_account
+  - stale_source
+  - approval_missing
+  - verification_failed
+  - partial_write
+  - repeated_blocker
+
+rollout_checklist:
+  - source systems identified
+  - risk class assigned
+  - allowed and blocked actions written
+  - approval owner defined for high-risk actions
+  - eval scenarios selected
+  - at least one happy-path run passes
+  - at least one failure or stress scenario passes
+  - audit log path exists
+  - rollback or disable path exists
+  - human handoff wording exists

@@ -1,4 +1,4 @@
-# OperAI Implementation Kit v3.1.1
+# OperAI Implementation Kit v3.2
 
 This kit is the software-first deployment pack for building a multi-agent operating system inside a consumer brand.
 
@@ -30,15 +30,41 @@ It does steps 1-6 below automatically. Jump to playbook Ch.11e for details.
 5. Follow `deployment/activation-path.md`
 6. Then execute `deployment/30-day-calendar.md`
 
-## Core Contents (96 files)
+## Core Contents
 
-- `templates/` — production templates for seven domain agents + OpenClaw launchd plists
-- `scripts/` — operations, cron, and monitoring scripts
+- `templates/` — production templates for seven domain agents, OpenClaw launchd plists, Loop contracts, and governance configs
+- `scripts/` — operations, cron, audit, and monitoring scripts
 - `integrations/` — platform setup guides
 - `deployment/` — rollout docs and activation path
 - `patterns/` — reusable operational patterns
-- `knowledge-base/` — security, compliance, and autonomy docs (8 files)
+- `knowledge-base/` — security, compliance, and autonomy docs
+- `evals/` — governance stress fixtures for source, authority, stale-data, and approval failures
 - `memory-architecture/` — shared brain scaffolding
+
+## New in v3.2 (Loop contracts + governance evals)
+
+Compai now ships bounded execution loops as first-class runtime contracts. A cron is only a trigger; a Loop defines what the workflow can read, what it can change, how it verifies success, what it records, and when it must stop for a human.
+
+**New runtime configs:**
+
+- `templates/configs/loop.yml` — observe -> choose -> act -> verify -> record -> stop
+- `templates/configs/governance.yml` — authority matrix, source/authority/verification/record gates
+- `templates/configs/audit-event.schema.json` — JSON Schema for run receipts
+
+**New eval fixtures:**
+
+- wrong social/source account
+- empty source artifact
+- customer-facing action without approval
+- stale operational source promoted as current truth
+
+**New audit tool:**
+
+```bash
+scripts/ops/log-audit-event.sh /path/to/audit-event.json
+```
+
+Every consequential loop run should produce an `AuditEvent` with source refs, action type, risk class, approval state, verification result, and terminal state.
 
 ## New in v2.8 (multi-LLM provider abstraction)
 
