@@ -21,7 +21,7 @@ This is not a SaaS repo. It is an educational implementation portfolio: read it,
 
 Latest update: hardening the brain. We ran a due-diligence audit on our own system and published the findings and fixes as [`chapters/10s-hardening-the-brain.md`](chapters/10s-hardening-the-brain.md):
 
-- The auth maturity ladder: open -> protect -> enforce, machine identity per node (anonymous writes 84% -> ~13%)
+- Auth is live in `protect` mode: high-risk anonymous/invalid operations are blocked, bearer-key auth is active, and client migration is still ongoing. Current canonical status is tracked in the the company Brain at `knowledge/platform/tools/mcp-auth-status.md` (last verified 2026-07-03: 33.65% anonymous requests in the latest 2,000 auth-observe rows). Do not claim `enforce` until the live MCP service is actually running in `enforce`.
 - Resilience: git-versioned brain (15-min auto-commits + change ledger), dual encrypted backups, checksum-verified restores, batch rollback
 - The execution loop: backlog hygiene with anti-boomerang archiving, throttled generators, a daily triage digest hard-capped at 10 items
 - The sequencing rule: no new ingestion sources until the closed-loop rate is above 30%
