@@ -7,7 +7,7 @@ Open-source AI operations playbook for consumer SMEs, published by Compai.
 [![Playbook](https://img.shields.io/badge/playbook-53%20chapters-1a1a1a.svg)](https://usecompai.com/playbook)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-c9a667.svg)](CONTRIBUTING.md)
 
-> **The operating system behind an 8-figure consumer brand running on AI for €352/month.** Read it. Fork it. Build your own.
+> **The operating system behind an 8-figure consumer brand running on AI for €631/month.** Read it. Fork it. Build your own.
 
 
 
@@ -32,7 +32,7 @@ v2.1 (9 June 2026) added the operational compounding loop (`10r`): health audits
 
 | Path | Contents |
 |---|---|
-| `chapters/` | Full public playbook source (53 chapters), including Brain v2, the operational loop, and brain hardening |
+| `chapters/` | Full public playbook source (54 chapters), including Brain v2, the operational loop, and brain hardening |
 | `kit/` | Starter implementation kit: init CLI, MCP server template, compliance scaffold, onboarding pack, SOUL templates, systemd templates, monitoring scripts |
 | `skills/` | **24 public skills** (anonymized from production) + [the full catalog](skills/CATALOG.md) of what the 352 are |
 | `pattern-library/` | Anonymized operational patterns and schema |
