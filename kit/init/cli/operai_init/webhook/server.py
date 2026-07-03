@@ -4,7 +4,7 @@
 Runs on 127.0.0.1:8788 behind the brand's Cloudflare Tunnel (webhook.<brand>.com).
 
 Endpoints:
-  POST /webhook/<provider>/<domain>    e.g. /webhook/the helpdesk/cs
+  POST /webhook/<provider>/<domain>    e.g. /webhook/helpdesk/cs
   GET  /health                         health check
   GET  /                                list configured providers
 
@@ -43,7 +43,7 @@ from starlette.routing import Route
 # Local imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from operai_init.webhook import config, hmac_verify
-from operai_init.webhook.normalizers import the helpdesk, gorgias, zendesk, intercom
+from operai_init.webhook.normalizers import helpdesk, gorgias, zendesk, intercom
 
 
 OPERAI_HOME = Path(os.environ.get("OPERAI_HOME", "/opt/operai"))
@@ -55,7 +55,7 @@ logging.basicConfig(
 log = logging.getLogger("operai-webhook")
 
 NORMALIZERS = {
-    "the helpdesk": the helpdesk,
+    "helpdesk": helpdesk,
     "gorgias":   gorgias,
     "zendesk":   zendesk,
     "intercom":  intercom,

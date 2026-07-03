@@ -30,7 +30,7 @@
   ],
   "integrations": [
     "shopify",
-    "the helpdesk",
+    "helpdesk",
     "gorgias",
     "zendesk",
     "klaviyo"

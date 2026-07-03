@@ -1,6 +1,6 @@
 #!/bin/bash
 source $HOME/.bashrc 2>/dev/null || true
-# CS Ticket Auto-Processing — Checks the helpdesk for OPEN tickets, sends to Support
+# CS Ticket Auto-Processing — Checks helpdesk for OPEN tickets, sends to Support
 # Runs every 15 minutes during business hours (08:00-22:00 CET)
 set -euo pipefail
 
@@ -10,7 +10,7 @@ LOG="/tmp/cs-tickets-$(date +%Y-%m-%d).log"
 python3 << 'PYEOF'
 import json, urllib.request, os, datetime
 
-# Get the helpdesk API key
+# Get helpdesk API key
 HELPDESK_KEY = os.environ.get("HELPDESK_API_KEY", "")
 if not HELPDESK_KEY:
     with open("$HOME/.bashrc") as f:
@@ -19,11 +19,11 @@ if not HELPDESK_KEY:
                 HELPDESK_KEY = line.split("=", 1)[1].strip().strip('"').strip("'")
 
 if not HELPDESK_KEY:
-    print("No the helpdesk API key found")
+    print("No helpdesk API key found")
     exit(1)
 
 # Query open tickets
-url = "https://api.the helpdesk.com/v1/conversations?status=OPEN"
+url = "https://api.helpdesk.com/v1/conversations?status=OPEN"
 headers = {
     "x-api-key": HELPDESK_KEY,
     "Content-Type": "application/json"

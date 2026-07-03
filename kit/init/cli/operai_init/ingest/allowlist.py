@@ -16,7 +16,7 @@ from operai_init.ingest.storage import open_db, EncryptedDB
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS allowlist (
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
-    source        TEXT NOT NULL,       -- shopify|klaviyo|ads_meta|ads_google|gmail|slack|notion|drive|the helpdesk
+    source        TEXT NOT NULL,       -- shopify|klaviyo|ads_meta|ads_google|gmail|slack|notion|drive|helpdesk
     unit_type     TEXT NOT NULL,       -- resource|account|mailbox|channel|folder|page
     unit_id       TEXT NOT NULL,
     reason        TEXT NOT NULL,       -- legal-basis / necessity justification
@@ -30,11 +30,11 @@ CREATE INDEX IF NOT EXISTS idx_allowlist_source ON allowlist(source) WHERE revok
 """
 
 # Sources gated hard: require legal sign-off text before accepting.
-HIGH_RISK_SOURCES = {"gmail", "slack", "notion", "drive", "the helpdesk"}
+HIGH_RISK_SOURCES = {"gmail", "slack", "notion", "drive", "helpdesk"}
 
 # Sources frozen in the public Kit (v2.6+) — available only via Custom Ingest Engagement.
 # See playbook Ch.11f + Ch.13 for the decision trail.
-FROZEN_IN_KIT = {"gmail", "slack", "notion", "drive", "the helpdesk"}
+FROZEN_IN_KIT = {"gmail", "slack", "notion", "drive", "helpdesk"}
 
 # Gmail: only shared mailboxes, never personal.
 # Unit IDs look like "info@brand.com", "ops@brand.com". Reject if looks

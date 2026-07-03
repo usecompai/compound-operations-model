@@ -17,7 +17,7 @@ them without restarting the daemon — next event picks up your changes.
 
 This is where the BRAND's specific logic lives:
   - Look up customer history in their own CRM
-  - Enrich with data from the POS/inventory system / TC Analytics / custom inventory
+  - Enrich with data from inventory / TC Analytics / custom inventory
   - Apply brand-specific priority rules ("VIP means LTV > €3000 not €1000")
   - Call external scoring APIs before sub-agents run
   - Post-process the draft through a brand-specific re-writer

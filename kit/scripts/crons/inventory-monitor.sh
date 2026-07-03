@@ -6,7 +6,7 @@ set -euo pipefail
 python3 << 'PYEOF'
 import json, urllib.request, os, datetime
 
-# Get the POS/inventory system token
+# Get inventory token
 SA_TOKEN = os.environ.get("INVENTORY_TOKEN", "")
 if not SA_TOKEN:
     with open("$HOME/.bashrc") as f:

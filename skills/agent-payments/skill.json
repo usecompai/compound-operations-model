@@ -1,14 +1,14 @@
 {
   "name": "agent-payments",
   "version": "1.0.0",
-  "description": "Autonomous purchase skill with the expense platform virtual card, invoice management, and receipt upload",
+  "description": "Autonomous purchase skill with expense virtual card, invoice management, and receipt upload",
   "triggers": [
     "buy", "purchase", "domain", "subscribe", "subscription",
     "renew", "renewal", "pay for", "checkout", "comprar", "dominio"
   ],
   "requires": {
     "tools": ["browser", "message", "exec"],
-    "apis": ["the-expense-platform"],
+    "apis": ["expense"],
     "credentials": ["<brain-root>/knowledge/agent-card.md"]
   },
   "safety": {

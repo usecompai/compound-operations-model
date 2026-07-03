@@ -2,7 +2,7 @@
 source $HOME/.bashrc 2>/dev/null || true
 # Weekly P&L — Automated via Finance (Finance Agent)
 # Runs every Monday at 06:00 UTC (08:00 CET)
-# Queries Shopify + the accounting system, sends to Finance for narrative, posts to Slack
+# Queries Shopify + accounting, sends to Finance for narrative, posts to Slack
 
 set -euo pipefail
 
@@ -60,4 +60,4 @@ PYEOF
 # Now use the agent_send via the MCP Python client
 # The actual execution happens via cron calling the MCP
 echo "$(date): P&L prompt generated, will be sent to Finance via MCP" >> "$LOG"
-/opt/brain/scripts/log-event.sh "Finance" "Weekly P&L compiled: Shopify + the accounting system data analyzed, narrative summary delivered to Slack"
+/opt/brain/scripts/log-event.sh "Finance" "Weekly P&L compiled: Shopify + accounting data analyzed, narrative summary delivered to Slack"

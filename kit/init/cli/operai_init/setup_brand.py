@@ -65,8 +65,8 @@ def cmd_setup_brand(args, *, home: Path, brand: str):
     # Step 4 — Webhook receivers
     _step_header("Webhook receivers", "Helpdesks POST to your brand for autonomous ticket processing")
     providers_to_configure = []
-    if _yesno("Configure any webhook receiver (the helpdesk/Gorgias/Zendesk/Intercom)?", default=False):
-        for p in ("the helpdesk", "gorgias", "zendesk", "intercom"):
+    if _yesno("Configure any webhook receiver (helpdesk/Gorgias/Zendesk/Intercom)?", default=False):
+        for p in ("helpdesk", "gorgias", "zendesk", "intercom"):
             if _yesno(f"  Configure {p}?", default=False):
                 providers_to_configure.append(p)
         for p in providers_to_configure:

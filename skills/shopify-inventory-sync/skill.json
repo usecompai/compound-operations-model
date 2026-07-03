@@ -10,8 +10,8 @@
     "sync",
     "multi-location",
     "3pl",
-    "the POS/inventory system",
-    "the wholesale platform",
+    "inventory",
+    "wholesale",
     "ecommerce",
     "retail",
     "warehouse"
@@ -30,8 +30,8 @@
   ],
   "integrations": [
     "shopify",
-    "the POS/inventory system",
-    "the wholesale platform",
+    "inventory",
+    "wholesale",
     "shipstation"
   ],
   "requirements": {

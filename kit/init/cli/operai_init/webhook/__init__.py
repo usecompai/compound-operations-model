@@ -1,6 +1,6 @@
 """operai_init.webhook — HTTP receivers for helpdesk providers.
 
-v3.0 ships the helpdesk / Gorgias / Zendesk / Intercom. Each provider has its own
+v3.0 ships helpdesk / Gorgias / Zendesk / Intercom. Each provider has its own
 payload shape and HMAC signature scheme. This package:
 
   1. Verifies signatures (fail-closed on mismatch)

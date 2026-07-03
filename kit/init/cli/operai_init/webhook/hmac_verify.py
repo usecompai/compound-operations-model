@@ -2,7 +2,7 @@
 
 Each provider has a slightly different contract:
 
-  the helpdesk — X-the helpdesk-Signature: sha256=<hex>   (HMAC-SHA256 over raw body)
+  helpdesk — X-helpdesk-Signature: sha256=<hex>   (HMAC-SHA256 over raw body)
   Gorgias   — X-Gorgias-Hmac-SHA256: <base64>       (HMAC-SHA256, base64)
   Zendesk   — X-Zendesk-Webhook-Signature + X-Zendesk-Webhook-Signature-Timestamp
               signature = base64( HMAC-SHA256(secret, timestamp + body) )
@@ -26,7 +26,7 @@ def _b64_digest(secret: str, body: bytes) -> str:
     return base64.b64encode(hmac.new(secret.encode(), body, hashlib.sha256).digest()).decode()
 
 
-def verify_the helpdesk(secret: str, body: bytes, header_value: str) -> bool:
+def verify_helpdesk(secret: str, body: bytes, header_value: str) -> bool:
     if not header_value or not secret:
         return False
     # Header: "sha256=<hex>"
@@ -73,9 +73,9 @@ def verify(
     """Return (ok, reason). All comparisons are constant-time."""
     # Normalize headers to lowercase for lookup
     h = {k.lower(): v for k, v in headers.items()}
-    if provider == "the helpdesk":
-        sig = h.get("x-the helpdesk-signature", "")
-        return (verify_the helpdesk(secret, body, sig), "the helpdesk-sig" if sig else "missing-header")
+    if provider == "helpdesk":
+        sig = h.get("x-helpdesk-signature", "")
+        return (verify_helpdesk(secret, body, sig), "helpdesk-sig" if sig else "missing-header")
     if provider == "gorgias":
         sig = h.get("x-gorgias-hmac-sha256", "")
         return (verify_gorgias(secret, body, sig), "gorgias-sig" if sig else "missing-header")

@@ -1,6 +1,6 @@
-"""the helpdesk webhook payload → CanonicalTicket.
+"""helpdesk webhook payload → CanonicalTicket.
 
-the helpdesk ticket.created webhook shape (as of 2026-04):
+helpdesk ticket.created webhook shape (as of 2026-04):
 {
   "event": "ticket.created",
   "data": {
@@ -42,7 +42,7 @@ def normalize(payload: dict) -> dict:
         "customer_email":  customer.get("email"),     # raw; DLP tokenizes if ingested
         "priority":        priority,
         "channel":         (data.get("channel") or "email").lower(),
-        "source_provider": "the helpdesk",
+        "source_provider": "helpdesk",
         "source_ticket_id": source_ticket_id(payload),
         "source_created_at": data.get("created_at"),
         "tags":            data.get("tags") or [],
