@@ -130,7 +130,7 @@ operai-init ingest allow --source notion ...
     See playbook Ch.11f + Ch.13. Contact: founder@your-company.example
 ```
 
-The 5 blocked sources — gmail, slack, notion, drive, helpdesk — are refused at the allowlist layer with a clear pointer to the Custom Ingest Engagement tier.
+The 5 blocked sources — gmail, slack, notion, drive, the helpdesk — are refused at the allowlist layer with a clear pointer to the Custom Ingest Engagement tier.
 
 **What's in the playbook:**
 
@@ -173,7 +173,7 @@ operai-init governance enable            # installs 3 meta-agents (SOULs + syste
 operai-init governance status            # service state + verdict counts
 operai-init governance logs --agent critic
 operai-init governance review            # pending compliance amendments
-operai-init governance disable --reason "X" --by the-founder
+operai-init governance disable --reason "X" --by alex
 ```
 
 **New meta-agents (McKinsey 5-pillar governance):**
@@ -224,7 +224,7 @@ operai-init ingest forget --status
 ```bash
 operai-init key create sam --role team --groups cs,retail
 operai-init key create juan  --role team --groups finance
-operai-init key create the-founder --role admin
+operai-init key create alex --role admin
 ```
 
 **Phase 2 deferred** (Gmail/Slack/Notion/Drive/the helpdesk) — 5 prerequisites documented in Playbook Ch.11f before unlock.

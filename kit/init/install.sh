@@ -365,7 +365,7 @@ ${c_bold}What you must do next (founder-only steps):${c_reset}
        tail -f /opt/operai/logs/*.log
 
   ${c_gold}6.${c_reset} Create API keys for your team:
-       operai-init key create the-founder  --role admin
+       operai-init key create alex  --role admin
        operai-init key create sam  --role team
        operai-init key list
 

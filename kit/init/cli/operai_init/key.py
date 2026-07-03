@@ -5,7 +5,7 @@ Stored at /opt/operai/credentials/mcp-keys.json (mode 600).
 Schema:
     {
       "lgm_<32 hex>": {
-        "name":       "the-founder",
+        "name":       "alex",
         "role":       "admin",
         "created_at": "...",
         "last_seen":  null,

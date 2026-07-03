@@ -264,7 +264,7 @@ Now every Claude Desktop user and every agent can access the complete skills lib
 **The hacky-but-working solution:** We built a microservice that:
 1. Maintains an authenticated web session with the accounting system (via stored cookies)
 2. Scrapes the time-off pages with headless Chrome
-3. Exposes clean REST endpoints: `/api/accounting-system/leaves`, `/leaves/today`, `/leaves/week`
+3. Exposes clean REST endpoints: `/api/accounting/leaves`, `/leaves/today`, `/leaves/week`
 4. Runs as a systemd service on a dedicated port
 5. The MCP server wraps it as `hr_leaves(period)` — invisible to end users
 

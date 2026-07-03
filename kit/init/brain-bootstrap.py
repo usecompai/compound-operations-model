@@ -54,10 +54,10 @@ INTERVIEW = [
 
     # ── stack ──
     ("ecom_platform",        "E-commerce platform (shopify / shopify-plus / woocommerce / other)"),
-    ("erp",                  "ERP / finance system (accounting-system / quickbooks / xero / sap / none / other)"),
-    ("helpdesk",             "Helpdesk / CS tool (helpdesk / zendesk / gorgias / freshdesk / none)"),
+    ("erp",                  "ERP / finance system (the accounting system / quickbooks / xero / sap / none / other)"),
+    ("helpdesk",             "Helpdesk / CS tool (the helpdesk / zendesk / gorgias / freshdesk / none)"),
     ("email_platform",       "Email/lifecycle platform (klaviyo / mailchimp / sendgrid / other)"),
-    ("inventory_system",     "Inventory / WMS (inventory-system / cin7 / shopify-native / other)"),
+    ("inventory_system",     "Inventory / WMS (the POS/inventory system / cin7 / shopify-native / other)"),
     ("ads_platforms",        "Active ad platforms (comma: meta, google, pinterest, tiktok)"),
     ("analytics",            "Analytics stack (ga4 / shopify / other)"),
     ("comms",                "Internal comms (slack / teams / other)"),

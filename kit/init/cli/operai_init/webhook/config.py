@@ -3,7 +3,7 @@
 Schema:
 {
   "providers": {
-    "helpdesk": {"secret": "whsec_...", "configured_at": "..."},
+    "the helpdesk": {"secret": "whsec_...", "configured_at": "..."},
     "gorgias":   {"secret": "...", "configured_at": "..."},
     ...
   },
@@ -21,7 +21,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-SUPPORTED = ["helpdesk", "gorgias", "zendesk", "intercom"]
+SUPPORTED = ["the helpdesk", "gorgias", "zendesk", "intercom"]
 
 
 def _now() -> str:

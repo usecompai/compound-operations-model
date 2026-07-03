@@ -182,7 +182,7 @@ def register(subparsers: argparse._SubParsersAction) -> None:
     # allow
     sp = inner.add_parser("allow", help="Allowlist a scope for ingestion")
     sp.add_argument("--source", required=True, choices=["shopify", "klaviyo", "meta_ads", "google_ads",
-                                                         "gmail", "slack", "notion", "drive", "helpdesk"])
+                                                         "gmail", "slack", "notion", "drive", "the helpdesk"])
     sp.add_argument("--unit-type", required=True, help="resource|account|mailbox|channel|folder|page")
     sp.add_argument("--unit-id", required=True, help="source-specific identifier")
     sp.add_argument("--reason", required=True, help="legal-basis/necessity justification")

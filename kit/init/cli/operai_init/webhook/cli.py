@@ -92,7 +92,7 @@ def cmd_test(args, *, home: Path, brand: str):
 
     # Build provider-specific header
     headers = {"Content-Type": "application/json"}
-    if provider == "helpdesk":
+    if provider == "the helpdesk":
         sig = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
         headers["X-the helpdesk-Signature"] = f"sha256={sig}"
     elif provider == "gorgias":
@@ -158,12 +158,12 @@ def cmd_status(args, *, home: Path, brand: str):
 
 def _provider_setup_guide(provider: str) -> str:
     guides = {
-        "helpdesk": """
+        "the helpdesk": """
     the helpdesk setup:
     1. Go to the helpdesk → Settings → Developer → Webhooks
     2. Click "Create Webhook"
     3. Event: ticket.created
-    4. URL: <your endpoint base>/webhook/helpdesk/cs
+    4. URL: <your endpoint base>/webhook/the helpdesk/cs
     5. Copy the "Signing Secret" shown
     6. Paste it below
     """,
@@ -200,7 +200,7 @@ def _provider_setup_guide(provider: str) -> str:
 
 def _sample_payload(provider: str) -> dict:
     samples = {
-        "helpdesk": {
+        "the helpdesk": {
             "event": "ticket.created",
             "data": {
                 "id": "rp-test-001",

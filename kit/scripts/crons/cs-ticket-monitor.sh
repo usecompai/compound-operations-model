@@ -23,7 +23,7 @@ if not HELPDESK_KEY:
     exit(1)
 
 # Query open tickets
-url = "https://api.helpdesk.com/v1/conversations?status=OPEN"
+url = "https://api.the helpdesk.com/v1/conversations?status=OPEN"
 headers = {
     "x-api-key": HELPDESK_KEY,
     "Content-Type": "application/json"

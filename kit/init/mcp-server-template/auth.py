@@ -4,7 +4,7 @@ Keys are stored in /opt/operai/credentials/mcp-keys.json:
 
     {
       "lgm_<32 hex>": {
-        "name":       "the-founder",
+        "name":       "alex",
         "role":       "admin",
         "created_at": "2026-04-17T…",
         "last_seen":  null,

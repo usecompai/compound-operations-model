@@ -16,7 +16,7 @@ from operai_init.ingest.storage import open_db, EncryptedDB
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS allowlist (
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
-    source        TEXT NOT NULL,       -- shopify|klaviyo|ads_meta|ads_google|gmail|slack|notion|drive|helpdesk
+    source        TEXT NOT NULL,       -- shopify|klaviyo|ads_meta|ads_google|gmail|slack|notion|drive|the helpdesk
     unit_type     TEXT NOT NULL,       -- resource|account|mailbox|channel|folder|page
     unit_id       TEXT NOT NULL,
     reason        TEXT NOT NULL,       -- legal-basis / necessity justification
@@ -30,11 +30,11 @@ CREATE INDEX IF NOT EXISTS idx_allowlist_source ON allowlist(source) WHERE revok
 """
 
 # Sources gated hard: require legal sign-off text before accepting.
-HIGH_RISK_SOURCES = {"gmail", "slack", "notion", "drive", "helpdesk"}
+HIGH_RISK_SOURCES = {"gmail", "slack", "notion", "drive", "the helpdesk"}
 
 # Sources frozen in the public Kit (v2.6+) — available only via Custom Ingest Engagement.
 # See playbook Ch.11f + Ch.13 for the decision trail.
-FROZEN_IN_KIT = {"gmail", "slack", "notion", "drive", "helpdesk"}
+FROZEN_IN_KIT = {"gmail", "slack", "notion", "drive", "the helpdesk"}
 
 # Gmail: only shared mailboxes, never personal.
 # Unit IDs look like "info@brand.com", "ops@brand.com". Reject if looks
@@ -43,7 +43,7 @@ def _validate_gmail_unit(unit_id: str) -> Optional[str]:
     if "@" not in unit_id:
         return "must be an email address"
     local = unit_id.split("@", 1)[0].lower()
-    personal_smell = {"firstname", "lastname", "the-founder", "sam", "me", "personal"}
+    personal_smell = {"firstname", "lastname", "alex", "sam", "me", "personal"}
     if any(p in local for p in personal_smell):
         return "looks like a personal mailbox — only shared inboxes (info@, ops@, wholesale@, support@, hello@) are allowed"
     # Common safe shared-inbox prefixes

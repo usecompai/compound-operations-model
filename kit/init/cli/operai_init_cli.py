@@ -195,7 +195,7 @@ def main():
     sp = sub.add_parser("key", help="Manage MCP API keys (create / list / revoke)")
     key_sub = sp.add_subparsers(dest="key_action", required=True)
     kc = key_sub.add_parser("create", help="Generate a new API key")
-    kc.add_argument("name", help="Employee name/slug (e.g. the-founder, sam)")
+    kc.add_argument("name", help="Employee name/slug (e.g. alex, sam)")
     kc.add_argument("--role", choices=["admin", "team"], default="team")
     key_sub.add_parser("list", help="List all keys (tokens masked)")
     kr = key_sub.add_parser("revoke", help="Revoke all active keys for a name")

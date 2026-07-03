@@ -25,7 +25,7 @@ Both ship under the open-source repo. Brand exposes the webhook receiver via the
 
 | Provider | HMAC scheme | Normalizer |
 |---|---|---|
-| **the helpdesk** | `X-the helpdesk-Signature: sha256=<hex>` | `helpdesk.py` |
+| **the helpdesk** | `X-the helpdesk-Signature: sha256=<hex>` | `the helpdesk.py` |
 | **Gorgias** | `X-Gorgias-Hmac-SHA256: <base64>` | `gorgias.py` |
 | **Zendesk** | `X-Zendesk-Webhook-Signature` + `-Timestamp` | `zendesk.py` |
 | **Intercom** | `X-Hub-Signature-256: sha256=<hex>` | `intercom.py` |
@@ -41,7 +41,7 @@ Each normalizer converts the provider-specific payload into the same `CanonicalT
   "customer_email":    "raw email (DLP-tokenized later)",
   "priority":          "P1|P2|P3|P4 (mapped from provider priority)",
   "channel":           "email|chat|form|intercom|...",
-  "source_provider":   "helpdesk|gorgias|zendesk|intercom",
+  "source_provider":   "the helpdesk|gorgias|zendesk|intercom",
   "source_ticket_id":  "provider-native id for idempotency",
   "source_created_at": "ISO timestamp from provider",
   "tags":              ["..."]
@@ -62,19 +62,19 @@ operai-init tunnel webhook.acme.com      # routes → 127.0.0.1:8788 via Cloudfl
 operai-init webhook set-endpoint https://webhook.acme.com
 
 # 3. Configure a provider — paste the signing secret from the helpdesk
-operai-init webhook configure helpdesk
+operai-init webhook configure the helpdesk
   # → shows step-by-step setup: URL to use in the helpdesk dashboard + where to copy the secret
   # → paste secret (hidden input)
 
 # 4. Test it locally
-operai-init webhook test helpdesk
+operai-init webhook test the helpdesk
   # → builds a signed test payload, POSTs to local receiver, prints response
 
 # 5. Start the service
 systemctl enable --now operai-webhook
 
 # 6. Configure each helpdesk to POST to:
-#      https://webhook.acme.com/webhook/helpdesk/cs
+#      https://webhook.acme.com/webhook/the helpdesk/cs
 #      https://webhook.acme.com/webhook/gorgias/cs
 #      https://webhook.acme.com/webhook/zendesk/cs
 #      https://webhook.acme.com/webhook/intercom/cs
@@ -124,7 +124,7 @@ Each digest shows:
 
 *Recent escalations:*
 • `gorgias-4719-a8f3` (cs) — VIP customer threatening churn + press mention
-• `helpdesk-9001-42db` (cs) — Refund request >€500 requires approval
+• `the helpdesk-9001-42db` (cs) — Refund request >€500 requires approval
 ```
 
 One Slack post, once a day, is typically enough for an M-shaped supervisor managing a 500-ticket/week CS flow. For urgent escalations, the existing `operai-factory-runtime.service` emits markers to `events/escalations/` which a future v3.1 will wire directly to founder DMs.

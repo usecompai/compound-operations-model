@@ -13,7 +13,7 @@ The average consumer lifestyle brand with €5–50M in revenue runs 15–25 sof
 | Ecommerce | Shopify, WooCommerce, BigCommerce |
 | Email/SMS | Klaviyo, Mailchimp, Attentive |
 | Customer Service | Gorgias, Zendesk, the helpdesk, Intercom |
-| Inventory/OMS | Stocky, Cin7, inventory-system, Skubana |
+| Inventory/OMS | Stocky, Cin7, the POS/inventory system, Skubana |
 | 3PL/Fulfillment | ShipBob, Deliverr, custom 3PL portals |
 | Wholesale | Faire, NuOrder, Joor, spreadsheets |
 | Accounting | Xero, QuickBooks, the accounting system |

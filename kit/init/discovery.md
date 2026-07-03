@@ -42,10 +42,10 @@ See `brain-bootstrap.py` → `INTERVIEW` list. Each entry is `(key, prompt)`:
 - `channels` — DTC, retail, wholesale, marketplaces
 - `physical_locations` — Count (0 if none)
 - `ecom_platform` — shopify / shopify-plus / woocommerce / other
-- `erp` — accounting-system / quickbooks / xero / sap / none / other
-- `helpdesk` — helpdesk / zendesk / gorgias / freshdesk / none
+- `erp` — the accounting system / quickbooks / xero / sap / none / other
+- `helpdesk` — the helpdesk / zendesk / gorgias / freshdesk / none
 - `email_platform` — klaviyo / mailchimp / sendgrid / other
-- `inventory_system` — inventory-system / cin7 / shopify-native / other
+- `inventory_system` — the POS/inventory system / cin7 / shopify-native / other
 - `ads_platforms` — meta, google, pinterest, tiktok (comma-separated)
 - `analytics` — ga4 / shopify / other
 - `comms` — slack / teams / other

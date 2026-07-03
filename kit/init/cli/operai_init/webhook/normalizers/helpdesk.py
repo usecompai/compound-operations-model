@@ -42,7 +42,7 @@ def normalize(payload: dict) -> dict:
         "customer_email":  customer.get("email"),     # raw; DLP tokenizes if ingested
         "priority":        priority,
         "channel":         (data.get("channel") or "email").lower(),
-        "source_provider": "helpdesk",
+        "source_provider": "the helpdesk",
         "source_ticket_id": source_ticket_id(payload),
         "source_created_at": data.get("created_at"),
         "tags":            data.get("tags") or [],

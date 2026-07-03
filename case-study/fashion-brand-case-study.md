@@ -17,7 +17,7 @@
 | Team Size | 20 people |
 | Channels | DTC (domestic + international), Wholesale (50+ accounts), Retail (4 stores), Department stores |
 | Markets | 4 countries, expanding |
-| Platform | Shopify (ecommerce), Klaviyo (email/SMS), inventory-system (inventory), the wholesale platform (3PL), the helpdesk (CS) |
+| Platform | Shopify (ecommerce), Klaviyo (email/SMS), the POS/inventory system (inventory), the wholesale platform (3PL), the helpdesk (CS) |
 | AI System | Multi-agent architecture, 6 specialized agents |
 
 ---
@@ -43,7 +43,7 @@ A European consumer lifestyle brand, profitable and growing aggressively. The te
 Instead of hiring, the brand deployed the Compound Operations Model over 30 days.
 
 ### Week 1: Integration Layer
-- Connected Shopify, Klaviyo, inventory-system, 3PL API, CS platform, and accounting system
+- Connected Shopify, Klaviyo, the POS/inventory system, 3PL API, CS platform, and accounting system
 - Established unified data access for all agents
 - Configured brand voice, escalation rules, and access controls
 

@@ -26,7 +26,7 @@ def _b64_digest(secret: str, body: bytes) -> str:
     return base64.b64encode(hmac.new(secret.encode(), body, hashlib.sha256).digest()).decode()
 
 
-def verify_helpdesk(secret: str, body: bytes, header_value: str) -> bool:
+def verify_the helpdesk(secret: str, body: bytes, header_value: str) -> bool:
     if not header_value or not secret:
         return False
     # Header: "sha256=<hex>"
@@ -73,9 +73,9 @@ def verify(
     """Return (ok, reason). All comparisons are constant-time."""
     # Normalize headers to lowercase for lookup
     h = {k.lower(): v for k, v in headers.items()}
-    if provider == "helpdesk":
-        sig = h.get("x-helpdesk-signature", "")
-        return (verify_helpdesk(secret, body, sig), "helpdesk-sig" if sig else "missing-header")
+    if provider == "the helpdesk":
+        sig = h.get("x-the helpdesk-signature", "")
+        return (verify_the helpdesk(secret, body, sig), "the helpdesk-sig" if sig else "missing-header")
     if provider == "gorgias":
         sig = h.get("x-gorgias-hmac-sha256", "")
         return (verify_gorgias(secret, body, sig), "gorgias-sig" if sig else "missing-header")
