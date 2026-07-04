@@ -1,0 +1,49 @@
+# structured-data-sidecar.yml
+# One file per dataset. Lives in the brain next to the dataset card.
+# The brain holds the meaning; the sidecar holds the rows.
+
+dataset:
+  id: bank-movements-monthly          # stable, unique, kebab-case
+  description: >
+    Monthly transaction exports from all operating bank accounts,
+    used for cash reconciliation against the accounting ledger.
+
+source:
+  capture_source: fin-bank-exports    # id from the capture spine (ch. 10u)
+  system: "the accounting system + bank portals"  # generic; never a vendor name
+  format: csv                          # csv | json | parquet | xlsx
+
+load:
+  target: duckdb                       # duckdb (ad-hoc) | ducklake (durable/versioned)
+  table: bank_movements                # table name inside the sidecar
+  multi_file: true                     # true if stacking many same-shape exports
+
+versioning:
+  snapshots: true                      # keep point-in-time copies?
+  cadence: monthly                     # daily | weekly | monthly | on-refresh
+  # snapshots:true implies target:ducklake — you cannot version an overwrite
+
+schema_drift:
+  policy: track                        # track | freeze | reject
+  # track  = record new/renamed columns across exports (recommended)
+  # freeze = pin a schema; flag any export that doesn't match
+  # reject = refuse loads that deviate
+
+sensitivity:
+  class: confidential                  # public | internal | confidential | restricted
+  # queried only by agents/people cleared for this class
+
+brain:
+  dataset_card: knowledge/finance/datasets/bank-movements.md  # the meaning doc
+
+refresh:
+  cadence: monthly                     # how often new rows land
+  owner: finance                       # role, not a person's name
+
+reconciliation:                        # optional: what this gets matched against
+  targets:
+    - accounting-ledger
+    - commerce-platform-payouts
+
+retention:
+  keep: 24-months                      # bound the growth; older snapshots pruned

@@ -1,98 +1,137 @@
-# The Compound Operations Model
-## An Open-Source AI Operations Playbook for Consumer SMEs
+# Compai Playbook — Source Index
 
 **By Compai** · Open-source educational portfolio · Built inside a profitable brand growing 100%+ annually · Repo: usecompai.com/repo
 
+The playbook is a **journey**: eight sections in the order an SME actually builds an AI operating system. Read them in order the first time. Each section ends with a **Ship it** gate — the minimum working state before the next section makes sense.
+
+**The 30-day path:** week 1 = Start Here + The Brain (capture running) · week 2 = The Tools (hands on 2 systems) · week 3 = The Agents (first agent, propose-only) + Governance (authority matrix, scoped spaces) · week 4 = Operate (the loop live) + Proof (your own honest ledger).
+
+
+## 1. START HERE — Why an AI operating system, what it looks like, and how far you can take it
+
+1. [Introduction](01-introduction.html)
+2. [The Problem](02-problem.html)
+3. [Architecture](03-architecture.html)
+4. [30-Second Company Brain](00a-30-second-brain.html)
+5. [The 5 Pillars](15-five-pillars.html)
+6. [Capability Maturity Ladder](00d-maturity-ladder.html)
+7. [Live Dashboard Tour](00b-live-dashboard.html)
+
+**Ship it — do not move on until:**
+- [ ] You can explain the thesis in one sentence: capture the company, formalize it into a brain, execute on top.
+- [ ] You know which rung of the maturity ladder you are on today.
+- [ ] You have seen the live dashboard and know what “good” looks like.
+
+## 2. THE BRAIN — Capture the company as it happens, formalize it into memory, make it retrievable
+
+8. [The Company Brain](00-the-brain.html)
+9. [The capture layer — Slack, Meet, Email, Drive](10m-capture-layer.html)
+10. [The Capture Spine](10u-capture-spine.html)
+11. [Ingest Layer](11f-ingest-layer.html)
+12. [Memory Architecture](10b-memory-architecture.html)
+13. [Brain v2 — from wiki to operational memory](10l-brain-v2-living-memory.html)
+14. [The Intelligence Layer](10t-the-intelligence-layer.html)
+15. [Domain Intelligence Indexes](10v-domain-intelligence-indexes.html)
+16. [Knowledge Mining Loop](10g-knowledge-mining.html)
+17. [Structured Data Sidecar](10y-structured-data-sidecar.html)
+
+**Ship it — do not move on until:**
+- [ ] A capture spine runs with at least 3 sources, each item stamped (source, timestamp, sensitivity).
+- [ ] Capture keeps queueing when the model is down — you have tested it.
+- [ ] Domain indexes exist with named owners; promotion-queue depth is on a dashboard.
+- [ ] Tables over ~10k rows live in the sidecar with a dataset card, not in markdown.
+
+## 3. THE TOOLS — One protocol between the brain and every real system — hands, not just answers
+
+18. [MCP Server](10c-mcp-server.html)
+19. [Technology Stack](10-stack.html)
+20. [Consumer SME Stack Map](10k-stack-map.html)
+21. [LLM Provider Abstraction](18-llm-providers.html)
+22. [Provider Failure Semantics](10z-provider-failure-semantics.html)
+23. [Webhooks + Slack Digest](21-webhooks-digest.html)
+
+**Ship it — do not move on until:**
+- [ ] An MCP (or equivalent) server connects the brain to at least 2 real systems.
+- [ ] Your jobs report four states — ok / blocked-provider / blocked-reauth / failed-validation — never bare pass/fail.
+- [ ] You can swap the model provider without losing any context.
+
+## 4. THE AGENTS — Domain agents that execute on top of shared memory, and the factory that ships them
+
+24. [Customer Service](04-agent-cs.html)
+25. [Inventory & Supply](05-agent-ops.html)
+26. [Finance & Reporting](06-agent-finance.html)
+27. [Marketing & Lifecycle](07-agent-marketing.html)
+28. [Wholesale & B2B](08-agent-wholesale.html)
+29. [Retail & Physical](09-agent-retail.html)
+30. [Merchandising](09b-agent-merchandising.html)
+31. [HR & People Ops](09c-agent-hr.html)
+32. [Agent Factory Pattern](17-agent-factory.html)
+33. [Factory Runtime](19-factory-runtime.html)
+34. [MVP Runtime](20-mvp-runtime.html)
+
+**Ship it — do not move on until:**
+- [ ] Your first agent runs in ONE domain, propose-only, reading its scoped index.
+- [ ] It writes decisions back to the brain — the second agent can see what the first learned.
+- [ ] You ship the second agent from the factory pattern, not from scratch.
+
+## 5. GOVERNANCE — Bounded execution: scope, security, audit — safe to depend on
+
+35. [Agentic Governance](16-agentic-governance.html)
+36. [Hardening the Brain](10s-hardening-the-brain.html)
+37. [Brain Spaces](10x-brain-spaces.html)
+38. [Public-by-default — agents in the open](10q-public-by-default.html)
+39. [Governed Internal Publishing](11h-internal-publishing.html)
+40. [Organ Health Control Plane](11i-organ-health.html)
+41. [EU AI Act Compliance](11d-eu-ai-act-compliance.html)
+
+**Ship it — do not move on until:**
+- [ ] An authority matrix (read / propose / execute) exists for every agent.
+- [ ] Finance, HR and legal live in scoped spaces BEFORE any external exposure.
+- [ ] Published artifacts live on a protected company route with versions and receipts.
+- [ ] Degraded organs open tasks in a queue someone drains — not dashboard tiles.
+
+## 6. OPERATE — The loops that turn captured context into work — and make the system improve weekly
+
+42. [The Context-to-Work Loop](10w-context-to-work.html)
+43. [Operational compounding loop](10r-operational-compounding-loop.html)
+44. [Tasks, outputs, decisions, health](10p-tasks-outputs-health.html)
+45. [Master Prompt as source of truth](10o-master-prompt.html)
+46. [Council vs Punta de Flecha](10h-council-vs-flecha.html)
+47. [Master Calendar](10j-master-calendar.html)
+48. [Profit Throttle](10e-profit-throttle.html)
+49. [Invoice Pipeline](10i-invoice-pipeline.html)
+50. [AI-Native Team Onboarding](14-team-onboarding.html)
+51. [Onboarding Experience](22-onboarding-experience.html)
+
+**Ship it — do not move on until:**
+- [ ] The context-to-work loop runs: signals become candidates, work objects, receipts.
+- [ ] The human digest is capped (≤10 items) and actually gets drained daily.
+- [ ] Every correction becomes a rule — the system is measurably sharper than last month.
+
+## 7. BUILD IT — The executable path: setup, bootstrap, templates, downloadable artifacts
+
+52. [Implementation Paths](11-implementation.html)
+53. [Setup 1-click](10n-setup-1-click.html)
+54. [Brand Bootstrap](11e-brand-bootstrap.html)
+55. [OpenClaw Setup Guide](11c-openclaw-setup.html)
+56. [Downloadable Artifacts](00c-artifacts-index.html)
+57. [Pattern Library](10f-pattern-library.html)
+
+**Ship it — do not move on until:**
+- [ ] You ran the setup on your own infrastructure and adapted the templates — not copied them blind.
+- [ ] Your brain has its first 50 real documents and one working loop end to end.
+
+## 8. PROOF — Honest ROI, production lessons, and the failure ledger
+
+58. [ROI Analysis](12-roi.html)
+59. [Production Lessons](11b-production-lessons.html)
+60. [Failure Ledger](11g-failure-ledger.html)
+61. [Advanced Capabilities](10d-advanced-capabilities.html)
+
+**Ship it — do not move on until:**
+- [ ] You keep your own two-layer ROI ledger with every cost counted — including all the seats.
+- [ ] You keep a failure ledger. If it is empty, you are not measuring.
+
 ---
 
-### What This Is
-
-This is not a strategy deck. It's not a trend report. It's not thought leadership.
-
-This is the operational blueprint built — and running — inside a profitable European consumer brand. Eight-figure revenue, healthy EBITDA, 100%+ annual growth, ~40-person team. Seven AI agents in production plus a founder command center — full system cost **€631/month**, verified value **€77K/year** in reclaimed labor hours. **10:1 ROI with every assumption on the table.** The source is published as an educational portfolio so other consumer SMEs can fork the repo, read the playbook, and adapt the patterns.
-
-Everything in this playbook is real. The architectures are running. The configs are from production systems. The numbers are audited.
-
-### The Thesis
-
-For every dollar a brand spends on software, it spends six on services and headcount to operate that software. Shopify costs €2K/year. The people managing inventory, processing orders, answering tickets, and closing the books cost €200K+.
-
-Most AI tools sell another dashboard. **This playbook documents the operating layer above the dashboards.**
-
-Every improvement in AI models makes the system faster, cheaper, and easier for operators to adapt. We are not positioning this as a SaaS product or a paid repo. We are publishing the working architecture, the lessons, and the artifacts so consumer SMEs can fork the repo, inspect the assumptions, and build their own version.
-
-### Who This Is For
-
-Consumer SME operators — beauty, food & beverage, home, wellness, pet, outdoor, fashion, and retail — running on Shopify or a similar commerce stack with €2M–50M in revenue. You have a ~40-person team. Multiple channels. And operations that are creaking under growth.
-
-If you've been told you need to hire 3 more people, this playbook shows you a different path.
-
-### The Compound Operations Model™
-
-We've organized this playbook around the open operating model used in the reference deployment:
-
-1. **Integrate** — Connect your systems into a unified data layer
-2. **Specialize** — Deploy purpose-built AI agents per operational domain
-3. **Orchestrate** — Make agents coordinate across functions
-4. **Compound** — Let the system get smarter every day
-
-### Table of Contents
-
-| Ch. | Title | What You'll Learn |
-|-----|-------|-------------------|
-| 01 | [Introduction](01-introduction.md) | Who built this, why, and what makes it different |
-| 02 | [The Problem](02-problem.md) | Why brands are stuck in operational quicksand |
-| 03 | [Architecture](03-architecture.md) | The multi-agent operating system blueprint |
-| | **— The Agents —** | |
-| 04 | [Agent: Customer Intelligence](04-agent-cs.md) | CS triage, brand voice, pattern detection |
-| 05 | [Agent: Inventory & Supply Chain](05-agent-ops.md) | Multi-location sync, 3PL, demand sensing |
-| 06 | [Agent: Finance & Reporting](06-agent-finance.md) | Automated P&L, cash flow, anomaly detection |
-| 07 | [Agent: Marketing & Lifecycle](07-agent-marketing.md) | Email optimization, segmentation, attribution |
-| 08 | [Agent: Wholesale & B2B](08-agent-wholesale.md) | Account management, order ops, pipeline |
-| 09a | [Agent: Retail & Physical](09-agent-retail.md) | Foot traffic, staffing, store performance |
-| 09b | [Agent: Merchandising, Wholesale & Assortment](09b-agent-merchandising.md) | Sell-through, allocation, pricing, inventory health |
-| | **— The Stack —** | |
-| 09c | [Agent: HR & People Ops (HR Agent)](09c-agent-hr.md) | Onboarding, vacations, payroll prep, policies, expenses |
-| 10a | [The Technology Stack](10-stack.md) | What runs under the hood — models, infra, Claude Code, Agent-Reach, 95 MCP tools |
-| 10b | [Memory Architecture](10b-memory-architecture.md) | Context Tree, Knowledge Mining cron, shared brain sync (SuperMemory deprecated) |
-| 10c | [The MCP Server](10c-mcp-server.md) | How your entire team gets AI superpowers — 95 tools, zero setup |
-| 10d | [Advanced Operational Capabilities](10d-advanced-capabilities.md) | 15 specialized features that compound over time — AutoResearch, LLM Council, Pattern Library, and more |
-| 10l | [Brain v2: Living Memory](10l-brain-v2-living-memory.md) | From wiki to operational memory with write-back, capture, tasks, outputs, and world model |
-| 10m | [Capture Layer](10m-capture-layer.md) | Slack, Meet/Gemini, Gmail, and Drive capture with privacy hard-stops |
-| 10n | [Setup 1-click](10n-setup-1-click.md) | Connect employee AI clients to the company Brain in one verified command |
-| 10o | [Master Prompt](10o-master-prompt.md) | The operating contract that keeps every AI surface Brain-first and source-aware |
-| 10p | [Tasks, Outputs, Decisions, Health](10p-tasks-outputs-health.md) | The lifecycle layer that prevents useful work from disappearing |
-| 10q | [Public-by-default](10q-public-by-default.md) | Why agent work should be visible, searchable, and reusable by default |
-| 10r | [Operational Compounding Loop](10r-operational-compounding-loop.md) | Health audits, shared memory, skillify, L3 queues, and workflow mining |
-| | **— Implementation —** | |
-| 11a | [Implementation Paths](11-implementation.md) | Read the playbook → fork the repo → run locally → adapt with human review → ask hello@usecompai.com for hands-on help |
-| 11b | [Lessons from Production](11b-production-lessons.md) | 32 lessons: OAuth failures, memory cleanup, model routing, anti-injection hardening, OpenClaw vs systemd, and more |
-| 11c | [OpenClaw Runtime Setup](11c-openclaw-setup.md) | Agent runtime framework — launchd plists, ChatGPT OAuth, cron scheduling |
-| 11d | [EU AI Act Compliance](11d-eu-ai-act-compliance.md) | Full compliance package — DPIA, AI System Register, Annex III guardrails, Article 50 transparency |
-| 11e | [Brand Bootstrap (1 cmd)](11e-brand-bootstrap.md) | From blank Ubuntu VPS to running swarm in one terminal command — `curl usecompai.com/init \| bash` |
-| 11f | [Ingest Layer (Phase 1)](11f-ingest-layer.md) | Feeding the brain safely — allowlist + DLP + ACL at index boundary + RTBF. Structured sources only in v0.4 |
-| 12 | [ROI Analysis](12-roi.md) | Real numbers from 6+ months in production |
-| 14 | [Team Onboarding](14-team-onboarding.md) | Connect every employee to the swarm in 5 minutes — brain access, agents, Google Workspace, zero setup |
-| | **— The Future —** | |
-| 15 | [The 5 Pillars (McKinsey)](15-five-pillars.md) | The agentic organization framework mapped to Compai — the 1% network model, productized |
-| 16 | [Agentic Governance](16-agentic-governance.md) | Three meta-agents (critic + guardrail + compliance) watching the seven domain agents |
-| 17 | [Agent Factory Pattern](17-agent-factory.md) | McKinsey 2-5/50-100 ratio: 7 domain agents → factories of 10+ specialized sub-agents each. CS reference shipped v2.6 |
-| 18 | [LLM Provider Abstraction](18-llm-providers.md) | 5-provider multi-LLM routing (Anthropic + OpenAI + Gemini + Qwen + MiniMax). Brand-owned API keys. Fallback chains. Per-sub-agent routing |
-| 19 | [Factory Runtime v0.9.0](19-factory-runtime.md) | `operai-init factory run-once` — smoke test: 10 sub-agents dispatch end-to-end, full markdown trace, mock-LLM mode |
-| 20 | [MVP Runtime](20-mvp-runtime.md) | Autonomous daemon: events → parallel dispatch → review queue. Workflow hook points for brand-specific extensions. Honest 70% of the reference swarm |
-| 21 | [Webhooks + Slack Digest](21-webhooks-digest.md) | HMAC-verified receivers for 4 helpdesks + daily Slack digest. Autonomous end-to-end from customer email to review queue |
-| 22 | [The Onboarding Experience](22-onboarding-experience.md) | Open onboarding pack (skills + custom instruction + templates) + setup wizard + team-onboard wrapper. 30 min per employee, same experience as the reference deployment |
-
-### How to Read This
-
-- **Founders/CEOs:** Read Ch. 1–3 and Ch. 12. That gives you the thesis, the architecture, and the business case.
-- **Ops/Tech Leads:** Read everything. Ch. 4–9 are your implementation guides. Ch. 11b is the production war stories that will save you days of debugging.
-- **Investors/Board:** Ch. 12 has the numbers you want. Ch. 3 has the architecture. Ch. 10c shows the team-wide impact.
-
----
-
-*This playbook is a living document. The system it describes is in production and evolving daily. When we learn something new, we update the playbook.*
-
-**Version 2.1** · 9 June 2026 — Adds the operational compounding loop from the latest Brain/Swarm work: weekly health audits, shared memory contract, inbox sweeper, skill evaluation harness, skillify loop, L3 action queues, and workflow mining. The public repo is now `usecompai.com/repo` and includes the full playbook plus public starter kit artifacts.
-
-**Version 2.0** · 12 April 2026 — EU AI Act fully compliant (24/24 items, DPIA + AI System Register documented), honest 10:1 ROI with auditable math (€77K value / €4.2K cost), 32 production lessons, 15+ advanced capabilities (Punta de Flecha adversarial cross-model deliberation, AutoResearch, LLM Council, Pattern Library live), ChatGPT OAuth model strategy (5 agents at €0 incremental), anti-prompt-injection hardening across all SOULs, ACK rule fleet-wide, HR guardrails against Annex III high-risk uses, CS Article 50 transparency disclaimer deployed. Live at **usecompai.com** with public dashboard and free playbook, or contact **hello@usecompai.com** for hands-on implementation help.
+**Version 4.0** · July 2026 — The playbook is reorganized as the eight-section SME journey and adds the operating-memory layer from our latest production work: the capture spine, domain intelligence indexes, the context-to-work loop, brain spaces, the structured data sidecar, provider failure semantics, governed internal publishing, and the organ health control plane. 62 chapters. The public repo includes the full playbook plus starter kit artifacts, templates and evals.

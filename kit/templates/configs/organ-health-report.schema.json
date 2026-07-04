@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://usecompai.com/schemas/organ-health-report.schema.json",
+  "title": "Organ Health Report",
+  "description": "A periodic health snapshot of an AI operating system, treated as a body of organs. Every degraded organ must open a task, not just change a dashboard colour.",
+  "type": "object",
+  "required": ["report_id", "generated_at", "period", "organs", "overall_status", "next_report_due"],
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "description": "Stable unique id for this report, e.g. 'ohr-2026-07-04-w27'."
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this report was produced (ISO 8601)."
+    },
+    "period": {
+      "type": "string",
+      "description": "Human-readable window this report covers, e.g. '2026-06-28..2026-07-04'."
+    },
+    "organs": {
+      "type": "array",
+      "description": "One entry per monitored organ. All nine should normally appear.",
+      "items": {
+        "type": "object",
+        "required": ["organ", "status", "task_opened"],
+        "properties": {
+          "organ": {
+            "type": "string",
+            "description": "Which organ this entry reports on.",
+            "enum": ["disk", "transport", "memory", "procedural_memory", "sensors", "action_control", "autonomy", "observability", "channels"]
+          },
+          "status": {
+            "type": "string",
+            "description": "Health of this organ. 'unknown' means the check itself did not report — treat as bad news.",
+            "enum": ["ok", "degraded", "critical", "unknown"]
+          },
+          "metrics": {
+            "type": "object",
+            "description": "Key numbers behind the status. Prefer queues and timestamps over totals.",
+            "properties": {
+              "queue_depth": { "type": "integer", "description": "Depth of the relevant queue (promotion, approval, etc.)." },
+              "oldest_item_age": { "type": "string", "description": "Age of the oldest un-drained item, e.g. '26h'." },
+              "last_success_at": { "type": "string", "format": "date-time", "description": "Last successful run/capture/heartbeat for this organ." }
+            }
+          },
+          "threshold_tripped": {
+            "type": "string",
+            "description": "Which threshold was crossed, stated plainly. Null when status is ok."
+          },
+          "recovery_action": {
+            "type": "string",
+            "description": "The specific next step to restore health (ties to ch. 10z recovery actions)."
+          },
+          "owner_role": {
+            "type": "string",
+            "description": "Role that can perform the recovery — a role, not a person's name."
+          },
+          "task_opened": {
+            "type": "boolean",
+            "description": "Whether a work-queue task was opened for this degradation. Must be true for any non-ok status."
+          },
+          "task_ref": {
+            "type": "string",
+            "description": "Reference to the opened task in the work/approval queue. Null if none."
+          }
+        }
+      }
+    },
+    "overall_status": {
+      "type": "string",
+      "description": "Roll-up across all organs. Worst organ wins; 'unknown' if any check failed to report.",
+      "enum": ["ok", "degraded", "critical", "unknown"]
+    },
+    "next_report_due": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the next report must arrive. A missing report by this time is itself a degradation of the observability organ."
+    }
+  }
+}
