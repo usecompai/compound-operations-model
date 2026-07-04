@@ -154,6 +154,6 @@ elif status["status"] == "failed":
 
 ## Origen
 
-Metodología desarrollada por the founder (abril 2026). Inspirada en el protocolo de Javilop ([@javilop](https://x.com/javilop)) para análisis médico cross-model. Adaptada a estrategia business y generalizada como skill público en GitHub: https://github.com/darthe company/punta-de-flecha
+Metodología desarrollada por the founder (abril 2026). Inspirada en el protocolo de Javilop ([@javilop](https://x.com/javilop)) para análisis médico cross-model. Adaptada a estrategia business y generalizada como skill público en GitHub: a public GitHub repo
 
 v1: básico. v2: adversarial forzado. v3: RAG + fact-check + red team. v4: async job pattern (resuelve MCP timeouts).

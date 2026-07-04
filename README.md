@@ -64,7 +64,7 @@ The original public repo only contained three introductory chapters. This versio
 Important corrections:
 
 - Current brand: **Compai**. OperAI was the legacy/internal name.
-- Current repo: `darthe company/compound-operations-model`.
+- Current repo: `usecompai.com/repo`.
 - The playbook is no longer just a multi-agent architecture essay. It now includes Brain v2, employee onboarding, setup 1-click, shared memory, health, and workflow mining.
 - ROI language now uses the audited 18:1 model from the public playbook, not older 31:1/50:1 marketing claims.
 

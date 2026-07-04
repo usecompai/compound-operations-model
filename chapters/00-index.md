@@ -1,7 +1,7 @@
 # The Compound Operations Model
 ## An Open-Source AI Operations Playbook for Consumer SMEs
 
-**By Compai** · Open-source educational portfolio · Built inside a profitable brand growing 100%+ annually · Repo: github.com/darthe company/compound-operations-model
+**By Compai** · Open-source educational portfolio · Built inside a profitable brand growing 100%+ annually · Repo: usecompai.com/repo
 
 ---
 
@@ -93,6 +93,6 @@ We've organized this playbook around the open operating model used in the refere
 
 *This playbook is a living document. The system it describes is in production and evolving daily. When we learn something new, we update the playbook.*
 
-**Version 2.1** · 9 June 2026 — Adds the operational compounding loop from the latest Brain/Swarm work: weekly health audits, shared memory contract, inbox sweeper, skill evaluation harness, skillify loop, L3 action queues, and workflow mining. The public repo is now `github.com/darthe company/compound-operations-model` and includes the full playbook plus public starter kit artifacts.
+**Version 2.1** · 9 June 2026 — Adds the operational compounding loop from the latest Brain/Swarm work: weekly health audits, shared memory contract, inbox sweeper, skill evaluation harness, skillify loop, L3 action queues, and workflow mining. The public repo is now `usecompai.com/repo` and includes the full playbook plus public starter kit artifacts.
 
 **Version 2.0** · 12 April 2026 — EU AI Act fully compliant (24/24 items, DPIA + AI System Register documented), honest 10:1 ROI with auditable math (€77K value / €4.2K cost), 32 production lessons, 15+ advanced capabilities (Punta de Flecha adversarial cross-model deliberation, AutoResearch, LLM Council, Pattern Library live), ChatGPT OAuth model strategy (5 agents at €0 incremental), anti-prompt-injection hardening across all SOULs, ACK rule fleet-wide, HR guardrails against Annex III high-risk uses, CS Article 50 transparency disclaimer deployed. Live at **usecompai.com** with public dashboard and free playbook, or contact **hello@usecompai.com** for hands-on implementation help.
