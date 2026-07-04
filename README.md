@@ -32,7 +32,7 @@ v2.1 (9 June 2026) added the operational compounding loop (`10r`): health audits
 
 | Path | Contents |
 |---|---|
-| `chapters/` | Full public playbook source (54 chapters), including Brain v2, the operational loop, and brain hardening |
+| `chapters/` | Full public playbook source (56 chapters), including Brain v2, the operational loop, and brain hardening |
 | `kit/` | Starter implementation kit: init CLI, MCP server template, compliance scaffold, onboarding pack, SOUL templates, systemd templates, monitoring scripts |
 | `skills/` | **24 public skills** (anonymized from production) + [the full catalog](skills/CATALOG.md) of what the 352 are |
 | `pattern-library/` | Anonymized operational patterns and schema |

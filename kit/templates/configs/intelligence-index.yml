@@ -1,0 +1,64 @@
+# intelligence-index.yml
+# One file per operating domain. Defines a domain intelligence index:
+# where promoted signals live, how captures get promoted into it,
+# who reads it, and how conflicts are resolved.
+# Copy this file per domain (finance.yml, marketing.yml, ...) and edit.
+
+index:
+  id: finance                      # short, stable, machine-safe id
+  domain: Finance                  # human-readable domain name
+  description: >                   # what a signal in this index IS
+    Durable financial facts and rules: cash policy, margins,
+    payment terms, refund/returns policy, budget decisions.
+  owner: finance-owner             # named human accountable for quality
+
+# Which capture sources feed this index (ids from your capture spine).
+# Signals are promoted FROM these raw sources INTO this index.
+sources:
+  - slack:finance
+  - email:finance-inbox
+  - meetings:finance-review
+  - drive:finance-folder
+  - notion:finance-space
+
+# How a raw capture becomes a promoted signal in this index.
+promotion:
+  mode: auto_with_review           # auto_with_review | manual
+  reviewer_role: finance-owner     # who confirms before a signal goes canonical
+  durability_test: >               # the one-sentence bar for promotion
+    Would a finance reader want this surfaced next month
+    without knowing to search for it?
+
+# Provenance is mandatory. No signal enters without a link to its source.
+provenance:
+  required: true                   # reject promotions with no source link
+
+# What happens when a new signal contradicts an existing indexed fact.
+conflict:
+  policy: source_of_truth_hierarchy   # ties to 10t layer 3
+  hierarchy:                          # highest authority first; wins ties
+    - signed_contract
+    - formal_policy_doc
+    - approved_meeting_decision
+    - slack_or_email_statement
+  on_conflict:
+    action: open_reconciliation_task  # never silent overwrite/drop
+    task_target: finance-owner        # who adjudicates
+    loser: mark_superseded            # keep history; link to replacement
+
+# Who and what may read this index (the permission boundary).
+readers:
+  roles:
+    - finance-owner
+    - founder
+    - command-center
+  agents:
+    - finance-agent
+  spaces:
+    - finance                       # deny-by-default for everyone else
+
+# How often the owner reviews the index for staleness and errors.
+retention:
+  review_cadence: monthly           # weekly for fast domains, monthly for slow
+  superseded_signals: keep          # never delete; retain for audit trail
+  archive_raw: true                 # raw captures live on regardless
