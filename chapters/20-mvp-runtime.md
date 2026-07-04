@@ -14,16 +14,16 @@ The gap between v2.9 and v3.0-β is five new components:
 | `factory_runtime/parallel.py` | ~120 | Asyncio dispatcher respecting `max_parallel` with a dependency-aware wave scheduler |
 | `factory_runtime/brain_lookup.py` | ~100 | Auto-enrichment: reads `brand_voice.md`, scans `cs/policies/`, resolves customer history stubs |
 | `factory_runtime/review_queue.py` | ~100 | Writes markdown per decision to `brain/review/<bucket>/<domain>/<event_id>.md` |
-| `operai_init/event.py` | ~110 | `operai-init event submit/list/show/replay` CLI |
+| `compai_init/event.py` | ~110 | `compai-init event submit/list/show/replay` CLI |
 
-Plus: one new systemd unit (`operai-factory-runtime.service`), workflow hook scaffolding (`/opt/operai/workflows/`), and updated `install.sh` to provision all of it.
+Plus: one new systemd unit (`compai-factory-runtime.service`), workflow hook scaffolding (`/opt/compai/workflows/`), and updated `install.sh` to provision all of it.
 
 ## The autonomous flow
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│ 1. Event arrives at /opt/operai/events/<domain>/pending/X.json   │
-│    Source: operai-init event submit (MVP) OR webhook (v0.9.2)    │
+│ 1. Event arrives at /opt/compai/events/<domain>/pending/X.json   │
+│    Source: compai-init event submit (MVP) OR webhook (v0.9.2)    │
 └───────────────────────────────┬──────────────────────────────────┘
                                 ▼
 ┌──────────────────────────────────────────────────────────────────┐
@@ -40,7 +40,7 @@ Plus: one new systemd unit (`operai-factory-runtime.service`), workflow hook sca
                                 ▼
 ┌──────────────────────────────────────────────────────────────────┐
 │ 4. PRE-HOOK: brand's custom Python at                             │
-│    /opt/operai/workflows/<domain>/pre_process.py                 │
+│    /opt/compai/workflows/<domain>/pre_process.py                 │
 │    Modifies event before factory dispatch                         │
 └───────────────────────────────┬──────────────────────────────────┘
                                 ▼
@@ -54,7 +54,7 @@ Plus: one new systemd unit (`operai-factory-runtime.service`), workflow hook sca
                                 ▼
 ┌──────────────────────────────────────────────────────────────────┐
 │ 6. POST-HOOK: brand's custom Python at                            │
-│    /opt/operai/workflows/<domain>/post_process.py                │
+│    /opt/compai/workflows/<domain>/post_process.py                │
 │    Inspect / modify / side-effect on the OrchestrationResult     │
 └───────────────────────────────┬──────────────────────────────────┘
                                 ▼
@@ -73,7 +73,7 @@ Plus: one new systemd unit (`operai-factory-runtime.service`), workflow hook sca
 └───────────────────────────────┬──────────────────────────────────┘
                                 ▼
 ┌──────────────────────────────────────────────────────────────────┐
-│ 9. Event moves to /opt/operai/events/<domain>/completed/          │
+│ 9. Event moves to /opt/compai/events/<domain>/completed/          │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
@@ -83,16 +83,16 @@ A team forking the repo today can, same afternoon:
 
 ```bash
 curl usecompai.com/init | bash            # swarm up
-operai-init llm configure                  # paste provider keys
-operai-init factory enable --domain cs     # 10 sub-agents deployed
-systemctl enable --now operai-factory-runtime   # daemon running
+compai-init llm configure                  # paste provider keys
+compai-init factory enable --domain cs     # 10 sub-agents deployed
+systemctl enable --now compai-factory-runtime   # daemon running
 ```
 
-From that moment, anything that drops a JSON file in `/opt/operai/events/cs/pending/` gets processed autonomously. Concretely:
+From that moment, anything that drops a JSON file in `/opt/compai/events/cs/pending/` gets processed autonomously. Concretely:
 
 - A cron hitting a helpdesk API every 5 min and dumping new tickets as JSON → the daemon picks them up. Brand's own cron, brand's own helpdesk.
 - A webhook receiver (to be shipped in v0.9.2, or the brand writes one in 30 min with Starlette) that drops JSONs → processed.
-- `operai-init event submit` from the command line → processed. Useful for manual testing + ad-hoc runs.
+- `compai-init event submit` from the command line → processed. Useful for manual testing + ad-hoc runs.
 
 ## Workflow hooks — where the brand extends
 
@@ -103,7 +103,7 @@ The MVP is **deliberately generic**. Every brand has specific logic that doesn't
 - "We use the POS/inventory system for inventory; look up stock status before drafting refund replies."
 - "Our Spanish dialect is specifically Canarias — override the dialect detector."
 
-`/opt/operai/workflows/<domain>/pre_process.py` and `post_process.py` are where the brand puts this code. The daemon loads them via `importlib.util` per event, so edits take effect on the next event — no daemon restart needed.
+`/opt/compai/workflows/<domain>/pre_process.py` and `post_process.py` are where the brand puts this code. The daemon loads them via `importlib.util` per event, so edits take effect on the next event — no daemon restart needed.
 
 Sample `pre_process.py` that ships in Runtime v3.0-beta:
 
@@ -135,7 +135,7 @@ What the MVP does **not** do autonomously (yet):
 
 1. **Receive tickets from helpdesks** — v0.9.2. Today the brand wires their own event source (cron + helpdesk API + drop JSON).
 2. **Send replies automatically** — v0.9.3. Today auto-send decisions are logged to `review/auto-sent/` but not actually transmitted. A human (or a brand-side workflow hook) does the send.
-3. **Retry on transient failures** — v0.9.3. Today failures move to `events/failed/` with an `.error` file; the founder replays manually with `operai-init event replay`.
+3. **Retry on transient failures** — v0.9.3. Today failures move to `events/failed/` with an `.error` file; the founder replays manually with `compai-init event replay`.
 4. **Enforce cost budget** — v0.9.3. Today `factory.yml` declares `cost_budget_per_ticket_eur` but the runtime doesn't check it.
 
 If the buyer needs all four, they either: (a) wait for v0.9.3, (b) implement them via workflow hooks, or (c) buy into the Managed Operations tier (Ch.13 Path 3a).
@@ -146,23 +146,23 @@ New CLI in v3.0-β:
 
 ```bash
 # Submit an event (pre-webhook MVP path)
-operai-init event submit --domain cs --input ticket.json
+compai-init event submit --domain cs --input ticket.json
 
 # Inspect event buckets
-operai-init event list                  # all buckets
-operai-init event list --bucket pending
-operai-init event list --bucket failed
+compai-init event list                  # all buckets
+compai-init event list --bucket pending
+compai-init event list --bucket failed
 
 # Detailed view of one event + trace
-operai-init event show --id smoke-test-001
+compai-init event show --id smoke-test-001
 
 # Re-run an event (copy completed → pending)
-operai-init event replay --id smoke-test-001
+compai-init event replay --id smoke-test-001
 
 # Daemon lifecycle
-systemctl enable --now operai-factory-runtime
-systemctl status operai-factory-runtime
-tail -f /opt/operai/logs/factory-runtime.log
+systemctl enable --now compai-factory-runtime
+systemctl status compai-factory-runtime
+tail -f /opt/compai/logs/factory-runtime.log
 ```
 
 ## Runtime v3.0-beta vs repo v3.0 (the roadmap)

@@ -1,5 +1,5 @@
 [Unit]
-Description=OperAI @BRAND@ · webhook receiver (helpdesk integrations)
+Description=Compai @BRAND@ · webhook receiver (helpdesk integrations)
 After=network-online.target
 Wants=network-online.target
 
@@ -8,10 +8,10 @@ Type=simple
 User=@USER@
 Group=@USER@
 WorkingDirectory=@HOME@
-Environment="OPERAI_HOME=@HOME@"
-Environment="OPERAI_BRAND=@BRAND@"
+Environment="COMPAI_HOME=@HOME@"
+Environment="COMPAI_BRAND=@BRAND@"
 Environment="PYTHONPATH=@HOME@/services/init/cli"
-ExecStart=/usr/bin/python3 -m operai_init.webhook.server --host 127.0.0.1 --port 8788
+ExecStart=/usr/bin/python3 -m compai_init.webhook.server --host 127.0.0.1 --port 8788
 Restart=on-failure
 RestartSec=10
 StandardOutput=append:@HOME@/logs/webhook.log

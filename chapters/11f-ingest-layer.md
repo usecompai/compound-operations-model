@@ -6,7 +6,7 @@
 
 Chapter 11e covers the bootstrap: one command and the swarm is running with a brain that contains the founder's discovery interview and not much else. This chapter covers what comes next: **how do you actually feed the brain real company data** — orders, products, campaigns, metrics — without accidentally importing half the GDPR fine schedule into your MCP server?
 
-The short answer is the ingest layer, shipped in repo v2.4 as `operai-init ingest …`. The long answer is this chapter. It documents what the layer does, why it was redesigned twice under adversarial review, and what you can — and cannot — wire up safely today.
+The short answer is the ingest layer, shipped in repo v2.4 as `compai-init ingest …`. The long answer is this chapter. It documents what the layer does, why it was redesigned twice under adversarial review, and what you can — and cannot — wire up safely today.
 
 ## The design was not free
 
@@ -20,7 +20,7 @@ Version 0.4 (this chapter) fixes the order of operations. Every shipped line in 
 
 | Component | Purpose |
 |---|---|
-| `operai-init ingest allow …` | Explicit per-source allowlist. No connector runs without a documented legal-basis justification. |
+| `compai-init ingest allow …` | Explicit per-source allowlist. No connector runs without a documented legal-basis justification. |
 | Subject Registry | Canonical identity store (SQLCipher-encrypted) with deterministic-only linking — no heuristic merges. |
 | Delete Ledger | Per-subject RTBF tracking with propagation status per store. Realistic SLAs, not marketing. |
 | DLP Stage A | Deterministic secret scanning (AWS, Stripe, Anthropic, GitHub, JWTs, private keys). Hard refuse. |
@@ -48,7 +48,7 @@ Each of these requires at least one of the five Phase 2 prerequisites (§5) reso
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ 1. operai-init ingest allow --source X --unit-id Y          │
+│ 1. compai-init ingest allow --source X --unit-id Y          │
 │    --reason "legítimo interés – …"                          │
 │    Entry persisted in allowlist.db.enc with approver + date │
 └───────────────────────────┬─────────────────────────────────┘
@@ -96,28 +96,28 @@ Each of these requires at least one of the five Phase 2 prerequisites (§5) reso
 
 ## Setting it up on your brand
 
-After `curl usecompai.com/init | bash` and `operai-init connect shopify`:
+After `curl usecompai.com/init | bash` and `compai-init connect shopify`:
 
 ```bash
 # 1. Document why you're ingesting (legal basis + retention)
-operai-init ingest allow --source shopify --unit-type resource --unit-id products \
+compai-init ingest allow --source shopify --unit-type resource --unit-id products \
   --reason "legítimo interés — catalog sync para CS + merchandising agents; retention 90d"
-operai-init ingest allow --source shopify --unit-type resource --unit-id orders_aggregate \
+compai-init ingest allow --source shopify --unit-type resource --unit-id orders_aggregate \
   --reason "legítimo interés — KPIs finance/retail; aggregated only, no individual orders"
 
 # 2. Show what's allowed
-operai-init ingest allowlist
+compai-init ingest allowlist
 
 # 3. Run the connector
-operai-init ingest run --source shopify --days 90
+compai-init ingest run --source shopify --days 90
 
 # 4. Check what landed
-operai-init ingest stats
+compai-init ingest stats
 
 # 5. Give team members scoped access
-operai-init key create sam --role team --groups cs,retail
-operai-init key create juan  --role team --groups finance
-operai-init key create founder --role admin
+compai-init key create sam --role team --groups cs,retail
+compai-init key create juan  --role team --groups finance
+compai-init key create founder --role admin
 ```
 
 a team member (`cs,retail` groups) will only receive results from the `cs` and `retail` QMD collections — she cannot discover docs written to `finance` by the Shopify aggregated-orders ingest. a team member sees `finance` but not `cs`. the founder sees everything.
@@ -128,13 +128,13 @@ A subject asks to be forgotten. You run:
 
 ```bash
 # By canonical id (preferred — resolves all aliases):
-operai-init ingest forget --subject <uuid> --reason "RTBF request 2026-04-18"
+compai-init ingest forget --subject <uuid> --reason "RTBF request 2026-04-18"
 
 # OR by email (resolved through registry):
-operai-init ingest forget --email alice@example.com --reason "RTBF request 2026-04-18"
+compai-init ingest forget --email alice@example.com --reason "RTBF request 2026-04-18"
 
 # Check progress:
-operai-init ingest forget --status
+compai-init ingest forget --status
 ```
 
 Realistic propagation times:
@@ -165,7 +165,7 @@ There is no `name_literal` column. Names only appear inside documents, as tokens
 Merges require admin + explicit reason:
 
 ```bash
-operai-init ingest subjects merge <old_id> <new_id> --reason "RTBF followup — same person, dup'd via diff phone format"
+compai-init ingest subjects merge <old_id> <new_id> --reason "RTBF followup — same person, dup'd via diff phone format"
 ```
 
 Merge decisions are append-only to the audit log.
@@ -198,7 +198,7 @@ Before we open Gmail / Slack / Notion / Drive / the helpdesk:
 4. **Proof of ACL-at-index isolation under edits** — test harness showing that revoking someone's group access + source upstream membership change both invalidate their cache/snippets reliably.
 5. **Evidence Store encryption review** — SQLCipher is now our primitive; before scaling we want a third-party review.
 
-These are tracked in the brain at `knowledge/projects/operai/brand-bootstrap-v0.2.md`.
+These are tracked in the brain at `knowledge/projects/compai/brand-bootstrap-v0.2.md`.
 
 ## What to tell a DPO who asks
 
@@ -259,7 +259,7 @@ At a one-size-fits-all packaged SKU, the economics do not close. A brand that **
 
 ```bash
 # Attempts to allow an unstructured source return:
-operai-init ingest allow --source notion...
+compai-init ingest allow --source notion...
   → Error: source 'notion' is frozen in the public repo (v2.6+).
     See playbook Ch.13 Custom Engagement tier.
     Contact: hello@usecompai.com

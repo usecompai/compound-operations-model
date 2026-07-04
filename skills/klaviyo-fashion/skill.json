@@ -40,6 +40,6 @@
     "type": "free",
     "note": "Free to use. Requires Klaviyo account with API access."
   },
-  "repository": "https://github.com/operai/skills",
+  "repository": "https://github.com/compai/skills",
   "homepage": "https://oper.ai/skills/klaviyo-fashion"
 }

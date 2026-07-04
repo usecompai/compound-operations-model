@@ -71,7 +71,7 @@ There are no certifications, no training videos, no LMS. The brain + your me.md 
 - [ ] You've proposed at least one improvement to a SOUL.md (the brand's AI agent prompts)
 
 ### Day 90 checkpoint
-- [ ] {founder} has run `operai-init assess {your-name}` on you → your role profile (M-shaped / T-shaped / AI-Empowered Frontline) is documented
+- [ ] {founder} has run `compai-init assess {your-name}` on you → your role profile (M-shaped / T-shaped / AI-Empowered Frontline) is documented
 - [ ] You know the 4 golden rules by heart (brain-query-first, real data, read me.md, /learn)
 - [ ] You've spent a working session where Claude did 60%+ of the typing on what would have been your tasks
 
@@ -80,7 +80,7 @@ There are no certifications, no training videos, no LMS. The brain + your me.md 
 ## Help & troubleshooting
 
 - **Claude Desktop doesn't show the brand's tools:** re-run the team-join command, quit & reopen Claude Desktop.
-- **Tool calls return errors:** your API key might be revoked or expired. Ask {founder} for a new one via `operai-init key create`.
+- **Tool calls return errors:** your API key might be revoked or expired. Ask {founder} for a new one via `compai-init key create`.
 - **brain_query returns nothing useful:** the brain might not have been populated yet on that topic — ask a colleague to write a doc, or write one yourself.
 - **Something is confusing:** DM {founder} or post in #{BRAND}-ai. Not figuring it out alone is part of the protocol.
 

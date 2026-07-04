@@ -43,7 +43,7 @@ If a consumer brand's leadership team is asking *"how do we get to the agentic o
 | Critic agents challenge outputs | **Punta de Flecha** protocol — adversarial cross-model deliberation (Opus + GPT-5 + Gemini 2.5) on high-stakes decisions |
 | Guardrail agents enforce policy | **Anti-prompt-injection hardening** across 7 SOULs + **ACK rule** fleet-wide + **Annex III guardrails** (no hiring/firing/evaluation decisions) |
 | Compliance agents monitor regulation | **DPIA** + **AI System Register** + **Article 50 transparency disclaimer** + GDPR **RTBF propagation ledger** |
-| Human accountability and oversight | Every agent logs to `brain/memory/<agent>.md` daily. Founder reviews via `operai-init status`. DPO reviews via compliance scaffold |
+| Human accountability and oversight | Every agent logs to `brain/memory/<agent>.md` daily. Founder reviews via `compai-init status`. DPO reviews via compliance scaffold |
 | Governance as a potential bottleneck | We built the compliance package **before** scaling agent count. It's the reason 7 agents have been in prod 12+ months without a regulatory incident |
 
 ### Pillar 4 — Workforce, people, and culture
@@ -55,7 +55,7 @@ If a consumer brand's leadership team is asking *"how do we get to the agentic o
 | M-shaped supervisors (broad generalists fluent in AI, orchestrating agents across domains) | **Founder interface via Claude Code** with access to all 95 MCP tools + 352 skills. Role profile documented in Ch.14 |
 | T-shaped experts (deep specialists who reimagine workflows, handle exceptions, safeguard quality) | Each **SOUL.md** is written by a domain expert (CS lead writes CS SOUL, finance director writes Finance SOUL). Edge-case handling is in the SOUL, not the code |
 | AI-empowered frontline (socioemotional skills + basic AI fluency, less time on systems, more with humans) | **Team onboarding via MCP** (Ch.14): every employee joins the system through a repeatable setup, gets tools in Claude Desktop, spends their time with customers not with dashboards |
-| Talent system rethought from career paths to incentives | **`me.md` per employee** + **role profile assessment** (`operai-init assess`, new in v0.5) map each person to M/T/frontline track with recommended training path |
+| Talent system rethought from career paths to incentives | **`me.md` per employee** + **role profile assessment** (`compai-init assess`, new in v0.5) map each person to M/T/frontline track with recommended training path |
 | Culture of continuous change and learning | **`/learn` skill** + **global learnings log** at `memory/learnings-log.md` — every session's insights feed the collective brain |
 
 ### Pillar 5 — Technology and data

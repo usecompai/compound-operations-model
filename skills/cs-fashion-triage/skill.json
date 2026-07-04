@@ -43,6 +43,6 @@
     "type": "free",
     "note": "Free to use. Requires your own platform API access."
   },
-  "repository": "https://github.com/operai/skills",
+  "repository": "https://github.com/compai/skills",
   "homepage": "https://oper.ai/skills/cs-fashion-triage"
 }

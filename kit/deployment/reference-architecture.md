@@ -2,7 +2,7 @@
 
 ## Canonical Topology
 
-OperAI is packaged as seven domain agents plus Claude Code as the founder command center.
+Compai is packaged as seven domain agents plus Claude Code as the founder command center.
 
 - Strategy hub
 - Customer service

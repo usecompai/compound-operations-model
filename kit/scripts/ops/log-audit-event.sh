@@ -5,7 +5,7 @@
 set -euo pipefail
 
 EVENT_FILE="${1:-}"
-LOG_FILE="${OPERAI_AUDIT_LOG:-/opt/operai/logs/audit-events.jsonl}"
+LOG_FILE="${COMPAI_AUDIT_LOG:-/opt/compai/logs/audit-events.jsonl}"
 
 if [ -z "$EVENT_FILE" ]; then
   echo "usage: log-audit-event.sh /path/to/event.json" >&2

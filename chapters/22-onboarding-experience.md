@@ -9,8 +9,8 @@ A team forking Compai now has the same onboarding experience that the reference 
 Onboarding v3.1 closes the onboarding gap with three deliverables:
 
 1. **Onboarding pack** shipped in `repo/init/onboarding-pack/` and mirrored at `usecompai.com/onboarding/*`
-2. **`operai-init setup-brand`** — interactive wizard that runs the founder-facing happy path
-3. **`operai-init team-onboard <name>`** — composite command that onboards one employee end-to-end
+2. **`compai-init setup-brand`** — interactive wizard that runs the founder-facing happy path
+3. **`compai-init team-onboard <name>`** — composite command that onboards one employee end-to-end
 
 ## The onboarding pack
 
@@ -53,18 +53,18 @@ Before v3.1, the founder ran 12+ commands to go from install.sh to fully configu
 
 ```bash
 # After curl usecompai.com/init | bash
-operai-init setup-brand
+compai-init setup-brand
 ```
 
 The wizard chains:
 
-1. **LLM providers** → `operai-init llm configure` (interactive)
-2. **CS factory** → `operai-init factory enable --domain cs`
-3. **Cloudflare tunnel** → `operai-init tunnel mcp.<brand>.com`
-4. **Webhook receivers** (optional, per helpdesk) → `operai-init webhook configure`
-5. **Slack digest** (optional) → `operai-init digest configure` + `schedule`
-6. **Governance layer** (optional) → `operai-init governance enable`
-7. **Onboarding pack install** → `operai-init onboarding-pack install --founder <name>`
+1. **LLM providers** → `compai-init llm configure` (interactive)
+2. **CS factory** → `compai-init factory enable --domain cs`
+3. **Cloudflare tunnel** → `compai-init tunnel mcp.<brand>.com`
+4. **Webhook receivers** (optional, per helpdesk) → `compai-init webhook configure`
+5. **Slack digest** (optional) → `compai-init digest configure` + `schedule`
+6. **Governance layer** (optional) → `compai-init governance enable`
+7. **Onboarding pack install** → `compai-init onboarding-pack install --founder <name>`
 8. **Admin key check** → create one if missing
 
 Each step is skippable with a clear prompt. The wizard ends with a summary of what to start, what to verify, and what to do next.
@@ -76,14 +76,14 @@ Each step is skippable with a clear prompt. The wizard ends with a summary of wh
 For every new employee the founder wants to onboard:
 
 ```bash
-operai-init team-onboard sam --role team --groups cs,retail
+compai-init team-onboard sam --role team --groups cs,retail
 ```
 
 Which chains:
 
-1. **`operai-init key create sam --role team --groups cs,retail`** — generates `lgm_xxx` key with ACL groups
-2. **`operai-init assess sam`** — 10-question interview classifying M-shaped / T-shaped / frontline + 90-day training path
-3. **`operai-init team-join --out sam-team-join.sh`** — generates the employee's personalized install script with MCP URL baked in
+1. **`compai-init key create sam --role team --groups cs,retail`** — generates `lgm_xxx` key with ACL groups
+2. **`compai-init assess sam`** — 10-question interview classifying M-shaped / T-shaped / frontline + 90-day training path
+3. **`compai-init team-join --out sam-team-join.sh`** — generates the employee's personalized install script with MCP URL baked in
 4. **Email template output** — the founder copy-pastes this to sam, containing:
    - The `curl... | bash` one-liner with `brand` + `mcp` query params
    - The API key (sent via secure channel, NOT in the email)
@@ -138,7 +138,7 @@ The employee runs the curl, pastes the key, opens Claude Desktop, applies the cu
 | Custom instruction (brain-query-first, etc.) | `usecompai.com/onboarding/custom-instruction` served with same 4 rules |
 | me.md interview via skill | `me-md-interview` skill shipped in pack + invokable via Claude Desktop |
 | Notion onboarding doc | `notion-templates/01-onboarding-checklist.md` — Day 1 / Week 1 / 30-60-90 |
-| L0-L3 + M/T/frontline frameworks | Ch.14 + `operai-init assess` command |
+| L0-L3 + M/T/frontline frameworks | Ch.14 + `compai-init assess` command |
 | /learn skill for session-end knowledge capture | `learn` skill shipped in pack |
 | Paso 6 (personal profile creation) | `02-step-6-personal-profile.md` with step-by-step |
 | Weekly check-in ritual | `03-weekly-check-in.md` Friday 15-min template |
@@ -150,8 +150,8 @@ The only thing the reference deployment has that the repo doesn't automatically 
 When Compai improves the onboarding assets, brands pull updates without redeploying the full repo:
 
 ```bash
-operai-init onboarding-pack update     # downloads latest from usecompai.com
-operai-init onboarding-pack install    # re-interpolates for your brand
+compai-init onboarding-pack update     # downloads latest from usecompai.com
+compai-init onboarding-pack install    # re-interpolates for your brand
 ```
 
 New files get added. Existing files that you've customized locally are preserved. The `update` command backs up the previous pack before overwriting.
@@ -159,9 +159,9 @@ New files get added. Existing files that you've customized locally are preserved
 ## What happens on the brand's brain
 
 After the pack install, the brand has:
-- `/opt/operai/onboarding/` with interpolated templates ready to paste into Notion
-- `/opt/operai/services/init/onboarding-pack/` with the pristine (non-interpolated) originals for reference
-- `/opt/operai/brain/skills/me-md-interview/SKILL.md` + `/learn/SKILL.md` (needs to be copied from the pack to the brand's brain skills folder — install.sh v3.1 does this automatically)
+- `/opt/compai/onboarding/` with interpolated templates ready to paste into Notion
+- `/opt/compai/services/init/onboarding-pack/` with the pristine (non-interpolated) originals for reference
+- `/opt/compai/brain/skills/me-md-interview/SKILL.md` + `/learn/SKILL.md` (needs to be copied from the pack to the brand's brain skills folder — install.sh v3.1 does this automatically)
 
 The brand's MCP server's `skill_read("me-md-interview")` returns the SKILL.md content, so when an employee types `Run the me-md-interview skill` Claude can look up how to execute it.
 
@@ -175,7 +175,7 @@ The logic: the hardest part of AI adoption is not the technology, it's the habit
 
 1. **No training content beyond Notion templates.** If a brand wants custom video training, that's a Custom Engagement (Ch.13).
 2. **No automatic me.md interview trigger.** The employee has to type the command. Making Claude Desktop auto-open a session with that command is a Claude Desktop feature request, not an Compai one.
-3. **No integrated onboarding tracker.** The brand uses their own HRIS or Notion for tracking. `operai-init assess --team` shows profile distribution but not onboarding completion state.
+3. **No integrated onboarding tracker.** The brand uses their own HRIS or Notion for tracking. `compai-init assess --team` shows profile distribution but not onboarding completion state.
 4. **No certification / testing.** Philosophy: adoption is measured by real use (`/learn` count, brain writes, workflow improvements) not by test scores.
 
 ---

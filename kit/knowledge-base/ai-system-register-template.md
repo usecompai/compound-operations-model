@@ -11,7 +11,7 @@
 
 ## Overview
 
-[YOUR COMPANY] operates a multi-agent AI system ("OperAI Swarm") for internal business operations. The system consists of 7 specialized AI agents plus a founder command interface, connected to 16 business systems via 44 MCP tools. The system is deployed on EU-hosted infrastructure and has been in production since October 2025.
+[YOUR COMPANY] operates a multi-agent AI system ("Compai Swarm") for internal business operations. The system consists of 7 specialized AI agents plus a founder command interface, connected to 16 business systems via 44 MCP tools. The system is deployed on EU-hosted infrastructure and has been in production since October 2025.
 
 **This register lists all AI systems deployed by [YOUR COMPANY], their intended purpose, risk classification under the EU AI Act, and the human oversight measures in place.**
 

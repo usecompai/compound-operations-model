@@ -1,18 +1,18 @@
 [Unit]
-Description=OperAI @BRAND@ · critic meta-agent
-After=network-online.target operai-mcp.service
+Description=Compai @BRAND@ · critic meta-agent
+After=network-online.target compai-mcp.service
 Wants=network-online.target
-Requires=operai-mcp.service
+Requires=compai-mcp.service
 
 [Service]
 Type=simple
 User=@USER@
 Group=@USER@
 WorkingDirectory=@HOME@/agents/critic
-Environment="OPERAI_HOME=@HOME@"
-Environment="OPERAI_BRAND=@BRAND@"
-Environment="OPERAI_AGENT=critic"
-Environment="OPERAI_AGENT_ROLE=meta-admin"
+Environment="COMPAI_HOME=@HOME@"
+Environment="COMPAI_BRAND=@BRAND@"
+Environment="COMPAI_AGENT=critic"
+Environment="COMPAI_AGENT_ROLE=meta-admin"
 ExecStart=/usr/bin/python3 @HOME@/services/agent-runner.py --agent critic
 Restart=on-failure
 RestartSec=30

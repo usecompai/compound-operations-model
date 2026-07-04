@@ -22,7 +22,7 @@ On a fresh Ubuntu 24.04 VPS with 4GB RAM and 2 cores, the script runs for ~30 mi
 
 | Component | State after install |
 |---|---|
-| `/opt/operai/` directory tree | created, owned by the `Compai` system user |
+| `/opt/compai/` directory tree | created, owned by the `Compai` system user |
 | Python 3, Node LTS, Docker, QMD 2.0.1, cloudflared | installed |
 | Brain with 6 QMD collections | seeded, first `qmd update` complete |
 | Discovery interview | captured as `knowledge/<brand>/discovery-interview.md` |
@@ -39,10 +39,10 @@ The script installs Python 3, Node LTS, Docker, `cloudflared`, `qmd`, and system
 
 ### Phase 2 — Filesystem layout (automated, <30 sec)
 
-A non-privileged `Compai` system user owns `/opt/operai/`. The tree is:
+A non-privileged `Compai` system user owns `/opt/compai/`. The tree is:
 
 ```
-/opt/operai/
+/opt/compai/
 ├── agents/          (7 subfolders, one per agent)
 ├── brain/
 │   ├── knowledge/
@@ -90,12 +90,12 @@ Six collections get created:
 
 | Collection | Path | Purpose |
 |---|---|---|
-| `workspace` | `/opt/operai/brain` | Everything — the catch-all |
-| `memory` | `/opt/operai/brain/memory` | Daily agent notes |
-| `<brand>` | `/opt/operai/brain/knowledge/<brand>` | Brand-scoped ground truth |
-| `platform` | `/opt/operai/brain/knowledge/platform` | Infrastructure docs |
-| `personal` | `/opt/operai/brain/knowledge/personal` | Founder personal context |
-| `projects` | `/opt/operai/brain/knowledge/projects` | Active initiatives |
+| `workspace` | `/opt/compai/brain` | Everything — the catch-all |
+| `memory` | `/opt/compai/brain/memory` | Daily agent notes |
+| `<brand>` | `/opt/compai/brain/knowledge/<brand>` | Brand-scoped ground truth |
+| `platform` | `/opt/compai/brain/knowledge/platform` | Infrastructure docs |
+| `personal` | `/opt/compai/brain/knowledge/personal` | Founder personal context |
+| `projects` | `/opt/compai/brain/knowledge/projects` | Active initiatives |
 
 The initial `qmd update` pass indexes the ~12 seed docs in <1 minute. The `qmd embed` pass runs in the background and typically completes in ~30 minutes on a 2-core VPS (CPU-bound; no GPU required). A cron runs `qmd update` every 5 minutes after that, so any file you drop into the brain is searchable within 5 min — no restart, no rebuild.
 
@@ -105,24 +105,24 @@ Eight systemd units get installed but not enabled. Starting them is a deliberate
 
 ```bash
 # After review:
-systemctl enable --now operai-mcp
-systemctl start operai-cs    # one agent at a time
-tail -f /opt/operai/logs/cs.log
+systemctl enable --now compai-mcp
+systemctl start compai-cs    # one agent at a time
+tail -f /opt/compai/logs/cs.log
 ```
 
 ## What the bootstrap does NOT do (and why)
 
 Three things require founder participation. The bootstrap refuses to automate them.
 
-### 1. Integration tokens (`operai-init connect`)
+### 1. Integration tokens (`compai-init connect`)
 
 Shopify, Klaviyo, Google Workspace, Slack — every integration requires the founder to generate a token in the platform's UI. There is no legal or technical shortcut. Post-install, the founder runs:
 
 ```bash
-operai-init connect shopify            # Custom App + Admin API access token
-operai-init connect klaviyo            # Private API key
-operai-init connect google-workspace   # Service account JSON + domain-wide delegation
-operai-init connect slack              # Bot User OAuth token
+compai-init connect shopify            # Custom App + Admin API access token
+compai-init connect klaviyo            # Private API key
+compai-init connect google-workspace   # Service account JSON + domain-wide delegation
+compai-init connect slack              # Bot User OAuth token
 ```
 
 Each command:
@@ -130,8 +130,8 @@ Each command:
 - **Guides** the founder step-by-step through the platform's UI (where to click, which scopes to grant)
 - **Reads the token** with hidden input (never echoed to terminal, never written to shell history)
 - **Verifies** the token against a test API call before saving
-- **Writes** to `/opt/operai/credentials/<service>.json` with mode 600, owned by the `Compai` user
-- **Updates** `/opt/operai/credentials/index.json` so `operai-init status` can report connection health
+- **Writes** to `/opt/compai/credentials/<service>.json` with mode 600, owned by the `Compai` user
+- **Updates** `/opt/compai/credentials/index.json` so `compai-init status` can report connection health
 
 Recommended scopes shipped with the repo are read-only where possible — e.g. Shopify gets `read_products`, `read_orders`, `read_customers`, `read_inventory` (no `write_` scopes until the founder explicitly enables writes for a specific agent). This keeps the blast radius minimal during the shadow-mode review period.
 
@@ -163,29 +163,29 @@ That command:
 
 The employee quits Claude Desktop, reopens it, and sees the brand's tools available. No API keys on their machine. No VPN. No training.
 
-If you prefer not to use the hosted endpoint, `operai-init team-join --out team-join.sh` generates the same script locally on the VPS (with the MCP URL auto-detected from the tunnel config). You can then distribute that file through your own channel (Slack, email, internal wiki).
+If you prefer not to use the hosted endpoint, `compai-init team-join --out team-join.sh` generates the same script locally on the VPS (with the MCP URL auto-detected from the tunnel config). You can then distribute that file through your own channel (Slack, email, internal wiki).
 
 
 
-## Phase 6 — Operations CLI (`operai-init status` and friends)
+## Phase 6 — Operations CLI (`compai-init status` and friends)
 
-Once the swarm is running, the `operai-init` CLI provides the ongoing operational surface:
+Once the swarm is running, the `compai-init` CLI provides the ongoing operational surface:
 
 | Command | What it does |
 |---|---|
-| `operai-init status` | Shows integration connection status, systemd state of all 8 services, brain doc count + QMD last index, tunnel config, compliance file presence. Use JSON mode (`--json`) for monitoring pipelines. |
-| `operai-init connect <service>` | Re-auth an integration — same flow as install, but with `--force` to overwrite an expired token without prompting. |
-| `operai-init tunnel <subdomain>` | Create the Cloudflare Tunnel + systemd unit + DNS route in one shot. Assumes `cloudflared tunnel login` was run once; idempotent if the tunnel already exists. |
-| `operai-init team-join --out team-join.sh` | Regenerate the team onboarding script with the current MCP URL baked in. |
-| `operai-init distil` | Planned v0.3 — auto-generate the 6 per-area contexts after 30 days of ingested data. |
+| `compai-init status` | Shows integration connection status, systemd state of all 8 services, brain doc count + QMD last index, tunnel config, compliance file presence. Use JSON mode (`--json`) for monitoring pipelines. |
+| `compai-init connect <service>` | Re-auth an integration — same flow as install, but with `--force` to overwrite an expired token without prompting. |
+| `compai-init tunnel <subdomain>` | Create the Cloudflare Tunnel + systemd unit + DNS route in one shot. Assumes `cloudflared tunnel login` was run once; idempotent if the tunnel already exists. |
+| `compai-init team-join --out team-join.sh` | Regenerate the team onboarding script with the current MCP URL baked in. |
+| `compai-init distil` | Planned v0.3 — auto-generate the 6 per-area contexts after 30 days of ingested data. |
 
-The CLI is a standard Python package installed to `/usr/local/bin/operai-init` with its dependencies in `/opt/operai/services/init/cli/`. It has no external dependencies beyond the Python standard library — everything it talks to (Shopify, Klaviyo, Google, Slack, Cloudflare) goes through `urllib` or `subprocess` calls to platform CLIs.
+The CLI is a standard Python package installed to `/usr/local/bin/compai-init` with its dependencies in `/opt/compai/services/init/cli/`. It has no external dependencies beyond the Python standard library — everything it talks to (Shopify, Klaviyo, Google, Slack, Cloudflare) goes through `urllib` or `subprocess` calls to platform CLIs.
 
 
 
 ## Phase 7 — The MCP server (what makes it usable)
 
-The bootstrap installs a production-grade MCP server at `/opt/operai/services/mcp/` and exposes it through the Cloudflare Tunnel from Phase 6. Without this, the swarm is a directory tree. With this, the swarm is a running system that Claude Desktop (and any MCP client) can talk to.
+The bootstrap installs a production-grade MCP server at `/opt/compai/services/mcp/` and exposes it through the Cloudflare Tunnel from Phase 6. Without this, the swarm is a directory tree. With this, the swarm is a running system that Claude Desktop (and any MCP client) can talk to.
 
 ### What's in the server
 
@@ -215,19 +215,19 @@ Every request to `/sse` must carry:
 Authorization: Bearer lgm_<32 hex>
 ```
 
-Keys live in `/opt/operai/credentials/mcp-keys.json` (mode 600), managed by:
+Keys live in `/opt/compai/credentials/mcp-keys.json` (mode 600), managed by:
 
 ```bash
-operai-init key create <name> --role admin|team   # generates lgm_<32 hex>, prints once
-operai-init key list                              # shows name + role + last seen (tokens masked)
-operai-init key revoke <name>                     # soft-revoke (audit trail preserved)
+compai-init key create <name> --role admin|team   # generates lgm_<32 hex>, prints once
+compai-init key list                              # shows name + role + last seen (tokens masked)
+compai-init key revoke <name>                     # soft-revoke (audit trail preserved)
 ```
 
-The first admin key is **auto-generated by install.sh** during bootstrap — the founder copies it from the install log. That key is the one used for their own Claude Desktop config. Additional keys (one per employee) are created afterwards with `operai-init key create <name> --role team`.
+The first admin key is **auto-generated by install.sh** during bootstrap — the founder copies it from the install log. That key is the one used for their own Claude Desktop config. Additional keys (one per employee) are created afterwards with `compai-init key create <name> --role team`.
 
 ### What the team-join script does with the key
 
-The v0.3 team-join script (generated by `operai-init team-join` or fetched from `usecompai.com/team-join?brand=X&mcp=Y`) prompts the employee for their key and writes a Claude Desktop config like:
+The v0.3 team-join script (generated by `compai-init team-join` or fetched from `usecompai.com/team-join?brand=X&mcp=Y`) prompts the employee for their key and writes a Claude Desktop config like:
 
 ```json
 {
@@ -235,8 +235,8 @@ The v0.3 team-join script (generated by `operai-init team-join` or fetched from 
     "<brand>": {
       "command": "npx",
       "args": ["mcp-remote", "https://mcp.<brand>.com/sse",
-               "--header", "Authorization:Bearer ${OPERAI_KEY}"],
-      "env": { "OPERAI_KEY": "lgm_..." }
+               "--header", "Authorization:Bearer ${COMPAI_KEY}"],
+      "env": { "COMPAI_KEY": "lgm_..." }
     }
   }
 }
@@ -263,7 +263,7 @@ The bootstrap seeds the brain skeleton. Real data fills it in over the following
 After 30 days, run:
 
 ```bash
-operai-init distil
+compai-init distil
 ```
 
 This fires six parallel subagents that read the brand's collection and produce distilled 15-20KB context documents per area (retail, marketing, finance, product, CS, wholesale). Those become the new top of the context hierarchy — any new agent session starts there and drills down.
@@ -275,10 +275,10 @@ The pattern mirrors how the original brand did it: at 968 docs in the brain, rea
 | Version | Status | Notes |
 |---|---|---|
 | 0.1.0 | ✅ Shipped | Core bootstrap, 7 SOULs, 6 QMD collections, compliance scaffold |
-| 0.2.0 | ✅ Shipped | `operai-init connect` (Shopify / Klaviyo / GWS / Slack), `tunnel`, `team-join`, `status` |
-| 0.3.0 | ✅ Shipped | Production MCP server with 11 tools + API key auth + role-based access + `operai-init key` |
-| 0.4.0 | Planned | `operai-init ingest` for historical data pulls (Notion export, Drive, Slack 90d) |
-| 0.5.0 | Planned | `operai-init distil` for auto-generating 6 per-area contexts after 30d |
+| 0.2.0 | ✅ Shipped | `compai-init connect` (Shopify / Klaviyo / GWS / Slack), `tunnel`, `team-join`, `status` |
+| 0.3.0 | ✅ Shipped | Production MCP server with 11 tools + API key auth + role-based access + `compai-init key` |
+| 0.4.0 | Planned | `compai-init ingest` for historical data pulls (Notion export, Drive, Slack 90d) |
+| 0.5.0 | Planned | `compai-init distil` for auto-generating 6 per-area contexts after 30d |
 
 The end state: a founder with no prior swarm experience can go from purchase to their first working agent in a single afternoon. The 30-day activation path documented earlier in this repo remains the reference implementation; `Compai init` is the compressed, opinionated path for brands that want the defaults we learned the hard way.
 

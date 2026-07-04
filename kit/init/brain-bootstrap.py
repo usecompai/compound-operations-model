@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-OperAI Brain Bootstrap — brain-bootstrap.py
+Compai Brain Bootstrap — brain-bootstrap.py
 Version: 0.1.0
 
 Called by install.sh after the system layout is ready. Does three things:
 
   1. Discovery interview (walks the founder through ~25 Qs)
-  2. Brain skeleton creation (writes initial docs to /opt/operai/brain/knowledge/<brand>/)
+  2. Brain skeleton creation (writes initial docs to /opt/compai/brain/knowledge/<brand>/)
   3. QMD collection init (creates 6 collections + first `qmd update` pass)
 
 Design choices:
@@ -18,7 +18,7 @@ Design choices:
     (mirrors the the reference Second Brain v1 layout documented 2026-04-17)
 
 Usage:
-    python3 brain-bootstrap.py --brand acme --home /opt/operai --interactive
+    python3 brain-bootstrap.py --brand acme --home /opt/compai --interactive
 """
 from __future__ import annotations
 import argparse
@@ -65,7 +65,7 @@ INTERVIEW = [
 
     # ── pain + priorities ──
     ("biggest_op_bottleneck","Biggest operational bottleneck right now (one sentence)"),
-    ("first_automation",     "If OperAI could automate ONE workflow first, what would it be?"),
+    ("first_automation",     "If Compai could automate ONE workflow first, what would it be?"),
     ("highest_risk_area",    "Area with most financial/legal risk if an AI made a mistake"),
     ("data_sensitivity",     "Does the brand handle special-category data? (health, biometric, minors) y/n"),
 
@@ -104,7 +104,7 @@ def run_interview(brand_slug):
     intro = (
         "The next ~25 questions shape the Brain that every agent will read from.\n"
         "You can leave an answer blank and fill it in later by editing\n"
-        "/opt/operai/brain/knowledge/" + brand_slug + "/discovery-interview.md.\n\n"
+        "/opt/compai/brain/knowledge/" + brand_slug + "/discovery-interview.md.\n\n"
         "Answers are stored locally on this VPS only. They never leave your server.\n"
     )
     print(intro)
@@ -127,7 +127,7 @@ def render_discovery_md(answers):
     body = []
     body.append("# Discovery Interview — " + brand)
     body.append("")
-    body.append("*Captured: " + today + " · Source: operai-init install.sh*")
+    body.append("*Captured: " + today + " · Source: compai-init install.sh*")
     body.append("")
     body.append("This document is the ground-truth context for every agent in the swarm.")
     body.append("It is the first thing the MCP server hands to Claude when anyone asks")
@@ -184,7 +184,7 @@ def render_discovery_md(answers):
     body.append("2. Agents read it on every session start via `brain_query(...)`.")
     body.append("3. When you connect integrations (Shopify, Klaviyo, GWS, Slack), ingest")
     body.append("   scripts write into sibling folders (product/, cs/, marketing/, etc.).")
-    body.append("4. After 30 days of real data, run `operai-init distil` to generate the")
+    body.append("4. After 30 days of real data, run `compai-init distil` to generate the")
     body.append("   6 distilled contexts (retail, marketing, finance, product, cs, wholesale).")
     body.append("")
     body.append("## Editing this doc")
@@ -228,7 +228,7 @@ def seed_brain_skeleton(brand_slug, home, answers):
     readme.append("3. Update, don't duplicate")
     readme.append("4. Document learnings via `/learn` skill")
     readme.append("")
-    readme.append("Source: OperAI Brand Bootstrap v0.1.0 · usecompai.com")
+    readme.append("Source: Compai Brand Bootstrap v0.1.0 · usecompai.com")
     (brain / "README.md").write_text("\n".join(readme) + "\n")
     ok("brain/README.md")
 
@@ -264,7 +264,7 @@ def seed_brain_skeleton(brand_slug, home, answers):
     boot_note = []
     boot_note.append("# " + date.today().isoformat() + " — Brand bootstrap")
     boot_note.append("")
-    boot_note.append("OperAI install.sh ran today for brand `" + brand_slug + "`.")
+    boot_note.append("Compai install.sh ran today for brand `" + brand_slug + "`.")
     boot_note.append("Founder: " + (answers.get("founder_name") or "unknown"))
     boot_note.append("First workflow to automate: " + (answers.get("first_automation") or "—"))
     boot_note.append("Biggest bottleneck: " + (answers.get("biggest_op_bottleneck") or "—"))
@@ -326,7 +326,7 @@ def init_qmd_collections(brand_slug, home):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--brand", required=True, help="Brand slug (lowercase)")
-    ap.add_argument("--home",  default="/opt/operai", help="Install home")
+    ap.add_argument("--home",  default="/opt/compai", help="Install home")
     ap.add_argument("--interactive", action="store_true")
     ap.add_argument("--answers-file", help="JSON file with pre-filled answers (skip interview)")
     args = ap.parse_args()

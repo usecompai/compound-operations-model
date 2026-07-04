@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""OperAI Pattern Library API on port 18830"""
+"""Compai Pattern Library API on port 18830"""
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json, glob, os
 PDIR = "/opt/brain/pattern-library/patterns"
@@ -26,7 +26,7 @@ def load_yaml(fp):
 class H(BaseHTTPRequestHandler):
     def do_GET(self):
         p=self.path.rstrip("/")
-        if p=="/health": self.r(200,{"ok":True,"service":"operai-pattern-library"})
+        if p=="/health": self.r(200,{"ok":True,"service":"compai-pattern-library"})
         elif p=="/stats": self.r(200,json.load(open(SFILE)) if os.path.exists(SFILE) else {"total":0})
         elif p=="/patterns":
             ps=[]

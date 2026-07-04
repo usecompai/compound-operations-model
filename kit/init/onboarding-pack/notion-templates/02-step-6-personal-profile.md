@@ -62,8 +62,8 @@ You can't remove these — they're the operational contract every employee's Cla
   - {founder} or any admin-key holder
 - Your me.md is NOT visible to:
   - Anyone outside your brand
-  - OperAI the company
-  - Any other brand running OperAI
+  - Compai the company
+  - Any other brand running Compai
 
 **Do NOT include sensitive personal data.** Don't write your salary, your private health, your passwords, or things you wouldn't tell a colleague. This is professional context, not a diary.
 

@@ -1,8 +1,8 @@
-# OperAI Brand Bootstrap (`init/`)
+# Compai Brand Bootstrap (`init/`)
 
-*Version: 0.1.0 · Part of the OperAI Implementation Kit · usecompai.com*
+*Version: 0.1.0 · Part of the Compai Implementation Kit · usecompai.com*
 
-This is the `operai init` component of the kit. It is the one-command path from a blank Ubuntu VPS to a running OperAI swarm for a brand-new consumer brand.
+This is the `compai init` component of the kit. It is the one-command path from a blank Ubuntu VPS to a running Compai swarm for a brand-new consumer brand.
 
 ## What this does
 
@@ -14,7 +14,7 @@ curl -fsSL https://usecompai.com/init | bash
 
 Produces, in ~30 minutes (automated) + ~30 minutes (founder clicks):
 
-- `/opt/operai/` directory tree (brain, agents, services, logs, compliance)
+- `/opt/compai/` directory tree (brain, agents, services, logs, compliance)
 - Python 3 + Node LTS + Docker + QMD 2.0.1 + cloudflared installed
 - Brain seeded with **6 QMD collections** (workspace, memory, `<brand>`, platform, personal, projects)
 - **Discovery interview** captured as the first brain doc
@@ -67,7 +67,7 @@ These require founder participation — we don't pretend otherwise:
 ┌──────────────────────────────────────────────┐
 │ 3. install.sh:                                │
 │    - installs deps                            │
-│    - creates /opt/operai/                     │
+│    - creates /opt/compai/                     │
 │    - runs brain-bootstrap.py (interview)      │
 │    - installs 8 systemd units                 │
 │    - scaffolds compliance docs                │
@@ -96,9 +96,9 @@ Edit `brain-bootstrap.py → INTERVIEW` list. Each entry is `(field_name, prompt
 | Version | Date | Notes |
 |---|---|---|
 | 0.1.0 | 2026-04-17 | First cut — core bootstrap, 7 SOULs, 6 QMD collections, compliance scaffold |
-| 0.2.0 | *planned* | OAuth connect flows (Shopify/Klaviyo/GWS/Slack) as `operai-init connect <name>` |
-| 0.3.0 | *planned* | `operai-init distil` — auto-generate the 6 per-area contexts from 30 days of ingested data |
-| 0.4.0 | *planned* | `operai-init tunnel` — automated Cloudflare Tunnel + DNS |
+| 0.2.0 | *planned* | OAuth connect flows (Shopify/Klaviyo/GWS/Slack) as `compai-init connect <name>` |
+| 0.3.0 | *planned* | `compai-init distil` — auto-generate the 6 per-area contexts from 30 days of ingested data |
+| 0.4.0 | *planned* | `compai-init tunnel` — automated Cloudflare Tunnel + DNS |
 
 ## Support
 

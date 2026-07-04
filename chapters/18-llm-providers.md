@@ -22,17 +22,17 @@ This matters for three reasons:
 | **Alibaba Qwen** | qwen-turbo ($0.05/$0.20), qwen-plus ($0.40/$1.20), qwen-max ($2/$6) | [dashscope.console.aliyun.com](https://dashscope.console.aliyun.com) |
 | **MiniMax** | minimax-m2.5 ($0.30/$1.20), minimax-text01 ($0.20/$1.10) | [minimaxi.com](https://minimaxi.com) |
 
-Prices are USD per 1M input / output tokens, reviewed 2026-04-21. They drift quarterly. `operai_init/llm/registry.py` is the single source of truth the swarm consults.
+Prices are USD per 1M input / output tokens, reviewed 2026-04-21. They drift quarterly. `compai_init/llm/registry.py` is the single source of truth the swarm consults.
 
 ## Architecture
 
 ```
-operai_init/llm/
+compai_init/llm/
 ├── registry.py          # 5 providers × 12 models × pricing + capability flags
-├── config.py            # /opt/operai/credentials/llm-providers.json (mode 600)
+├── config.py            # /opt/compai/credentials/llm-providers.json (mode 600)
 ├── client.py            # Unified dispatcher with fallback chains
 ├── usage.py             # SQLite of every call: tokens, cost, latency, caller
-├── cli.py               # `operai-init llm configure|test|set-default|usage|...`
+├── cli.py               # `compai-init llm configure|test|set-default|usage|...`
 └── providers/
     ├── _http.py         # Shared urllib helper
     ├── anthropic.py     # x-api-key auth
@@ -49,7 +49,7 @@ operai_init/llm/
 Every LLM call in the swarm — domain agents, factory sub-agents, meta-agents, Punta de Flecha deliberations — flows through one function:
 
 ```python
-from operai_init.llm import client as llm
+from compai_init.llm import client as llm
 
 resp = llm.chat(
     system="You are the triage sub-agent. Classify tickets...",
@@ -73,24 +73,24 @@ Internally: resolve model → provider, call handler, record usage, return `LLMR
 
 ```bash
 # Interactive — paste keys, test each provider
-operai-init llm configure
+compai-init llm configure
 
 # Or per-provider
-operai-init llm configure anthropic
-operai-init llm configure openai
-operai-init llm configure gemini
+compai-init llm configure anthropic
+compai-init llm configure openai
+compai-init llm configure gemini
 # etc.
 
 # Set brand-wide default (required before agents can run)
-operai-init llm set-default --provider anthropic --model haiku-4.5
+compai-init llm set-default --provider anthropic --model haiku-4.5
 
 # Set fallback chain (optional but recommended)
-operai-init llm fallback openai/gpt-4o-mini gemini/gemini-2.5-flash
+compai-init llm fallback openai/gpt-4o-mini gemini/gemini-2.5-flash
 
 # Verify
-operai-init llm list
-operai-init llm test anthropic
-operai-init status       # now shows LLM section with configured providers + default
+compai-init llm list
+compai-init llm test anthropic
+compai-init status       # now shows LLM section with configured providers + default
 ```
 
 ## Per-sub-agent overrides in factory.yml
@@ -126,10 +126,10 @@ The effect: the CS factory's per-ticket cost shifts from ~€0.002 uniform Haiku
 
 ## Cost visibility
 
-Every call lands in `/opt/operai/state/llm-usage.db` (SQLite). Query via CLI:
+Every call lands in `/opt/compai/state/llm-usage.db` (SQLite). Query via CLI:
 
 ```bash
-operai-init llm usage --since 30
+compai-init llm usage --since 30
 ```
 
 Output:
@@ -157,11 +157,11 @@ Recent errors
 
 ## Pre-flight: agents refuse to start without LLM config
 
-As decided in v2.8 planning, **there is no default provider**. Install.sh no longer picks Anthropic for you. `operai-init status` flags the missing config loudly:
+As decided in v2.8 planning, **there is no default provider**. Install.sh no longer picks Anthropic for you. `compai-init status` flags the missing config loudly:
 
 ```
 LLM providers
-  ✗ no providers configured — agents will refuse to start. Run: operai-init llm configure
+  ✗ no providers configured — agents will refuse to start. Run: compai-init llm configure
 ```
 
 Agent-runner (when the v0.7 runtime lands) will refuse to spawn if `llm-providers.json` is empty. This prevents silent fallback to the maintainer's keys (which don't exist in a brand's deployment) and forces the founder to make the explicit choice.

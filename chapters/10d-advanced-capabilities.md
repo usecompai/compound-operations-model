@@ -207,13 +207,13 @@ tested_in: 5 deployments, 12,000+ tickets
 ```
 
 **The architecture:**
-- **Level 1 (curated):** Manually reviewed patterns in `/operai/pattern-library/` — the highest-quality patterns go here
+- **Level 1 (curated):** Manually reviewed patterns in `/compai/pattern-library/` — the highest-quality patterns go here
 - **Level 2 (automated):** Weekly cron extracts candidate patterns from memory logs, anonymizes them, and submits for review
 - **REST API:** port 18830 serves patterns to new deployments via `GET /patterns/<domain>`
 
 **Why it's a differentiator:** every new team can start with accumulated wisdom, not a blank slate. Month 1 of a new deployment looks like month 6 of a deployment that started from scratch. This is the compounding lesson — every deployment teaches reusable patterns, as long as the sharing is anonymized and consented.
 
-**Start here:** fork the public playbook repository, inspect `/operai/pattern-library/`, and adapt only the patterns you can validate in your own data.
+**Start here:** fork the public playbook repository, inspect `/compai/pattern-library/`, and adapt only the patterns you can validate in your own data.
 
 ---
 

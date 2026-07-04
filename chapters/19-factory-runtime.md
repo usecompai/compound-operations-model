@@ -9,7 +9,7 @@ Chapter 17 shipped the Agent Factory Pattern — 10 sub-agent SOULs plus `factor
 Chapter 19 is the smallest viable runtime that **makes the factory execute**. One command. One input. One trace. You can see the 10 sub-agents run end-to-end against your configured LLMs.
 
 ```bash
-operai-init factory run-once \
+compai-init factory run-once \
   --domain cs \
   --input sample-ticket.json \
   --output trace.md
@@ -35,7 +35,7 @@ Ship one, prove it, ship the next.
 
 ## The components shipped in v0.9.0
 
-Four new modules in the repo under `operai_init/factory_runtime/`:
+Four new modules in the repo under `compai_init/factory_runtime/`:
 
 | Module | Lines | Role |
 |---|---|---|
@@ -64,7 +64,7 @@ Given a sample ticket:
 
 The orchestrator:
 
-1. Loads `/opt/operai/agents/cs/factory/factory.yml`
+1. Loads `/opt/compai/agents/cs/factory/factory.yml`
 2. Sorts sub-agents by declared `order`
 3. Iterates:
    - Build input dict by extracting declared `inputs` keys from shared context
@@ -129,7 +129,7 @@ The trace is designed to be **pasted into a code review or PR**. A T-shaped CS s
 ## Mock mode for offline smoke tests
 
 ```bash
-operai-init factory run-once --domain cs --input sample.json --mock-llm
+compai-init factory run-once --domain cs --input sample.json --mock-llm
 ```
 
 The `--mock-llm` flag skips the LLM entirely and uses canned responses keyed by sub-agent name. Useful for:
@@ -138,17 +138,17 @@ The `--mock-llm` flag skips the LLM entirely and uses canned responses keyed by 
 - First-time founders testing the install before configuring providers
 - Demos where you want deterministic output
 
-Mock responses live in `operai_init/factory_runtime/executor.py` → `_MOCK_RESPONSES`. They're representative but obviously not real inference.
+Mock responses live in `compai_init/factory_runtime/executor.py` → `_MOCK_RESPONSES`. They're representative but obviously not real inference.
 
 ## Pre-flight enforcement
 
-Without `--mock-llm`, `run-once` checks that `operai-init llm configure` has been completed. If no providers are configured, it refuses with a clear pointer:
+Without `--mock-llm`, `run-once` checks that `compai-init llm configure` has been completed. If no providers are configured, it refuses with a clear pointer:
 
 ```
-✗ no LLM providers configured. Run: operai-init llm configure  (or use --mock-llm)
+✗ no LLM providers configured. Run: compai-init llm configure  (or use --mock-llm)
 ```
 
-This is the same pre-flight `operai-init status` shows — consistent across the surface.
+This is the same pre-flight `compai-init status` shows — consistent across the surface.
 
 ## What you can actually do with v0.9.0
 
@@ -179,9 +179,9 @@ Each limitation is a known-scope carry-over, not a bug. If the founder wants any
 Runtime v2.9 now delivers a real, demonstrable system end-to-end. A founder buying the open-source repo can, in the same afternoon:
 
 1. `curl usecompai.com/init | bash` → swarm infrastructure
-2. `operai-init llm configure` → wire their providers
-3. `operai-init factory enable --domain cs` → deploy the factory templates
-4. `operai-init factory run-once --domain cs --input demo.json` → **see 10 sub-agents execute against their LLMs, produce a draft reply, emit a trace**
+2. `compai-init llm configure` → wire their providers
+3. `compai-init factory enable --domain cs` → deploy the factory templates
+4. `compai-init factory run-once --domain cs --input demo.json` → **see 10 sub-agents execute against their LLMs, produce a draft reply, emit a trace**
 
 The story is complete on day one. What ships across v0.9.1–v0.9.3 is the "lights-out" automation layer — valuable, but not the part that makes the product demonstrable.
 

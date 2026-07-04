@@ -4,7 +4,7 @@
 
 ## What v3.0 stable adds
 
-Runtime v3.0-beta (Ch.20) shipped the autonomous daemon. Events arrived, sub-agents ran, review queue got written — but **the brand was still responsible for wiring their own event source**, typically by cron'ing their helpdesk API and dumping JSON into `/opt/operai/events/cs/pending/`.
+Runtime v3.0-beta (Ch.20) shipped the autonomous daemon. Events arrived, sub-agents ran, review queue got written — but **the brand was still responsible for wiring their own event source**, typically by cron'ing their helpdesk API and dumping JSON into `/opt/compai/events/cs/pending/`.
 
 v3.0 stable removes that last manual step. A production HTTP receiver runs on the brand's VPS, accepts authenticated webhooks from four major helpdesks, and drops canonical events straight into the factory queue. Plus: a daily Slack digest the founder actually reads.
 
@@ -16,8 +16,8 @@ HMAC verification proves the webhook came from the configured provider; it does 
 
 | Service | Port | Systemd unit | Purpose |
 |---|---|---|---|
-| Webhook receiver | 127.0.0.1:8788 | `operai-webhook.service` | Accepts helpdesk webhooks with HMAC verification |
-| Daily digest (cron-based) | — | user crontab | Daily Slack summary to `#operai-ops` |
+| Webhook receiver | 127.0.0.1:8788 | `compai-webhook.service` | Accepts helpdesk webhooks with HMAC verification |
+| Daily digest (cron-based) | — | user crontab | Daily Slack summary to `#compai-ops` |
 
 Both ship under the open-source repo. Brand exposes the webhook receiver via their Cloudflare Tunnel (`webhook.<brand>.com`), configures each helpdesk to POST there, and gets autonomous ticket processing.
 
@@ -56,22 +56,22 @@ One time, per helpdesk:
 
 ```bash
 # 1. Expose the webhook receiver publicly
-operai-init tunnel webhook.acme.com      # routes → 127.0.0.1:8788 via Cloudflare
+compai-init tunnel webhook.acme.com      # routes → 127.0.0.1:8788 via Cloudflare
 
 # 2. Tell Compai where it's exposed (for status displays)
-operai-init webhook set-endpoint https://webhook.acme.com
+compai-init webhook set-endpoint https://webhook.acme.com
 
 # 3. Configure a provider — paste the signing secret from the helpdesk
-operai-init webhook configure the helpdesk
+compai-init webhook configure the helpdesk
   # → shows step-by-step setup: URL to use in the helpdesk dashboard + where to copy the secret
   # → paste secret (hidden input)
 
 # 4. Test it locally
-operai-init webhook test the helpdesk
+compai-init webhook test the helpdesk
   # → builds a signed test payload, POSTs to local receiver, prints response
 
 # 5. Start the service
-systemctl enable --now operai-webhook
+systemctl enable --now compai-webhook
 
 # 6. Configure each helpdesk to POST to:
 #      https://webhook.acme.com/webhook/the helpdesk/cs
@@ -80,7 +80,7 @@ systemctl enable --now operai-webhook
 #      https://webhook.acme.com/webhook/intercom/cs
 
 # 7. Verify
-operai-init webhook status
+compai-init webhook status
   # → shows: service active, providers configured, recent activity tail
 ```
 
@@ -96,7 +96,7 @@ Every webhook goes through these checks, in order:
 6. **Normalizer succeeds** — rejects shapes the provider doesn't match → 400
 7. **`raw_ticket` non-empty** — rejects empty payloads → 400
 
-Only if all seven pass does the event land in the queue. Every rejection logs with reason to `/opt/operai/logs/webhook.log`.
+Only if all seven pass does the event land in the queue. Every rejection logs with reason to `/opt/compai/logs/webhook.log`.
 
 A spray of unsigned POSTs from a scanner gets **only 401 responses** — no tickets land, no LLM calls fire, no cost incurred.
 
@@ -105,10 +105,10 @@ A spray of unsigned POSTs from a scanner gets **only 401 responses** — no tick
 Once the factory is running, the founder rarely opens the CLI. The digest exists so they don't have to.
 
 ```bash
-operai-init digest configure         # paste Slack incoming webhook URL
-operai-init digest now               # send one immediately
-operai-init digest schedule          # install daily cron at 08:00 UTC
-operai-init digest status            # current counters + config
+compai-init digest configure         # paste Slack incoming webhook URL
+compai-init digest now               # send one immediately
+compai-init digest schedule          # install daily cron at 08:00 UTC
+compai-init digest status            # current counters + config
 ```
 
 Each digest shows:
@@ -127,7 +127,7 @@ Each digest shows:
 • `the helpdesk-9001-42db` (cs) — Refund request >€500 requires approval
 ```
 
-One Slack post, once a day, is typically enough for an M-shaped supervisor managing a 500-ticket/week CS flow. For urgent escalations, the existing `operai-factory-runtime.service` emits markers to `events/escalations/` which a future v3.1 will wire directly to founder DMs.
+One Slack post, once a day, is typically enough for an M-shaped supervisor managing a 500-ticket/week CS flow. For urgent escalations, the existing `compai-factory-runtime.service` emits markers to `events/escalations/` which a future v3.1 will wire directly to founder DMs.
 
 ## End-to-end autonomous flow
 
@@ -144,7 +144,7 @@ Runtime v3.0 stable delivers this without any manual intervention:
 └───────────────────────────────┬──────────────────────────────────┘
                                 ▼
 ┌──────────────────────────────────────────────────────────────────┐
-│ 3. operai-webhook receiver:                                       │
+│ 3. compai-webhook receiver:                                       │
 │    • verifies HMAC signature (fail-closed)                        │
 │    • normalizes to CanonicalTicket                                │
 │    • saves raw payload for audit                                  │
@@ -153,7 +153,7 @@ Runtime v3.0 stable delivers this without any manual intervention:
 └───────────────────────────────┬──────────────────────────────────┘
                                 ▼
 ┌──────────────────────────────────────────────────────────────────┐
-│ 4. operai-factory-runtime daemon picks up within 3s:              │
+│ 4. compai-factory-runtime daemon picks up within 3s:              │
 │    • brain_lookup enriches with brand_voice + policies            │
 │    • workflow pre-hook (brand's Python) runs                      │
 │    • 10 sub-agents execute in parallel via configured LLMs        │
@@ -178,8 +178,8 @@ Honest scoping — this is still v3.0, not v4:
 1. **Sending the actual reply** (v3.1). Today auto_send decisions are logged to `review/auto-sent/`. The brand either: (a) builds a small cron that reads this folder and POSTs replies via their helpdesk API, (b) waits for v3.1, or (c) buys Managed Operations.
 2. **6 other factories** (finance / ops / marketing / merch / retail / hr) — CS is shipped, others are templates-only until v3.2-v3.3.
 3. **Custom normalizers** for non-supported helpdesks. `CanonicalTicket` is stable; writing a new normalizer is ~50 lines.
-4. **Brand-specific enrichment** — CRM lookups, inventory checks, dialect overrides. Workflow hooks at `/opt/operai/workflows/<domain>/pre_process.py`.
-5. **Error recovery** — failed events land in `events/cs/failed/` with `.error` files. Founder decides whether to retry via `operai-init event replay --id <X>`. Automated retry logic is v3.1.
+4. **Brand-specific enrichment** — CRM lookups, inventory checks, dialect overrides. Workflow hooks at `/opt/compai/workflows/<domain>/pre_process.py`.
+5. **Error recovery** — failed events land in `events/cs/failed/` with `.error` files. Founder decides whether to retry via `compai-init event replay --id <X>`. Automated retry logic is v3.1.
 
 ## Commercial framing
 

@@ -2,7 +2,7 @@
 
 *Version: 0.1.0 · Used by `brain-bootstrap.py --interactive`*
 
-This is the conversational script that seeds every new OperAI deployment. It is intentionally short — 25 answers, ~15 minutes. Everything here gets written to `/opt/operai/brain/knowledge/<brand>/discovery-interview.md` and becomes the first thing every agent reads on boot.
+This is the conversational script that seeds every new Compai deployment. It is intentionally short — 25 answers, ~15 minutes. Everything here gets written to `/opt/compai/brain/knowledge/<brand>/discovery-interview.md` and becomes the first thing every agent reads on boot.
 
 ## Why these 25 questions (and not more)
 

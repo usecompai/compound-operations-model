@@ -1,15 +1,15 @@
-"""Runtime config — resolves $OPERAI_HOME and brand slug."""
+"""Runtime config — resolves $COMPAI_HOME and brand slug."""
 import os
 from pathlib import Path
 
-OPERAI_HOME = Path(os.environ.get("OPERAI_HOME", "/opt/operai"))
+COMPAI_HOME = Path(os.environ.get("COMPAI_HOME", "/opt/compai"))
 
 
 def _resolve_brand() -> str:
-    env = os.environ.get("OPERAI_BRAND")
+    env = os.environ.get("COMPAI_BRAND")
     if env:
         return env
-    kb = OPERAI_HOME / "brain" / "knowledge"
+    kb = COMPAI_HOME / "brain" / "knowledge"
     if kb.exists():
         reserved = {"platform", "personal", "projects"}
         for child in sorted(kb.iterdir()):
@@ -19,7 +19,7 @@ def _resolve_brand() -> str:
 
 
 BRAND_SLUG = _resolve_brand()
-BRAIN_ROOT = OPERAI_HOME / "brain"
+BRAIN_ROOT = COMPAI_HOME / "brain"
 KNOWLEDGE_ROOT = BRAIN_ROOT / "knowledge"
-CRED_DIR = OPERAI_HOME / "credentials"
+CRED_DIR = COMPAI_HOME / "credentials"
 KEYS_FILE = CRED_DIR / "mcp-keys.json"

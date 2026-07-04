@@ -1,4 +1,4 @@
-# OperAI Implementation Kit v3.2
+# Compai Implementation Kit v3.2
 
 This kit is the software-first deployment pack for building a multi-agent operating system inside a consumer brand.
 
@@ -77,17 +77,17 @@ Zero vendor lock-in. Every LLM call in the swarm flows through one unified clien
 - Alibaba Qwen (turbo, plus, max)
 - MiniMax (m2.5, text01)
 
-**Brand-owned keys:** OperAI never touches the brand's API keys. Each brand's keys live in `/opt/operai/credentials/llm-providers.json` (mode 600). The OperAI maintainer account is never used — every inference call bills the brand's own provider account.
+**Brand-owned keys:** Compai never touches the brand's API keys. Each brand's keys live in `/opt/compai/credentials/llm-providers.json` (mode 600). The Compai maintainer account is never used — every inference call bills the brand's own provider account.
 
 **New CLI commands:**
 ```bash
-operai-init llm configure                          # interactive setup for one/all providers
-operai-init llm test anthropic                     # ping test with tiny prompt
-operai-init llm set-default --provider anthropic --model haiku-4.5
-operai-init llm fallback openai/gpt-4o-mini gemini/gemini-2.5-flash
-operai-init llm usage --since 30                   # per-provider token + cost report
-operai-init llm list                               # providers + configured status
-operai-init llm remove anthropic                   # revoke credential
+compai-init llm configure                          # interactive setup for one/all providers
+compai-init llm test anthropic                     # ping test with tiny prompt
+compai-init llm set-default --provider anthropic --model haiku-4.5
+compai-init llm fallback openai/gpt-4o-mini gemini/gemini-2.5-flash
+compai-init llm usage --since 30                   # per-provider token + cost report
+compai-init llm list                               # providers + configured status
+compai-init llm remove anthropic                   # revoke credential
 ```
 
 **Per-sub-agent routing** in `factory.yml`:
@@ -107,9 +107,9 @@ sub_agents:
 
 **Fallback chains:** if the primary provider returns 429 / 5xx / timeout, the runtime automatically tries the next entry. Brands get supply-chain resilience without writing retry logic.
 
-**Pre-flight enforcement:** `operai-init status` now shows an LLM section. Without at least one configured provider + a default, agents refuse to start. No silent fallback, no using the maintainer's infra.
+**Pre-flight enforcement:** `compai-init status` now shows an LLM section. Without at least one configured provider + a default, agents refuse to start. No silent fallback, no using the maintainer's infra.
 
-**Cost visibility:** every call is recorded in `/opt/operai/state/llm-usage.db` (SQLite). Per-provider, per-model, per-caller breakdowns via `operai-init llm usage`.
+**Cost visibility:** every call is recorded in `/opt/compai/state/llm-usage.db` (SQLite). Per-provider, per-model, per-caller breakdowns via `compai-init llm usage`.
 
 **Playbook Ch.18** documents the full design: architecture, five providers, per-sub-agent routing, cost model, pre-flight enforcement, roadmap.
 
@@ -124,7 +124,7 @@ After three adversarial design reviews, Phase 2 of the ingest layer (Gmail, Slac
 **What's technically enforced in v2.6:**
 
 ```bash
-operai-init ingest allow --source notion ...
+compai-init ingest allow --source notion ...
   → Error: source 'notion' is frozen in the public Kit (v2.6+).
     Available only via Custom Ingest Engagement.
     See playbook Ch.11f + Ch.13. Contact: founder@your-company.example
@@ -153,27 +153,27 @@ Structured sources cover 80%+ of a brand's numerical signal. Manual writes cover
 
 ## New in v2.5 (agentic organization — McKinsey alignment)
 
-Kit v2.5 maps OperAI onto McKinsey's September 2025 agentic-organization framework and ships the governance layer McKinsey prescribes.
+Kit v2.5 maps Compai onto McKinsey's September 2025 agentic-organization framework and ships the governance layer McKinsey prescribes.
 
 **New playbook chapters:**
-- **Ch.15 — The 5 Pillars Mapping**: maps each McKinsey pillar (business model / operating model / governance / workforce / tech+data) to a specific OperAI artifact. Sales argument: OperAI is the 1% network model, productized.
+- **Ch.15 — The 5 Pillars Mapping**: maps each McKinsey pillar (business model / operating model / governance / workforce / tech+data) to a specific Compai artifact. Sales argument: Compai is the 1% network model, productized.
 - **Ch.16 — Agentic Governance**: design + deployment of the 3 meta-agents McKinsey names explicitly (critic + guardrail + compliance).
 
 **New playbook section in Ch.14 — Role profiles:**
 - M-shaped Supervisor, T-shaped Specialist, AI-Empowered Frontline — McKinsey's 3 emerging talent profiles
-- Mapped to OperAI's 7 agents
+- Mapped to Compai's 7 agents
 - New KPIs for the agentic era (agent orchestration ratio, profile progression, socioemotional time ratio)
 
 **New CLI commands:**
 
 ```bash
-operai-init assess <employee>            # 10-question interview → role profile + 90d training path
-operai-init assess --team                # team distribution across the 3 profiles
-operai-init governance enable            # installs 3 meta-agents (SOULs + systemd)
-operai-init governance status            # service state + verdict counts
-operai-init governance logs --agent critic
-operai-init governance review            # pending compliance amendments
-operai-init governance disable --reason "X" --by alex
+compai-init assess <employee>            # 10-question interview → role profile + 90d training path
+compai-init assess --team                # team distribution across the 3 profiles
+compai-init governance enable            # installs 3 meta-agents (SOULs + systemd)
+compai-init governance status            # service state + verdict counts
+compai-init governance logs --agent critic
+compai-init governance review            # pending compliance amendments
+compai-init governance disable --reason "X" --by alex
 ```
 
 **New meta-agents (McKinsey 5-pillar governance):**
@@ -196,17 +196,17 @@ Total fully-governed swarm: **€360-395/month** all-in (still inside the 18:1 R
 
 ## New in v2.4 (ingest layer — Phase 1)
 
-The `operai-init ingest` surface adds structured data ingestion with compliance defaults. Designed under two rounds of adversarial review (Codex, 14 criticisms v1 + 9 criticisms v2). Every shipped line maps to a resolved criticism; deferred criticisms gate the Phase 2 sources.
+The `compai-init ingest` surface adds structured data ingestion with compliance defaults. Designed under two rounds of adversarial review (Codex, 14 criticisms v1 + 9 criticisms v2). Every shipped line maps to a resolved criticism; deferred criticisms gate the Phase 2 sources.
 
 **Phase 1 shipped (v0.4.0):**
 
 ```bash
-operai-init ingest allow --source shopify --unit-type resource --unit-id products \
+compai-init ingest allow --source shopify --unit-type resource --unit-id products \
   --reason "legítimo interés — catalog sync for agents; retention 90d"
-operai-init ingest run --source shopify --days 90
-operai-init ingest stats
-operai-init ingest forget --email alice@example.com --reason "RTBF 2026-04-18"
-operai-init ingest forget --status
+compai-init ingest run --source shopify --days 90
+compai-init ingest stats
+compai-init ingest forget --email alice@example.com --reason "RTBF 2026-04-18"
+compai-init ingest forget --status
 ```
 
 - **Allowlist-only**: no connector runs without an entry documenting legal basis
@@ -222,9 +222,9 @@ operai-init ingest forget --status
 **Key management now carries ACL groups:**
 
 ```bash
-operai-init key create sam --role team --groups cs,retail
-operai-init key create juan  --role team --groups finance
-operai-init key create alex --role admin
+compai-init key create sam --role team --groups cs,retail
+compai-init key create juan  --role team --groups finance
+compai-init key create alex --role admin
 ```
 
 **Phase 2 deferred** (Gmail/Slack/Notion/Drive/the helpdesk) — 5 prerequisites documented in Playbook Ch.11f before unlock.
@@ -235,11 +235,11 @@ The kit now ships a working MCP server. `curl | bash` leaves the brand with a pr
 
 **What's live after install:**
 
-- Python MCP server at `/opt/operai/services/mcp/server.py` (Starlette + SSE, 11 tools)
+- Python MCP server at `/opt/compai/services/mcp/server.py` (Starlette + SSE, 11 tools)
 - Bearer-token auth with admin/team roles, enforced per tool
-- API keys managed via `operai-init key create|list|revoke`
+- API keys managed via `compai-init key create|list|revoke`
 - Founder's admin key auto-generated by install.sh (one-time print to stdout)
-- systemd unit `operai-mcp.service` (installed, enable with `systemctl enable --now operai-mcp`)
+- systemd unit `compai-mcp.service` (installed, enable with `systemctl enable --now compai-mcp`)
 
 **The 11 tools:**
 
@@ -261,25 +261,25 @@ The kit now ships a working MCP server. `curl | bash` leaves the brand with a pr
 
 ## New in v2.2 (post-install CLI + team onboarding)
 
-The `operai-init` CLI ships inside every new deploy and provides the post-bootstrap operations:
+The `compai-init` CLI ships inside every new deploy and provides the post-bootstrap operations:
 
 ```bash
-operai-init connect shopify                # Shopify Admin API custom app
-operai-init connect klaviyo                # Klaviyo Private API key
-operai-init connect google-workspace       # GWS service account + domain-wide delegation
-operai-init connect slack                  # Slack Bot User OAuth token
-operai-init tunnel mcp.acme.com            # Cloudflare Tunnel + systemd unit + DNS
-operai-init team-join --out team-join.sh   # Generate employee onboarding script
-operai-init status                         # Health check (integrations + services + brain + compliance)
+compai-init connect shopify                # Shopify Admin API custom app
+compai-init connect klaviyo                # Klaviyo Private API key
+compai-init connect google-workspace       # GWS service account + domain-wide delegation
+compai-init connect slack                  # Slack Bot User OAuth token
+compai-init tunnel mcp.acme.com            # Cloudflare Tunnel + systemd unit + DNS
+compai-init team-join --out team-join.sh   # Generate employee onboarding script
+compai-init status                         # Health check (integrations + services + brain + compliance)
 ```
 
 Each `connect` command:
 - Instructs the founder where to generate the token in the platform's UI
 - Accepts the token via hidden input (never echoed)
 - Verifies against the platform's API before saving
-- Writes to `/opt/operai/credentials/<service>.json` with mode 600
+- Writes to `/opt/compai/credentials/<service>.json` with mode 600
 
-`tunnel` creates a named Cloudflare Tunnel (`<brand>-mcp`), writes the config to `/opt/operai/services/cloudflared.yml`, routes DNS, and installs the `operai-tunnel.service` systemd unit.
+`tunnel` creates a named Cloudflare Tunnel (`<brand>-mcp`), writes the config to `/opt/compai/services/cloudflared.yml`, routes DNS, and installs the `compai-tunnel.service` systemd unit.
 
 `team-join` generates a signed employee onboarding script with the brand's MCP URL baked in. Every employee runs it once and has the full swarm tooling in Claude Desktop.
 
@@ -301,7 +301,7 @@ The script detects OS, installs Node LTS via fnm if missing, writes `claude_desk
 curl -fsSL https://usecompai.com/init | bash
 ```
 
-From a fresh Ubuntu 24.04 VPS to a running OperAI swarm in ~30 min (automated) + ~30 min (founder clicks).
+From a fresh Ubuntu 24.04 VPS to a running Compai swarm in ~30 min (automated) + ~30 min (founder clicks).
 
 - `init/install.sh` — main orchestrator, installs deps + runs bootstrap
 - `init/brain-bootstrap.py` — interactive discovery interview + 6 QMD collections + brain skeleton

@@ -1,8 +1,8 @@
-# OperAI Onboarding Pack
+# Compai Onboarding Pack
 
-*Generic onboarding assets for any brand running OperAI. Ships in Kit v3.1+.*
+*Generic onboarding assets for any brand running Compai. Ships in Kit v3.1+.*
 
-The goal of this pack: every employee of a brand using OperAI goes through **the same onboarding experience the reference deployment employees get today** — 30 min, one command, Claude Desktop connected, me.md created, custom instruction applied, checklist imported into Notion.
+The goal of this pack: every employee of a brand using Compai goes through **the same onboarding experience the reference deployment employees get today** — 30 min, one command, Claude Desktop connected, me.md created, custom instruction applied, checklist imported into Notion.
 
 ## What's in the pack
 
@@ -26,9 +26,9 @@ At setup time (once per brand):
 
 ```bash
 # As part of the happy path
-operai-init setup-brand
+compai-init setup-brand
   → when you reach "team onboarding", the wizard:
-    1. Copies this pack to /opt/operai/onboarding/ for the brand
+    1. Copies this pack to /opt/compai/onboarding/ for the brand
     2. Does a find-replace of {BRAND} and {founder} across all templates
     3. Generates a team-join.sh customized to your MCP URL
     4. Emits a ready-to-paste email template for sending to employees
@@ -37,9 +37,9 @@ operai-init setup-brand
 Or standalone:
 
 ```bash
-operai-init onboarding-pack install   # copy + interpolate templates
-operai-init onboarding-pack show      # print the paths
-operai-init onboarding-pack update    # re-pull latest from usecompai.com/onboarding/
+compai-init onboarding-pack install   # copy + interpolate templates
+compai-init onboarding-pack show      # print the paths
+compai-init onboarding-pack update    # re-pull latest from usecompai.com/onboarding/
 ```
 
 ## How a new employee uses this pack
@@ -80,7 +80,7 @@ Three find-replace placeholders in every template:
 The `setup-brand` wizard does this automatically. If you're customizing manually:
 
 ```bash
-cd /opt/operai/onboarding
+cd /opt/compai/onboarding
 sed -i 's/{BRAND}/Acme/g; s/{founder}/the founder/g' notion-templates/*.md claude-desktop/*.md
 ```
 
@@ -92,14 +92,14 @@ The pack ships 2 skills (me-md-interview + learn). To add more:
 2. Copy the structure of an existing skill (header, when-to-use, how-to-use, implementation notes)
 3. Push it to the brand's MCP skills directory so `skill_read("<name>")` works
 
-Each brand's MCP already exposes `skills_list()` and `skill_read(name)` as standard tools. Anything in `/opt/operai/brain/skills/<name>/SKILL.md` on the VPS becomes available to every connected Claude.
+Each brand's MCP already exposes `skills_list()` and `skill_read(name)` as standard tools. Anything in `/opt/compai/brain/skills/<name>/SKILL.md` on the VPS becomes available to every connected Claude.
 
 ## Updating the pack
 
-OperAI ships updates to this pack as the product evolves. To pull the latest:
+Compai ships updates to this pack as the product evolves. To pull the latest:
 
 ```bash
-operai-init onboarding-pack update
+compai-init onboarding-pack update
 ```
 
 This re-downloads from `usecompai.com/onboarding/pack.tar.gz` and overwrites the templates **but preserves your brand-customized interpolations** (only updates template bodies, re-applies your {BRAND}/{founder} substitutions).
@@ -116,6 +116,6 @@ No separate tier. No upsell. It's the onboarding experience baked into every dep
 
 Most AI transformation pilots fail at adoption, not technology. The transformation isn't "we bought an AI tool" — it's "every employee uses the brain habitually." The skills + the custom instruction + the 30-60-90 checklist are what get you from tool-installed to habit-formed.
 
-The metric we track is the **socioemotional time ratio** — the % of an employee's week spent with humans (customers, team, partners) vs systems. Pre-OperAI: ~30%. Post-OperAI, once adoption crosses the Month-3 threshold: 70%+.
+The metric we track is the **socioemotional time ratio** — the % of an employee's week spent with humans (customers, team, partners) vs systems. Pre-Compai: ~30%. Post-Compai, once adoption crosses the Month-3 threshold: 70%+.
 
 This pack is the mechanism that makes the ratio move.

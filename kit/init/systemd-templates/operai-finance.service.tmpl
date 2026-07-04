@@ -1,5 +1,5 @@
 [Unit]
-Description=OperAI @BRAND@ · finance agent
+Description=Compai @BRAND@ · finance agent
 After=network-online.target
 Wants=network-online.target
 
@@ -8,9 +8,9 @@ Type=simple
 User=@USER@
 Group=@USER@
 WorkingDirectory=@HOME@/agents/finance
-Environment="OPERAI_HOME=@HOME@"
-Environment="OPERAI_BRAND=@BRAND@"
-Environment="OPERAI_AGENT=finance"
+Environment="COMPAI_HOME=@HOME@"
+Environment="COMPAI_BRAND=@BRAND@"
+Environment="COMPAI_AGENT=finance"
 ExecStart=/usr/bin/python3 @HOME@/services/agent-runner.py --agent finance
 Restart=on-failure
 RestartSec=30

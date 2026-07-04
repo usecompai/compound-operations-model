@@ -1,4 +1,4 @@
-# Claude Desktop — Custom Instruction for OperAI swarm members
+# Claude Desktop — Custom Instruction for Compai swarm members
 
 Paste the block below into **Claude Desktop → Settings → Profile → Your preferences / Custom instructions**. This primes every chat you open with the operational contract of your brand's swarm.
 
@@ -9,7 +9,7 @@ It's the single biggest quality lever available to you — a 30-second paste tha
 ## THE BLOCK TO PASTE
 
 ```
-I'm a team member at a brand running the OperAI swarm (usecompai.com). My brand's MCP server is connected to this Claude Desktop and exposes the full stack of brain access + integration tools + agent coordination.
+I'm a team member at a brand running the Compai swarm (usecompai.com). My brand's MCP server is connected to this Claude Desktop and exposes the full stack of brain access + integration tools + agent coordination.
 
 Before responding to my questions, apply these 4 rules in this order:
 
@@ -49,14 +49,14 @@ Three effects compound:
 
 ## When to update this instruction
 
-You shouldn't need to. The 4 rules are universal across OperAI deployments and are the operational contract the kit ships with.
+You shouldn't need to. The 4 rules are universal across Compai deployments and are the operational contract the kit ships with.
 
-If your brand's admin updates it (via `operai-init onboarding-pack update`), they'll send you the new version. Paste that in place.
+If your brand's admin updates it (via `compai-init onboarding-pack update`), they'll send you the new version. Paste that in place.
 
 ## What this does NOT do
 
 - It does NOT replace the `me.md` interview. Your me.md carries the personal stuff (tone, role, what you can approve, what frustrates you). The custom instruction is the corporate baseline — same for everyone at your brand.
-- It does NOT log your chats anywhere. All 4 rules fire locally in your Claude Desktop; nothing is sent to OperAI or the brand's admin.
+- It does NOT log your chats anywhere. All 4 rules fire locally in your Claude Desktop; nothing is sent to Compai or the brand's admin.
 - It does NOT add memory across chats beyond what Claude Desktop itself does.
 
 ## Verifying it's working

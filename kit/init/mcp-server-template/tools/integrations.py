@@ -1,7 +1,7 @@
 """Integration passthroughs — Shopify / Klaviyo / Slack.
 
-All three load credentials from /opt/operai/credentials/<service>.json (written
-by `operai-init connect`) and make outbound HTTP calls via stdlib `urllib`.
+All three load credentials from /opt/compai/credentials/<service>.json (written
+by `compai-init connect`) and make outbound HTTP calls via stdlib `urllib`.
 
 Errors are returned as structured dicts; raising is reserved for auth/permission
 issues handled upstream in server.py.
@@ -53,7 +53,7 @@ def _http(
 async def shopify_query(*, principal, resource: str) -> Any:
     cred = _load_cred("shopify")
     if not cred:
-        return {"error": "Shopify not connected. Run: operai-init connect shopify"}
+        return {"error": "Shopify not connected. Run: compai-init connect shopify"}
     shop = cred.get("shop")
     token = cred.get("token")
     api_version = cred.get("api_version", "2024-01")
@@ -76,7 +76,7 @@ async def shopify_query(*, principal, resource: str) -> Any:
 async def klaviyo_query(*, principal, endpoint: str, params: dict | None = None) -> Any:
     cred = _load_cred("klaviyo")
     if not cred:
-        return {"error": "Klaviyo not connected. Run: operai-init connect klaviyo"}
+        return {"error": "Klaviyo not connected. Run: compai-init connect klaviyo"}
     api_key = cred.get("api_key")
     revision = cred.get("revision", "2024-07-15")
     if not api_key:
@@ -93,7 +93,7 @@ async def klaviyo_query(*, principal, endpoint: str, params: dict | None = None)
 async def slack_send_message(*, principal, channel: str, text: str) -> Any:
     cred = _load_cred("slack")
     if not cred:
-        return {"error": "Slack not connected. Run: operai-init connect slack"}
+        return {"error": "Slack not connected. Run: compai-init connect slack"}
     bot_token = cred.get("bot_token")
     if not bot_token:
         return {"error": "Slack credentials malformed"}

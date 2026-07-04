@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OperAI Pattern Extraction Pipeline
+Compai Pattern Extraction Pipeline
 
 Scans agent memory logs, audit logs, and brain docs to extract 
 reusable operational patterns. Runs daily via cron.
@@ -75,7 +75,7 @@ def extract_patterns(memory_text, audit_text):
         log("No API key — skipping LLM extraction")
         return []
     
-    prompt = f"""You are an operational patterns analyst for OperAI. 
+    prompt = f"""You are an operational patterns analyst for Compai. 
 
 Analyze the following agent memory logs and audit trails from a consumer brand's AI operations. Extract REUSABLE OPERATIONAL PATTERNS that would help ANY consumer/retail brand.
 

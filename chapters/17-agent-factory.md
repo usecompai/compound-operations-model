@@ -126,16 +126,16 @@ Total after full rollout: **~62 sub-agents** across 7 factories. Squarely inside
 
 ```bash
 # Installs the CS factory alongside the existing monolithic SOULs:
-operai-init factory enable --domain cs
+compai-init factory enable --domain cs
 
 # Lists available factories
-operai-init factory list
+compai-init factory list
 
 # Shows sub-agent details for one factory
-operai-init factory show --domain cs
+compai-init factory show --domain cs
 
 # Disables (rolls back to monolithic SOUL)
-operai-init factory disable --domain cs --reason "rollback for debugging"
+compai-init factory disable --domain cs --reason "rollback for debugging"
 ```
 
 The monolithic SOULs remain in place until the factory is explicitly enabled, so there's no disruption to existing deployments. Founders upgrading from v2.5 → v2.6 see no behavioural change unless they opt in.
@@ -153,7 +153,7 @@ Honest scoping:
 Agent Factory remains in the repo (no separate tier). the founder's decision on v2.5 held: the McKinsey framework and its implementation are differentiators, not upsells. A team forking the open-source repo today gets:
 
 - Seven monolithic agents (still the default)
-- CS factory reference in v2.6 (opt-in via `operai-init factory enable`)
+- CS factory reference in v2.6 (opt-in via `compai-init factory enable`)
 - Full factory rollout as v2.7-v2.9 ship
 
 This doubles the agent density per human without doubling the repo price. The competitive moat widens.

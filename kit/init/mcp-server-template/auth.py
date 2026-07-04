@@ -1,6 +1,6 @@
 """API key auth for the MCP server.
 
-Keys are stored in /opt/operai/credentials/mcp-keys.json:
+Keys are stored in /opt/compai/credentials/mcp-keys.json:
 
     {
       "lgm_<32 hex>": {
@@ -13,7 +13,7 @@ Keys are stored in /opt/operai/credentials/mcp-keys.json:
       ...
     }
 
-Keys are generated and revoked via `operai-init key create|list|revoke`.
+Keys are generated and revoked via `compai-init key create|list|revoke`.
 
 Every incoming request must carry:
 

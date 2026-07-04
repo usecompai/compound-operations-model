@@ -65,7 +65,7 @@ verify:
     - brain_write_failed
 
 record:
-  audit_log_path: /opt/operai/logs/audit-events.jsonl
+  audit_log_path: /opt/compai/logs/audit-events.jsonl
   memory_path: memory/YYYY-MM-DD.md
   required_fields:
     - run_id

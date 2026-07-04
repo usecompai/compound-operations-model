@@ -1,4 +1,4 @@
-# OperAI CS Agent Factory — v0.6 reference implementation
+# Compai CS Agent Factory — v0.6 reference implementation
 # Domain: Customer Service
 # Parent: agents/cs/SOUL.md
 # Cost model: ~3,250 tokens/ticket, ~€0.002 (Haiku batch)
@@ -9,8 +9,8 @@ parent_soul: SOUL.md
 version: 0.7.0
 
 # Default LLM (brand-wide). Overrideable per sub-agent below.
-# The operator MUST configure at least one provider via `operai-init llm configure`
-# and set a default via `operai-init llm set-default` before the factory can run.
+# The operator MUST configure at least one provider via `compai-init llm configure`
+# and set a default via `compai-init llm set-default` before the factory can run.
 default_llm:
   provider: anthropic       # or openai | gemini | qwen | minimax
   model:    haiku-4.5

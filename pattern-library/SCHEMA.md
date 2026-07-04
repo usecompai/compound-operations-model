@@ -1,4 +1,4 @@
-# OperAI Pattern Library — Schema
+# Compai Pattern Library — Schema
 
 ## What is a Pattern?
 

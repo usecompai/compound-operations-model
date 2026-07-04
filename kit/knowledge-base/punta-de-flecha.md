@@ -122,12 +122,12 @@ di: "CONVERGENCIA ALCANZADA" y explica por qué.
 Sé específico, cuantitativo donde puedas, y decisivo. No seas tibio.
 ```
 
-## Aplicación a OperAI
+## Aplicación a Compai
 
-Este método es **replicable para cualquier cliente OperAI**:
+Este método es **replicable para cualquier cliente Compai**:
 - Cualquier swarm con 2+ modelos puede ejecutar Punta de Flecha
 - El requisito mínimo es acceso a 2 LLMs de diferente architecture
-- Se documenta como patrón en el playbook OperAI
+- Se documenta como patrón en el playbook Compai
 - Diferenciador competitivo: ningún competidor ofrece deliberación cross-model iterativa
 
 ## Extensiones futuras

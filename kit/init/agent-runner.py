@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""agent-runner — minimal heartbeat runner for OperAI domain agents.
+"""agent-runner — minimal heartbeat runner for Compai domain agents.
 
 v0.5.x scope: each domain agent (cs, finance, ops, marketing, merch, retail, hr)
 has a SOUL.md defining its role. The real agent logic (SOUL-driven LLM loops
@@ -24,7 +24,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-OPERAI_HOME = Path(os.environ.get("OPERAI_HOME", "/opt/operai"))
+COMPAI_HOME = Path(os.environ.get("COMPAI_HOME", "/opt/compai"))
 
 
 def log(msg: str) -> None:
@@ -33,7 +33,7 @@ def log(msg: str) -> None:
 
 
 def heartbeat(agent: str, brand: str) -> None:
-    mem_dir = OPERAI_HOME / "brain" / "memory" / agent
+    mem_dir = COMPAI_HOME / "brain" / "memory" / agent
     mem_dir.mkdir(parents=True, exist_ok=True)
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     path = mem_dir / f"{today}.log"
@@ -48,11 +48,11 @@ def main() -> int:
     ap.add_argument("--interval", type=int, default=60, help="Heartbeat interval seconds")
     args = ap.parse_args()
 
-    brand = os.environ.get("OPERAI_BRAND", "unknown")
-    agent_dir = OPERAI_HOME / "agents" / args.agent
+    brand = os.environ.get("COMPAI_BRAND", "unknown")
+    agent_dir = COMPAI_HOME / "agents" / args.agent
     soul_path = agent_dir / "SOUL.md"
 
-    log(f"agent-runner starting: agent={args.agent} brand={brand} home={OPERAI_HOME}")
+    log(f"agent-runner starting: agent={args.agent} brand={brand} home={COMPAI_HOME}")
     if soul_path.exists():
         size = soul_path.stat().st_size
         log(f"SOUL loaded from {soul_path} ({size} bytes)")

@@ -47,7 +47,7 @@ Compai repo v2.5 ships exactly these three.
    - **Financial thresholds:** escalate any single-action impact > €X (founder-configurable)
    - **PII handling:** reject any action that would write PII to a non-evidence store
 3. Returns `allow` / `deny` / `modify` decisions in <200ms (rule-based, no LLM for standard checks; LLM-assisted for ambiguous copy).
-4. Every denial is logged + escalated to the founder's `#operai-ops` Slack channel.
+4. Every denial is logged + escalated to the founder's `#compai-ops` Slack channel.
 
 **Cost:** near zero per call (mostly rule-based). LLM calls only for ambiguous policy interpretations.
 
@@ -59,9 +59,9 @@ Compai repo v2.5 ships exactly these three.
 
 1. Weekly cron pulls regulatory updates from a curated list of sources: EUR-Lex (AI Act amendments), AEPD guidance, EDPB statements, CNIL publications.
 2. For each update, runs a relevance classifier against the brand's DPIA and AI System Register: "does this change require action?"
-3. If yes, drafts a proposed amendment to `/opt/operai/compliance/dpia.md` or `ai-system-register.md` and files it in the Review Queue.
-4. The data controller (founder) reviews and signs or rejects the amendment via `operai-init governance review`.
-5. All changes are version-tracked in Git inside `/opt/operai/compliance/` for audit trail.
+3. If yes, drafts a proposed amendment to `/opt/compai/compliance/dpia.md` or `ai-system-register.md` and files it in the Review Queue.
+4. The data controller (founder) reviews and signs or rejects the amendment via `compai-init governance review`.
+5. All changes are version-tracked in Git inside `/opt/compai/compliance/` for audit trail.
 
 **Cost:** a few LLM calls per week — classification + drafting, not monitoring 24/7. ~€2-5/month.
 
@@ -71,28 +71,28 @@ As of repo v2.5:
 
 ```bash
 # Install the three meta-agents (systemd units + SOUL templates + config)
-operai-init governance enable
+compai-init governance enable
 
 # Check status
-operai-init governance status
+compai-init governance status
 
 # View recent critic verdicts
-operai-init governance logs --since 24h --agent critic
+compai-init governance logs --since 24h --agent critic
 
 # Review pending compliance updates
-operai-init governance review
+compai-init governance review
 
 # Disable (emergency only — recorded in audit log)
-operai-init governance disable --reason "debugging issue X" --by founder
+compai-init governance disable --reason "debugging issue X" --by founder
 ```
 
 After `enable`, three new systemd units run alongside the existing agents:
 
-- `operai-critic.service`
-- `operai-guardrail.service`
-- `operai-compliance.service`
+- `compai-critic.service`
+- `compai-guardrail.service`
+- `compai-compliance.service`
 
-Each has its own SOUL.md at `/opt/operai/agents/<meta>/SOUL.md`, interpolated from templates shipped in `repo/init/governance/`.
+Each has its own SOUL.md at `/opt/compai/agents/<meta>/SOUL.md`, interpolated from templates shipped in `repo/init/governance/`.
 
 ## Where this fits in the ACL model
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# OperAI Brand Bootstrap — install.sh
+# Compai Brand Bootstrap — install.sh
 # Version: 3.1.1
 #
 # Usage (on a fresh Ubuntu 24.04 VPS, as root or with sudo):
@@ -11,8 +11,8 @@
 #
 # What it does:
 #   1. Installs system dependencies (python3, node, docker, git, cloudflared, qmd)
-#   2. Creates /opt/operai/ layout (brain, agents, services, logs, credentials)
-#   3. Clones operai-runtime skeleton (MCP server + OpenClaw launcher)
+#   2. Creates /opt/compai/ layout (brain, agents, services, logs, credentials)
+#   3. Clones compai-runtime skeleton (MCP server + OpenClaw launcher)
 #   4. Runs brain-bootstrap.py (interactive discovery + 6 QMD collections)
 #   5. Installs systemd units for the 7 agents
 #   6. Prints next-step checklist (OAuth flows, Cloudflare Tunnel, compliance)
@@ -26,10 +26,10 @@
 set -euo pipefail
 
 BRAND_SLUG="${1:-}"
-OPERAI_HOME="/opt/operai"
-OPERAI_USER="operai"
-RUNTIME_TARBALL="https://usecompai.com/init/operai-runtime-v0.5.0.tar.gz"
-LOG_FILE="/tmp/operai-install.log"
+COMPAI_HOME="/opt/compai"
+COMPAI_USER="compai"
+RUNTIME_TARBALL="https://usecompai.com/init/compai-runtime-v0.5.0.tar.gz"
+LOG_FILE="/tmp/compai-install.log"
 
 # ---------- pretty output ----------
 c_reset=$(printf "\033[0m")
@@ -127,36 +127,36 @@ install_system_deps() {
   fi
 }
 
-# ---------- operai user + layout ----------
+# ---------- compai user + layout ----------
 create_layout() {
-  log "Creating /opt/operai layout…"
-  id -u "$OPERAI_USER" >/dev/null 2>&1 || useradd -r -s /bin/bash -m -d "$OPERAI_HOME" "$OPERAI_USER"
+  log "Creating /opt/compai layout…"
+  id -u "$COMPAI_USER" >/dev/null 2>&1 || useradd -r -s /bin/bash -m -d "$COMPAI_HOME" "$COMPAI_USER"
 
-  install -d -o "$OPERAI_USER" -g "$OPERAI_USER" \
-    "$OPERAI_HOME"/{agents,brain,brain/knowledge,brain/memory,brain/skills,services,services/mcp,services/qmd,credentials,logs,backups,compliance,state,workflows,events,events/pending,events/completed,events/failed,events/in-flight} \
-    "$OPERAI_HOME"/agents/{cs,finance,ops,marketing,merch,retail,hr,critic,guardrail,compliance}
+  install -d -o "$COMPAI_USER" -g "$COMPAI_USER" \
+    "$COMPAI_HOME"/{agents,brain,brain/knowledge,brain/memory,brain/skills,services,services/mcp,services/qmd,credentials,logs,backups,compliance,state,workflows,events,events/pending,events/completed,events/failed,events/in-flight} \
+    "$COMPAI_HOME"/agents/{cs,finance,ops,marketing,merch,retail,hr,critic,guardrail,compliance}
 
   # Explicit parent brand dir first (install -d brace-expansion does not own parents)
-  install -d -o "$OPERAI_USER" -g "$OPERAI_USER" "$OPERAI_HOME/brain/knowledge/$BRAND_SLUG"
-  install -d -o "$OPERAI_USER" -g "$OPERAI_USER" \
-    "$OPERAI_HOME/brain/knowledge/$BRAND_SLUG"/{context,team,product,ops,retail,marketing,finance,cs,wholesale,strategy} \
-    "$OPERAI_HOME/brain/knowledge/platform" \
-    "$OPERAI_HOME/brain/knowledge/projects" \
-    "$OPERAI_HOME/brain/knowledge/personal"
+  install -d -o "$COMPAI_USER" -g "$COMPAI_USER" "$COMPAI_HOME/brain/knowledge/$BRAND_SLUG"
+  install -d -o "$COMPAI_USER" -g "$COMPAI_USER" \
+    "$COMPAI_HOME/brain/knowledge/$BRAND_SLUG"/{context,team,product,ops,retail,marketing,finance,cs,wholesale,strategy} \
+    "$COMPAI_HOME/brain/knowledge/platform" \
+    "$COMPAI_HOME/brain/knowledge/projects" \
+    "$COMPAI_HOME/brain/knowledge/personal"
 
   # Safety net: recursive chown on /brain (handles any edge cases from install -d)
-  chown -R "$OPERAI_USER":"$OPERAI_USER" "$OPERAI_HOME/brain"
-  chmod 700 "$OPERAI_HOME/credentials"
-  ok "Layout ready at $OPERAI_HOME"
+  chown -R "$COMPAI_USER":"$COMPAI_USER" "$COMPAI_HOME/brain"
+  chmod 700 "$COMPAI_HOME/credentials"
+  ok "Layout ready at $COMPAI_HOME"
 }
 
 # ---------- runtime clone ----------
 fetch_runtime() {
-  log "Fetching OperAI runtime skeleton…"
-  cd "$OPERAI_HOME/services"
-  if curl -fsSL -o /tmp/operai-runtime.tar.gz "$RUNTIME_TARBALL" 2>/dev/null; then
-    tar -xzf /tmp/operai-runtime.tar.gz -C "$OPERAI_HOME/services"
-    rm /tmp/operai-runtime.tar.gz
+  log "Fetching Compai runtime skeleton…"
+  cd "$COMPAI_HOME/services"
+  if curl -fsSL -o /tmp/compai-runtime.tar.gz "$RUNTIME_TARBALL" 2>/dev/null; then
+    tar -xzf /tmp/compai-runtime.tar.gz -C "$COMPAI_HOME/services"
+    rm /tmp/compai-runtime.tar.gz
     ok "Runtime extracted"
   else
     warn "Runtime tarball not reachable (offline?). Using local skeleton."
@@ -176,55 +176,55 @@ fetch_runtime() {
     warn "sqlcipher3-binary install failed — ingest state will use plaintext sqlite (dev only)"
 
   # Install agent-runner.py from tarball (placeholder heartbeat runner; real agents in v0.6)
-  if [[ -f "$OPERAI_HOME/services/init/agent-runner.py" ]]; then
-    cp "$OPERAI_HOME/services/init/agent-runner.py" "$OPERAI_HOME/services/agent-runner.py"
-    chmod 0755 "$OPERAI_HOME/services/agent-runner.py"
+  if [[ -f "$COMPAI_HOME/services/init/agent-runner.py" ]]; then
+    cp "$COMPAI_HOME/services/init/agent-runner.py" "$COMPAI_HOME/services/agent-runner.py"
+    chmod 0755 "$COMPAI_HOME/services/agent-runner.py"
     ok "agent-runner.py installed"
   fi
 
-  chown -R "$OPERAI_USER":"$OPERAI_USER" "$OPERAI_HOME/services"
+  chown -R "$COMPAI_USER":"$COMPAI_USER" "$COMPAI_HOME/services"
 }
 
 # ---------- brain bootstrap ----------
 bootstrap_brain() {
-  cd "$OPERAI_HOME"
+  cd "$COMPAI_HOME"
   local extra_args="--interactive"
-  if [[ -n "${OPERAI_ANSWERS_FILE:-}" && -f "$OPERAI_ANSWERS_FILE" ]]; then
-    log "Running brain bootstrap (non-interactive, answers from $OPERAI_ANSWERS_FILE)…"
-    # Make the answers file readable by operai user
-    cp "$OPERAI_ANSWERS_FILE" /tmp/operai-answers.json
-    chown "$OPERAI_USER":"$OPERAI_USER" /tmp/operai-answers.json
-    extra_args="--answers-file /tmp/operai-answers.json"
+  if [[ -n "${COMPAI_ANSWERS_FILE:-}" && -f "$COMPAI_ANSWERS_FILE" ]]; then
+    log "Running brain bootstrap (non-interactive, answers from $COMPAI_ANSWERS_FILE)…"
+    # Make the answers file readable by compai user
+    cp "$COMPAI_ANSWERS_FILE" /tmp/compai-answers.json
+    chown "$COMPAI_USER":"$COMPAI_USER" /tmp/compai-answers.json
+    extra_args="--answers-file /tmp/compai-answers.json"
   else
     log "Running brain bootstrap (interactive discovery)…"
   fi
-  sudo -u "$OPERAI_USER" python3 "$OPERAI_HOME/services/init/brain-bootstrap.py" \
+  sudo -u "$COMPAI_USER" python3 "$COMPAI_HOME/services/init/brain-bootstrap.py" \
     --brand "$BRAND_SLUG" \
-    --home "$OPERAI_HOME" \
+    --home "$COMPAI_HOME" \
     $extra_args || fail "Brain bootstrap failed"
   ok "Brain seeded with 6 QMD collections"
 }
 
-# ---------- operai-init CLI ----------
+# ---------- compai-init CLI ----------
 install_cli() {
-  log "Installing operai-init CLI to /usr/local/bin/operai-init…"
-  local cli_src="$OPERAI_HOME/services/init/cli"
+  log "Installing compai-init CLI to /usr/local/bin/compai-init…"
+  local cli_src="$COMPAI_HOME/services/init/cli"
   [[ -d "$cli_src" ]] || { warn "CLI source not found at $cli_src — skipping"; return; }
 
-  # Package lives at /opt/operai/services/init/cli/operai_init/ (kept in place)
-  cat > /usr/local/bin/operai-init <<WRAPPER_EOF
+  # Package lives at /opt/compai/services/init/cli/compai_init/ (kept in place)
+  cat > /usr/local/bin/compai-init <<WRAPPER_EOF
 #!/usr/bin/env bash
-PYTHONPATH="$cli_src:\${PYTHONPATH:-}" exec python3 "$cli_src/operai_init_cli.py" "\$@"
+PYTHONPATH="$cli_src:\${PYTHONPATH:-}" exec python3 "$cli_src/compai_init_cli.py" "\$@"
 WRAPPER_EOF
-  chmod 0755 /usr/local/bin/operai-init
-  ok "operai-init installed (try: operai-init status)"
+  chmod 0755 /usr/local/bin/compai-init
+  ok "compai-init installed (try: compai-init status)"
 }
 
 # ---------- Workflow hooks (brand-specific extension points) ----------
 install_workflows() {
   log "Installing workflow hook scaffolding…"
-  local src="$OPERAI_HOME/services/init/workflow-templates"
-  local dst="$OPERAI_HOME/workflows"
+  local src="$COMPAI_HOME/services/init/workflow-templates"
+  local dst="$COMPAI_HOME/workflows"
   if [[ -d "$src" ]]; then
     # Copy each domain sample if not already present (founder may have customized)
     for domain_src in "$src"/*; do
@@ -240,7 +240,7 @@ install_workflows() {
         fi
       done
     done
-    chown -R "$OPERAI_USER":"$OPERAI_USER" "$dst"
+    chown -R "$COMPAI_USER":"$COMPAI_USER" "$dst"
   fi
   ok "Workflow hooks ready at $dst"
 }
@@ -248,8 +248,8 @@ install_workflows() {
 # ---------- MCP server ----------
 install_mcp_server() {
   log "Installing MCP server (Python deps + template + first key)…"
-  local tmpl_src="$OPERAI_HOME/services/init/mcp-server-template"
-  local mcp_dst="$OPERAI_HOME/services/mcp"
+  local tmpl_src="$COMPAI_HOME/services/init/mcp-server-template"
+  local mcp_dst="$COMPAI_HOME/services/mcp"
 
   if [[ ! -d "$tmpl_src" ]]; then
     warn "MCP server template not found at $tmpl_src — skipping"
@@ -264,19 +264,19 @@ install_mcp_server() {
   # Copy template into persistent location (outside the init/ tree)
   mkdir -p "$mcp_dst"
   cp -R "$tmpl_src"/* "$mcp_dst/"
-  chown -R "$OPERAI_USER":"$OPERAI_USER" "$mcp_dst"
+  chown -R "$COMPAI_USER":"$COMPAI_USER" "$mcp_dst"
   ok "MCP server installed at $mcp_dst"
 
   # Generate the founder's first admin API key
   log "Generating founder admin API key…"
-  sudo -u "$OPERAI_USER" /usr/local/bin/operai-init key create founder --role admin 2>&1 | tee -a "$LOG_FILE" | grep -E "(lgm_|⚠)" || true
+  sudo -u "$COMPAI_USER" /usr/local/bin/compai-init key create founder --role admin 2>&1 | tee -a "$LOG_FILE" | grep -E "(lgm_|⚠)" || true
   ok "Admin key generated — copy it from the output above; it is not shown again"
 }
 
 # ---------- systemd units ----------
 install_systemd_units() {
   log "Installing systemd units for 7 agents…"
-  local unit_dir="$OPERAI_HOME/services/init/systemd-templates"
+  local unit_dir="$COMPAI_HOME/services/init/systemd-templates"
   [[ -d "$unit_dir" ]] || { warn "systemd templates not found — skipping"; return; }
 
   for tmpl in "$unit_dir"/*.service.tmpl; do
@@ -284,8 +284,8 @@ install_systemd_units() {
     local name=$(basename "$tmpl" .service.tmpl)
     local dest="/etc/systemd/system/${name}.service"
     sed -e "s|@BRAND@|$BRAND_SLUG|g" \
-        -e "s|@HOME@|$OPERAI_HOME|g" \
-        -e "s|@USER@|$OPERAI_USER|g" \
+        -e "s|@HOME@|$COMPAI_HOME|g" \
+        -e "s|@USER@|$COMPAI_USER|g" \
         "$tmpl" > "$dest"
     ok "installed $name.service"
   done
@@ -304,9 +304,9 @@ setup_qmd_cron() {
     warn "crontab not available (container?) — skipping QMD cron. Install cron manually for scheduled indexing."
     return 0
   fi
-  local cron_line="*/5 * * * * cd $OPERAI_HOME/brain && /usr/local/bin/qmd update >> $OPERAI_HOME/logs/qmd.log 2>&1"
-  if (sudo -u "$OPERAI_USER" crontab -l 2>/dev/null; echo "$cron_line") | \
-     awk "!seen[\$0]++" | sudo -u "$OPERAI_USER" crontab - 2>/dev/null; then
+  local cron_line="*/5 * * * * cd $COMPAI_HOME/brain && /usr/local/bin/qmd update >> $COMPAI_HOME/logs/qmd.log 2>&1"
+  if (sudo -u "$COMPAI_USER" crontab -l 2>/dev/null; echo "$cron_line") | \
+     awk "!seen[\$0]++" | sudo -u "$COMPAI_USER" crontab - 2>/dev/null; then
     ok "QMD cron installed"
   else
     warn "Could not install QMD cron (daemon not running?) — manual step needed"
@@ -316,8 +316,8 @@ setup_qmd_cron() {
 # ---------- compliance scaffold ----------
 compliance_scaffold() {
   log "Generating compliance scaffold (DPIA + AI System Register)…"
-  local cdir="$OPERAI_HOME/compliance"
-  cp -n "$OPERAI_HOME/services/init/compliance-scaffold/"*.md "$cdir/" 2>/dev/null || true
+  local cdir="$COMPAI_HOME/compliance"
+  cp -n "$COMPAI_HOME/services/init/compliance-scaffold/"*.md "$cdir/" 2>/dev/null || true
   # Prefill brand slug in the scaffold docs
   sed -i "s|@BRAND@|$BRAND_SLUG|g" "$cdir"/*.md 2>/dev/null || true
   ok "Compliance templates at $cdir/ (founder must review + sign)"
@@ -328,53 +328,53 @@ print_next_steps() {
   cat <<EOF
 
 ${c_gold}${c_bold}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${c_reset}
-${c_bold}OperAI bootstrap complete for ${BRAND_SLUG}.${c_reset}
+${c_bold}Compai bootstrap complete for ${BRAND_SLUG}.${c_reset}
 ${c_gold}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${c_reset}
 
 ${c_bold}What is live now:${c_reset}
-  ✓ /opt/operai/ layout with brain + 6 QMD collections
+  ✓ /opt/compai/ layout with brain + 6 QMD collections
   ✓ Python + Node + Docker + QMD + cloudflared
   ✓ 7 agent systemd units installed (NOT started)
   ✓ Brain seeded from your discovery interview
-  ✓ Compliance scaffold at /opt/operai/compliance/
+  ✓ Compliance scaffold at /opt/compai/compliance/
 
 ${c_bold}What you must do next (founder-only steps):${c_reset}
 
   ${c_gold}1.${c_reset} Connect integrations (each is a one-time OAuth flow):
-       operai-init connect shopify
-       operai-init connect klaviyo
-       operai-init connect google-workspace
-       operai-init connect slack
+       compai-init connect shopify
+       compai-init connect klaviyo
+       compai-init connect google-workspace
+       compai-init connect slack
 
   ${c_gold}2.${c_reset} Set up Cloudflare Tunnel for MCP endpoint:
        cloudflared tunnel login
        cloudflared tunnel create ${BRAND_SLUG}-mcp
-       # then: operai-init tunnel ${BRAND_SLUG}-mcp mcp.${BRAND_SLUG}.com
+       # then: compai-init tunnel ${BRAND_SLUG}-mcp mcp.${BRAND_SLUG}.com
 
   ${c_gold}3.${c_reset} Review + sign compliance docs:
-       /opt/operai/compliance/dpia.md
-       /opt/operai/compliance/ai-system-register.md
-       /opt/operai/compliance/annex-iii-review.md
+       /opt/compai/compliance/dpia.md
+       /opt/compai/compliance/ai-system-register.md
+       /opt/compai/compliance/annex-iii-review.md
 
   ${c_gold}4.${c_reset} Start the MCP server (this exposes the tools via Cloudflare Tunnel):
-       systemctl enable --now operai-mcp
-       operai-init status
+       systemctl enable --now compai-mcp
+       compai-init status
 
   ${c_gold}5.${c_reset} Start agents in shadow mode (no customer-facing writes):
-       systemctl start operai-cs operai-finance operai-ops
-       tail -f /opt/operai/logs/*.log
+       systemctl start compai-cs compai-finance compai-ops
+       tail -f /opt/compai/logs/*.log
 
   ${c_gold}6.${c_reset} Create API keys for your team:
-       operai-init key create alex  --role admin
-       operai-init key create sam  --role team
-       operai-init key list
+       compai-init key create alex  --role admin
+       compai-init key create sam  --role team
+       compai-init key list
 
   ${c_gold}7.${c_reset} Onboard your team (1 command per employee):
-       operai-init team-join --out team-join.sh
+       compai-init team-join --out team-join.sh
        # share team-join.sh with your team (they paste their key on run)
 
 ${c_bold}Playbook:${c_reset} https://usecompai.com/playbook/
-${c_bold}Kit docs:${c_reset} ${OPERAI_HOME}/services/README.md
+${c_bold}Kit docs:${c_reset} ${COMPAI_HOME}/services/README.md
 ${c_bold}Support:${c_reset} hello@usecompai.com
 
 ${c_dim}Install log: ${LOG_FILE}${c_reset}

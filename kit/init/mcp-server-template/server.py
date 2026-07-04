@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OperAI MCP Server — minimal reference implementation.
+Compai MCP Server — minimal reference implementation.
 
 Runs at 127.0.0.1:8787 behind a Cloudflare Tunnel, speaks the Model Context
 Protocol over Server-Sent Events, and exposes the swarm's 11 core tools:
@@ -11,8 +11,8 @@ Protocol over Server-Sent Events, and exposes the swarm's 11 core tools:
   Swarm:         status
   Integrations:  shopify_query, klaviyo_query, slack_send_message
 
-Auth: bearer token per employee, stored in /opt/operai/credentials/mcp-keys.json,
-created by `operai-init key create <name> --role team|admin`.
+Auth: bearer token per employee, stored in /opt/compai/credentials/mcp-keys.json,
+created by `compai-init key create <name> --role team|admin`.
 
 Roles:
   admin  — full access (read + write brain, integrations, memory, me_write_any)
@@ -39,14 +39,14 @@ from starlette.routing import Mount, Route
 # Local imports
 sys.path.insert(0, str(Path(__file__).parent))
 from auth import authenticate, AuthError, Principal
-from config import OPERAI_HOME, BRAND_SLUG
+from config import COMPAI_HOME, BRAND_SLUG
 from tools import brain_acl as brain, memory as mem_tools, me as me_tools, status as status_tool, integrations
 
 logging.basicConfig(
-    level=os.environ.get("OPERAI_LOG_LEVEL", "INFO"),
+    level=os.environ.get("COMPAI_LOG_LEVEL", "INFO"),
     format="%(asctime)s %(levelname)s %(name)s: %(message)s",
 )
-log = logging.getLogger("operai-mcp")
+log = logging.getLogger("compai-mcp")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -181,7 +181,7 @@ TOOLS: dict[str, dict] = {
 # MCP server setup
 # ─────────────────────────────────────────────────────────────────────────────
 
-mcp_server = Server(name=f"operai-{BRAND_SLUG}")
+mcp_server = Server(name=f"compai-{BRAND_SLUG}")
 
 
 @mcp_server.list_tools()
@@ -259,13 +259,13 @@ async def health(request: Request):
     return JSONResponse({
         "ok": True,
         "brand": BRAND_SLUG,
-        "home": str(OPERAI_HOME),
+        "home": str(COMPAI_HOME),
         "tools": sorted(TOOLS.keys()),
     })
 
 
 app = Starlette(
-    debug=bool(os.environ.get("OPERAI_DEBUG")),
+    debug=bool(os.environ.get("COMPAI_DEBUG")),
     routes=[
         Route("/", endpoint=health),
         Route("/health", endpoint=health),
@@ -285,7 +285,7 @@ def main():
     ap.add_argument("--reload", action="store_true")
     args = ap.parse_args()
 
-    log.info("OperAI MCP server starting — brand=%s home=%s", BRAND_SLUG, OPERAI_HOME)
+    log.info("Compai MCP server starting — brand=%s home=%s", BRAND_SLUG, COMPAI_HOME)
     log.info("tools registered: %d", len(TOOLS))
     uvicorn.run(app, host=args.host, port=args.port, reload=args.reload, log_level="info")
 

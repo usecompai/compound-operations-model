@@ -411,12 +411,12 @@ Each of the 7 domain agents has a natural pairing with T-shaped specialists:
 
 The M-shaped supervisor orchestrates across all seven. In a 8-figure brand, this is frequently the founder themselves. In a €30-50M brand, it's the COO + 1-2 Chiefs of Staff.
 
-## The New `operai-init assess` Command
+## The New `compai-init assess` Command
 
 The repo can include an optional assessment helper:
 
 ```bash
-operai-init assess <employee-name>
+compai-init assess <employee-name>
 ```
 
 This runs a short conversational interview (8-10 questions) that classifies the employee into one of the three profiles and outputs a **personalized training path** with concrete milestones. The assessment writes to `knowledge/<brand>/team/<employee>/role-profile.md` alongside their `me.md` — the brain now knows each person's current profile, target profile, and next steps.
@@ -434,7 +434,7 @@ Next 90 days:
 Training budget: €500 (internal review time)
 ```
 
-The founder sees the full org's profile distribution via `operai-init assess --team`.
+The founder sees the full org's profile distribution via `compai-init assess --team`.
 
 ## Measuring the Shift
 

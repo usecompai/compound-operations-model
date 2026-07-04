@@ -1,5 +1,5 @@
 [Unit]
-Description=OperAI @BRAND@ · MCP server
+Description=Compai @BRAND@ · MCP server
 After=network-online.target
 Wants=network-online.target
 
@@ -8,8 +8,8 @@ Type=simple
 User=@USER@
 Group=@USER@
 WorkingDirectory=@HOME@/services/mcp
-Environment="OPERAI_HOME=@HOME@"
-Environment="OPERAI_BRAND=@BRAND@"
+Environment="COMPAI_HOME=@HOME@"
+Environment="COMPAI_BRAND=@BRAND@"
 ExecStart=/usr/bin/python3 @HOME@/services/mcp/server.py --host 127.0.0.1 --port 8787
 Restart=on-failure
 RestartSec=10
