@@ -4,6 +4,8 @@
 
 The playbook is a **journey**: eight sections in the order an SME actually builds an AI operating system. Read them in order the first time. Each section ends with a **Ship it** gate — the minimum working state before the next section makes sense.
 
+The system you are about to build, in one sentence: it captures work as it happens, promotes durable signals, turns them into bounded execution loops, and leaves audit receipts for every consequential action — the operating memory of a company.
+
 **The 30-day path:** week 1 = Start Here + The Brain (capture running) · week 2 = The Tools (hands on 2 systems) · week 3 = The Agents (first agent, propose-only) + Governance (authority matrix, scoped spaces) · week 4 = Operate (the loop live) + Proof (your own honest ledger).
 
 
