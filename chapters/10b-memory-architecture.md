@@ -169,7 +169,7 @@ ByteRover maintains three layers that map directly to our existing stack:
 
 | ByteRover Layer | Our Equivalent | What It Stores |
 |----------------|---------------|----------------|
-| **Context Tree** | `brain/knowledge/` (3,007 docs) | Deep structured knowledge, organized by domain |
+| **Context Tree** | `brain/knowledge/` (4,819 docs) | Deep structured knowledge, organized by domain |
 | **Workspace Memory** | `MEMORY.md` + `SOUL.md` | Core rules, preferences, business snapshot |
 | **Daily Memory** | `memory/YYYY-MM-DD.md` | Session notes, operational logs |
 
@@ -336,7 +336,7 @@ Mac Mini (all other agents):
 **Health monitoring:** `brain-sync-health.sh` runs every 2 hours, checking:
 - Mac Mini reachability via SSH
 - Sync freshness (alert if >2h stale)
-- Total doc count (currently 3,007 docs, 15MB)
+- Total doc count (currently 4,819 docs, 15MB)
 
 **Result:** Update a policy on the hub agent → all agents see the change within minutes. No manual copying. No drift.
 
@@ -524,7 +524,7 @@ After 2 weeks of automated dedup across 6 agents:
 - **~90+ duplicate memories removed** per agent per week
 - Common duplicates: identity facts (15+), API permissions (10+), troubleshooting logs (15+)
 - Agent recall accuracy improved — less noise means better signal
-- Zero human maintenance required
+- No manual cleanup was needed during the first two observed weeks; ongoing sampling and rollback remain required
 
 ### Device Pairing for Fleet Deployment
 

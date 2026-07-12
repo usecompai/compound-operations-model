@@ -1,0 +1,31 @@
+version: "1.0"
+verified_at: "YYYY-MM-DDTHH:MM:SSZ"
+owner: platform
+
+sources:
+  chat:
+    state: deployed
+    scope: "approved public/team channels"
+    evidence: "latest successful capture and promotion run"
+    gaps:
+      - "private channels are not implied"
+  email:
+    state: deployed
+    scope: "approved leadership or operational mailboxes"
+    evidence: "per-mailbox success/failure inventory"
+    gaps:
+      - "not every company mailbox is implied"
+  meetings:
+    state: pilot
+    scope: "shared notes and approved recordings"
+    evidence: "unique notes, recordings and transcript inventory"
+    gaps:
+      - "verbatim transcript coverage may be incomplete"
+  documents:
+    state: deployed
+    scope: "approved Drive/Notion collections"
+    evidence: "inventory, digest state and pending failures"
+  source_systems:
+    state: deployed
+    scope: "declared read-only connector smoke tests"
+    evidence: "dated connector test report"

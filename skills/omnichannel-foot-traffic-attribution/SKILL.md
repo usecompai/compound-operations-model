@@ -45,7 +45,7 @@ Usa `tc_analytics_query` para el rango minimo necesario: por defecto ultimos 30 
 
 1. `store=store_a`, `date_range=needed_range`, `fields=date,exterior_traffic,entries,attraction_rate,tickets,conversion_rate,revenue,dwell_time`.
 2. Resume Store A en <=300 tokens y descarta raw.
-3. `store=store_a`, mismos campos.
+3. `store=store_b`, mismos campos.
 4. Resume Store B en <=300 tokens y descarta raw.
 
 Extrae por dia: exterior traffic, entries, attraction rate, tickets, conversion rate, revenue y dwell time si esta disponible.

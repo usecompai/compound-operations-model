@@ -68,11 +68,11 @@
 
 ## Week 4: Graduate (Days 22-30)
 
-### Day 22-24: Graduated Autonomy
-- [ ] CS Agent: promote WISMO + tracking queries to auto-resolve (>95% confidence)
-- [ ] Finance Agent: auto-deliver weekly P&L (no human review)
-- [ ] Retail Agent: auto-publish daily reports
-- [ ] Monitor: review confidence scores and escalation rates daily
+### Day 22-24: Closure-First Pilot
+- [ ] Select one low-risk capability, such as a read-only tracking lookup
+- [ ] Write its identity, scope, authority, verification, rollback and stop conditions
+- [ ] Keep external sends and source-system changes human-gated
+- [ ] Complete ten reviewed runs and require at least 80% verified closure with zero authority violations
 
 ### Day 25-27: Cross-Agent Coordination
 - [ ] Configure Strategy Hub as orchestrator
@@ -85,25 +85,25 @@
 - [ ] Verify all agents survive a reboot (test by rebooting each host)
 - [ ] Set up audit logging (JSONL format)
 - [ ] Document your deployment: agents, ports, API keys, cron schedule
-- [ ] Baseline metrics: autonomy rate, escalation rate, hours saved estimate
-- [ ] 🎉 You're in production
+- [ ] Baseline metrics: verified closure, correction, escalation, source failure and hours-saved estimate
+- [ ] Record the production acceptance decision and residual risks
 
 ## Post-30 Days: Compound
 
 ### Month 2
-- [ ] Expand CS autonomy to returns + exchanges (80-95% confidence)
+- [ ] Promote only the capability that passed; start returns and exchanges as a separate propose-only pilot
 - [ ] Add Knowledge Mining patterns to brain weekly
 - [ ] First Pattern Library extraction
 - [ ] Onboard full team to Claude Desktop via MCP
 
 ### Month 3
-- [ ] Target: 65% autonomous operations
-- [ ] Fine-tune confidence thresholds based on data
+- [ ] Target: at least two named capabilities with stable verified closure and zero authority violations
+- [ ] Calibrate confidence bands for reviewer prioritization, never for permission
 - [ ] Add advanced capabilities as needed (Invoice Pipeline, Copy Engine, etc.)
 - [ ] First quarterly knowledge audit
 
 ### Month 6
-- [ ] Target: 82% autonomous operations
-- [ ] The system should now feel like a team member, not a tool
+- [ ] Re-audit every promoted capability; revoke any grant with quality or authority regression
+- [ ] The system should now close verified work reliably, not merely generate more activity
 - [ ] Knowledge base should have 200+ documents
 - [ ] Every weekly review should surface at least one insight you didn't ask for

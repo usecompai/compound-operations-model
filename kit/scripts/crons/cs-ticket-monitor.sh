@@ -1,90 +1,80 @@
-#!/bin/bash
-source $HOME/.bashrc 2>/dev/null || true
-# CS Ticket Auto-Processing — Checks helpdesk for OPEN tickets, sends to Support
-# Runs every 15 minutes during business hours (08:00-22:00 CET)
+#!/usr/bin/env bash
+# Poll an approved helpdesk endpoint and create a private, propose-only draft queue.
 set -euo pipefail
+umask 077
 
-LOG="/tmp/cs-tickets-$(date +%Y-%m-%d).log"
-    /opt/brain/scripts/log-event.sh "Support" "$(/usr/bin/python3 -c "import json,os; q=\"$queue_file\"; print(str(len(json.load(open(q)))) + \" new CS tickets triaged and queued for draft response\" if os.path.exists(q) and os.path.getsize(q)>2 else \"No new tickets\")" 2>/dev/null
+: "${HELPDESK_API_URL:?Set HELPDESK_API_URL to the approved tickets endpoint}"
+: "${HELPDESK_API_KEY:?Set HELPDESK_API_KEY in a secret store or mode-600 env file}"
 
-python3 << 'PYEOF'
-import json, urllib.request, os, datetime
+QUEUE_FILE="${CS_TICKET_QUEUE_FILE:-/tmp/compai-cs-ticket-queue.json}"
+PROCESSED_FILE="${CS_PROCESSED_FILE:-/tmp/compai-cs-processed-ticket-ids.json}"
+LOG_EVENT_SCRIPT="${COMPAI_LOG_EVENT_SCRIPT:-/opt/compai/scripts/log-event.sh}"
 
-# Get helpdesk API key
-HELPDESK_KEY = os.environ.get("HELPDESK_API_KEY", "")
-if not HELPDESK_KEY:
-    with open("$HOME/.bashrc") as f:
-        for line in f:
-            if "HELPDESK_API_KEY" in line and "export" in line:
-                HELPDESK_KEY = line.split("=", 1)[1].strip().strip('"').strip("'")
+python3 - "$HELPDESK_API_URL" "$HELPDESK_API_KEY" "$QUEUE_FILE" "$PROCESSED_FILE" <<'PY'
+import json
+import os
+import sys
+import urllib.request
 
-if not HELPDESK_KEY:
-    print("No helpdesk API key found")
-    exit(1)
+url, api_key, queue_file, processed_file = sys.argv[1:]
+request = urllib.request.Request(
+    url,
+    headers={"Authorization": f"Bearer {api_key}", "Accept": "application/json"},
+)
 
-# Query open tickets
-url = "https://api.helpdesk.com/v1/conversations?status=OPEN"
-headers = {
-    "x-api-key": HELPDESK_KEY,
-    "Content-Type": "application/json"
-}
+with urllib.request.urlopen(request, timeout=30) as response:
+    payload = json.loads(response.read())
 
-try:
-    req = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        data = json.loads(resp.read())
-    
-    conversations = data.get("data", data.get("conversations", []))
-    if isinstance(conversations, dict):
-        conversations = conversations.get("data", [])
-    
-    if not conversations:
-        print(f"{datetime.datetime.now()}: No open tickets")
-        exit(0)
-    
-    # Check which tickets are unprocessed (no agent response yet)
-    # Save processed ticket IDs to avoid duplicate processing
-    processed_file = "/tmp/cs-processed-tickets.json"
-    processed = set()
-    if os.path.exists(processed_file):
-        with open(processed_file) as f:
-            processed = set(json.load(f))
-    
-    new_tickets = []
-    for conv in conversations[:30]:  # Max 30 per cycle
-        ticket_id = str(conv.get("id", conv.get("_id", "")))
-        if ticket_id and ticket_id not in processed:
-            new_tickets.append(conv)
-            processed.add(ticket_id)
-    
-    if not new_tickets:
-        print(f"{datetime.datetime.now()}: All {len(conversations)} open tickets already processed")
-        exit(0)
-    
-    # Save processed IDs
-    with open(processed_file, "w") as f:
-        json.dump(list(processed)[-500:], f)  # Keep last 500
-    
-    print(f"{datetime.datetime.now()}: {len(new_tickets)} new tickets to process")
-    
-    # For each new ticket, prepare a summary for Support
-    # Write to a queue file that will be picked up by agent_send
-    queue_file = "/tmp/cs-ticket-queue.json"
-    queue = []
-    for ticket in new_tickets[:5]:  # Process max 5 per cycle to manage costs
-        summary = {
-            "id": str(ticket.get("id", ticket.get("_id", ""))),
-            "subject": ticket.get("subject", "No subject"),
-            "customer": ticket.get("customer", {}).get("email", "unknown"),
-            "message": str(ticket.get("messages", [{}])[0].get("text", ""))[:500] if ticket.get("messages") else "No message"
+tickets = payload.get("data", payload.get("tickets", []))
+if isinstance(tickets, dict):
+    tickets = tickets.get("data", [])
+
+processed = set()
+if os.path.exists(processed_file):
+    try:
+        with open(processed_file, encoding="utf-8") as source:
+            processed = set(json.load(source))
+    except (OSError, json.JSONDecodeError):
+        processed = set()
+
+queue = []
+for ticket in tickets[:30]:
+    ticket_id = str(ticket.get("id", ticket.get("_id", "")))
+    if not ticket_id or ticket_id in processed:
+        continue
+    processed.add(ticket_id)
+    queue.append(
+        {
+            "ticket_id": ticket_id,
+            "subject": str(ticket.get("subject", "No subject"))[:200],
+            "message": str(ticket.get("message", ticket.get("body", "")))[:1000],
+            "authority": "PROPOSE",
+            "customer_send_allowed": False,
         }
-        queue.append(summary)
-    
-    with open(queue_file, "w") as f:
-        json.dump(queue, f)
-    
-    print(f"Queued {len(queue)} tickets for Support processing")
+    )
+    if len(queue) >= 5:
+        break
 
-except Exception as e:
-    print(f"Error: {e}")
-PYEOF
+with open(queue_file, "w", encoding="utf-8") as output:
+    json.dump(queue, output)
+os.chmod(queue_file, 0o600)
+
+with open(processed_file, "w", encoding="utf-8") as output:
+    json.dump(list(processed)[-500:], output)
+os.chmod(processed_file, 0o600)
+
+print(len(queue))
+PY
+
+queued_count="$(python3 - "$QUEUE_FILE" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as source:
+    print(len(json.load(source)))
+PY
+)"
+
+if [[ -x "$LOG_EVENT_SCRIPT" ]]; then
+  "$LOG_EVENT_SCRIPT" "CS Agent" "${queued_count} new tickets triaged into a propose-only draft queue"
+fi

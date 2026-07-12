@@ -1,56 +1,67 @@
-# The Skills Catalog — what the 352 actually are
+# Skills Catalog
 
-When we say the reference deployment runs **352 skills**, people fairly ask: *"why are only 5 in this repo?"* Honest answer: the 352 are three different layers, and they can't all be published the same way.
+**Release snapshot: 12 July 2026**
 
-| Layer | ~Count | Can it be published? |
-|---|---|---|
-| **1. Operational skills we wrote** for our own workflows | ~80 | Yes — **first batch of 12 released below**, more as they're anonymized |
-| **2. Brain-ops skills** (the operating loop itself) | ~15 | Yes — **7 released** (the core loop) |
-| **3. Community / installed skills** (CLIs, marketplace packs, vendor doc packs) | ~250 | Not ours to publish — most are already public in their own registries |
+The reference swarm exposes **373 available skills**. Availability is not the same as ownership or production approval:
 
-This repo now ships **24 public skills** (5 original starters + 19 released after launch-day feedback). Below is the catalog of what exists, so you can see the breadth — and tell us what to anonymize first (open an issue).
+| State | Count | Meaning |
+|---|---:|---|
+| Available | 373 | Discoverable by at least one runtime; includes company, vendor and community packages |
+| Canonical | 47 | Company-governed skills with an owner and canonical source |
+| Evaluated canonical | 45 | Canonical skills with a recorded evaluation result |
+| Public in this repo | 31 | Anonymized, portable skills published with Compai v5.0 |
 
----
+The remaining available skills are mostly installed vendor/community capabilities or internal procedures that are private, source-specific, not yet anonymized, or not yet ready for a public contract. We do not republish third-party packages as our own.
 
-## Layer 2 — Brain-ops skills (the operating loop)
+## Brain And Execution Operations
 
-These run the brain itself. **Released — in this repo:**
+- `brain-due-diligence` - audits brain claims, infrastructure, coverage and closure
+- `check-brain-health` - checks raw/source gaps, loose captures and lifecycle hygiene
+- `create-task-card` - turns evidence into an owned executable task
+- `handoff-task` - delegates a task with source context and acceptance criteria
+- `review-output` - validates an output and advances its lifecycle
+- `log-capability-gap` - records missing data, access, process or tooling
+- `refresh-world-model` - regenerates current state from verified operating artifacts
+- `suggest-skills` - identifies repeated work worth packaging
+- `failure-archaeology` - searches prior failures before starting a new investigation
+- `skill-authoring-standards` - defines the canonical skill contract
+- `skill-evaluation` - evaluates a skill independently from its builder
+- `spec-driven-execution` - converts an approved specification into verified execution
+- `session-handoff` - compresses context without losing sources or open risks
+- `swarm-propagation` - packages an approved capability for multiple runtimes
 
-- `check-brain-health` — audits execution hygiene: loose captures, raw/source gaps, outputs without tasks, tasks stuck in review
-- `create-task-card` — turns captured context into an executable task card linked to sources
-- `handoff-task` — delegates a task card to any AI client or agent with all context included
-- `review-output` — checks an output, links it back to its task, moves it through review/done
-- `log-capability-gap` — records when an agent or human can't complete work because the company lacks data, access, or process
-- `refresh-world-model` — regenerates the company's current-state from tasks, outputs, health reports and capability gaps
-- `brain-due-diligence` — full audit of a company brain: infra claims, execution loop, closure rate
-- `suggest-skills` — end-of-session audit that proposes which repeated patterns deserve to become skills
-- `release-rollout` — one repeatable workflow for publishing updates across repo, playbook, site, deploy, verification
+## Research And Deliberation
 
-## Layer 1 — Operational skills (**12 released in this repo**)
+- `adversarial-deliberation` - cross-model critique for consequential decisions
+- `autoresearch` - bounded research with source and stop conditions
+- `cross-model-handoff` - transfers a decision packet between model runtimes
+- `research-prompting` - creates evidence-oriented research briefs
+- `visual-review` - evaluates rendered artifacts against explicit criteria
 
-**Retail & merchandising**
-- `restock-trigger` — detects high-velocity / low-stock SKUs and drafts a restock proposal with forecast
-- `sell-through-dashboard-sync` — pulls sales + stock, computes ROS/WOS/sell-through per SKU, updates the sheet, alerts the channel
-- `omnichannel-foot-traffic-attribution` — crosses store foot traffic with paid geo spend, web sessions and POS to estimate halo effect per store
+## Commerce And Customer Operations
 
-**Customer service**
-- `cs-triage-finalization` — closes the escalation loop: carrier duty mis-charges, label regeneration, baseline metrics
+- `agent-payments` - prepares governed payment actions and receipts
+- `cs-fashion-triage` - classifies fashion customer-service cases
+- `cs-triage-finalization` - closes escalations and verifies the final customer state
+- `employee-onboarding` - creates an auditable team onboarding packet
+- `klaviyo-fashion` - analyses lifecycle marketing in a fashion context
+- `omnichannel-foot-traffic-attribution` - estimates store halo from traffic and media evidence
+- `omnichannel-growth-loop` - diagnoses and proposes cross-channel growth actions
+- `pinterest-ads-integration` - connects Pinterest Ads through a bounded integration contract
+- `restock-trigger` - proposes restocks from stock, velocity and forecast evidence
+- `sell-through-dashboard-sync` - computes and publishes merchandising health metrics
+- `shopify-inventory-sync` - reconciles inventory through a controlled sync
+- `weekly-top5-digital` - produces a sourced weekly digital performance brief
 
-**Marketing & growth**
-- `weekly-top5-digital` — weekly digital report: pulls commerce + analytics + email + ads, top 5 SKUs, insights, Monday-ready draft
-- `omnichannel-growth-loop` — closed-loop methodology: diagnoses ICP from real commerce/analytics data and proposes actions
-- Ads operations pack (~60 skills): account audits, wasted-spend finder, creative-fatigue detection, budget pacing alerts, anomaly detection, daily WhatsApp/Slack summaries, A/B monitors, competitor ad spy
+## Promotion Contract
 
-**People**
-- `employee-onboarding` — one-command onboarding: workspace accounts, channels, tool access, day-1/week-1 checklist, buddy, brain starter links
+A reusable prompt is not automatically a production skill. Canonical promotion requires:
 
-**Cross-model**
-- `adversarial-deliberation` — forces two different models to critique each other's analysis before a high-stakes decision
+1. stable inputs and an explicit authority boundary;
+2. a deterministic or reviewable output contract;
+3. verification and stop conditions;
+4. failure modes and rollback behavior;
+5. an independent judge, distinct from the builder;
+6. a recorded evaluation result and named owner.
 
-## Layer 3 — Community & installed (~250)
-
-CLIs and packs from the open ecosystem (terminal tools for commerce, analytics, email, search, infra...). We didn't write these and won't republish them — but the playbook documents *how* we wire them in. This layer is the reason the system grows weekly without us writing everything.
-
----
-
-**Want one prioritized?** [Open an issue](../../issues/new?template=question.md) naming the skill. Attribution-friendly forks of your own versions are exactly the point of this repo.
+See [`../chapters/10ac-skill-governance.md`](../chapters/10ac-skill-governance.md) for the full lifecycle.

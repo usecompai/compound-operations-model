@@ -1,0 +1,19 @@
+version: "1.0"
+task_id: "task-YYYYMMDD-0001"
+owner: "role-or-person"
+state: approved
+
+sources:
+  - "source-system://record/id"
+authority: draft_only
+acceptance_criteria:
+  - "artifact exists"
+  - "source-system values were re-read before verification"
+stop_condition: "one task completed or any gate fails"
+rollback: "remove draft artifact and restore prior task state"
+
+result:
+  artifact: null
+  verification: pending
+  terminal_state: null
+  stop_reason: null

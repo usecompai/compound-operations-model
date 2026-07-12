@@ -6,7 +6,7 @@ Here's a dirty secret about companies doing €2-10M in revenue: **most of them 
 
 Sound familiar? This was the brand as it scaled to ~40-person team. No formal HR department. No HRIS. No consistent processes.
 
-The typical solution: hire an HR manager (€45-60K/year) or outsource to an HR consultancy (€1-2K/month for basic coverage). The solution: **HR Agent, an AI HR agent that handles 80% of the HR function for €0 incremental cost** — running on the same infrastructure as the other 8 agents.
+The typical solution is to hire an HR manager (€45-60K/year) or outsource basic coverage. The reference **HR Agent** handles a bounded administrative layer — onboarding checklists, leave summaries, payroll preparation and policy retrieval — on the same infrastructure as the other runtimes. It does not replace HR judgment, employee relations, legal review or named approval.
 
 ## What HR Agent Does
 
@@ -28,7 +28,7 @@ The complete lifecycle:
 4. If OK → creates entry in the absence calendar, flags for CEO approval
 5. Once approved → updates calendar, notifies employee, creates Google Calendar event
 
-**Confidence level:** 92% autonomous on standard requests. Escalates unusual cases (extended leave, sick leave documentation, legal questions).
+**Authority level:** proposes standard leave updates after checking the source system; a named human approves the change. Extended leave, health documentation and legal questions are restricted and escalated regardless of model confidence.
 
 ### 3. Monthly Payroll Preparation
 On the 20th of every month, HR Agent:

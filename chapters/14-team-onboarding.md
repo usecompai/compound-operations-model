@@ -37,7 +37,7 @@ Zero API keys on employee machines. Zero training on business tools. Zero risk o
                │
 ┌──────────────▼──────────────────────┐
 │    MCP Server (your VPS)            │
-│    95 tools · role-based access     │
+│    97 tools · role-based access     │
 │    all credentials server-side      │
 └──────────────┬──────────────────────┘
                │
@@ -101,7 +101,7 @@ EOF
 
 ### Step 3: Restart Claude Desktop
 
-Quit completely, reopen. The tools icon should show 95 tools connected.
+Quit completely, reopen. The tools icon should show 97 tools connected.
 
 ### Step 4: Test
 
@@ -166,7 +166,7 @@ This is where the Compound Operations Model earns its name:
 2. **Week 2:** Finance agent uses those terms to flag a late payment automatically
 3. **Week 3:** Another employee asks about the same supplier and gets an instant answer
 4. **Month 2:** The brain has 50 new facts. Agents make better decisions. Employees get faster answers.
-5. **Month 6:** The brain is the single source of truth for the entire company
+5. **Month 6:** The Brain is the operating index that points each live fact to its authoritative source and records conflicts explicitly
 
 No training needed. No wiki to maintain. No Notion pages to organize. The brain is just... there. And it gets better every day because the people who know the answers are writing them down in the same place the AI looks for answers.
 
@@ -315,7 +315,7 @@ Based on the approach that achieved 99.5% active adoption in a production deploy
 Every new hire completes on their first day:
 1. Install Claude Desktop + connect to MCP (30 minutes with manager)
 2. Run initialization prompt (1 hour of guided exploration)
-3. Manager verifies: MCP connected, 95 tools visible, brain_search works
+3. Manager verifies: MCP connected, 97 tools visible, brain_search works
 4. First real task using AI assigned (due by end of Week 1)
 5. First task shared in #ai Slack channel (public commitment)
 
@@ -343,13 +343,13 @@ McKinsey's September 2025 agentic-organization paper identifies **three emerging
 - COO, Head of Operations, VP Commerce, Chief of Staff
 - In smaller brands: the founder is the first M-shaped supervisor
 
-**How many per brand:** 2-5. McKinsey: *"a human team of two to five people can already supervise an agent factory of 50 to 100 specialized agents."* In the reference deployment: 1 founder + 2 senior ops managers = 3 M-shaped, orchestrating 7 agents (+ 95 MCP tools + 352 skills) across the entire business.
+**How many per brand:** 2-5. McKinsey: *"a human team of two to five people can already supervise an agent factory of 50 to 100 specialized agents."* In the reference deployment: 1 founder + 2 senior ops managers = 3 M-shaped, orchestrating 7 agents (+ 97 MCP tools + 373 skills) across the entire business.
 
 **Typical training path (from L3):**
 - 2-3 months of cross-domain rotations (CS ↔ Finance ↔ Marketing)
 - Ownership of one SOUL.md end-to-end (writing, iterating, measuring outcomes)
 - Exposure to the compliance layer (DPIA, AI Act, Annex III)
-- Tool literacy across all 95 MCP tools
+- Tool literacy across all 97 MCP tools
 
 ### Profile 2 — T-shaped Specialist
 

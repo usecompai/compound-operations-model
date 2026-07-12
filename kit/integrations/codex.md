@@ -1,116 +1,55 @@
-# Codex (OpenAI GPT-5.4) — Integration Guide
+# Codex Integration Guide
 
-> Connect OpenAI's Codex agent to your MCP brain alongside Claude.
-> Same brain, same tools, different model — enables cross-model deliberation.
+Use Codex as a coding, operations or founder command client over the same authenticated MCP and Brain contracts as the other runtimes.
 
----
+## Prerequisites
 
-## What This Enables
+- a currently supported Codex installation;
+- an authenticated Compai MCP endpoint;
+- an identity key scoped to the minimum required tools and Brain Spaces;
+- a runtime registry entry naming the approved model and fallback;
+- a repository or workspace owned by this client rather than shared mutable state.
 
-- **GPT-5.4 with full brain access** — same 44+ tools as Claude Desktop
-- **Cross-model deliberation** — Claude and GPT-5.4 analyzing the same data
-- **Punta de Flecha** — adversarial convergence between Anthropic and OpenAI
-- **Model diversity** — different strengths for different tasks
+Do not hard-code a model identifier from this document. Model names and account entitlements change faster than the integration. Select the current approved identifier from your runtime registry and record the actual provider/model in each consequential receipt.
 
-## Requirements
+## Configuration Shape
 
-- ChatGPT Plus ($20/mo) or Pro ($200/mo) subscription
-- Your MCP server running with SSE transport
-- Node.js installed (the setup scripts handle this)
-
-## Setup
-
-### 1. Install Codex CLI
-
-**Mac:**
-```bash
-brew install codex
-```
-
-**Windows:**
-```powershell
-winget install OpenAI.Codex
-```
-
-### 2. Authenticate
-
-```bash
-codex login
-```
-
-Browser opens → login with ChatGPT account → authorize.
-
-Verify: `codex login status` → "Logged in using ChatGPT"
-
-### 3. Connect to MCP Brain
-
-Edit `~/.codex/config.toml`:
+Adapt the current Codex configuration format to your installed version:
 
 ```toml
-[mcp_servers.your_brand]
-command = "npx"
-args = ["mcp-remote", "https://YOUR-MCP-URL/sse"]
+model = "<CURRENT_APPROVED_CODEX_MODEL>"
+
+[mcp_servers.compai]
+url = "https://mcp.example.com/mcp"
+bearer_token_env_var = "COMPAI_MCP_TOKEN"
 ```
 
-### 4. Verify
+Store `COMPAI_MCP_TOKEN` in the operating system keychain, secret manager or a mode-600 environment file. Never commit it to the repository or place it in a URL.
 
-```bash
-codex
-> Use brain_search to find "company name"
-```
+## Verification
 
-If it returns brain results, it's connected.
+1. Call the authenticated status tool.
+2. Run a Brain search and confirm citations respect the caller's scope.
+3. Attempt a forbidden write and verify it is rejected.
+4. Run one read-only source-system smoke test.
+5. Produce a receipt that records identity, source references, provider/model and terminal state.
 
-## Configuration
+## Authority
 
-### Recommended config.toml settings
-
-```toml
-model = "gpt-5.4"
-approval_policy = "never"
-sandbox_policy = "danger-full-access"
-
-[mcp_servers.your_brand]
-command = "npx"
-args = ["mcp-remote", "https://YOUR-MCP-URL/sse"]
-```
-
-### For ChatGPT Pro users
-
-Pro gives access to `gpt-5.4-pro` (more powerful, more compute):
-
-```toml
-model = "gpt-5.4-pro"
-```
-
-## Agent OAuth for Swarm Integration
-
-If your swarm agents (running on OpenClaw or similar) need to use GPT-5.4 via ChatGPT OAuth:
-
-1. Each agent needs its own `~/.codex/auth.json` with OAuth tokens
-2. Use `codex login --device-auth` for headless servers
-3. Or: employee runs `codex login` on their Mac, copies `~/.codex/auth.json` to the agent's home directory
-4. Multiple agents can share one ChatGPT account (rate limits apply — Pro recommended for 2+ agents)
-
-## Gotchas
-
-| Issue | Detail |
-|-------|--------|
-| **Node 25.x EPIPE errors** | Codex CLI may fail with Node 25+. Use Node 22 LTS wrapper |
-| **Rate limits (Plus)** | ChatGPT Plus has lower rate limits. 2 agents sharing = may saturate. Upgrade to Pro. |
-| **Token refresh** | Codex CLI auto-refreshes tokens. If expired, re-run `codex login` |
-| **device-auth 429** | OpenAI rate-limits device-auth from the same IP. Space out requests or use browser auth |
+Codex does not inherit founder authority merely because it runs on the founder's machine. The client identity still receives explicit read, propose, execute and administer grants. Financial, legal, HR, customer-facing and destructive actions remain human-gated unless a named capability has separately passed its promotion gate.
 
 ## Cross-Model Deliberation
 
-With both Claude and Codex connected to the same brain:
+For consequential analysis, create one decision packet with shared sources and acceptance criteria, then send independent copies to two different model/provider paths. Each model should critique the other against the same evidence. The final artifact records disagreements, convergence and the human decision; model agreement alone does not authorize execution.
 
-```python
-# In your MCP server, the punta_de_flecha tool runs:
-# Round 1: Claude analyzes → sends to GPT-5.4
-# Round 2: GPT-5.4 challenges → sends back to Claude
-# ... up to 7 rounds until convergence
-# Result: consensus analysis from both models
-```
+## Failure Semantics
 
-Use for: high-stakes decisions, strategy, anything where single-model bias is risky.
+Report one of:
+
+- `ok` - verified output and receipt exist;
+- `blocked-provider` - model/provider unavailable;
+- `blocked-reauth` - identity token invalid or expired;
+- `failed-validation` - output or source check failed;
+- `escalated` - authority or risk requires a human.
+
+Never silently fall back to a different identity, unapproved model or broader tool scope.

@@ -1,8 +1,8 @@
 Compai Implementation Kit
-Version: 3.2
-Released: 22 June 2026
-Files: 208
-Compliance: EU AI Act ready (DPIA + AI System Register + Annex III guardrails)
-ROI claim: 18:1 (auditable — see playbook Ch.12)
+Version: 5.0
+Released: 12 July 2026
+Files: 220
+Compliance: governance and DPIA scaffolds included; qualified review required
+ROI model: 16.2:1 under documented assumptions; see playbook Ch.12
 Playbook: usecompai.com/playbook
-Contact: founder@your-company.example
+Contact: hello@usecompai.com

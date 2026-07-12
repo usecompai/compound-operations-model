@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://usecompai.com/schemas/public-truth-manifest.schema.json",
+  "title": "Compai Public Truth Manifest",
+  "type": "object",
+  "required": ["version", "verified_at", "claims", "public_package"],
+  "properties": {
+    "version": {"type": "string"},
+    "verified_at": {"type": "string", "format": "date-time"},
+    "claims": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["value", "state", "source_class", "verified_at"],
+        "properties": {
+          "value": {},
+          "state": {"enum": ["deployed", "pilot", "pattern"]},
+          "source_class": {"type": "string"},
+          "verified_at": {"type": "string", "format": "date-time"},
+          "fresh_for": {"type": "string"},
+          "public_safe": {"type": "boolean"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "public_package": {
+      "type": "object",
+      "required": ["chapters", "skills", "kit_files", "patterns"],
+      "properties": {
+        "chapters": {"type": "integer", "minimum": 1},
+        "skills": {"type": "integer", "minimum": 1},
+        "kit_files": {"type": "integer", "minimum": 1},
+        "patterns": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

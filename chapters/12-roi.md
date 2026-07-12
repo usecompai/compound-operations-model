@@ -34,9 +34,9 @@ This is the easy side of the equation. Every line is a monthly bill.
 
 | Component | €/month | Annual |
 |---|---|---|
-| 5× Claude Max seats (founder + every department) | 460 | 5,520 |
-| ChatGPT subscription (Codex agents via OAuth) | 20 | 240 |
-| API usage (CS/HR Sonnet + fallbacks + Haiku crons) | 93 | 1,116 |
+| Team AI subscriptions used by the operating layer | 460 | 5,520 |
+| Additional model/runtime subscription | 20 | 240 |
+| Provider API usage and fallbacks | 93 | 1,116 |
 | Hetzner: dedicated VPS + offsite encrypted backup | 19 | 228 |
 | Mac Mini M4 (amortized €800 / 36 months) | 22 | 264 |
 | Tailscale mesh networking (Premium) | 17 | 204 |
@@ -58,7 +58,7 @@ This is the hard side. The honest approach: count hours of human labor the agent
 
 Two rates, both derived from real numbers:
 
-1. **Operational labor: €21/hour.** Fully loaded cost of an operational hire in this deployment (salary + social security + overhead). Calculated from the real personnel budget, current ~40-person headcount, and loaded working hours, then weighted conservatively for role mix.
+1. **Operational labor: €21/hour.** Fully loaded cost of an operational hire in this deployment (salary + social security + overhead), weighted conservatively for the role mix.
 
 2. **Founder opportunity cost: €40/hour.** What a founder's time is worth when redirected from operational minutiae to strategic work. Deliberately conservative — the actual opportunity cost is higher for most founders.
 
@@ -78,7 +78,7 @@ Two rates, both derived from real numbers:
 
 ### Why These Numbers Are Conservative
 
-- **Hours are measured, not estimated.** Each number reflects actual weekly cron output × per-task duration before automation.
+- **Hours are an audited operating estimate, not direct time-tracker telemetry.** Each number is reconstructed from recurring outputs and the pre-system task baseline. Treat it as a model input and replace it with your own measured baseline.
 - **Labor rates are loaded.** €21/hour already includes social security (~30%), PTO, sick days, equipment, and management overhead. The naked wage is lower.
 - **Nothing is double-counted.** The founder hours are separate from the operational hours — the founder doesn't do CS triage.
 - **No revenue impact claimed.** Every number is a *cost avoided*, not a sale attributed. If an agent-optimized email campaign drove +38% revenue per recipient, that's not in this table.
@@ -90,7 +90,7 @@ The table above counts work the *agents* absorb. It misses the larger shift: rou
 
 | Use | Who | Hours/week | Annual value |
 |---|---|---|---|
-| Meeting memory — every meeting recorded, transcribed, searchable; no minute-taking, no "what did we decide?" archaeology | whole team | 12h | **€12,096** |
+| Meeting memory — approved generated notes captured and searchable; reduced minute-taking and decision archaeology | whole team | 12h | **€12,096** |
 | Self-served answers — policies, numbers, docs that used to be a Slack ping to a colleague | ~30 weekly users | 15h | **€15,120** |
 | Self-built tooling — the liquidity dashboard the finance lead built, the retail dashboard its manager iterates daily | finance · retail · ecomm | 10h | **€10,080** |
 | Drafting over context — customer emails, B2B replies, briefs written in brand voice from brain context | CS · marketing · sales | 8h | **€8,064** |
@@ -224,7 +224,7 @@ Transparency requires acknowledging what the ROI number doesn't capture — or o
 
 1. **Setup is real work.** A full deployment requires 20-40 hours of human effort for knowledge base population, agent calibration, review of early autonomy decisions, and integration wiring. Budget this as a one-time cost, typically €1,500-3,000 in labor value.
 
-2. **Ongoing maintenance.** Plan for 2-5 hours/month to update the knowledge base, review edge cases, handle the ~9% of cases agents escalate, and tune confidence thresholds. Not zero-maintenance. Compare to the maintenance load of any operational software.
+2. **Ongoing maintenance.** Plan for 2-5 hours/month to update the knowledge base, review edge cases, drain queues, sample quality and maintain authority policies. Not zero-maintenance. Compare to the maintenance load of any operational software.
 
 3. **Roles shift, they don't vanish.** The CS lead now handles VIP escalations and quality review instead of WISMO tickets. The ops coordinator now does forecasting instead of daily reports. The work moves up the value stack — the humans who were doing the boring parts don't become unemployed, they become more productive.
 
@@ -232,7 +232,7 @@ Transparency requires acknowledging what the ROI number doesn't capture — or o
 
 5. **Quality depends on implementation.** A poorly configured agent does more harm than good. This playbook helps, but the difference between a working deployment and a broken one is hours of careful setup, shadow-mode testing, and graduated autonomy rollout. The math only works if the system works.
 
-6. **The 10:1 is steady-state, not day-one.** In the first month, you're investing more than you're saving (calibration, shadow mode, knowledge base building). The ratio climbs as the system accumulates institutional memory and autonomy expands. Expect to see break-even around month 2-3, steady-state around month 6.
+6. **The 16.2:1 is steady-state, not day-one.** In the first month, you're investing more than you're saving through calibration, shadow mode and knowledge-base work. The ratio grows only when verified work closes; more agent activity by itself creates no value. Recalculate after each rollout phase.
 
 ---
 
@@ -243,7 +243,7 @@ When a CFO, COO, founder, or board member asks "how did you calculate this?", wa
 1. **System cost is a bill** — here are the line items, from €15 VPS to €185 Claude Pro.
 2. **Value is hours × rate** — here's the hours saved by domain, here's the loaded labor rate, here's the arithmetic.
 3. **No revenue attribution** — we deliberately don't claim the email agent "drove €X revenue" because attribution is fuzzy and the number doesn't need it.
-4. **The ratio is 10:1.** If you disagree with our assumptions, adjust them. Cut hours saved in half, double the system cost, and you still get 9:1 — which is still stronger than most point tools because it replaces connective-tissue work rather than adding another dashboard.
+4. **The reference ratio is 16.2:1.** If you disagree with an assumption, adjust it. The public number is a transparent operating model, not a guaranteed return for another company.
 
 That's the whole pitch. It survives scrutiny because every number in it is either a bill we pay or a rate anyone can verify.
 

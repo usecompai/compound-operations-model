@@ -20,7 +20,7 @@
 ## Day 30
 
 - multi-workflow deployment
-- confidence thresholds calibrated
+- capability authority and review paths tested
 - monitoring stable
 - team can operate the stack without founder babysitting every step
 - clear backlog for what to automate next versus what should remain human

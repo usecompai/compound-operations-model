@@ -31,7 +31,7 @@ If a consumer brand's leadership team is asking *"how do we get to the agentic o
 | Humans "above the loop" | **ACK rule** + **review queues** + founder approval gates for high-impact actions. Humans set policy, agents execute at 24/7 cadence |
 | Flat agentic networks, not hierarchies | `agent_send` protocol = any agent can message any other. No hierarchical org chart — the brain is the shared substrate |
 | Agentic teams cross organizational boundaries | MCP Cloudflare Tunnel exposes the swarm to connected humans + partner systems. Pattern Library enables cross-brand intelligence sharing |
-| Small human teams supervise large agent populations | Reference deployment: **1 founder + 2 ops managers supervise 7 agents + 95 MCP tools + 352 skills** — ratio matches McKinsey's "2-5 humans / 50-100 agents" prediction |
+| Small human teams supervise large agent populations | Reference deployment: **1 founder + 2 ops managers supervise 7 agents + 97 MCP tools + 373 skills** — ratio matches McKinsey's "2-5 humans / 50-100 agents" prediction |
 
 ### Pillar 3 — Governance
 
@@ -40,7 +40,7 @@ If a consumer brand's leadership team is asking *"how do we get to the agentic o
 | McKinsey prescription | Reference implementation in this playbook |
 |---|---|
 | Real-time, embedded governance | **Delete Ledger** + **brain write audit log** + per-action logging across every agent. Every decision is reviewable in real time |
-| Critic agents challenge outputs | **Punta de Flecha** protocol — adversarial cross-model deliberation (Opus + GPT-5 + Gemini 2.5) on high-stakes decisions |
+| Critic agents challenge outputs | **Punta de Flecha** protocol — adversarial deliberation across independent model/provider paths on high-stakes decisions |
 | Guardrail agents enforce policy | **Anti-prompt-injection hardening** across 7 SOULs + **ACK rule** fleet-wide + **Annex III guardrails** (no hiring/firing/evaluation decisions) |
 | Compliance agents monitor regulation | **DPIA** + **AI System Register** + **Article 50 transparency disclaimer** + GDPR **RTBF propagation ledger** |
 | Human accountability and oversight | Every agent logs to `brain/memory/<agent>.md` daily. Founder reviews via `compai-init status`. DPO reviews via compliance scaffold |
@@ -52,9 +52,9 @@ If a consumer brand's leadership team is asking *"how do we get to the agentic o
 
 | McKinsey prescription | Reference implementation in this playbook |
 |---|---|
-| M-shaped supervisors (broad generalists fluent in AI, orchestrating agents across domains) | **Founder interface via Claude Code** with access to all 95 MCP tools + 352 skills. Role profile documented in Ch.14 |
+| M-shaped supervisors (broad generalists fluent in AI, orchestrating agents across domains) | **Founder command center** with access to 97 authenticated MCP tools and the governed skill layer. Role profile documented in Ch.14 |
 | T-shaped experts (deep specialists who reimagine workflows, handle exceptions, safeguard quality) | Each **SOUL.md** is written by a domain expert (CS lead writes CS SOUL, finance director writes Finance SOUL). Edge-case handling is in the SOUL, not the code |
-| AI-empowered frontline (socioemotional skills + basic AI fluency, less time on systems, more with humans) | **Team onboarding via MCP** (Ch.14): every employee joins the system through a repeatable setup, gets tools in Claude Desktop, spends their time with customers not with dashboards |
+| AI-empowered frontline (socioemotional skills + basic AI fluency, less time on systems, more with humans) | **Team onboarding via MCP** (Ch.14): approved employees join through a repeatable setup and use the same operating memory from supported AI clients |
 | Talent system rethought from career paths to incentives | **`me.md` per employee** + **role profile assessment** (`compai-init assess`, new in v0.5) map each person to M/T/frontline track with recommended training path |
 | Culture of continuous change and learning | **`/learn` skill** + **global learnings log** at `memory/learnings-log.md` — every session's insights feed the collective brain |
 
@@ -64,11 +64,11 @@ If a consumer brand's leadership team is asking *"how do we get to the agentic o
 
 | McKinsey prescription | Reference implementation in this playbook |
 |---|---|
-| Agentic AI mesh with modular agents | 7 domain SOULs + 95 MCP tools + 352 skills — all composable. Agents can be added or removed without touching others |
+| Agentic AI mesh with modular agents | 7 domain SOULs + 97 MCP tools + 373 skills — all composable. Agents can be added or removed without touching others |
 | Agent-to-agent protocols | **MCP** (Model Context Protocol, Anthropic open-source) as the substrate. Every agent speaks MCP. The reference implementation is documented in the repo |
-| Dynamic sourcing (no vendor lock-in) | **Multi-model routing**: Sonnet 4.5 + Opus 4.7 + GPT-5 + Gemini 2.5 + MiniMax M2.5 in production. Punta de Flecha brings adversarial cross-model deliberation. One model vendor goes down → swarm keeps running |
+| Dynamic sourcing (no vendor lock-in) | **Registry-based multi-model routing** by task quality, privacy, latency and cost, plus an independently tested fallback. Receipts record the actual provider and model used |
 | Distributed ownership of IT and data | **Brand-owned VPS** (self-hosted, never our cloud). Founder keeps the keys. The repo documents the runtime |
-| Peta/exabytes of unstructured tacit data | v0.4 Ingest Layer (Phase 1) — Shopify + Klaviyo + Ads structured data. Phase 2 (Gmail/Slack/Notion/Drive) unlocks tacit data when legal prereqs resolve |
+| Unstructured tacit data | Selective capture from approved chat, generated meeting notes, a 14-account email cohort, Drive and Notion, with explicit privacy stops and published coverage gaps |
 
 ## Where the framework exceeds what we ship
 

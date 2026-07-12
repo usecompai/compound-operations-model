@@ -1,5 +1,7 @@
 # Chapter 10x: Brain Spaces — Scoped Memory for Agents and People
 
+> **Implementation status, 12 July 2026:** Brain Spaces is the deployed architecture contract and the target policy for every external surface. Per-identity authentication is enforced today. Fine-grained, retrieval-level scoping for every sensitive tree is staged and rolling out domain by domain; it is not yet universal. The design below is therefore both the contract we operate toward and the acceptance test for completing that rollout.
+
 ## The near-miss that convinced us
 
 Picture a demo. We are showing the system to a room of people who do not work here — a prospective partner, maybe, or a room of founders who wanted to see how the agents actually run. Someone types a normal-sounding question: "What does it cost us to keep the retail team staffed?" The agent does exactly what a good agent does. It searches everything it can reach, finds the most relevant document, and answers with a precise, correct, per-person compensation figure — pulled from the HR tree, read aloud in a room that should never have seen it.
@@ -22,7 +24,7 @@ That last point is why spaces beat access-control-as-afterthought. Blast radius 
 
 ## The default seven
 
-We run seven spaces. They are a starting set, not scripture — but they map cleanly onto how a 40-person company actually partitions trust.
+The reference contract defines seven spaces. They are a starting set, not scripture — but they map cleanly onto how a growing company partitions trust.
 
 | Space | What lives there | Who / what reads |
 |---|---|---|
@@ -60,7 +62,7 @@ Be honest about sequencing, because premature partitioning is its own failure mo
 - **One open brain is fine while the brain only informs and the readers are all trusted insiders.** At five people, every reader is in the room already. Scoping five people into seven spaces is overhead with no payoff.
 - **Spaces become mandatory the moment either of two things is true:** (1) agents can *execute*, not just read — because an executing agent that can read everything can act on everything, and blast radius stops being hypothetical; or (2) *anyone outside the trust boundary* touches the system — a contractor, an agency, a demo viewer, an external MCP caller, a mobile connector. The first outside caller is the deadline.
 
-For us, scoping finance, HR, and legal was not a nice-to-have — it was the *precondition* for any external exposure at all (see 10s). You do not move a brain up the auth ladder from open toward protect and enforce until its sensitive domains are already scoped. Salary data readable by every employee is a culture decision you can defend; salary data readable by every caller is an incident you are choosing to schedule.
+For us, scoping finance, HR, and legal is not a nice-to-have — it is the *precondition* for broad external retrieval (see 10s). Authentication moved to enforce first to close anonymous access; granular Spaces enforcement is the remaining control-plane rollout. Salary data readable by every employee is a culture decision you can defend; salary data readable by every caller is an incident you are choosing to schedule.
 
 ## Porting checklist
 

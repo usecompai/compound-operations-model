@@ -35,8 +35,8 @@ Skill operativo que **propaga un cambio (MCP, regla, prompt, credencial, doc can
 
 | # | Nodo | Tipo | Path config | Path prompt/regla | Acceso |
 |---|------|------|-------------|-------------------|--------|
-| 1 | **Claude Code the founder** (Mac local) | Cliente humano | `/Users/founder/.claude.json` | `/Users/founder/.claude/CLAUDE.md` | Edit local |
-| 2 | **Codex CLI the founder** (Mac local) | Cliente humano | `/Users/founder/.codex/config.toml` | `/Users/founder/.codex/AGENTS.md` | Edit local |
+| 1 | **Claude Code founder client** (Mac local) | Cliente humano | `/Users/founder/.claude.json` | `/Users/founder/.claude/CLAUDE.md` | Edit local |
+| 2 | **Codex CLI founder client** (Mac local) | Cliente humano | `/Users/founder/.codex/config.toml` | `/Users/founder/.codex/AGENTS.md` | Edit local |
 | 3 | **Claude Desktop equipo** (todo el equipo) | Cliente humano | n/a (gestionado via setup.sh) | Setting → Personal Preferences → pegar prompt maestro | `setup.sh` en `<your-mcp-server-dir>/` |
 | 4 | **the strategy hub** (VPS Hetzner) | Agente OpenClaw | `$HOME/.openclaw/openclaw.json` | `$HOME/.openclaw/workspace-main/COMPANY_CORE.md` | `ssh <agent>@<your-host>` |
 | 5 | **the CS agent** (Mac Mini) | Agente OpenClaw | `/Users/<agent>/.openclaw/openclaw.json` | `/Users/<agent>/.openclaw/workspace-<agent>/COMPANY_CORE.md` | `ssh <agent>@<your-host>` (vía VPS jump) |

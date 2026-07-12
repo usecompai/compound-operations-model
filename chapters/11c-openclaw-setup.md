@@ -128,13 +128,14 @@ I am the Strategy Hub for [YOUR BRAND].
 - Direct customer communication
 - Motivational speeches or disclaimers
 
-## Confidence Scoring
-| Confidence | Action |
+## Authority
+| Capability | Default action |
 |---|---|
-| > 95% | Act autonomously |
-| 80-95% | Act + flag [REVIEW] |
-| 60-80% | Draft for approval |
-| < 60% | Escalate with context |
+| Read and retrieve | Execute with source references |
+| Analyse and recommend | Execute with receipt |
+| Draft external work | Propose for review |
+| Change systems | Require explicit capability grant and rollback |
+| Money, legal, HR, destructive | Named human approval |
 
 ## Security
 [Copy anti-injection template from repo]
@@ -294,7 +295,7 @@ sudo chown -R $AGENT_NAME:staff /Users/$AGENT_NAME/.openclaw
 
 ### 4.3 Write its SOUL.md
 
-Use the appropriate template from `templates/souls/` in the repo. Each agent's soul defines its personality, tools, confidence thresholds, and escalation chain.
+Use the appropriate template from `templates/souls/` in the repo. Each agent's soul defines its role, tools, authority boundaries, source requirements and escalation chain.
 
 ### 4.4 Create 3 LaunchDaemons per agent
 
@@ -323,21 +324,21 @@ sudo ln -s /Users/Shared/shared-brain /Users/$AGENT_NAME/$AGENT_NAME/brain
 
 Set `ANTHROPIC_API_KEY` as environment variable. Each agent uses its own allocation.
 
-### Option B: ChatGPT OAuth (cheapest)
+### Option B: Provider OAuth or managed subscription
 
-If team members already have ChatGPT Plus/Pro subscriptions, agents can piggyback via OAuth at zero incremental cost (see Lesson 29):
+Some runtimes support authenticated provider subscriptions. Treat this as a deployment-specific option and verify the provider's current terms, limits and machine-use policy before relying on it:
 
 1. Team member logs into ChatGPT on the agent's machine
 2. OAuth tokens stored in `~/.codex/auth.json` with auto-refresh
-3. Agent config uses `openai-codex/gpt-5.4` as model string
+3. Agent config uses the currently supported model identifier from the provider's runtime registry
 4. Each subscription can comfortably run 1-2 agents
 
 ### Option C: Mixed (recommended)
 
-- **Customer-facing agents** (CS, HR): Anthropic API key for tone quality and audit trail
-- **Internal agents** (Finance, Retail, Marketing, Merch): ChatGPT OAuth for zero cost
-- **Hub agent**: best model available (GPT-5.4 or Opus) for orchestration reasoning
-- **All agents**: Opus as fallback for edge cases
+- **Customer-facing and sensitive workflows:** a provider path with the required privacy, quality and audit controls
+- **Internal analysis:** the best current model for quality, latency and cost
+- **Hub agent:** a frontier reasoning model selected from the live registry
+- **All agents:** an independently tested fallback from a second provider
 
 ---
 

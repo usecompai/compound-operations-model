@@ -159,7 +159,7 @@ def _pretty(report: dict) -> None:
     print(f"\n{common.BOLD}LLM providers{common.RESET}")
     l = report.get("llm") or {}
     if l.get("error"):
-        print(f"  {common.RED}✗{common.RESET} error: {l.get("error")}")
+        print(f"  {common.RED}✗{common.RESET} error: {l.get('error')}")
     elif not l.get("configured_providers"):
         print(f"  {common.RED}✗{common.RESET} no providers configured — agents will refuse to start. Run: {common.BOLD}compai-init llm configure{common.RESET}")
     else:

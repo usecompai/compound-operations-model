@@ -202,7 +202,7 @@ description: |
   97% of tracking queries can be auto-resolved by checking Shopify
   order status + 3PL tracking in parallel, then drafting a response
   that includes: order number, current status, ETA, and the tracking URL.
-threshold: >95% confidence = auto-send; 80-95% = draft for review
+authority: customer-facing send = human-approved capability; confidence is evidence, not permission
 tested_in: 5 deployments, 12,000+ tickets
 ```
 
@@ -226,7 +226,7 @@ tested_in: 5 deployments, 12,000+ tickets
 
 **How it differs from the LLM Council:**
 - Council = 6 perspectives, 1 model, 1 round → same architectural biases
-- Punta de Flecha = 2+ models (e.g., Claude + GPT-5.4), N iterative rounds → cross-architecture, verifiable convergence
+- Punta de Flecha = 2+ independent model/provider paths, N iterative rounds → cross-architecture, evidence-recorded convergence
 
 **The protocol:**
 1. Both models analyze the question independently (Round 0 — uncontaminated)
@@ -289,7 +289,7 @@ A mature deployment will accumulate dozens of these capabilities over time. Each
 
 **What it does:** for the highest-stakes strategic decisions, the system runs two LLMs of different architectures against each other in iterative rounds until they converge on a recommendation.
 
-**How it differs from the LLM Council:** Council = 6 perspectives, 1 model, 1 round (same biases). Punta de Flecha = 2+ models (e.g., Claude + GPT-5.4), N iterative rounds (cross-architecture convergence).
+**How it differs from the LLM Council:** Council = several perspectives, one model family, one round. Punta de Flecha = two or more independent model/provider paths over iterative rounds, with disagreements and evidence preserved.
 
 **The protocol:**
 1. Both models analyze the question independently (Round 0)
@@ -309,4 +309,3 @@ A mature deployment will accumulate dozens of these capabilities over time. Each
 **What it does:** the marketing agent runs 46 Meta checks + 74 Google checks monthly with weighted health scoring (A-F grades).
 
 **Key rules:** 3x Kill (spend > 3x target CPA + 0 conversions = pause), 20% Scale (CPA below target = increase 20%), frequency saturation thresholds per platform. Quick wins list: 12 high-impact actions under 15 minutes each.
-

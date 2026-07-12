@@ -11,18 +11,17 @@
 Método de análisis estratégico que enfrenta **dos modelos de IA de diferente arquitectura** en iteraciones sucesivas hasta alcanzar convergencia. Cada modelo revisa, critica y refina el output del otro, afilando progresivamente el análisis como una punta de flecha.
 
 **Diferencia vs. council_query:**
-- Council = 6 perspectivas, 1 modelo (Claude), 1 ronda → mismos biases
-- Punta de Flecha = 2+ modelos (Claude + GPT), N rondas iterativas → cross-architecture, convergencia verificable
+- Council = varias perspectivas, 1 familia de modelo, 1 ronda → sesgos correlacionados
+- Punta de Flecha = 2+ rutas independientes de modelo/proveedor, N rondas iterativas → convergencia con divergencias preservadas
 
 ## Arquitectura de referencia
 
 ```
 ┌─────────────────────┐     ┌──────────────────────┐
-│ MODELO A             │     │ MODELO B              │
-│ Claude Opus 4.6      │     │ GPT-5.4               │
-│ (Claude Code / yo)   │◄───►│ (Strategy via agent_send)│
-│                      │     │ OAuth ChatGPT the founder   │
-│ Coste: €0 (Max)      │     │ Coste: €0 (Plus/Pro)  │
+│ MODELO / PROVIDER A  │     │ MODELO / PROVIDER B   │
+│ registry: critic-a   │◄───►│ registry: critic-b    │
+│ sources: shared      │     │ sources: shared       │
+│ output: independent  │     │ output: independent   │
 └─────────────────────┘     └──────────────────────┘
          │                           │
          └─────── ITERACIÓN ─────────┘
@@ -37,8 +36,8 @@ Método de análisis estratégico que enfrenta **dos modelos de IA de diferente 
 - Definir **criterio de éxito** (qué tipo de output esperas: recomendación, plan, análisis)
 
 ### Fase 1: Análisis inicial paralelo (Round 0)
-- **Modelo A (Claude):** genera análisis completo de la pregunta
-- **Modelo B (GPT-5.4 via Strategy):** genera su análisis independiente, SIN ver el de Claude
+- **Modelo A:** genera un análisis completo desde el paquete de fuentes común
+- **Modelo B:** genera su análisis independiente, sin ver el output de A
 - Esto garantiza análisis no contaminados con diferentes biases de architecture
 
 ### Fase 2: Punta de Flecha (Rounds 1-N)
@@ -83,18 +82,17 @@ LOOP:
 
 ## Invocación
 
-### Opción 1: Via Claude Code (the founder)
-the founder pide directamente: "Punta de Flecha: ¿deberíamos [pregunta]?"
-Claude Code actúa como Modelo A, usa `agent_send("strategy", ...)` para Modelo B.
+### Opción 1: Desde el command client
+El decisor pide: "Punta de Flecha: ¿deberíamos [pregunta]?" El cliente usa dos rutas independientes del runtime registry y conserva fuentes, divergencias y receipts.
 
 ### Opción 2: Via MCP tool
 ```
 punta_de_flecha("¿Deberíamos abrir tienda en Salamanca?", max_rounds=5)
 ```
-El tool en server.py orquesta automáticamente Claude (API) vs GPT-5.4 (Strategy).
+El tool orquesta las dos rutas aprobadas en el runtime registry.
 
 ### Opción 3: Manual
-the founder cruza outputs entre Claude (chat) y ChatGPT (chat) manualmente.
+El operador cruza outputs entre dos modelos/proveedores independientes manualmente.
 Más lento pero funciona sin infra.
 
 ## Prompt para el cruce (template)

@@ -79,7 +79,7 @@ For each capability, define:
 - Source of truth.
 - Allowed tools.
 - Write permissions.
-- Confidence threshold.
+- Confidence calibration for reviewer prioritization, never as an authority grant.
 - Human approval rule.
 - Rollback or correction path.
 - Audit log location.
@@ -110,4 +110,3 @@ But the company is still not broadly L4. Non-technical employees cannot extend e
 3. Pick three L2 workflows and design the L3 approval step: source docs, proposed action, owner, approval button or checklist, audit log.
 4. Pick one low-risk workflow that could become bounded L4 after 30 days of reviewed outputs.
 5. Fork `templates/autonomy-assessment.md` as the artifact and review it monthly.
-

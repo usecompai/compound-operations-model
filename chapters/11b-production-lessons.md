@@ -332,10 +332,7 @@ Each agent now has **3 LaunchDaemons:**
 
 **The experiment:** We tested free-tier and low-cost models aggressively for reporting, data extraction, inventory checks, retail metrics, and merchandising workflows. On quiet days they looked good enough. Under real operational peaks they degraded, rate-limited, or became unreliable in ways that were unacceptable for production.
 
-**What we learned:** The right question was not "what is the cheapest model?" but "what is the cheapest reliable routing strategy?" The answer turned out to be:
-- **GPT-5.4 via ChatGPT OAuth** wherever the team already had subscriptions and the work was internal
-- **Claude Sonnet** for customer-facing and sensitive workflows like CS and HR
-- **Opus fallback** only for edge cases that genuinely need it
+**What we learned:** The right question was not "what is the cheapest model?" but "what is the cheapest reliable routing strategy?" At that point, subscription-backed internal routes plus a quality-focused sensitive-workflow route and a frontier fallback reduced cost. The durable fix was not those model names; it was moving selection into a dated runtime registry and testing every fallback against the same task contract.
 
 **Result:** Costs still dropped to ~€93/month on the API layer, but the durable saving came from routing five agents through existing team subscriptions instead of pretending free-tier models were a stable production default.
 
@@ -386,4 +383,3 @@ The value of this chapter isn't the specific fixes — your stack will have diff
 **The fix:** Install Node 22 LTS alongside Node 25 and create a wrapper script that forces Node 22 for the summarize command. Takes 2 minutes instead of 2 hours debugging pipe internals.
 
 **The rule:** when a CLI tool breaks after a Node/Python/runtime upgrade, test with the previous version first. If it works there, use a version-pinned wrapper.
-

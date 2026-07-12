@@ -298,4 +298,4 @@ Structured sources (Shopify, Klaviyo, Ads) — shipped in v0.4 — cover 80%+ of
 
 ---
 
-→ See [Chapter 13 — What's Next](13-whats-next.md) for the Custom Engagement tier details.
+→ Continue to [Memory Architecture](10b-memory-architecture.md) for the storage and retrieval contract behind the ingest layer.

@@ -170,7 +170,7 @@ Feed the agent your last 50-100 real cases. For each draft, mark:
 
 ### Week 2: Calibration
 
-- Enable autonomy only for categories with >95% reviewed accuracy.
+- Enable bounded execution only for named low-risk capabilities with reviewed evidence, rollback and an authority grant; accuracy alone is insufficient.
 - Keep approval required for refunds, discounts, legal, HR, VIP, safety, and high-value exceptions.
 - Review the audit log daily.
 
@@ -195,7 +195,7 @@ Monthly savings: €___
 ROI ratio: ___:1
 ```
 
-If the math does not work, stop expanding and fix the workflow. The reference deployment reached **62h/week** reclaimed and **10:1 ROI**, but those numbers only matter if your own baseline validates them.
+If the math does not work, stop expanding and fix the workflow. The current reference model estimates **62 agent hours/week plus 45 team hours/week reclaimed and 16.2:1 ROI**, but those numbers only matter if your own baseline validates them.
 
 ## Common Implementation Mistakes
 

@@ -36,7 +36,7 @@ prompt = f"""Genera el P&L semanal ({week_ago} a {today}).
 
 Pasos:
 1. Consulta Shopify orders de la semana (shopify_query orders.json?status=any&created_at_min={week_ago}T00:00:00&created_at_max={today}T23:59:59&limit=250)
-2. Calcula revenue por canal (Online, Retail BCN Store A, Retail MAD Store B, Partner Store 1, Partner Store 2)
+2. Calcula revenue por canal usando los IDs configurados (Online, Store A, Store B, Wholesale/Partner)
 3. Consulta GA4 para sessions y conversión (ga4_query con metrics sessions,transactions,totalRevenue)
 4. Compara WoW (vs semana anterior)
 5. Genera el informe narrativo en formato:

@@ -23,7 +23,7 @@ def tc_query(store, date):
                     TC_TOKEN = line.split("=", 1)[1].strip().strip('"').strip("'")
     
     # Store IDs
-    stores = {"store_b": "store_b", "store_a": "store_a"}
+    stores = {"store_a": "STORE_A_SOURCE_ID", "store_b": "STORE_B_SOURCE_ID"}
     store_id = stores.get(store, store)
     
     return {"store": store, "date": date, "note": "TC query via MCP tool needed"}
@@ -31,12 +31,12 @@ def tc_query(store, date):
 # Generate report template
 report = f"""📊 *Retail Daily Report — {yesterday}*
 
-🏪 *Store B (Madrid)*
+🏪 *Store A*
 → Traffic: [pending TC Analytics query]
 → Revenue: [pending Shopify POS query]
 → Conversion: [calculated]
 
-🏪 *Store A (Barcelona)*
+🏪 *Store B*
 → Traffic: [pending TC Analytics query]
 → Revenue: [pending Shopify POS query]
 → Conversion: [calculated]
@@ -51,4 +51,4 @@ print(f"Retail report template generated for {yesterday}")
 PYEOF
 
 echo "$(date): Retail daily report generated" >> "$LOG"
-/opt/brain/scripts/log-event.sh "Retail" "Retail daily report generated: foot traffic + POS data for both stores compared"
+/opt/brain/scripts/log-event.sh "Retail Agent" "Retail daily report generated: foot traffic + POS data for both stores compared"

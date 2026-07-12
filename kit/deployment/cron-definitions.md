@@ -6,7 +6,7 @@ All crons that run in the reference deployment. Adapt paths and times to your se
 
 | Cron | Schedule | Agent | What It Does |
 |---|---|---|---|
-| CS ticket monitor | `*/15 6-20 * * *` | CS Agent | Triage new tickets, draft responses, auto-resolve high-confidence |
+| CS ticket monitor | `*/15 6-20 * * *` | CS Agent | Triage new tickets and prepare cited response drafts for the configured review path |
 | Inventory monitor | `*/30 7-21 * * *` | Merch Agent | Check stock levels, flag low inventory, recommend transfers |
 | Brain sync | `*/30 * * * *` | System | Bidirectional rsync between VPS and secondary host |
 | Brain sync health | `0 */2 * * *` | System | Verify sync freshness, alert if stale > 2 hours |

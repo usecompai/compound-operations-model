@@ -12,7 +12,7 @@
 ## 1. Description of Processing
 
 ### 1.1 System Overview
-Multi-agent AI system composed of 7 specialized agents + 1 founder interface, processing operational data across customer service, finance, marketing, retail, merchandising, and HR domains. Agents run on OpenClaw runtime, hosted on EU infrastructure, using LLM APIs (Anthropic Claude, OpenAI GPT-5.4) for inference.
+Multi-agent AI system composed of [AGENT COUNT] scoped runtimes plus [COMMAND CLIENTS], processing the declared operational domains. Runtimes use the providers and model versions recorded in the dated runtime registry: [REGISTRY REFERENCE].
 
 ### 1.2 Agents and Their Data Access
 
@@ -70,10 +70,10 @@ All data stays within EU infrastructure. LLM API calls transmit prompts to Anthr
 ## 3. Necessity and Proportionality
 
 ### 3.1 Why AI Agents vs Manual Processing?
-- 44-person company growing 50%+ annually with operational bottleneck
-- AI agents automate 62 hours/week of repetitive operational work
-- Human oversight maintained via graduated autonomy (confidence scoring)
-- Alternative: hire 3-4 additional operational staff at ~€150K/year
+- [TEAM SIZE]-person company with documented operational bottlenecks
+- Estimated hours reclaimed are recorded in the deployment's own ROI model
+- Human oversight is maintained through identity, capability authority, review, rollback and receipts
+- Alternatives and proportionality are assessed for this deployment rather than copied from the reference case
 
 ### 3.2 Data Minimization
 - Each agent only accesses data relevant to its domain (principle of least privilege)
@@ -116,7 +116,7 @@ All data stays within EU infrastructure. LLM API calls transmit prompts to Anthr
 
 ### Organizational
 - [x] Human manager assigned to each agent
-- [x] Graduated autonomy (confidence scoring)
+- [x] Capability-specific authority; confidence never grants permission
 - [x] Shadow mode for new agent deployments
 - [x] Quarterly compliance review scheduled
 - [x] Incident reporting procedure documented

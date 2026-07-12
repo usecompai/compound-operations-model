@@ -22,7 +22,7 @@ Use it before you build.
 | 6 | API header assumptions broke the POS/inventory system-style auth | Test auth with curl before coding wrappers | Vendor auth formats are not universal |
 | 7 | Semantic memory filled with duplicates and noise | Deduplicate, curate, and prefer structured docs | Memory without hygiene degrades agents |
 | 8 | Policies changed but the brain did not | Add brain updates to product and policy launch checklists | If it is not in the brain, agents do not know it |
-| 9 | Autonomy was tempting before quality was proven | Shadow mode, review queues, confidence thresholds | Draft first, approve later, automate last |
+| 9 | Autonomy was tempting before quality was proven | Shadow mode, review queues, capability-specific promotion gates | Draft first, approve later, automate last |
 | 10 | Reverse-engineered sessions depended on 2FA state | Add session health checks and relogin runbooks | Browser sessions are operational dependencies |
 | 11 | A memory product created more noise than recall | Remove harmful components even if they sounded strategic | Kill features that hurt the system |
 | 12 | One host could not comfortably run everything | Split primary VPS and local/secondary host roles | Architecture follows operational load |
@@ -95,4 +95,3 @@ Still, the classes of failure travel: auth, memory, process management, stale do
 3. Link each ledger row to a detailed incident file only when the detail changes future behavior.
 4. Review the ledger before every new automation project.
 5. Fork `lessons/_ledger.md` as the artifact and use Chapter 11b as the detailed reference model.
-

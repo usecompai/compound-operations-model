@@ -1,0 +1,25 @@
+version: "1.0"
+skill: "skill-name"
+builder: "builder-id"
+judge: "different-judge-id"
+
+contract:
+  trigger_is_literal_and_testable: false
+  when_not_to_use_is_present: false
+  inputs_and_permissions_are_explicit: false
+  procedure_has_observable_completion: false
+  output_contract_is_explicit: false
+  verification_requires_evidence: false
+  failure_states_are_named: false
+  provenance_and_reverification_are_present: false
+
+runs:
+  - scenario: "zero-context representative task"
+    artifact: "path-or-url"
+    verdict: fail
+    defects: []
+
+promotion:
+  state: draft
+  approved_by: null
+  approved_at: null

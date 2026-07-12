@@ -18,11 +18,11 @@ That's not what we built.
 
 Sequoia recently articulated a distinction that perfectly describes the difference:
 
-> *A copilot sells the tool. An autopilot sells the work.*
+> *A copilot sells the tool. An operating system sells reliable work.*
 
 Every AI startup in consumer retail is building copilots — tools that make your team more productive. Better dashboards. Smarter search. AI-powered this and that. Some are even building "AI agents" that are really just prompt templates running on someone else's infrastructure, with zero persistence, zero coordination, and zero understanding of your business context.
 
-We skipped all of that inside our own operation. We built the **autopilot**: a multi-agent system that does the operational work directly. Your tickets get answered. Your inventory syncs. Your P&L closes. Not because your team uses a better tool, but because AI agents — with persistent memory, real-time integrations, and inter-agent coordination — do the work. 24/7. Getting smarter every day.
+We built the operating layer inside our own operation: a multi-agent system with persistent memory, authenticated tools, explicit authority and action receipts. It retrieves and analyses broadly, executes low-risk work on demand, and keeps consequential customer, money, people and irreversible actions behind named controls. The system is useful because it finishes verified work, not because it claims to run the company unattended.
 
 **The difference matters more than you think:**
 - A prompt-based solution breaks when the vendor changes pricing. Our system is model-agnostic and self-hosted.
@@ -30,7 +30,7 @@ We skipped all of that inside our own operation. We built the **autopilot**: a m
 - A prompt-based solution runs in isolation. Our agents coordinate: the CS agent flags a shipping delay, the ops agent checks the carrier, the marketing agent pauses the campaign. Automatically.
 - A prompt-based solution is consulting disguised as software. This architecture is infrastructure that compounds, and the working reference is published for operators to study and fork.
 
-Every improvement in the underlying AI models makes an autopilot faster, cheaper, and more capable. A copilot competes with the next model release. An autopilot benefits from it.
+Every improvement in the underlying AI models makes the operating layer faster, cheaper, and more capable. The Brain, contracts, skills and receipts remain company-owned while models change underneath.
 
 ---
 
@@ -42,16 +42,16 @@ We had a choice: hire 3–4 people at €35K–55K each, or try something differ
 
 We tried something different.
 
-Over 30 days, we deployed a multi-agent AI system across the entire operation. Not a chatbot. Not "AI-powered" marketing copy. A genuine operating system — six specialized agents, each deeply integrated with our existing tools, coordinating with each other, running 24/7.
+We started with a 30-day deployment and expanded it over more than a year. The current topology is seven production agent runtimes plus a founder command center, connected to real systems through 97 authenticated MCP tools.
 
-**The results after 6+ months:**
-- Zero new hires needed (saving six figures annually)
-- CS response time: 8 hours → under 30 minutes
-- Inventory accuracy: 78% → 94%
-- Founder operational time: 20+ hours/week → 5 hours/week
-- Total annual value created: 30x+ the system cost
-- Total annual cost: €8,100
-- ROI: 10:1 (honest calculation in Ch.12)
+**Current public snapshot, 12 July 2026:**
+- 4,819 Brain documents and 361 embeddings pending
+- 373 available skills; 47 company-authored canonical; 45 evaluated
+- 97 MCP tools with authentication in `enforce`
+- 15 connector smoke tests green and 42,000+ action receipts
+- Brain maturity assessed at 6.8/10
+- Broad autonomous execution assessed at 2/10 and held to a closure-first pilot
+- ROI model: 16.2:1 under the assumptions in Chapter 12
 
 The brand didn't just survive the growth. It doubled revenue with the same team.
 

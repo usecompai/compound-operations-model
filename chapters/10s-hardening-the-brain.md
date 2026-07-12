@@ -12,7 +12,7 @@ The findings were uncomfortable. We're publishing them anyway, because the fixes
 
 **Finding 1 — the execution gap.** Capture had compounded beautifully; closure had not. The task layer held roughly three thousand open items and a single-digit number of completed ones. The brain had become a world-class librarian and a poor operator. If you only measure documents ingested, you will miss this completely.
 
-**Finding 2 — anonymous writes.** 84% of writes to the brain carried no identity: agents, cron jobs, and humans all writing as "anonymous." In a system that agents *act* on, provenance is not a nice-to-have. If you can't answer "who wrote this fact and when," you can't debug a bad decision after the fact.
+**Finding 2 — anonymous writes.** In the original audit, 84% of writes to the brain carried no identity: agents, cron jobs, and humans all writing as "anonymous." In a system that agents *act* on, provenance is not a nice-to-have. If you can't answer "who wrote this fact and when," you can't debug a bad decision after the fact.
 
 **Finding 3 — single-point disaster recovery.** Everything lived on one server. Backups existed but had never been restored. A backup you have never restored is a hypothesis, not a backup.
 
@@ -27,6 +27,8 @@ You don't need enterprise IAM on week one. You need a ladder, and you need to kn
 - **Level 2 — enforce.** Every human and every machine carries its own token. Sensitive domains (finance, HR, legal) become scoped spaces that only the right identities can read. This is the rung that unlocks deploying beyond your own walls.
 
 Two orderings matter. First: **machine identity before personal identity.** Giving each server, laptop, and agent node its own token is cheap and frictionless — it took our anonymous-write rate from 84% to roughly 13% in a day. Personal tokens involve humans and take longer; don't block on them. Second: **scope sensitive domains before exposing anything externally.** Salary data readable by every employee is a culture decision; readable by every *caller* is an incident.
+
+**Current reference state, 12 July 2026:** MCP authentication is in `enforce`, 75 identity keys are loaded, connector smoke tests are green across 15 source systems, and the action ledger holds more than 42,000 receipts. Fine-grained retrieval scoping is the next control plane: the Spaces contract is defined, but sensitive-domain enforcement is still being rolled out and should not be described as universal yet.
 
 On secrets: they live in environment variables or keychains, never in markdown, never in the brain itself. Assume the brain will eventually be read by more people and machines than you planned. Rotate anything that ever touched a file.
 
@@ -56,14 +58,14 @@ What actually moved the needle for us:
 
 After the audit we adopted one rule and wrote it down where every agent can read it:
 
-> **No new ingestion sources and no new generators until the closed-loop rate is above 30%.**
+> **No new work generators until a bounded closure-first pilot can complete ten reviewed runs at or above 80%, with no authority violations.**
 
 It's deliberately blunt. Adding inputs is fun and feels like progress; closing loops is work and feels like maintenance. The rule exists so that when the next shiny capture pipeline shows up, the system itself reminds you which side of the ledger needs you.
 
 ## Porting checklist
 
 - [ ] Run an honest audit twice a year: attacker lens + CFO lens, findings written down.
-- [ ] Know your rung on the auth ladder; move to *protect* now, plan *enforce*.
+- [ ] Know your rung on the auth ladder; move to *protect* immediately and require *enforce* before external execution.
 - [ ] Machine tokens per node before personal tokens per human.
 - [ ] Scope finance/HR/legal before any external exposure.
 - [ ] Git-version the brain with auto-commits and a change ledger; build batch rollback.
@@ -72,7 +74,7 @@ It's deliberately blunt. Adding inputs is fun and feels like progress; closing l
 - [ ] Weekly backlog archive with an anti-boomerang rule.
 - [ ] Daily triage digest, hard-capped at ten items.
 - [ ] Watch queue depths, not just document counts.
-- [ ] Adopt the sequencing rule: no new inputs until loops close.
+- [ ] Adopt the sequencing rule: no new generators until the bounded closure pilot passes.
 
 ## For Compai readers
 

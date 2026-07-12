@@ -4,99 +4,109 @@ Open-source AI operations playbook for consumer SMEs, published by Compai.
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-c9a667.svg)](LICENSE)
 [![Built in public](https://img.shields.io/badge/built-in%20public-1a1a1a.svg)](https://usecompai.com)
-[![Playbook](https://img.shields.io/badge/playbook-53%20chapters-1a1a1a.svg)](https://usecompai.com/playbook)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-c9a667.svg)](CONTRIBUTING.md)
+[![Playbook](https://img.shields.io/badge/playbook-66%20chapters-1a1a1a.svg)](https://usecompai.com/playbook)
+[![Release audit](https://github.com/usecompai/compound-operations-model/actions/workflows/parity.yml/badge.svg)](.github/workflows/parity.yml)
 
-> **The operating system behind an 8-figure consumer brand running on AI for €631/month.** Read it. Fork it. Build your own.
+> **The operating system pattern behind an 8-figure consumer brand running AI in production for EUR631/month.** Read it. Fork it. Build your own.
 
+This repository documents a real operating system: a company Brain, authenticated tools, domain agents, governed skills, source coverage, action receipts, and bounded execution. It is an educational implementation portfolio, not a hosted SaaS product.
 
+## Current Release
 
-This repository documents the operating system pattern behind a real 8-figure consumer brand running AI agents in production: company Brain, MCP tools, domain agents, employee onboarding, health audits, shared memory, and controlled action queues.
+**v5.0 - Truth & Execution - 12 July 2026**
 
-This is not a SaaS repo. It is an educational implementation portfolio: read it, fork it, adapt it, and keep humans in the approval loop where actions carry risk.
+This release brings the public portfolio back into parity with the current reference deployment and adds a machine-checked evidence contract.
 
-## Current Version
+| Surface | Verified public snapshot |
+|---|---:|
+| Brain documents | 4,819 |
+| Skills available to the swarm | 373 |
+| Company-authored canonical skills | 47 |
+| Public, anonymized skills in this repo | 31 |
+| MCP tools | 97 |
+| Production agent runtimes | 7 + founder command center |
+| Connector smoke tests | 15 green |
+| Action receipts | 42,000+ |
+| MCP authentication | `enforce` |
 
-**v2.2 - 10 June 2026**
+These figures are a dated snapshot, not a promise that every surface updates continuously. [`release-manifest.json`](release-manifest.json) is the machine-readable source for this release.
 
-Latest update: hardening the brain. We ran a due-diligence audit on our own system and published the findings and fixes as [`chapters/10s-hardening-the-brain.md`](chapters/10s-hardening-the-brain.md):
+## What Is Actually Proven
 
-- Auth is live in `protect` mode: high-risk anonymous/invalid operations are blocked, bearer-key auth is active, and client migration is still ongoing. Current canonical status is tracked in the the company Brain at `knowledge/platform/tools/mcp-auth-status.md` (last verified 2026-07-03: 33.65% anonymous requests in the latest 2,000 auth-observe rows). Do not claim `enforce` until the live MCP service is actually running in `enforce`.
-- Resilience: git-versioned brain (15-min auto-commits + change ledger), dual encrypted backups, checksum-verified restores, batch rollback
-- The execution loop: backlog hygiene with anti-boomerang archiving, throttled generators, a daily triage digest hard-capped at 10 items
-- The sequencing rule: no new ingestion sources until the closed-loop rate is above 30%
+The reference deployment has broad capture and retrieval, source-system access, on-demand tool execution, and a substantial action ledger. It does **not** claim a single company-wide autonomy percentage.
 
-v2.1 (9 June 2026) added the operational compounding loop (`10r`): health audits, inbox sweeper, skill eval harness, skillify loop, shared memory contract, L3 action queues, and workflow mining.
+Autonomy is granted per capability. Read-only retrieval and low-risk analysis can run automatically; customer-facing, financial, legal, HR, destructive, and other consequential actions remain bounded by identity, scope, policy, verification, and explicit approval. Broad unattended execution is a controlled closure-first pilot, not a production-wide claim.
+
+Known coverage gaps stay visible. Generated meeting notes are covered, but the native transcript inventory is currently zero. Granola coverage is incomplete. Fine-grained Brain Spaces retrieval scoping is rolling out domain by domain even though per-identity MCP authentication is already enforced.
 
 ## What Is Inside
 
 | Path | Contents |
 |---|---|
-| `chapters/` | Full public playbook source (62 chapters), organized as an 8-section SME journey: Start Here → The Brain → The Tools → The Agents → Governance → Operate & Compound → Build It → Proof |
-| `kit/` | Starter implementation kit: init CLI, MCP server template, compliance scaffold, onboarding pack, SOUL templates, systemd templates, monitoring scripts |
-| `skills/` | **24 public skills** (anonymized from production) + [the full catalog](skills/CATALOG.md) of what the 352 are |
-| `pattern-library/` | Anonymized operational patterns and schema |
+| `chapters/` | 66 source chapters organized as an eight-section SME journey |
+| `kit/` | v5.0 implementation kit with deployment, governance, eval, identity, storage and evidence templates |
+| `skills/` | 31 anonymized public skills plus a catalog explaining the wider 373-skill capability layer |
+| `pattern-library/` | 21 executable pattern definitions plus schema and documentation |
 | `case-study/` | Anonymized reference case study |
+| `scripts/release_audit.py` | Release parity, anonymity, count and archive-integrity gate |
 
 ## Start Here
 
 1. Read [`chapters/00-index.md`](chapters/00-index.md).
-2. Read the architecture: [`chapters/03-architecture.md`](chapters/03-architecture.md).
-3. Read the Brain chapters: [`chapters/10l-brain-v2-living-memory.md`](chapters/10l-brain-v2-living-memory.md) through [`chapters/10s-hardening-the-brain.md`](chapters/10s-hardening-the-brain.md).
-4. Inspect the implementation kit: [`kit/README.md`](kit/README.md).
-5. Use the patterns as a starting point, not as a blind install script.
+2. Read [`chapters/10aa-truth-and-evidence.md`](chapters/10aa-truth-and-evidence.md).
+3. Read [`chapters/10ab-architecture-contract.md`](chapters/10ab-architecture-contract.md).
+4. Read [`chapters/10ac-skill-governance.md`](chapters/10ac-skill-governance.md).
+5. Read [`chapters/10ad-closure-first-execution.md`](chapters/10ad-closure-first-execution.md).
+6. Inspect [`kit/README.md`](kit/README.md), then run the release audit before adapting the assets.
+
+```bash
+python3 scripts/release_audit.py --repo-root .
+```
 
 ## Operating Model
 
-The model has four layers:
+1. **Brain** - sourced company memory, world model, tasks, outputs, health and artifact references.
+2. **Tools** - authenticated MCP interfaces to operational systems.
+3. **Agents** - domain-specific runtimes with independent identity and explicit authority.
+4. **Skills** - governed procedures promoted through contracts, independent evaluation and evidence.
+5. **Closure loop** - observe, act within authority, verify, record a receipt, then stop or escalate.
 
-1. **Brain** - structured company memory, source paths, world model, tasks, outputs, health.
-2. **Tools** - MCP interfaces to business systems and operational data.
-3. **Agents** - domain-specific agents with clear ownership, tools, and escalation rules.
-4. **Compounding loop** - capture, triage, package, queue, audit, and write back.
+The important shift is bidirectionality with proof. Agents do not only read the Brain; they write decisions, gotchas, outputs and receipts back into it. An action without verification is activity, not completed work.
 
-The key shift is bidirectionality. Agents do not only read the Brain. They write decisions, gotchas, workflow state, and completed work back into the shared memory.
+## Version Lineage
 
-## What Changed Since the Original v1 Repo
+The first public release was developed internally under the OperAI working name. The product and public project are now Compai. Legacy URLs redirect for compatibility, while current code, service names, templates and documentation use Compai.
 
-The original public repo only contained three introductory chapters. This version publishes the full current playbook and public-safe starter artifacts.
-
-Important corrections:
-
-- Current brand: **Compai**. Compai was the legacy/internal name.
-- Current repo: `usecompai.com/repo`.
-- The playbook is no longer just a multi-agent architecture essay. It now includes Brain v2, employee onboarding, setup 1-click, shared memory, health, and workflow mining.
-- ROI language now uses the audited 18:1 model from the public playbook, not older 31:1/50:1 marketing claims.
+Earlier ROI and autonomy language has also been corrected. The current public model is 16.2:1 under the assumptions in Chapter 12, with hard savings separated from strategic capacity. Replace those inputs with your own before making an investment decision.
 
 ## What Not To Copy Blindly
 
-Do not copy a reference deployment's private data, credentials, Slack channels, Google Workspace accounts, HR records, customer records, or source-system tokens.
+Never copy a reference deployment's private data, credentials, employee names, channels, accounts, HR records, customer records or source-system tokens.
 
 Copy the contracts:
 
-- source paths on durable facts
-- owner and stale dates on docs
-- privacy hard-stops
-- human approval for risky actions
-- action ledger
-- health checks
-- explicit escalation rules
+- dated claims with an evidence class
+- source references on durable facts
+- one identity per human and machine
+- scoped authority and privacy hard stops
+- independent skill evaluation
+- reversible changes and explicit rollback
+- action receipts and source coverage
+- known gaps published next to strengths
 
 ## Live Site
 
-- Playbook and dashboard: https://usecompai.com
+- Playbook and evidence dashboard: https://usecompai.com
 - Contact: hello@usecompai.com
 
 ## Community
 
-This is built in public, and it's meant to be copied. The best thing you can do is fork it, run it, and tell us what happened.
+Fork it, test it against your own operating reality, and publish what changed.
 
-- **Share what you built** — [open a showcase issue](../../issues/new?template=share-what-you-built.md). We keep a public list of real deployments.
-- **Improve the playbook** — fixes, clarifications, validated patterns, translations. See [CONTRIBUTING.md](CONTRIBUTING.md).
-- **Ask a question** — [open a question](../../issues/new?template=question.md) if a chapter left you stuck.
-- **Report a bug** — [bug report](../../issues/new?template=bug-report.md). Security issues go to [SECURITY.md](SECURITY.md), not public issues.
-
-Be useful and be kind: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+- [Share a deployment](../../issues/new?template=share-what-you-built.md)
+- [Ask a question](../../issues/new?template=question.md)
+- [Report a bug](../../issues/new?template=bug-report.md)
+- Read [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md)
 
 ## License
 

@@ -47,12 +47,12 @@ irm https://mcp.<brand>.com/setup.ps1 | iex
 Esto automáticamente instala Node.js, configura la conexión, y verifica todo.
 Te pedirá la contraseña del Mac (es normal).
 
-Abrir Claude Desktop — esperar 15-20s — verificar 🔧 con **44+** herramientas.
+Abrir el cliente AI aprobado, esperar a que conecte y verificar el inventario de herramientas esperado para esa identidad.
 
 
-### Alternativa: Codex (OpenAI GPT-5.4)
+### Alternativa: Codex
 
-Empleados con ChatGPT Plus/Pro pueden conectar Codex al mismo brain:
+Los empleados con una instalación Codex aprobada pueden conectarlo al mismo Brain:
 1. `brew install codex` / `winget install OpenAI.Codex`
 2. `codex login`
 3. Anadir a `~/.codex/config.toml`:
@@ -68,7 +68,7 @@ args = ["mcp-remote", "https://mcp.<brand>.com/sse"]
 El manager verifica que:
 - [ ] Claude Desktop abierto y funcionando
 - [ ] MCP "<brand>" conectado (icono verde en settings)
-- [ ] 44 herramientas visibles
+- [ ] El conteo de herramientas coincide con el scope aprobado para esa identidad
 - [ ] `brain_search("the reference brand")` devuelve resultados
 
 **Si algo falla:** Ver `knowledge/platform/setup/claude-desktop-mcp-troubleshooting.md` o pedir ayuda en #ia en Slack.
@@ -95,7 +95,7 @@ Al final del prompt, Claude debe reportar:
 - Las 3 cosas más importantes que aprendió sobre the reference brand
 - Confirmación de las 10 reglas memorizadas
 
-**El manager revisa este output.** Si las 44 tools funcionan y Claude ha leído el contexto, el setup está completo.
+**El manager revisa este output.** El setup termina cuando las herramientas autorizadas funcionan, el scope negativo también se ha probado y las fuentes leídas quedan registradas.
 
 ---
 
@@ -105,7 +105,7 @@ En los primeros 5 días laborables, el nuevo empleado debe completar al menos UN
 
 | Departamento | Tarea ejemplo |
 |-------------|---------------|
-| **Retail** | "Pídele a Claude las ventas de ayer en Store B vs Store A" |
+| **Retail** | "Compara las ventas de ayer en Store A vs Store B" |
 | **Finance** | "Pregunta quién está de vacaciones esta semana" |
 | **Marketing/Brand** | "Busca en el brain las brand guidelines y genera 3 opciones de copy para un post" |
 | **Producto** | "Consulta el stock actual del producto X en the POS/inventory system" |

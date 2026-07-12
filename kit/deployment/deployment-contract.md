@@ -35,7 +35,7 @@
 ### Day 30
 - serious first deployment
 - more than one useful workflow in production
-- documented confidence thresholds
+- documented capability authority, rollback and promotion evidence
 - team-level understanding of what stays human
 
 ## What Is Not Included by Default
@@ -43,7 +43,7 @@
 - custom engineering for your exact stack
 - vendor support coordination
 - infrastructure provisioning done for you
-- guaranteed autonomy rates
+- guaranteed autonomy or ROI rates
 - ongoing managed optimization
 
 ## Support Boundary

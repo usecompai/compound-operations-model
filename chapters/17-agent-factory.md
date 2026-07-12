@@ -75,7 +75,7 @@ Shipped in repo v2.6 under `repo/init/agent-factory-templates/cs/`:
 | 9 | **drafter** | Compose the customer-facing reply given policies + brand voice + refund (if any) + sentiment guidance | 800 |
 | 10 | **follow-up-scheduler** | Determine when to follow up if no customer response (default: 48h, 7d, 14d), schedule via cron | 150 |
 
-**Total per ticket:** ~3,250 tokens input, ~700 output. At Haiku 4.5 batch pricing ($0.50/M input, $2.50/M output): **~€0.002 per ticket**. For a brand processing 500 tickets/week: **€4/month**.
+**Illustrative workload:** ~3,250 input tokens and ~700 output tokens per ticket before caching. Price it from actual provider receipts in your environment; public model prices and identifiers change too quickly to treat a dated list price as an operating guarantee.
 
 Against the old monolithic CS agent (one big SOUL, one big LLM call per ticket, ~€0.015 per ticket): factories are **~7× cheaper per ticket** because each sub-agent uses a smaller prompt and shorter output schema. Quality also improves because each sub-agent's context window is focused.
 
@@ -160,4 +160,4 @@ This doubles the agent density per human without doubling the repo price. The co
 
 ---
 
-→ Back to [Ch.16 Agentic Governance](16-agentic-governance.md) · Forward to [Ch.18 Sharing The Load](18-sharing-the-load.md) *(coming in v2.7)*
+→ Back to [Ch.16 Agentic Governance](16-agentic-governance.md) · Forward to [Ch.19 Factory Runtime](19-factory-runtime.md)

@@ -86,9 +86,9 @@ Options (choose one):
 - Logs available for supervisory authority review upon request
 
 ### Human Oversight
-- Confidence scoring active (graduated autonomy)
-- Escalation chain documented
-- Quarterly review of autonomy rates and threshold calibration
+- Capability authority, intervention and rollback paths documented
+- Confidence, where reported, never grants permission
+- Quarterly review of closure, corrections, violations and escalation quality
 ```
 
 ---
@@ -116,13 +116,13 @@ finance, marketing, retail, merchandising, and HR domains.
 ## 4. Risk Assessment
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
-| Incorrect automated CS response | Medium | Low (human reviews before send) | Confidence scoring + human review |
+| Incorrect automated CS response | Medium | Low (human reviews before send) | Scoped authority + human review + rollback |
 | Employee data leak via agent | Low | High | Access controls + salary data CEO-only |
 | Biased HR decision | N/A | N/A | HR agent prohibited from decisions (only admin) |
 | Customer data used for unintended purpose | Low | Medium | Purpose limitation in agent SOUL.md |
 
 ## 5. Mitigation Measures
-- Graduated autonomy (confidence scoring)
+- Capability-specific authority with no confidence bypass
 - Human-in-the-loop for all high-impact actions
 - Audit logging (JSONL format, 90-day retention)
 - EU data residency (Hetzner Germany or equivalent)

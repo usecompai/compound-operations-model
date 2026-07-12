@@ -20,7 +20,7 @@ The architecture that works is **specialized agents with a shared brain.**
         ┌───────────┬───────────┼───────────┬───────────────┐
         │           │           │           │               │
    ┌────▼────┐ ┌────▼────┐ ┌────▼────┐ ┌────▼────┐ ┌───────▼───────┐
-   │🦋CS Agent│ │📊Finance Agent│ │🏪 Retail Agent  │ │💻Donatel│ │🏖️ Merchandising Agent      │
+   │ CS Agent │ │ Finance Agent │ │ Retail Agent │ │Marketing│ │ Merchandising Agent       │
    │   CS    │ │ Finance │ │ Retail  │ │Digital  │ │Merchandising  │
    │         │ │         │ │         │ │Marketing│ │& Wholesale    │
    └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └───────┬───────┘
@@ -28,9 +28,9 @@ The architecture that works is **specialized agents with a shared brain.**
         └───────────┴───────────┴───────────┴───────────────┘
                          Mac Mini (secondary host)
                     ┌─────────────────────────────┐
-                    │     SHARED BRAIN (3,007 files)   │
+                    │     SHARED BRAIN (4,819 files)   │
                     │   rsync ↔ every 30 minutes    │
-                    │   + MCP Server (95 tools)     │
+                    │   + MCP Server (97 tools)     │
                     └─────────────────────────────┘
 ```
 
@@ -58,7 +58,7 @@ Example flow:
 6. Hub routes back to **CS Agent** with full context
 7. CS Agent drafts customer response with accurate tracking info and ETA
 
-All of this happens in seconds. No human needed unless confidence is low.
+This can happen in seconds. Whether a human is required depends on the action's authority class, not just the model's confidence. A grounded stock lookup can run automatically; a refund, payment, legal commitment, or customer-facing exception remains bounded by policy and approval.
 
 ### 3. Shared Knowledge, Separate Personalities
 
@@ -73,24 +73,19 @@ But each agent has its own:
 - **Tools** — only the integrations it needs
 - **Decision thresholds** — when to act autonomously vs. escalate to human
 
-### 4. Human-in-the-Loop by Default
+### 4. Authority Is Capability-Specific
 
-This is critical. The system is designed with **graduated autonomy:**
+There is no honest company-wide "autonomy percentage." Autonomy is granted per capability after the evidence exists to support it:
 
-| Confidence Level | Action |
-|-----------------|--------|
-| > 95% | Agent acts autonomously |
-| 80-95% | Agent acts but flags for async human review |
-| 60-80% | Agent drafts response, human must approve |
-| < 60% | Agent escalates to human with full context |
+| Capability class | Default authority | Promotion evidence |
+|------------------|-------------------|--------------------|
+| Read and retrieve | Execute | Source access, citations, freshness checks |
+| Analyse and recommend | Execute with receipt | Reproducible inputs and validation rules |
+| Draft internal or external work | Propose | Human review until a sampled quality gate passes |
+| Change operational systems | Human-gated | Explicit scope, rollback, idempotency, audit receipt |
+| Money, legal, HR, destructive actions | Human approval | Named approver; no confidence-only bypass |
 
-Over time, as the system learns and you trust it more, you adjust these thresholds upward. In a typical deployment:
-- Month 1: 40% autonomous
-- Month 3: 65% autonomous
-- Month 6: 82% autonomous
-- Month 12: 91% autonomous (current)
-
-The remaining 9% are genuinely complex cases that benefit from human judgment — legal issues, VIP customers, PR-sensitive situations.
+The current reference deployment is strong at capture, retrieval, analysis, and on-demand tool execution. Broad unattended execution is deliberately a controlled pilot. The next promotion gate is ten reviewed closure-first runs with at least 80% verified completion and no authority violations.
 
 ### 5. Everything is Logged and Auditable
 
@@ -110,8 +105,8 @@ At the core, the reference system runs on **OpenClaw** — an open-source AI age
 | Component | What We Use | Why |
 |-----------|------------|-----|
 | **Agent Runtime** | OpenClaw | Open source, local-first, 50+ integrations, active community |
-| **Primary LLM** | Mixed: GPT-5.4 via ChatGPT OAuth (hub + 4 domain agents), Claude Sonnet 4 (CS + HR) | Best model per role with zero-incremental-cost routing where existing team subscriptions already exist |
-| **Secondary LLMs** | GPT-5.4 / Codex / Gemini Flash | Cost-effective for simpler tasks, coding agents |
+| **Primary LLM** | Frontier model selected by role | Models change faster than the architecture; route by task quality, latency, privacy, and cost |
+| **Secondary LLMs** | Provider fallbacks + coding and research runtimes | Resilience and specialization without coupling the brain to one vendor |
 | **Hosting** | Dedicated server (Hetzner) | €40/mo, full control, EU data residency |
 | **Agent-to-Agent** | ACP (Agent Communication Protocol) | Native cross-agent coordination |
 | **Messaging** | WhatsApp, Slack, Email | Meet teams where they already work |
@@ -119,15 +114,15 @@ At the core, the reference system runs on **OpenClaw** — an open-source AI age
 | **Monitoring** | Built-in heartbeats + cron jobs | Self-healing, auto-restart |
 | **ERP / Accounting** | the accounting system | Invoicing, payment reconciliation, ledger |
 | **Expense Management** | the expense platform | Corporate cards, expense tracking, bank statements |
-| **Knowledge Base** | Notion + Brain Context Tree | 3,007 docs organized by domain, auto-indexed |
+| **Knowledge Base** | Notion + Brain Context Tree | 4,819 docs organized by domain, auto-indexed |
 | **Social Listening** | Agent-Reach + bird CLI | Twitter/X monitoring, multi-platform scanning |
 | **Semantic Search** | Exa | Better than Google for competitive research |
 | **Image Generation** | Krea AI | Product shots, creative assets |
-| **Power-User Layer** | Claude Code + MCP | Founder's direct interface — 95 tools, slash commands, subagents |
+| **Power-User Layer** | Claude Code + MCP | Founder's direct interface — 97 tools, slash commands, subagents |
 
 **Total system cost:** €631/month all-in (infrastructure + LLM access + subscriptions). See Ch.12 for the complete cost breakdown.
 
-Compare this to roughly €6,500/month in equivalent saved labor hours (62 hours/week × €21/h loaded operational labor, plus founder opportunity cost). That is a verifiable 10:1 ratio, calculated in Ch.12 with every assumption on the table.
+The current two-layer ROI model produces a 16.2:1 ratio under the documented assumptions. Chapter 12 separates hard savings from strategic capacity so readers can replace every input with their own numbers.
 
 ## What You Need to Get Started
 
@@ -138,28 +133,26 @@ Compare this to roughly €6,500/month in equivalent saved labor hours (62 hours
 - One channel connection (Slack, WhatsApp, email, helpdesk, or team chat)
 - 2-4 hours for initial setup
 
-**Full deployment (8 agents):**
+**Full reference deployment (7 agent runtimes + founder command center):**
 - VPS (€15/month) + Mac Mini as secondary compute (~€22/month amortized)
-- ChatGPT OAuth seats for hub + non-customer agents, plus Anthropic API for CS/HR and fallbacks
+- Approved provider routes for each task class, plus an independently tested second-provider fallback
 - All channel connections configured
 - Integrations with your existing tools (Shopify, Klaviyo, etc.)
 - 2-4 weeks for full implementation and tuning
 - A second compute node (Mac Mini, NUC, VPS, or equivalent) for agent isolation
 
-> **A note on agent roles:** The production deployment documented in this playbook runs eight agents across eight domains: CS, Finance, Retail, Digital Marketing, Merchandising & Wholesale, and a central hub for strategy and orchestration. In practice, you'll adapt these to your org chart. Wholesale was absorbed into Merchandising because the same operational patterns apply (account management, order flow, pricing). Finance is now a standalone domain. The architecture is modular by design — start with the domains that hurt most, split or merge as you scale.
+> **A note on agent roles:** The current reference deployment has seven production agent runtimes plus a founder-facing command center. Roles cover strategy/orchestration and the operating domains that warrant dedicated context. Your count should follow accountability boundaries, not a marketing target: start with the domains that hurt most, then split or merge as the evidence demands.
 
-### 6. Confidence Scoring (New)
+### 6. Confidence Is Evidence, Not Authority
 
-Every agent includes a standardized confidence framework that drives graduated autonomy:
+Agents may report confidence, but confidence never grants permission by itself. The execution policy combines four independent checks:
 
-| Confidence | Action | Example |
-|-----------|--------|---------|
-| > 95% | Act autonomously | Standard tracking query, stock check |
-| 80-95% | Act + flag `[REVIEW]` | Return within policy, payment reminder |
-| 60-80% | Draft for human approval | Complaint response, discount request |
-| < 60% | Escalate with full context | Legal issue, VIP escalation |
+1. **Identity:** which human or machine is calling.
+2. **Scope:** which data and tools that identity may reach.
+3. **Capability:** read, propose, execute, or administer.
+4. **Risk:** reversible vs. irreversible, and internal vs. external impact.
 
-Agents self-report confidence with every action: `[Confidence: 92%] Responding to tracking query`. This creates an auditable record and enables systematic threshold adjustment over time.
+A high-confidence answer can still require approval. A deterministic, low-risk lookup can execute even when the model is not the decision-maker at all.
 
 ### 7. Audit Logging
 
@@ -169,7 +162,7 @@ Every agent action is logged to a structured JSONL audit trail:
 {"timestamp":"2026-03-28T21:21:14+00:00","agent":"cs_agent","action":"cs_ticket_response","confidence":"94%","data":"order_tracking","human_review":false}
 ```
 
-Monthly rotation. GDPR-compliant. The audit log is the foundation for measuring autonomy rates and detecting quality regressions.
+Logs are retained and rotated under the deployment's data policy. The action ledger is the foundation for replay, quality sampling, incident review, and capability-specific promotion decisions; logging alone does not establish GDPR compliance.
 
 The next eight chapters walk through each agent in detail — what it does, how it's configured, and the specific results it delivers.
 

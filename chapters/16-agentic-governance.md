@@ -23,8 +23,8 @@ Compai repo v2.5 ships exactly these three.
 **How it works:**
 
 1. Every domain agent (CS, Finance, Marketing, etc.) emits a proposed action to its review queue.
-2. If the action carries a `confidence < 0.85` flag OR the monetary/reputational impact exceeds a configured threshold (default: €500 spend, customer-facing send, legal statement), the critic-agent is invoked.
-3. The critic runs **adversarial cross-model deliberation** (Punta de Flecha protocol: Opus + GPT-5 + Gemini 2.5 vote blind) and emits one of three verdicts:
+2. If the action is customer-facing, financial, legal, HR, irreversible, source-conflicted, or otherwise above its configured risk threshold, the critic-agent is invoked. Low confidence can add review priority but never grants or removes authority.
+3. The critic runs **adversarial cross-model deliberation** across independently configured provider paths and emits one of three verdicts:
    - `approve` — consensus, proceed
    - `revise` — one or more models dissent, specific revision proposed
    - `escalate` — multi-model dissent or policy concern; human T-shaped specialist invoked
@@ -112,10 +112,10 @@ The three meta-agents shift that sweet spot rightward by doing most of the overs
 
 Before repo v2.5: founder reviews every flagged agent output manually, occasionally misses things, and compliance is a quarterly fire drill.
 
-After repo v2.5:
-- The critic catches 80%+ of drift automatically; founder reviews ~5/day instead of ~50
-- The guardrail blocks 100% of policy violations at write-time; founder reviews ~0 (only sees the audit log)
-- The compliance agent queues 1-2 DPIA amendments per month; founder signs or rejects in 10 minutes
+The target operating state is measurable rather than assumed:
+- the critic samples high-impact work and records disagreements;
+- deterministic guardrails block declared policy violations before execution;
+- compliance monitoring prepares amendments for a named human to accept or reject.
 
 The human oversight ratio shifts from "founder as bottleneck" to "founder as final authority." This is the operational definition of McKinsey's *"humans above the loop."*
 
@@ -128,7 +128,7 @@ The human oversight ratio shifts from "founder as bottleneck" to "founder as fin
 | Compliance | €2-5/month (weekly batch) |
 | **Total add-on** | **€7-40/month** |
 
-Added to the base €631/month for the seven domain agents, a fully-governed swarm costs **€360-395/month** all-in. Still well inside the 10:1 ROI band.
+The current EUR631/month reference cost already includes the operating stack described in Chapter 12. Additional governance model usage is estimated at EUR7-40/month when it is not already covered; add that to your own baseline rather than substituting a lower total. The reference ROI model is 16.2:1 before any incremental governance add-on.
 
 ## Limitations shipped in v2.5
 

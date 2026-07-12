@@ -1,14 +1,16 @@
-# Chapter 11d: EU AI Act Compliance — What You Actually Need to Do
+# Chapter 11d: EU AI Act Readiness — What You Need to Verify
 
 ## Why This Chapter Exists
 
-The EU AI Act (Regulation 2024/1689) becomes fully enforceable on **August 2, 2026**. If you're deploying AI agents in Europe — or serving European customers — this applies to you. Non-compliance penalties: up to 7% of global annual revenue or €35M, whichever is higher.
+The EU AI Act (Regulation 2024/1689) entered into force on 1 August 2024 and applies in phases. Prohibited-practice and AI-literacy provisions have applied since 2 February 2025; governance and general-purpose-model obligations since 2 August 2025; many general provisions and Article 50 transparency duties apply from 2 August 2026. Some high-risk timelines are different and the 2026 simplification package changes parts of the implementation calendar.
 
-Most AI vendors either ignore this or drown you in legal jargon. This chapter tells you exactly what you need to do, agent by agent, in plain language.
+**Status checked: 12 July 2026.** Verify the current timeline and your role against the European Commission's [AI Act overview](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) and [official navigation FAQ](https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act), then have qualified counsel classify the actual deployment. This chapter is an operating-readiness guide, not a legal opinion or certification.
+
+This chapter gives operators a practical evidence and governance baseline. The precise legal obligations depend on whether you are a provider or deployer, the intended purpose, the affected people, the risk classification and the specific provision.
 
 ## The Risk Classification That Actually Matters
 
-The AI Act uses a risk-based approach. Most of your agents will fall into **minimal risk** (no specific obligations) or **limited risk** (transparency only). The only category that triggers serious compliance work is **high-risk** — and most operational agents don't qualify.
+The AI Act uses a risk-based approach. Many internal operational capabilities may sit outside the high-risk categories, but an agent name does not determine classification. Intended purpose and actual use do. The table below is a starting hypothesis for legal review, not an automatic classification.
 
 ### How to Classify Your Agents
 
@@ -54,25 +56,25 @@ If asked to perform any of the above, respond:
 employment-related decisions. Please handle this through your HR team."
 ```
 
-## What Every Deployment Needs (Regardless of Risk Category)
+## Practical Baseline For Every Deployment
 
 ### 1. Transparency for Customer-Facing Agents (Article 50)
 
-If any agent drafts responses that reach end customers, those customers must know AI was involved. This applies to:
+Article 50 includes transparency duties when people interact directly with an AI system and for specified generated or manipulated content. A human using AI to prepare a draft is not automatically the same as a person interacting directly with the system; assess the actual workflow and final guidance. Typical in-scope surfaces can include:
 
-- CS agents drafting email responses
+- customer-facing AI chat or messaging interactions
 - Chatbots on your website
 - AI-generated marketing communications (if personalized)
 
-**The simplest fix:** add a footer to every AI-drafted customer response:
+When disclosure is required, use clear language at the interaction point. A conservative example is:
 
-> *"This response was drafted with AI assistance and reviewed by our team."*
+> *"You are interacting with an AI-assisted service. A team member can review or take over."*
 
-Or include it in your email signature template. Either way, the customer must be informed.
+Do not copy that sentence blindly: verify whether the workflow is direct AI interaction, human-reviewed assistance, or generated-content disclosure, and implement the applicable requirement.
 
-### 2. Record-Keeping (Article 12)
+### 2. Record-Keeping And Operational Evidence
 
-Log every agent action with:
+Article 12 record-keeping duties are tied to high-risk systems and particular regulated roles. Even where the exact statutory duty does not apply, log consequential actions as an operational control:
 - Timestamp
 - Which agent acted
 - What action was taken
@@ -88,16 +90,17 @@ The playbook's JSONL audit logging format already covers this:
 
 ### 3. Human Oversight (Article 14)
 
-The confidence scoring framework from this playbook is exactly what the AI Act envisions:
+Model confidence is not a compliance mechanism and must not grant authority by itself. Oversight starts with the intended purpose and risk classification of each capability:
 
-| Confidence | Action | AI Act Alignment |
-|---|---|---|
-| > 95% | Autonomous | Acceptable for minimal-risk systems |
-| 80-95% | Act + flag for review | "Meaningful human oversight" |
-| 60-80% | Draft for approval | Full human-in-the-loop |
-| < 60% | Escalate | Human takes over |
+| Capability | Default control |
+|---|---|
+| Read and retrieve | Authenticated identity, scoped source access, citations |
+| Analyse and recommend | Logged inputs, validation and a durable receipt |
+| Draft external work | Human review until a named capability is separately approved |
+| Change operational systems | Explicit grant, limits, rollback and monitoring |
+| Money, employment, legal or destructive action | Named human approval; no confidence bypass |
 
-**Keep this framework.** It's your primary compliance mechanism. Document the thresholds and review them quarterly.
+Document who can intervene, what information they receive, how they stop or reverse the action, and how the system behaves when evidence or providers are unavailable. Have qualified counsel validate the final control design for your use case.
 
 ### 4. EU Data Residency
 
@@ -117,7 +120,7 @@ A DPIA template can live in the open-source repo. The key sections:
 2. **Legal basis:** legitimate interest (operational efficiency) or consent
 3. **Necessity and proportionality:** why AI agents vs manual processing
 4. **Risks to data subjects:** what could go wrong (data leak, incorrect automated response, etc.)
-5. **Mitigation measures:** confidence scoring, human review, audit logging, access controls
+5. **Mitigation measures:** scoped identity, capability authority, human review, audit logging, access controls and rollback
 6. **Retention:** how long data is kept, when it's deleted
 
 ## What About the LLM Providers?
@@ -136,32 +139,32 @@ You handle:
 
 **You are a deployer, not a provider.** Your obligations are lighter. But they're not zero.
 
-## The Compliance Checklist
+## Readiness Checklist
 
-Before August 2, 2026:
+Before relying on the system after 2 August 2026, and again whenever its intended purpose changes:
 
 - [ ] Classify each agent by risk category (use the table above)
 - [ ] Add transparency disclaimers to all customer-facing agent outputs
 - [ ] Add explicit "prohibited uses" guardrails to HR agent SOUL.md
 - [ ] Verify audit logging is active on all agents (JSONL format)
-- [ ] Verify confidence scoring is configured on all agents
-- [ ] Verify human oversight is documented (who reviews what, at what threshold)
+- [ ] Verify confidence reporting, where used, is never treated as authority
+- [ ] Verify human oversight is documented by capability (who reviews what, with which stop and rollback path)
 - [ ] Complete a DPIA for personal data processing
 - [ ] Document the "intended purpose" of each agent (SOUL.md serves this role)
 - [ ] Establish incident reporting procedure (who to notify if an agent causes harm)
-- [ ] Quarterly review calendar set: autonomy rates, escalation patterns, risk classification
+- [ ] Quarterly review calendar set: capability authority, closure, corrections, incidents and risk classification
 
 ## What This Means for Sales
 
-**Compliance is a selling point, not a burden.** When you pitch Compai to a European brand, you can say:
+**Evidence is a selling point; unsupported certification language is a liability.** After the customer has completed and validated the relevant work, describe the evidence precisely:
 
-- "Every agent is classified by EU AI Act risk category"
-- "Graduated autonomy with confidence scoring — exactly what Article 14 requires"
-- "Full audit logging from day one"
+- "Each deployed capability has a documented intended purpose and reviewed risk hypothesis"
+- "Capability-specific authority with documented intervention and rollback paths"
+- "Consequential actions produce a durable audit receipt from day one"
 - "HR agent has explicit guardrails against high-risk employment uses"
 - "EU-hosted infrastructure, API-only LLM usage"
 
-No competitor (Lindy, Artisan, 11x, CEO.ai) documents AI Act compliance in their materials. This is a trust differentiator.
+Do not claim "AI Act compliant" from the presence of templates alone. The differentiator is a reviewable evidence package and a control design that qualified advisors can assess.
 
 ---
 
@@ -227,11 +230,11 @@ Complete these before August 2, 2026:
 ### Week 4: Verification
 - [ ] Run security-scan.sh on all agents
 - [ ] Verify all agents survive a reboot test
-- [ ] Review autonomy rates and confidence calibration
+- [ ] Review capability authority, closure, correction and confidence calibration
 - [ ] Schedule quarterly compliance review (first: 1 month before Aug 2, 2026)
 
 ### Ongoing
-- [ ] Quarterly review of autonomy rates, escalation patterns, threshold calibration
+- [ ] Quarterly review of capability grants, closure, corrections, escalations and calibration
 - [ ] Annual DPIA reassessment
 - [ ] Update AI System Register when new agents deployed or capabilities change
 - [ ] Review incident log (any serious incidents → report to supervisory authority)

@@ -14,6 +14,23 @@ This does not mean dumping every message, email, and file into the brain. That i
 
 The reference implementation took months to reach this shape because it had to work around real permissions, real employee communications, real false positives, and real operational noise. A consumer SME starting now should expect 6-8 weeks with one engineer to get the first serious version across chat, meetings, email, and Drive. The technical connectors are only half the work. The hard part is deciding what deserves memory.
 
+## Current evidence snapshot
+
+The rollout numbers later in this chapter document how each pipeline started. This snapshot supersedes them as the current state of the reference deployment on **12 July 2026**:
+
+| Source | Current evidence | Coverage status |
+|---|---:|---|
+| Public chat | 80 readable public channels; 2,506 messages processed and 212 signals captured in the latest 14-day window | Green |
+| Workspace accounts | 59 active users scanned | Green |
+| Meeting notes | 423 unique notes found; 424 capture records after source reconciliation | Green for generated notes |
+| Native meeting transcripts | 0 inventoried | Gap: notes are covered; native transcript completeness is not claimed |
+| Email intelligence | 14 approved manager accounts; latest run produced 19 signals with 0 failures | Green for the approved cohort, not every mailbox |
+| Drive intelligence | 1,572 items inventoried; 772 canonical artifacts; 0 current processing failures | Green |
+| Notion | 488 documents indexed | Green |
+| Granola | 60 notes visible; 6 of 10 expected users had no current visible coverage and one was stale | Red pending account/connector remediation |
+
+Coverage is a matrix, not a binary badge. A connector can be healthy for the accounts and artifact types it is allowed to read while still having a known organizational gap. Publishing both is more useful than calling the whole source "connected."
+
 ## `brain_capture` as the universal contract
 
 The core design choice is to make every source speak one contract. In the reference system, that contract is `brain_capture`.
@@ -54,7 +71,7 @@ The reference system also propagates deterministic entities into folders such as
 
 Chat is where a company thinks out loud. It is also noisy.
 
-The reference Slack pipeline was inspired by a public-by-default working model: agents and people working in public channels where the organization can observe, reuse, and learn. The implementation expanded autocapture from a narrow marketing subset to 76 active public channels, excluding a health-check channel. The Slack app received `channels:join` scope so it could join public channels instead of waiting for manual invites.
+The reference Slack pipeline was inspired by a public-by-default working model: agents and people working in public channels where the organization can observe, reuse, and learn. In its original rollout, autocapture expanded from a narrow marketing subset to 76 active public channels, excluding a health-check channel. The current snapshot above shows 80 readable public channels. The Slack app received `channels:join` scope so it could join public channels instead of waiting for manual invites.
 
 But the important design is not the channel count. It is the filter.
 
@@ -83,7 +100,7 @@ Many real decisions happen in meetings. If meeting output does not enter the Bra
 
 The reference pipeline uses `meeting-sync.py` to ingest Google Meet/Gemini notes company-wide. It uses Google Admin Directory Domain-Wide Delegation to list active users, searches Google Docs titled `Notes by Gemini` or `Notas de Gemini`, deduplicates by file id, exports text, saves raw, calls `brain_capture`, creates a mirror in `knowledge/meetings/`, and propagates deterministic entities.
 
-The initial result was concrete:
+The initial rollout result was concrete; the current, reconciled meeting coverage is shown in the snapshot above:
 
 | Metric | Result |
 |---|---:|
@@ -130,7 +147,7 @@ knowledge/<company>/email-intelligence/sources/
 
 The privacy principle is the important part: the origin account is not enough to make a message relevant. A founder's mailbox contains business and non-business material. The pipeline requires company or business markers and has hard stops for HR-sensitive content, recruiting, candidates, CVs, interviews, payroll, health, maternity/paternity, leaves, family, and personal non-work context.
 
-The reference numbers show both value and risk control:
+The historical rollout numbers show both value and risk control. The current operating cohort is the 14 approved manager accounts in the snapshot above:
 
 | Run | Result |
 |---|---|
@@ -165,7 +182,7 @@ knowledge/<company>/drive-intelligence/review-queue.md
 knowledge/<company>/drive-intelligence/inventory/YYYY-MM-DD.json
 ```
 
-The initial inventory audited 1974 unique files: 172 high priority, 412 medium, 149 low, 1184 archive, 48 existing-pipeline items, 9 restricted, 39 duplicate groups, and 0 account errors.
+The initial inventory audited 1974 unique files: 172 high priority, 412 medium, 149 low, 1184 archive, 48 existing-pipeline items, 9 restricted, 39 duplicate groups, and 0 account errors. After deduplication and canonicalization, the current inventory is 1,572 source items and 772 canonical artifacts.
 
 Phase 1, `drive-digest.py`, creates useful summaries from the inventory. It promotes documents only when they have real utility, avoids overinferring manuals, granular invoices, and low-life-span documents, and includes fallback handling for slides. The initial run processed 20 documents, created 20 artifacts, promoted 16, did not promote 4, and had 0 failures. The team also deleted 10 supplier/order manual digests because they over-inferred from material that did not deserve durable memory.
 
