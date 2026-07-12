@@ -9,7 +9,7 @@ Models, APIs and product names move quickly. The durable system is the contract 
 | Layer | Current evidence |
 |---|---|
 | Runtime topology | Seven production agent runtimes plus a founder command center |
-| Brain | 4,819 QMD documents; 361 embeddings pending at audit time |
+| Brain | 4,842 QMD documents; current embedding backlog cleared after audit remediation |
 | Skills | 373 available; 47 canonical; 45 evaluated |
 | Tools | 97 authenticated MCP tools |
 | Identity | Authentication in `enforce`; 75 human and machine keys loaded |
@@ -68,7 +68,7 @@ The Brain is plain, versioned operating memory with four storage roles:
 
 Do not put large datasets, videos, credentials or opaque binaries into the markdown tree. Rows belong in the structured-data sidecar. Large artifacts belong in object or file storage. Secrets belong in a secret manager or mode-600 environment file.
 
-Queue depth is a first-class metric. At the July audit, 361 embeddings were pending: search still worked, but the backlog remained visible rather than being hidden behind the 4,819-document headline.
+Queue depth is a first-class metric. The July audit found 361 embeddings pending: search still worked, but the backlog was visible rather than hidden behind the document headline. The release closeout re-indexed the collections and embedded every currently pending hash; the post-remediation backlog is zero.
 
 ## MCP And Source Systems
 
@@ -138,7 +138,7 @@ Annual cost is EUR7,572. The Chapter 12 model estimates EUR122,944/year of recla
 - fine-grained Brain Spaces enforcement is staged, not universal;
 - the native meeting transcript inventory is zero even though generated notes are covered;
 - Granola source coverage is incomplete;
-- 361 embeddings were pending at the dated audit;
+- the audit's embedding backlog was cleared during release remediation, but queue depth still requires monitoring;
 - two canonical skills had not yet received a recorded evaluation.
 
 These gaps do not erase the deployed system. Publishing them makes the strengths credible and gives the next release a measurable acceptance test.

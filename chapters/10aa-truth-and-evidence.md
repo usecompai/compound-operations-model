@@ -36,7 +36,7 @@ This matters most for permissions and autonomy. A Brain Spaces template can be p
 
 The reference deployment snapshot used for Compai v5.0 was verified on **12 July 2026**:
 
-- 4,819 documents indexed for retrieval;
+- 4,842 documents indexed for retrieval;
 - 373 skills available across canonical, installed and vendor/community layers;
 - 47 company-authored canonical skills;
 - 97 MCP tools;

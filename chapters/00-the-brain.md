@@ -22,7 +22,7 @@ It has three layers and one rule.
 
 ### Layer 1 — Documents (the knowledge)
 
-**4,819 markdown documents** at the time of writing. Every one of them is the answer to a question someone might ask. Where do we file invoices? What's our refund policy for international orders? How do we onboard a new employee in retail? What patterns have we seen in returns over the last six months?
+**4,842 markdown documents** at the time of writing. Every one of them is the answer to a question someone might ask. Where do we file invoices? What's our refund policy for international orders? How do we onboard a new employee in retail? What patterns have we seen in returns over the last six months?
 
 These came from everywhere:
 - 18 months of email

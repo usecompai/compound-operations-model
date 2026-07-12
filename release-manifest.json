@@ -1,14 +1,22 @@
 {
   "$schema": "kit/templates/configs/public-truth-manifest.schema.json",
   "version": "5.0",
-  "verified_at": "2026-07-12T10:00:00Z",
+  "verified_at": "2026-07-12T11:00:00Z",
   "claims": {
     "brain_documents": {
-      "value": 4819,
+      "value": 4842,
       "state": "deployed",
       "source_class": "filesystem_inventory",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "verified_at": "2026-07-12T11:00:00Z",
       "fresh_for": "7d",
+      "public_safe": true
+    },
+    "embedding_backlog": {
+      "value": 0,
+      "state": "deployed",
+      "source_class": "qmd_embedding_closeout",
+      "verified_at": "2026-07-12T11:00:00Z",
+      "fresh_for": "24h",
       "public_safe": true
     },
     "available_skills": {

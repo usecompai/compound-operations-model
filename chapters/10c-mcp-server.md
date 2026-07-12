@@ -62,7 +62,7 @@ The MCP server exposes 97 tools organized by domain:
 ### Knowledge & Memory
 | Tool | What It Does |
 |------|-------------|
-| `brain_search` | Semantic search across 4,819+ knowledge docs |
+| `brain_search` | Semantic search across 4,842+ knowledge docs |
 | `brain_read` | Read a specific knowledge document |
 | `brain_write` | Create or update knowledge docs |
 | `brain_list` | Browse the knowledge tree |
@@ -272,7 +272,7 @@ This is the "operator cockpit" — one interface for the entire business.
 On top of the 97 tools, the MCP server runs **QMD (Quoted Markdown) v2.0.1** — a lightweight semantic index over the brain:
 
 - **Hourly cron** rebuilds the vector store from the latest brain state
-- **4,819 files indexed** across all knowledge domains
+- **4,842 files indexed** across all knowledge domains
 - **128+ embedded vectors** covering the highest-traffic lookups
 - **4-tier retrieval** (cache → full-text → LLM search → recursive LLM) matches ByteRover's retrieval quality
 

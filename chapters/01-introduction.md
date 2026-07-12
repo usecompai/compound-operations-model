@@ -45,7 +45,7 @@ We tried something different.
 We started with a 30-day deployment and expanded it over more than a year. The current topology is seven production agent runtimes plus a founder command center, connected to real systems through 97 authenticated MCP tools.
 
 **Current public snapshot, 12 July 2026:**
-- 4,819 Brain documents and 361 embeddings pending
+- 4,842 Brain documents with the embedding backlog cleared at release close
 - 373 available skills; 47 company-authored canonical; 45 evaluated
 - 97 MCP tools with authentication in `enforce`
 - 15 connector smoke tests green and 42,000+ action receipts

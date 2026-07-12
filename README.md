@@ -19,7 +19,8 @@ This release brings the public portfolio back into parity with the current refer
 
 | Surface | Verified public snapshot |
 |---|---:|
-| Brain documents | 4,819 |
+| Brain documents | 4,842 |
+| Current embedding backlog | 0 pending after release closeout |
 | Skills available to the swarm | 373 |
 | Company-authored canonical skills | 47 |
 | Public, anonymized skills in this repo | 31 |

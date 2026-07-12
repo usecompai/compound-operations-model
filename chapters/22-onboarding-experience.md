@@ -143,7 +143,7 @@ The employee runs the curl, pastes the key, opens Claude Desktop, applies the cu
 | Paso 6 (personal profile creation) | `02-step-6-personal-profile.md` with step-by-step |
 | Weekly check-in ritual | `03-weekly-check-in.md` Friday 15-min template |
 
-The only thing the reference deployment has that the repo doesn't automatically give you: **12 months of accumulated brain content** (4,819 docs, 373 skills, 21 Pattern Library entries). That's the non-transferable part — every brand accumulates its own over time.
+The only thing the reference deployment has that the repo doesn't automatically give you: **12 months of accumulated brain content** (4,842 docs, 373 skills, 21 Pattern Library entries). That's the non-transferable part — every brand accumulates its own over time.
 
 ## Pack updates
 
