@@ -25,24 +25,24 @@ Disponible para **todos** los agentes via MCP. Token OAuth con auto-refresh (no 
 
 ### 1. Top-line metrics del mes
 ```
-pinterest_ads_query("ad_accounts/549759188046/analytics",
+pinterest_ads_query("ad_accounts/<AD_ACCOUNT_ID>/analytics",
     params="start_date=2026-04-01&end_date=2026-04-30&columns=SPEND_IN_DOLLAR,IMPRESSION_1,CLICKTHROUGH_1,CTR&granularity=TOTAL")
 ```
 
 ### 2. Performance diaria
 ```
-pinterest_ads_query("ad_accounts/549759188046/analytics",
+pinterest_ads_query("ad_accounts/<AD_ACCOUNT_ID>/analytics",
     params="start_date=2026-04-01&end_date=2026-04-15&columns=SPEND_IN_DOLLAR,CLICKTHROUGH_1,CTR&granularity=DAY")
 ```
 
 ### 3. Por campaña
 ```
-pinterest_ads_query("ad_accounts/549759188046/campaigns", params="page_size=25")
+pinterest_ads_query("ad_accounts/<AD_ACCOUNT_ID>/campaigns", params="page_size=25")
 ```
 
 Luego:
 ```
-pinterest_ads_query("ad_accounts/549759188046/analytics",
+pinterest_ads_query("ad_accounts/<AD_ACCOUNT_ID>/analytics",
     params="start_date=2026-04-01&end_date=2026-04-15&columns=CAMPAIGN_NAME,SPEND_IN_DOLLAR,CTR,CLICKTHROUGH_1&granularity=TOTAL&campaign_ids={ids}")
 ```
 
@@ -60,7 +60,7 @@ pinterest_ads_query("ad_accounts")
 
 ## Configuración técnica
 
-- **Ad Account ID:** `549759188046` (the company, EUR, Europe/Madrid)
+- **Ad Account ID:** set `<AD_ACCOUNT_ID>` from your own account configuration.
 - **Pinterest username:** @your-brand
 - **Scopes activos:** `ads:read boards:read catalogs:read pins:read user_accounts:read`
 - **API base:** `https://api.pinterest.com/v5/`

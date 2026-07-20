@@ -22,7 +22,7 @@ It has three layers and one rule.
 
 ### Layer 1 — Documents (the knowledge)
 
-**4,842 markdown documents** at the time of writing. Every one of them is the answer to a question someone might ask. Where do we file invoices? What's our refund policy for international orders? How do we onboard a new employee in retail? What patterns have we seen in returns over the last six months?
+**5,235 indexed documents** at the 20 July 2026 release boundary. Every one should answer a question someone might ask. Where do we file invoices? What's our refund policy for international orders? How do we onboard a new employee in retail? What patterns have we seen in returns over the last six months?
 
 These came from everywhere:
 - 18 months of email
@@ -37,7 +37,7 @@ Each document is markdown, versioned, tagged, and indexed. Each has a path that 
 
 ### Layer 2 — Skills (the procedures)
 
-**373 available skills**. Each one is a procedure the brain can run. Not advice — execution.
+**374 available skills**, of which 48 are company-governed canonical procedures. Each skill packages a repeatable way of working; availability alone does not grant execution authority.
 
 A skill looks like this internally: a name, a trigger, a set of parameters, a step-by-step procedure, and a contract. Examples:
 
@@ -50,7 +50,7 @@ Skills can be called from any agent. Skills can be called by any human with a Cl
 
 ### Layer 3 — Tools (the systems)
 
-**97 authenticated tools** exposed via MCP (Model Context Protocol). The tool inventory spans the operating systems the Brain can read or act through:
+**98 authenticated tools** exposed via MCP (Model Context Protocol). The tool inventory spans the operating systems the Brain can read or act through:
 
 - Shopify (catalog, orders, customers, inventory)
 - The accounting stack (invoices, expenses, AR, P&L)
@@ -127,7 +127,7 @@ Two weeks before this chapter was written, Y Combinator's Tom Blomfield publishe
 > 
 > *I think every company in the world is going to need one.*
 
-We agree. We've been running ours for six months. The rest of this playbook is what we learned building it, what runs on top of it, and what we'd do differently.
+We agree. The reference deployment has operated and evolved for more than a year. The rest of this playbook is what we learned building it, what runs on top of it, and what we'd do differently.
 
 ---
 

@@ -1,117 +1,133 @@
 {
   "$schema": "kit/templates/configs/public-truth-manifest.schema.json",
-  "version": "5.0",
-  "verified_at": "2026-07-12T11:00:00Z",
+  "version": "5.1",
+  "verified_at": "2026-07-20T09:15:26Z",
   "claims": {
     "brain_documents": {
-      "value": 4842,
+      "value": 5235,
       "state": "deployed",
-      "source_class": "filesystem_inventory",
-      "verified_at": "2026-07-12T11:00:00Z",
+      "source_class": "qmd_runtime_inventory",
+      "verified_at": "2026-07-20T09:14:13Z",
+      "fresh_for": "7d",
+      "public_safe": true
+    },
+    "embedding_vectors": {
+      "value": 24469,
+      "state": "deployed",
+      "source_class": "qmd_runtime_inventory",
+      "verified_at": "2026-07-20T09:14:13Z",
       "fresh_for": "7d",
       "public_safe": true
     },
     "embedding_backlog": {
-      "value": 0,
+      "value": 112,
       "state": "deployed",
-      "source_class": "qmd_embedding_closeout",
-      "verified_at": "2026-07-12T11:00:00Z",
+      "source_class": "qmd_runtime_inventory",
+      "verified_at": "2026-07-20T09:14:13Z",
       "fresh_for": "24h",
       "public_safe": true
     },
     "available_skills": {
-      "value": 373,
+      "value": 374,
       "state": "deployed",
-      "source_class": "runtime_skill_inventory",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "source_class": "live_runtime_skill_inventory",
+      "verified_at": "2026-07-20T09:14:13Z",
       "fresh_for": "7d",
       "public_safe": true
     },
     "canonical_skills": {
-      "value": 47,
+      "value": 48,
       "state": "deployed",
-      "source_class": "canonical_skill_registry",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "source_class": "recursive_canonical_skill_inventory",
+      "verified_at": "2026-07-20T09:14:13Z",
       "fresh_for": "7d",
       "public_safe": true
     },
     "evaluated_canonical_skills": {
-      "value": 45,
+      "value": 46,
       "state": "deployed",
       "source_class": "skill_evaluation_registry",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "verified_at": "2026-07-20T09:14:13Z",
       "fresh_for": "30d",
       "public_safe": true
     },
     "mcp_tools": {
-      "value": 97,
+      "value": 98,
       "state": "deployed",
-      "source_class": "authenticated_tool_inventory",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "source_class": "authenticated_protocol_smoke",
+      "verified_at": "2026-07-20T09:14:30Z",
       "fresh_for": "7d",
       "public_safe": true
     },
     "production_agent_runtimes": {
       "value": 7,
       "state": "deployed",
-      "source_class": "runtime_inventory",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "source_class": "runtime_and_channel_audit",
+      "verified_at": "2026-07-20T09:14:30Z",
       "fresh_for": "7d",
       "public_safe": true
     },
+    "agent_channels_green": {
+      "value": "6/7",
+      "state": "pilot",
+      "source_class": "runtime_and_channel_audit",
+      "verified_at": "2026-07-20T09:14:30Z",
+      "fresh_for": "24h",
+      "public_safe": true
+    },
     "connector_smoke_tests_green": {
-      "value": 15,
+      "value": 14,
       "state": "deployed",
-      "source_class": "connector_smoke_report",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "source_class": "read_only_connector_smoke_report",
+      "verified_at": "2026-07-20T09:15:26Z",
+      "fresh_for": "7d",
+      "public_safe": true
+    },
+    "google_workspace_mail_check": {
+      "value": "green",
+      "state": "deployed",
+      "source_class": "independent_dwd_read_probe",
+      "verified_at": "2026-07-20T09:14:14Z",
       "fresh_for": "7d",
       "public_safe": true
     },
     "action_receipts": {
-      "value": "42000+",
+      "value": 46221,
       "state": "deployed",
       "source_class": "action_ledger_inventory",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "verified_at": "2026-07-20T09:14:13Z",
       "fresh_for": "7d",
       "public_safe": true
     },
     "mcp_authentication": {
       "value": "enforce",
       "state": "deployed",
-      "source_class": "live_auth_probe",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "source_class": "live_authenticated_protocol_probe",
+      "verified_at": "2026-07-20T09:14:30Z",
       "fresh_for": "24h",
       "public_safe": true
     },
-    "brain_maturity_score": {
-      "value": 6.8,
+    "brain_path_confinement": {
+      "value": "enforced",
       "state": "deployed",
-      "source_class": "dated_due_diligence",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "source_class": "path_traversal_canary",
+      "verified_at": "2026-07-20T08:58:32Z",
+      "fresh_for": "30d",
+      "public_safe": true
+    },
+    "brain_maturity_score": {
+      "value": 6.6,
+      "state": "deployed",
+      "source_class": "dated_deep_due_diligence",
+      "verified_at": "2026-07-20T08:58:32Z",
       "fresh_for": "30d",
       "public_safe": true
     },
     "broad_autonomous_execution": {
-      "value": "controlled_closure_first_pilot",
+      "value": "low_with_bounded_closure_first_pilot",
       "state": "pilot",
-      "source_class": "dated_due_diligence",
-      "verified_at": "2026-07-12T10:00:00Z",
-      "fresh_for": "14d",
-      "public_safe": true
-    },
-    "native_meeting_transcript_inventory": {
-      "value": 0,
-      "state": "pilot",
-      "source_class": "source_coverage_audit",
-      "verified_at": "2026-07-12T10:00:00Z",
-      "fresh_for": "14d",
-      "public_safe": true
-    },
-    "granola_coverage": {
-      "value": "incomplete",
-      "state": "pilot",
-      "source_class": "source_coverage_audit",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "source_class": "dated_deep_due_diligence",
+      "verified_at": "2026-07-20T08:58:32Z",
       "fresh_for": "14d",
       "public_safe": true
     },
@@ -119,8 +135,24 @@
       "value": "staged_domain_rollout",
       "state": "pilot",
       "source_class": "architecture_control_audit",
-      "verified_at": "2026-07-12T10:00:00Z",
+      "verified_at": "2026-07-20T08:58:32Z",
       "fresh_for": "14d",
+      "public_safe": true
+    },
+    "high_availability": {
+      "value": "not_yet_deployed",
+      "state": "pilot",
+      "source_class": "infrastructure_topology_audit",
+      "verified_at": "2026-07-20T08:58:32Z",
+      "fresh_for": "30d",
+      "public_safe": true
+    },
+    "runtime_backup_coverage": {
+      "value": "brain_layered_runtime_partial",
+      "state": "pilot",
+      "source_class": "backup_and_restore_audit",
+      "verified_at": "2026-07-20T08:58:32Z",
+      "fresh_for": "30d",
       "public_safe": true
     }
   },

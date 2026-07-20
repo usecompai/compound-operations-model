@@ -76,7 +76,7 @@ Done when: file exists at the stated path, `brain_read` returns it (if Brain), e
 
 ## Cross-references
 
-- Bounded task delegation (different job): [codex-handoff](../codex-handoff/SKILL.md)
+- Bounded task delegation (different job): internal `codex-handoff` skill (not included in this public package)
 - In-flight spec transfer: the spec's own "Next Agent Prompt" section — [spec-driven-execution](../spec-driven-execution/SKILL.md)
 - Task cards with handoff prompts: local skill `handoff-task` + `brain_task_create` (MCP)
 - Dead ends worth keeping forever: [failure-archaeology](../failure-archaeology/SKILL.md)

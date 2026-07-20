@@ -150,7 +150,7 @@ Honest scoping:
 
 ## Commercial framing
 
-Agent Factory remains in the repo (no separate tier). the founder's decision on v2.5 held: the McKinsey framework and its implementation are differentiators, not upsells. A team forking the open-source repo today gets:
+Agent Factory remains in the repo (no separate tier). The founder's decision on v2.5 held: the McKinsey framework and its implementation are differentiators, not upsells. A team forking the source-available repo today gets:
 
 - Seven monolithic agents (still the default)
 - CS factory reference in v2.6 (opt-in via `compai-init factory enable`)

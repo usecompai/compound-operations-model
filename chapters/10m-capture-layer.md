@@ -16,7 +16,7 @@ The reference implementation took months to reach this shape because it had to w
 
 ## Current evidence snapshot
 
-The rollout numbers later in this chapter document how each pipeline started. This snapshot supersedes them as the current state of the reference deployment on **12 July 2026**:
+The rollout numbers later in this chapter document how each pipeline started. The table below is the last complete source-coverage audit, performed on **12 July 2026**. The v5.1 runtime totals were re-verified on 20 July, but these per-source coverage rows were not re-baselined and should not be presented as live counters:
 
 | Source | Current evidence | Coverage status |
 |---|---:|---|

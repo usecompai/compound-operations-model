@@ -1,162 +1,148 @@
-# Case Study: How a €5M Consumer Brand Doubled Revenue Without Hiring
+# Case Study: Building a Company Brain Inside an 8-Figure Consumer Business
 
-## The Compound Operations Model in Production — 12+ Months of Verified Results
+## An anonymized, evidence-first account of the reference deployment
 
----
+**Evidence boundary:** verified 20 July 2026. Operational details are anonymized. Counts are a dated snapshot, not live telemetry.
 
-## Brand Profile
+## Company Profile
 
-| Attribute | Detail |
-|-----------|--------|
-| Category | Consumer brand (apparel, accessories, lifestyle) |
-| Revenue (Year 1) | €5.03M |
-| Revenue (Year 2) | €10M (projected, on track) |
-| Growth Rate | 50%+ YoY for 3 consecutive years |
-| EBITDA | €1M+ (10%+ margin) |
-| Gross Margin | 67% |
-| Team Size | 20 people |
-| Channels | DTC (domestic + international), Wholesale (50+ accounts), Retail (4 stores), Department stores |
-| Markets | 4 countries, expanding |
-| Platform | Shopify (ecommerce), Klaviyo (email/SMS), the POS/inventory system (inventory), the wholesale platform (3PL), the helpdesk (CS) |
-| AI System | Multi-agent architecture, 6 specialized agents |
+| Attribute | Public-safe detail |
+|---|---|
+| Company | European omnichannel consumer business |
+| Scale | 8-figure annual revenue |
+| Team | Roughly 40 people |
+| Channels | Ecommerce, owned retail, department-store presence and wholesale |
+| Starting stack | Commerce, inventory, accounting, lifecycle marketing, customer care, analytics, documents and team communication systems |
+| AI operating layer | Shared Brain, 7 domain runtimes, founder command center, authenticated MCP tools and governed skills |
+| Time in operation | More than one year of incremental production use |
 
----
+The company did not begin with a blank technical stack or a dedicated internal engineering department. It began with working business systems, fragmented context and operators spending too much time reconciling the two.
 
-## The Situation
+## The Operating Problem
 
-A European consumer lifestyle brand, profitable and growing aggressively. The team of 20 was handling everything — DTC ecommerce, wholesale accounts, physical retail, international expansion — and the cracks were showing.
+The bottleneck was not access to a capable model. It was the gap between what the company knew, what its systems showed and what people needed to do next.
 
-**Key pain points:**
+- Decisions and exceptions lived across conversations, meetings, documents and individual memory.
+- Sales, stock, marketing and product-cost information had to be reconciled across separate tools.
+- Useful AI work was trapped in individual chats and could not be reused or audited consistently.
+- Routine handoffs crossed spreadsheets, messages and source systems without one owner or receipt.
+- Different people needed different access to the same operating memory.
 
-1. **Founder bottleneck:** CEO spending 20+ hours/week on operational decisions that could be automated
-2. **CS response time:** Average 8 hours — unacceptable for a premium brand
-3. **Inventory chaos:** 78% accuracy across 6 locations, leading to oversells and stockouts
-4. **Financial reporting:** 4 hours every Monday to produce a basic weekly report
-5. **Wholesale ops:** Manual order processing, delayed availability checks, account management falling behind
+## What Was Built
 
-**The original plan:** Hire 3 people — ops coordinator (€40K), CS lead (€35K), data analyst (€45K). Total annual cost: €120K minimum, plus 3–6 months to recruit and onboard.
+### 1. A shared Company Brain
 
----
+Approved information from work conversations, generated meeting notes, documents and business systems is normalized into a structured, searchable memory. Durable facts retain source and date. Raw capture is separated from promoted knowledge.
 
-## The Intervention
+### 2. One authenticated tool layer
 
-Instead of hiring, the brand deployed the Compound Operations Model over 30 days.
+The MCP layer gives people and agents a controlled way to read and, where policy allows, prepare or execute work in company systems. Identity, scope and action risk are checked separately from model confidence.
 
-### Week 1: Integration Layer
-- Connected Shopify, Klaviyo, the POS/inventory system, 3PL API, CS platform, and accounting system
-- Established unified data access for all agents
-- Configured brand voice, escalation rules, and access controls
+### 3. Specialist runtimes
 
-### Week 2: First Agents (CS + Inventory)
-- Customer Intelligence agent went live: ticket triage, draft responses, pattern detection
-- Inventory agent went live: multi-location sync, discrepancy alerts, 3PL monitoring
+Seven domain runtimes cover company direction, customer care, finance, retail, digital marketing, merchandising and people operations. They share the Brain but retain separate roles and authority boundaries.
 
-### Week 3: Finance + Marketing Agents
-- Finance agent: automated daily snapshots, weekly P&L, anomaly detection
-- Marketing agent: email flow optimization, segment recipes, campaign analysis
+### 4. Governed procedures
 
-### Week 4: Wholesale + Retail + Orchestration
-- Wholesale agent: order tracking, availability reports, account intelligence
-- Retail agent: foot traffic analysis, staffing recommendations
-- Cross-agent orchestration: agents now share context and coordinate responses
+Repeatable work is packaged as skills with triggers, inputs, outputs, verification and stop conditions. Availability is not treated as approval: a capability can be installed without being canonical or cleared for consequential execution.
 
-### Ongoing: Compounding
-- Monthly system reviews and configuration updates
-- New capabilities added as needs emerge
-- Context accumulates, decisions improve automatically
+### 5. Receipts and human controls
 
----
+The operating loop is: observe, decide, prepare or execute within authority, verify and record. Customer-facing, money, legal, people and destructive changes stop at a named human boundary unless a narrower policy explicitly allows them.
 
-## Results: 12+ Months in Production
+## Current Verified Snapshot
 
-### Headline Metrics
+| Surface | 20 July 2026 snapshot |
+|---|---:|
+| Brain documents indexed | 5,235 |
+| Embedding vectors | 24,469 |
+| Pending embeddings | 112 |
+| Skills available to the swarm | 374 |
+| Company-governed canonical skills | 48 |
+| Canonical skills with a recorded evaluation | 46 |
+| Authenticated MCP tools | 98 |
+| Production agent runtimes | 7 + founder command center |
+| Read-only connector smoke | 14/14 green |
+| Independent Google Workspace mail check | Green |
+| Recorded action receipts | 46,221 |
+| MCP authentication | `enforce` |
+| Dated maturity assessment | 6.6/10 |
 
-| Metric | Before | After | Change |
-|--------|--------|-------|--------|
-| Revenue | €5.03M | €10M (projected) | +100% |
-| Headcount | 20 | 20 | 0 new hires |
-| CS Response Time | 8 hours | 23 minutes | -95% |
-| Inventory Accuracy | 78% | 94% | +16 points |
-| Weekly Reporting Time | 4 hours | 15 minutes | -94% |
-| Founder Ops Time | 20+ hrs/week | 5 hrs/week | -75% |
+The public package contains 66 playbook chapters, 31 anonymized skills, 220 implementation-kit files and 21 executable patterns.
 
-### Financial Impact
+## Work The System Supports
 
-| Category | Annual Value |
-|----------|-------------|
-| Hires avoided (3 positions) | €120,000 |
-| Time savings (founder + team) | €72,000 |
-| Error reduction (inventory, CS) | €36,000 |
-| Revenue uplift (email, retail optimization) | €24,000 |
-| **Total Annual Value** | **€252,000** |
-| **Total Annual AI Cost** | **€8,100** |
-| **Net Annual Value** | **€243,900** |
-| **ROI** | **31:1** |
+The most useful outputs are not generic chat answers. They are operating surfaces and bounded workflows built over shared context.
 
-### AI Cost Breakdown
+### Company performance
 
-| Component | Monthly | Annual |
-|-----------|---------|--------|
-| LLM API costs (Claude, GPT) | €450 | €5,400 |
-| Infrastructure (server, tooling) | €125 | €1,500 |
-| Third-party APIs | €100 | €1,200 |
-| **Total** | **€675** | **€8,100** |
+Sales, stores, paid media, lifecycle marketing and product cost can be reconciled into one operating view with source references behind the numbers.
 
----
+### Retail and stock
 
-## The Compounding Effect
+Teams can inspect sales velocity and availability by location, product and size, then prepare transfers or buying decisions for human approval.
 
-The most valuable outcome isn't captured in the ROI calculator. By month 6, the system was surfacing insights that no human would independently discover:
+### Marketing profitability
 
-1. **Cross-channel correlation:** Wholesale reorder velocity for specific categories predicted DTC sell-through rates 3 weeks in advance — allowing proactive marketing campaigns
-2. **Hidden customer segments:** Identified a customer cohort generating 8x average LTV with zero paid acquisition — all organic referral from wholesale retail partners
-3. **Seasonal pattern recognition:** Detected that weather-correlated traffic patterns in physical stores could predict online conversion rates 48 hours ahead
-4. **Inventory intelligence:** Learning which SKUs to pre-position in which locations based on historical sell-through by channel, season, and marketing activity
+Campaign spend can be read alongside sales, returns and product cost so a budget decision is based on contribution rather than platform-reported revenue alone.
 
-These aren't automations. They're emergent intelligence from a system that accumulates context. This is the compound effect — and it's the reason the gap between AI-operated brands and traditionally-operated brands will only widen.
+### Operations and finance handoff
 
----
+A fulfilled shipment can trigger preparation of the invoice and collection trail. Duplicate, tax and total checks run before a finance owner posts anything.
 
-## What Didn't Work (Lessons Learned)
+### Reusable company tools
 
-Transparency matters. Here's what we got wrong:
+Internal dashboards, writing tools and operating utilities can be published through one protected catalog with versions, ownership and rollback evidence.
 
-1. **Over-automation of CS in Week 1:** We gave the CS agent too much autonomy initially. Some responses felt robotic. Fix: we pulled back to draft-only mode for the first month, then gradually increased autonomy as the brand voice calibrated.
+The public Live demo uses an isolated synthetic company to demonstrate these execution contracts. It does not expose or connect to the reference company's customer data.
 
-2. **Inventory sync frequency:** Initial hourly syncs weren't enough for high-velocity days (launches, sales). We moved to real-time webhooks for critical stock changes.
+## What Changed For Operators
 
-3. **Finance agent accuracy:** Early P&L calculations had a 3–5% variance due to currency conversion timing. Required manual calibration against accounting system for the first 3 months.
+The clearest result is structural rather than a fabricated headline percentage:
 
-4. **Wholesale agent cold start:** Without historical context, the wholesale agent couldn't add value for the first 6 weeks. Solution: we loaded 2 years of order history and account notes into the context layer.
+- recurring reports no longer have to start from disconnected exports;
+- useful context survives the chat or meeting where it first appeared;
+- a correction can improve a shared procedure instead of one person's prompt;
+- teams can inspect where a result came from and who must approve the next step;
+- internal tools have one protected route, owner and version history;
+- completed work leaves a receipt that can be reviewed later.
 
-5. **Team resistance:** Two team members were initially skeptical ("the AI doesn't understand our business"). Solved by making agents transparent — every action is logged, every decision is reviewable, and humans always have override.
+Compai does not claim that the system alone caused company growth or avoided a specific number of hires. Those claims require a counterfactual the current evidence does not provide.
 
----
+## Reference Economics
 
-## Replication Guide
+The reference deployment models an internal Brain and swarm operating cost of **EUR631/month**, or roughly **EUR21/day**, across a company of roughly 40 people. This covers models, compute and secure infrastructure. It is not a Compai licence price or an implementation quote.
 
-This system is replicable for any consumer brand with similar characteristics:
+Chapter 12 models a 16.2:1 return under explicit time and cost assumptions. That figure is a planning model, not audited realized value. Every deploying company should replace the assumptions with its own loaded salaries, licences, implementation time and verified hours returned.
 
-**Minimum requirements:**
-- Shopify (or equivalent) with API access
-- At least one email marketing platform
-- A CS ticketing system
-- Willingness to invest 30 days of focused implementation
+## What Is Not Solved Yet
 
-**Ideal profile:**
-- €2M–50M revenue
-- 10–100 person team
-- Multiple sales channels (DTC + at least one of: wholesale, retail, marketplace)
-- Physical products with inventory management needs
-- Growth rate that's outpacing team capacity
+The release boundary includes material limitations:
 
-**Investment required:**
-- Implementation time: 30 days (part-time)
-- Monthly cost: €500–1,500 depending on volume
-- Expected payback: 2–4 months
+1. Several agent runtimes and semantic retrieval share one physical node; tested high availability is not in place.
+2. One team channel was degraded during the latest audit, although its runtime remained available.
+3. Runtime backup coverage is incomplete even though the Brain itself has layered backup protection.
+4. The embedding queue was not empty at release time.
+5. Broad autonomous execution remains low. The system is strongest at capture, retrieval, analysis, preparation and bounded execution.
+6. Fine-grained retrieval scoping is still rolling out domain by domain.
+7. Generated meeting notes are useful, but complete native-transcript coverage is not claimed.
 
----
+These constraints matter because a Company Brain should be judged as operating infrastructure, not as a demo.
 
-*This case study is verified. The brand, the numbers, and the system are real. For confidentiality, the brand name is not disclosed. Verification available upon request for serious inquiry.*
+## Replication Guidance
 
-**Contact:** hello@example.com
+A sensible first deployment does not start by copying seven agents. It starts with one visible operating gap.
+
+1. Choose one job with a measurable result and a named owner.
+2. Connect only the sources needed for that job.
+3. Begin read-only or prepare-for-review.
+4. Define the human approval point before writing automation.
+5. Verify the outcome and keep a receipt.
+6. Repeat until the workflow is reliable, then package it as a skill.
+7. Add another domain only when the shared Brain and controls can support it.
+
+The public playbook and starter kit provide the method. The accumulated company context, local permissions and operating judgment must be built inside each deploying business.
+
+**Inspect the evidence:** https://usecompai.com/live.html
+
+**Implementation help:** hello@usecompai.com

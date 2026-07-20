@@ -19,7 +19,7 @@ HMAC verification proves the webhook came from the configured provider; it does 
 | Webhook receiver | 127.0.0.1:8788 | `compai-webhook.service` | Accepts helpdesk webhooks with HMAC verification |
 | Daily digest (cron-based) | — | user crontab | Daily Slack summary to `#compai-ops` |
 
-Both ship under the open-source repo. Brand exposes the webhook receiver via their Cloudflare Tunnel (`webhook.<brand>.com`), configures each helpdesk to POST there, and gets autonomous ticket processing.
+Both ship in the source-available repo. A deploying company exposes the webhook receiver through its own secure ingress, configures the helpdesk to POST there, and gets bounded ticket processing with explicit review rules.
 
 ## Supported helpdesks in v3.0
 
@@ -183,7 +183,7 @@ Honest scoping — this is still v3.0, not v4:
 
 ## Commercial framing
 
-Everything in this chapter is in the open-source repo. the founder's open-source inclusion rule holds through v3.0. What remains as separate tiers:
+Everything in this chapter is in the source-available repo. The public-inclusion rule holds through v3.0. What remains outside the package:
 
 - **Custom Ingest Engagement** (Ch.13 Path 3b, €5-15K): unstructured data ingestion (Gmail, Slack, Notion, Drive)
 - **Managed Operations** (Ch.13 Path 3a, €5-15K/mo): Compai runs + tunes the full swarm for the brand

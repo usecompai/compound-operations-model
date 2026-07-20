@@ -42,7 +42,7 @@ curl -fsSL https://your-mcp.example/setup.sh | bash
 irm https://your-mcp.example/setup.ps1 | iex
 ```
 
-For an open-source fork, replace the domain and server name. Do not copy company-specific endpoints or tokens. The pattern is portable; credentials are not.
+For a source-available fork, replace the domain and server name. Do not copy company-specific endpoints or tokens. The pattern is portable; credentials are not.
 
 The script should do six things:
 

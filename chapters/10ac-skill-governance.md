@@ -6,9 +6,9 @@ Adding a skill is easy. Knowing that a zero-context agent can trigger it, follow
 
 The reference deployment now separates three numbers that used to be collapsed into one:
 
-- **373 available skills** across company-authored, installed, vendor and community layers;
-- **47 canonical company-authored skills** owned in the brain;
-- **31 public skills** shipped in the Compai v5.0 repo after anonymization.
+- **374 available skills** across company-governed, installed, vendor and community layers;
+- **48 canonical company-governed skills** owned in the brain, 46 with a recorded evaluation;
+- **31 public skills** shipped in the Compai v5.1 repo after anonymization and licence review.
 
 The counts answer different questions. "Available" describes reach. "Canonical" describes ownership. "Public" describes what can be safely copied. None of them alone proves quality.
 
@@ -89,4 +89,3 @@ Brain-served skills should remain canonical in one place. Copying every skill to
 ## For Compai readers
 
 A large skill library is impressive for a week. A tested skill library becomes company memory. The moat is not the number of prompts; it is the number of procedures that still work when the original author is not in the room.
-

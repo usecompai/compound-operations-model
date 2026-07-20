@@ -39,7 +39,7 @@ When comparing two versions (before/after, candidate vs reference):
 
 ### 5. Loop
 
-Fix the biggest defect, re-capture, re-judge. Taste-dependent work is never one pass (see [fable-prompting](../fable-prompting/SKILL.md) §5). Stop when the fresh judge finds no material defects, or the founder accepts.
+Fix the biggest defect, re-capture, re-judge. Taste-dependent work is never one pass (see the internal `fable-prompting` skill, section 5). Stop when the fresh judge finds no material defects, or the founder accepts.
 
 ## Brand gate (the reference deployment-specific, mandatory)
 
@@ -64,7 +64,7 @@ Done when: evidence pack exists (screenshots + crops + judge output), material d
 ## Cross-references
 
 - Design research upstream: the company's design-research and brand-guideline sources.
-- Builder≠judge doctrine: [fable-prompting](../fable-prompting/SKILL.md)
+- Builder != judge doctrine: internal `fable-prompting` skill (not included in this public package)
 - Visual gates inside specs: [spec-driven-execution](../spec-driven-execution/SKILL.md)
 - Codex-never-designs rule: `knowledge/platform/rules/` (design/hosting rules) + the founder's standing instruction
 

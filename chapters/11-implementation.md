@@ -1,4 +1,4 @@
-# Chapter 11: Implementation — Open-Source Build Paths
+# Chapter 11: Implementation — Source-Available Build Paths
 
 > **Appendix · Technical depth.** This chapter is for operators or engineers deploying the brain themselves. It covers implementation details that aren't needed for understanding the conceptual architecture. Skip if you're reading for strategy.
 

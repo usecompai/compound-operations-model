@@ -12,7 +12,7 @@ A wiki can answer, "What did we document?" A living brain can answer, "What has 
 
 That is the conceptual leap behind Brain v2. The goal is not more documents. The goal is a bidirectional operating layer that captures real work, promotes useful signals, creates tasks and outputs, tracks health, refreshes the company model, and lets agents write back after they learn or execute something.
 
-The reference implementation took months because it was built inside a real company with live tools, existing habits, privacy constraints, and plenty of false starts. A consumer SME starting from the open-source pattern should plan for 6-8 weeks with one strong engineer or technical operator to reach a serious first version. You can get a demo running faster. You cannot get trustworthy operational memory in a few rushed days without skipping the parts that make it trustworthy.
+The reference implementation took months because it was built inside a real company with live tools, existing habits, privacy constraints, and plenty of false starts. A consumer SME starting from the public pattern should plan for 6-8 weeks with one strong engineer or technical operator to reach a serious first version. You can get a demo running faster. You cannot get trustworthy operational memory in a few rushed days without skipping the parts that make it trustworthy.
 
 ## The leap: consultive to bidirectional
 

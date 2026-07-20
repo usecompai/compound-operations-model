@@ -111,7 +111,7 @@ Value per €1 spent:      €16.24
 Payback period:          ~23 days
 ```
 
-**16:1 is the number. Not 24:1. Not 31:1. Not 54:1. Sixteen — with every seat on the bill and every hour itemized.**
+**16.2:1 is the current model. Every seat is on the bill and every reclaimed hour is itemized. It is a planning model, not audited realized value.**
 
 You can drive it higher by:
 - Removing the founder command center (which doubles as a personal tool) → ratio jumps to ~50:1

@@ -13,7 +13,7 @@ The the reference deployment 3-phase rule (Research → Plan → Implement) says
 
 ## When to invoke / when not
 
-- **Invoke:** task needs >1 delegation, touches >1 system, will take >1 session, or has ambiguity that would make a single [codex-handoff](../codex-handoff/SKILL.md) prompt a guess.
+- **Invoke:** task needs >1 delegation, touches >1 system, will take >1 session, or has ambiguity that would make a single internal `codex-handoff` prompt a guess.
 - **Skip:** one script, one fix, one clear deliverable → go straight to codex-handoff. A spec for a 30-minute task is bureaucracy.
 
 ## What an independently verifiable slice is
@@ -35,7 +35,7 @@ If a slice hides multiple variables or contains a broad verb ("make it robust", 
 3. **Materialize** to ONE canonical location:
    - Code work in a repo → `specs/<feature>/README.md` in that repo.
    - Brain/platform/ops work → `knowledge/projects/<project>/spec-<feature>.md`.
-4. Spec structure: goal + hard bar (see [fable-prompting](../fable-prompting/SKILL.md)) · slice list with seams/artifacts/gates · dependency order (what can run in parallel) · out-of-scope list (explicit) · **Next Agent Prompt** — a final section written in second person that lets a fresh zero-context agent pick the work up with no chat history. If you can't write that section, the spec isn't done.
+4. Spec structure: goal + hard bar (see the internal `fable-prompting` skill) · slice list with seams/artifacts/gates · dependency order (what can run in parallel) · out-of-scope list (explicit) · **Next Agent Prompt** — a final section written in second person that lets a fresh zero-context agent pick the work up with no chat history. If you can't write that section, the spec isn't done.
 
 ### Phase 2 — Implement, one slice = one pass
 
@@ -45,7 +45,7 @@ For each slice, in dependency order (independent slices → parallel delegations
 3. Mark the slice done IN THE SPEC with the evidence (command + output, screenshot path, number).
 4. Every 2-3 slices, or after any failed gate: **maintenance checkpoint** — re-read the spec; prune slices reality invalidated; log plan deviations as new open questions. A spec that contradicts the codebase is worse than none.
 5. **Do not stop while open slices remain** unless: a gate fails un-fixably (→ re-scope, don't patch around — the reference deployment rule: revert & re-scope), a hard-stop trigger appears, or budget/timebox is reached.
-   **Hard-stop triggers (automatic, never a judgment call):** production deploy/restart, spend or budget change, credentials/auth changes, any deletion of existing data/files, customer-facing/HR/legal/external communications, company master prompt or governance-doc changes, multi-node rollout. A slice touching ANY of these pauses for the founder's explicit OK before executing that slice — same list as [fable-prompting](../fable-prompting/SKILL.md) house rules.
+   **Hard-stop triggers (automatic, never a judgment call):** production deploy/restart, spend or budget change, credentials/auth changes, any deletion of existing data/files, customer-facing/HR/legal/external communications, company master prompt or governance-doc changes, multi-node rollout. A slice touching ANY of these pauses for the founder's explicit OK before executing that slice — same list as the internal `fable-prompting` house rules.
 
 ### Phase 3 — Close the spec
 
@@ -72,11 +72,13 @@ Spec phase done when the Next Agent Prompt exists and a zero-context read makes 
 
 ## Cross-references
 
-- Per-slice delegation mechanics: [codex-handoff](../codex-handoff/SKILL.md)
-- Goal/bar/loop doctrine the spec header follows: [fable-prompting](../fable-prompting/SKILL.md)
+- Per-slice delegation mechanics: internal `codex-handoff` skill
+- Goal/bar/loop doctrine the spec header follows: internal `fable-prompting` skill
 - Session-boundary transfer of an in-flight spec: [session-handoff](../session-handoff/SKILL.md)
 - Dead ends discovered during implementation: [failure-archaeology](../failure-archaeology/SKILL.md)
 - Visual gates: [visual-review](../visual-review/SKILL.md)
+
+The internal cross-referenced skills are named for context but are not included in this public package.
 
 ## Provenance and maintenance
 

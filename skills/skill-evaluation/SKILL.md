@@ -86,8 +86,10 @@ Done when: rubric scores recorded, at least one blind run per new skill with jud
 
 - Authoring standard the rubric enforces: [skill-authoring-standards](../skill-authoring-standards/SKILL.md)
 - What to create/improve: [suggest-skills](../suggest-skills/SKILL.md)
-- Adversarial judging for high-stakes outputs: [punta-de-flecha](../punta-de-flecha/SKILL.md)
-- Builder≠judge doctrine: [fable-prompting](../fable-prompting/SKILL.md) §4
+- Adversarial judging for high-stakes outputs: internal `punta-de-flecha` skill
+- Builder != judge doctrine: internal `fable-prompting` skill, section 4
+
+The internal cross-referenced skills are named for context but are not included in this public package.
 
 ## Provenance and maintenance
 

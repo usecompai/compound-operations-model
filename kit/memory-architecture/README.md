@@ -66,4 +66,4 @@ Layer 4: Memory Hygiene   → Nightly dedup cron (auto, per agent)
 
 ## Full Documentation
 
-See [Chapter 10b: Memory Architecture](../../playbook/10b-memory-architecture.md) in the the platform Playbook.
+See [Chapter 10b: Memory Architecture](../../chapters/10b-memory-architecture.md) in the platform Playbook.

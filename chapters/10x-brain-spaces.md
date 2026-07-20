@@ -1,6 +1,6 @@
 # Chapter 10x: Brain Spaces — Scoped Memory for Agents and People
 
-> **Implementation status, 12 July 2026:** Brain Spaces is the deployed architecture contract and the target policy for every external surface. Per-identity authentication is enforced today. Fine-grained, retrieval-level scoping for every sensitive tree is staged and rolling out domain by domain; it is not yet universal. The design below is therefore both the contract we operate toward and the acceptance test for completing that rollout.
+> **Implementation status, 20 July 2026:** Brain Spaces is the deployed architecture contract and the target policy for every external surface. Per-identity authentication is enforced today. Fine-grained, retrieval-level scoping for every sensitive tree is staged and rolling out domain by domain; it is not yet universal. The design below is therefore both the contract we operate toward and the acceptance test for completing that rollout.
 
 ## The near-miss that convinced us
 

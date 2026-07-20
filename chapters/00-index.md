@@ -1,6 +1,6 @@
 # Compai Playbook — Source Index
 
-**By Compai** · Open-source educational portfolio · Built inside a profitable brand growing 100%+ annually · Repo: usecompai.com/repo
+**By Compai** · Open, source-available educational portfolio · Built inside an 8-figure consumer company · Repo: usecompai.com/repo
 
 The playbook is a **journey**: eight sections in the order an SME actually builds an AI operating system. Read them in order the first time. Each section ends with a **Ship it** gate — the minimum working state before the next section makes sense.
 
@@ -144,4 +144,4 @@ The system you are about to build, in one sentence: it captures work as it happe
 
 ---
 
-**Version 5.0 — Truth & Execution** · 12 July 2026 — This release adds the evidence contract, architecture invariants, skill governance and a closure-first execution gate. It also publishes the current reference snapshot without converting pilots into production claims: 4,842 Brain documents, 373 available skills, 47 canonical skills, 97 MCP tools, seven production agent runtimes, authentication in enforce, 15 connector smoke tests green and a 42,000+ receipt action ledger. 66 chapters including this source index. The public repo includes the full playbook plus starter kit artifacts, templates and evals.
+**Version 5.1 — Runtime Truth** · 20 July 2026 — This release refreshes the evidence contract after a deep runtime due diligence and publishes limitations beside capabilities: 5,235 indexed Brain documents, 374 available skills, 48 canonical skills, 98 MCP tools, seven production agent runtimes, authentication in `enforce`, 14/14 connector smoke tests plus an independent Google Workspace mail check and 46,221 action receipts. Broad autonomy remains low and bounded; high availability is not yet deployed. 66 chapters including this source index. The public repo includes the full playbook plus starter-kit artifacts, templates and evals.

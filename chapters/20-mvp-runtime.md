@@ -184,7 +184,7 @@ A brand that wants v3.4 functionality today buys Managed Operations (Ch.13 Path 
 
 ## Commercial framing
 
-Runtime v3.0-beta remains in the open-source repo. The hooks architecture makes "brand-specific customization" explicit and scoped: **free if the brand does it in-house** (Python programming skill required), or **€5-15K one-time engagement** if they want Compai to build their integrations (Ch.13 Custom Engagement).
+Runtime v3.0-beta remains in the source-available repo. The hooks architecture makes "brand-specific customization" explicit and scoped: teams can adapt it in-house, while commercial implementation help is scoped separately.
 
 The honest positioning:
 
@@ -192,7 +192,7 @@ The honest positioning:
 - **The remaining 30% — brand-specific workflows, bespoke integrations, accumulated operational patterns — is not transferable.** It's the founder's work to build.
 - **If you don't want to do that work, Managed Operations.**
 
-No founder reading this chapter should be surprised by what they get for the open-source repo vs what they get for a Managed Operations engagement.
+No founder reading this chapter should be surprised by what the source-available repo contains versus what requires a separate implementation engagement.
 
 ---
 

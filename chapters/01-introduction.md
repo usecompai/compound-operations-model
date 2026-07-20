@@ -42,18 +42,18 @@ We had a choice: hire 3–4 people at €35K–55K each, or try something differ
 
 We tried something different.
 
-We started with a 30-day deployment and expanded it over more than a year. The current topology is seven production agent runtimes plus a founder command center, connected to real systems through 97 authenticated MCP tools.
+We started with a 30-day deployment and expanded it over more than a year. The current topology is seven production agent runtimes plus a founder command center, connected to real systems through 98 authenticated MCP tools.
 
-**Current public snapshot, 12 July 2026:**
-- 4,842 Brain documents with the embedding backlog cleared at release close
-- 373 available skills; 47 company-authored canonical; 45 evaluated
-- 97 MCP tools with authentication in `enforce`
-- 15 connector smoke tests green and 42,000+ action receipts
-- Brain maturity assessed at 6.8/10
-- Broad autonomous execution assessed at 2/10 and held to a closure-first pilot
+**Current public snapshot, 20 July 2026:**
+- 5,235 Brain documents and 24,469 vectors; 112 documents pending embedding at release close
+- 374 available skills; 48 company-governed canonical; 46 with a recorded evaluation
+- 98 MCP tools with authentication in `enforce`
+- 14/14 connector smoke tests green, an independent Google Workspace mail check green and 46,221 action receipts
+- Brain maturity assessed at 6.6/10
+- Broad autonomous execution remains low and held to bounded closure-first pilots
 - ROI model: 16.2:1 under the assumptions in Chapter 12
 
-The brand didn't just survive the growth. It doubled revenue with the same team.
+The business now has a shared operating layer across a roughly 40-person team. The evidence supports better capture, retrieval, preparation and controlled execution; it does not prove that AI alone caused growth or avoided a specific number of hires.
 
 ---
 
@@ -75,9 +75,9 @@ Beauty, home goods, food & beverage, wellness, accessories, outdoor, pet — any
 
 The gap in the market isn't knowledge — it's implementation. McKinsey can tell you what AI can do for retail. Shopify publishes trend reports every quarter. There are 47 "AI for ecommerce" tools on Product Hunt this month. Advisory boutiques will charge you €20K to write system prompts and call it a "Generative AI Accelerator."
 
-What nobody does is **actually build and run a multi-agent system inside a real brand, at real scale, with real money flowing through it, prove it works for 6+ months, and then show you exactly how they did it.**
+What remains rare is to **build and run a multi-agent system inside a real brand, with real systems and control boundaries, then publish both the working patterns and the failures.**
 
-That's what this playbook is. Not a framework. Not a set of templates. A production blueprint extracted from a system that processes thousands of customer interactions, syncs inventory across six physical locations, and closes the books — every single day, without human intervention.
+That's what this playbook is: a production blueprint extracted from a system that connects customer, inventory, finance, retail, marketing and company-knowledge workflows while keeping consequential actions behind human controls.
 
 ### It Compounds (And That's the Moat)
 
@@ -106,9 +106,9 @@ I didn't set out to sell a product. I set out to solve my own operational proble
 
 ## How to Use This Playbook
 
-**If you're a founder:** Read this chapter, Chapter 2 (The Problem), Chapter 3 (Architecture), and Chapter 12 (ROI). That gives you enough to decide whether this is worth pursuing. Then hand Chapters 4–11 to whoever will adapt it from the open-source repo.
+**If you're a founder:** Read this chapter, Chapter 2 (The Problem), Chapter 3 (Architecture), and Chapter 12 (ROI). That gives you enough to decide whether this is worth pursuing. Then hand Chapters 4–11 to whoever will adapt it from the source-available repo.
 
-**If you're in operations or tech:** You're my people. Read everything. Chapters 4–9 are your implementation guides. Chapter 10 is the full technology stack. Chapter 11 is the open-source build path.
+**If you're in operations or tech:** You're my people. Read everything. Chapters 4–9 are your implementation guides. Chapter 10 is the full technology stack. Chapter 11 is the source-available build path.
 
 **If you're evaluating this for investment:** Chapter 12 has everything you need. Chapter 3 shows the architecture at a glance.
 

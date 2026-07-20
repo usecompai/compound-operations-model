@@ -176,7 +176,7 @@ Each limitation is a known-scope carry-over, not a bug. If the founder wants any
 
 ## The commercial framing
 
-Runtime v2.9 now delivers a real, demonstrable system end-to-end. A founder buying the open-source repo can, in the same afternoon:
+Runtime v2.9 delivers an inspectable system end-to-end. A founder using the source-available repo can, in the same afternoon:
 
 1. `curl usecompai.com/init | bash` → swarm infrastructure
 2. `compai-init llm configure` → wire their providers

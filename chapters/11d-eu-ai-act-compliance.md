@@ -114,7 +114,7 @@ Ensure you're using LLM providers via API (not consumer products). API terms exp
 
 If your agents process personal data at scale — customer emails, employee records, order history — you likely need a DPIA under GDPR Article 35. This is separate from the AI Act but overlaps.
 
-A DPIA template can live in the open-source repo. The key sections:
+A DPIA template can live in the public source-available repo. The key sections:
 
 1. **Description of processing:** what data, what agents, what purpose
 2. **Legal basis:** legitimate interest (operational efficiency) or consent

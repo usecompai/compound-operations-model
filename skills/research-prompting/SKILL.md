@@ -67,9 +67,11 @@ A prompt is done when a stranger could execute it without questions. Research is
 
 ## Cross-references
 
-- Deliberation on results: [punta-de-flecha](../punta-de-flecha/SKILL.md), `council_query`
-- Analysis house rules (dato/inferencia/decisión): [fable-prompting](../fable-prompting/SKILL.md) modo C
-- Delegating the execution: [codex-handoff](../codex-handoff/SKILL.md)
+- Deliberation on results: `punta-de-flecha`, `council_query`
+- Analysis house rules (dato/inferencia/decisión): internal `fable-prompting` mode C
+- Delegating the execution: internal `codex-handoff`
+
+The internal cross-referenced skills are named for context but are not included in this public package.
 
 ## Cambios
 

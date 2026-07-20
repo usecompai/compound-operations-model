@@ -28,9 +28,9 @@ The architecture that works is **specialized agents with a shared brain.**
         └───────────┴───────────┴───────────┴───────────────┘
                          Mac Mini (secondary host)
                     ┌─────────────────────────────┐
-                    │     SHARED BRAIN (4,842 files)   │
+                    │     SHARED BRAIN (5,235 docs)    │
                     │   rsync ↔ every 30 minutes    │
-                    │   + MCP Server (97 tools)     │
+                    │   + MCP Server (98 tools)     │
                     └─────────────────────────────┘
 ```
 
@@ -114,11 +114,11 @@ At the core, the reference system runs on **OpenClaw** — an open-source AI age
 | **Monitoring** | Built-in heartbeats + cron jobs | Self-healing, auto-restart |
 | **ERP / Accounting** | the accounting system | Invoicing, payment reconciliation, ledger |
 | **Expense Management** | the expense platform | Corporate cards, expense tracking, bank statements |
-| **Knowledge Base** | Notion + Brain Context Tree | 4,842 docs organized by domain, auto-indexed |
+| **Knowledge Base** | Notion + Brain Context Tree | 5,235 docs organized by domain and indexed at the release boundary |
 | **Social Listening** | Agent-Reach + bird CLI | Twitter/X monitoring, multi-platform scanning |
 | **Semantic Search** | Exa | Better than Google for competitive research |
 | **Image Generation** | Krea AI | Product shots, creative assets |
-| **Power-User Layer** | Claude Code + MCP | Founder's direct interface — 97 tools, slash commands, subagents |
+| **Power-User Layer** | Claude Code + MCP | Founder's direct interface — 98 tools, slash commands, subagents |
 
 **Total system cost:** €631/month all-in (infrastructure + LLM access + subscriptions). See Ch.12 for the complete cost breakdown.
 

@@ -1,4 +1,4 @@
-# Compai Implementation Kit v5.0
+# Compai Implementation Kit v5.1
 
 This kit is the portable asset layer behind the Compai playbook. It turns the architecture into templates, scripts, eval fixtures and deployment contracts that a technical operator can inspect and adapt.
 
@@ -6,7 +6,7 @@ It is not a hosted service, a compliance certification or a promise that every c
 
 ## Release Contract
 
-Version 5.0 adds the controls needed to keep a public implementation aligned with operating reality:
+Version 5.1 refreshes the evidence boundary and keeps the controls introduced in v5.0:
 
 - `templates/configs/public-truth-manifest.schema.json` - dated claims, evidence classes and known gaps
 - `templates/configs/source-coverage.yml` - source, account and artifact-type coverage matrix

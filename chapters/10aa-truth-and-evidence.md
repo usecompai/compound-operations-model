@@ -34,16 +34,16 @@ This matters most for permissions and autonomy. A Brain Spaces template can be p
 
 ## A dated reference snapshot
 
-The reference deployment snapshot used for Compai v5.0 was verified on **12 July 2026**:
+The reference deployment snapshot used for Compai v5.1 was verified on **20 July 2026**:
 
-- 4,842 documents indexed for retrieval;
-- 373 skills available across canonical, installed and vendor/community layers;
-- 47 company-authored canonical skills;
-- 97 MCP tools;
+- 5,235 documents indexed for retrieval, with 24,469 vectors and 112 pending embeddings;
+- 374 skills available across canonical, installed and vendor/community layers;
+- 48 company-governed canonical skills, 46 with a recorded evaluation;
+- 98 MCP tools;
 - seven production agent runtimes;
 - authentication in `enforce` mode;
-- 15 source connectors passing read-only smoke tests;
-- more than 42,000 action-ledger rows;
+- 14/14 source connectors passing read-only smoke tests plus an independent Google Workspace mail check;
+- 46,221 action-ledger rows;
 - strong capture and retrieval, with autonomous closure still in a controlled pilot.
 
 These are dated facts, not permanent copy. A future release must regenerate the snapshot from the live system or keep the old date visible.
@@ -67,10 +67,10 @@ The reference deployment has broad company coverage, but it still publishes its 
 Every public number or material internal claim should be reproducible from an evidence card:
 
 ```yaml
-claim: "97 MCP tools available"
+claim: "98 MCP tools available"
 state: deployed
-source_class: runtime_manifest
-verified_at: 2026-07-12T09:30:00Z
+source_class: authenticated_protocol_smoke
+verified_at: 2026-07-20T09:14:30Z
 owner: platform
 fresh_for: 7d
 public_safe: true
@@ -92,4 +92,3 @@ If the card is stale, the interface can keep the last verified number, but it mu
 ## For Compai readers
 
 A trustworthy brain does not pretend uncertainty disappeared. It makes uncertainty inspectable. The competitive advantage is not "we captured everything." It is **we know what we captured, what we missed, which source wins and when the claim was last true.**
-

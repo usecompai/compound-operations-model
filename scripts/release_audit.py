@@ -23,6 +23,13 @@ PRIVATE_MARKERS = (
     "knowledge/" + "laa" + "gam/",
 )
 STALE_CLAIMS = {
+    "4,842 documents": re.compile(r"\b4,?842\s+(?:Brain\s+)?(?:documents|docs|files)\b", re.IGNORECASE),
+    "373 skills": re.compile(r"\b373\s+(?:available\s+)?skills\b", re.IGNORECASE),
+    "47 canonical skills": re.compile(r"\b47\s+(?:company-authored\s+|company-governed\s+)?canonical\s+skills\b", re.IGNORECASE),
+    "97 tools": re.compile(r"\b97\s+(?:authenticated\s+)?(?:MCP\s+)?tools\b", re.IGNORECASE),
+    "6.8/10 maturity": re.compile(r"\b6\.8/10\b", re.IGNORECASE),
+    "31:1 ROI": re.compile(r"\b31:1\b", re.IGNORECASE),
+    "placeholder contact": re.compile(r"\bhello@example\.com\b", re.IGNORECASE),
     "352 skills": re.compile(r"\b352\s+skills\b", re.IGNORECASE),
     "95 tools": re.compile(r"\b95\s+(?:MCP\s+)?tools\b", re.IGNORECASE),
     "18:1": re.compile(r"\b18:1\b", re.IGNORECASE),
@@ -71,6 +78,25 @@ def count_files(root: Path, pattern: str) -> int:
     return sum(1 for path in root.glob(pattern) if path.is_file())
 
 
+def audit_markdown_links(root: Path, failures: list[str]) -> None:
+    pattern = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
+    for path in root.rglob("*.md"):
+        if ".git" in path.parts:
+            continue
+        content = path.read_text(encoding="utf-8")
+        for raw_target in pattern.findall(content):
+            target = raw_target.strip()
+            if target.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            target = target.split("#", 1)[0].split("?", 1)[0]
+            if not target or "$(" in target:
+                continue
+            if not (path.parent / target).resolve().exists():
+                failures.append(
+                    f"broken Markdown link in {relative(path, root)}: {raw_target}"
+                )
+
+
 def audit_text(root: Path, failures: list[str], allow_legacy_operai: set[str]) -> None:
     for path in text_files(root):
         rel = relative(path, root)
@@ -101,6 +127,25 @@ def audit_repo(repo: Path, failures: list[str]) -> dict:
         return {}
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    version = manifest["version"]
+    required_release_markers = {
+        "README.md": f"v{version}",
+        "kit/VERSION": f"Version: {version}",
+        "kit/README.md": f"v{version}",
+        "skills/CATALOG.md": f"Compai v{version}",
+        "case-study/fashion-brand-case-study.md": "hello@usecompai.com",
+    }
+    for rel, marker in required_release_markers.items():
+        path = repo / rel
+        if not path.is_file():
+            failures.append(f"required release file missing: {rel}")
+        elif marker not in path.read_text(encoding="utf-8"):
+            failures.append(f"release marker {marker!r} missing from {rel}")
+
+    for claim_name, claim in manifest.get("claims", {}).items():
+        if claim.get("public_safe") is not True:
+            failures.append(f"manifest claim is not explicitly public-safe: {claim_name}")
+
     expected = manifest["public_package"]
     actual = {
         "chapters": count_files(repo / "chapters", "*.md"),
@@ -136,6 +181,7 @@ def audit_repo(repo: Path, failures: list[str]) -> dict:
         if path.is_file() and "operai" in path.name.lower():
             failures.append(f"legacy OperAI filename: {relative(path, repo)}")
 
+    audit_markdown_links(repo, failures)
     audit_text(repo, failures, {"README.md"})
     return manifest
 

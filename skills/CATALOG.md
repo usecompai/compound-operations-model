@@ -1,17 +1,17 @@
 # Skills Catalog
 
-**Release snapshot: 12 July 2026**
+**Release snapshot: 20 July 2026**
 
-The reference swarm exposes **373 available skills**. Availability is not the same as ownership or production approval:
+The reference swarm exposes **374 available skills**. Availability is not the same as ownership or production approval:
 
 | State | Count | Meaning |
 |---|---:|---|
-| Available | 373 | Discoverable by at least one runtime; includes company, vendor and community packages |
-| Canonical | 47 | Company-governed skills with an owner and canonical source |
-| Evaluated canonical | 45 | Canonical skills with a recorded evaluation result |
-| Public in this repo | 31 | Anonymized, portable skills published with Compai v5.0 |
+| Available | 374 | Discoverable by at least one runtime; includes company, vendor and community packages |
+| Canonical | 48 | Company-governed skills with an owner and canonical source |
+| Evaluated canonical | 46 | Canonical skills with a recorded evaluation result |
+| Public in this repo | 31 | Anonymized, portable skills published with Compai v5.1 |
 
-The remaining available skills are mostly installed vendor/community capabilities or internal procedures that are private, source-specific, not yet anonymized, or not yet ready for a public contract. We do not republish third-party packages as our own.
+The remaining available skills are mostly installed vendor/community capabilities or internal procedures that are private, source-specific, not yet anonymized, or not yet ready for a public contract. The latest canonical addition is an attributed adaptation of an external prospect-research workflow; it remains outside this package until its supporting assets and licence are packaged cleanly. We do not republish third-party packages as our own.
 
 ## Brain And Execution Operations
 

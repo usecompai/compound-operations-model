@@ -169,7 +169,7 @@ ByteRover maintains three layers that map directly to our existing stack:
 
 | ByteRover Layer | Our Equivalent | What It Stores |
 |----------------|---------------|----------------|
-| **Context Tree** | `brain/knowledge/` (4,842 docs) | Deep structured knowledge, organized by domain |
+| **Context Tree** | `brain/knowledge/` (5,235 indexed docs) | Deep structured knowledge, organized by domain |
 | **Workspace Memory** | `MEMORY.md` + `SOUL.md` | Core rules, preferences, business snapshot |
 | **Daily Memory** | `memory/YYYY-MM-DD.md` | Session notes, operational logs |
 
@@ -336,7 +336,7 @@ Mac Mini (all other agents):
 **Health monitoring:** `brain-sync-health.sh` runs every 2 hours, checking:
 - Mac Mini reachability via SSH
 - Sync freshness (alert if >2h stale)
-- Total doc count (currently 4,842 docs, 15MB)
+- Total indexed document count (5,235 at the 20 July 2026 release boundary)
 
 **Result:** Update a policy on the hub agent → all agents see the change within minutes. No manual copying. No drift.
 
@@ -352,7 +352,7 @@ Every agent has a `MEMORY.md` injected into every prompt. This is the distilled,
 - Revenue trend: +51% YoY
 - Growth target: +57% YoY
 - Gross Margin: 67%
-- Team: 20 people
+- Team: roughly 40 people
 
 ## Knowledge Base
 → See brain/knowledge/_index.md for full map

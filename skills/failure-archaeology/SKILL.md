@@ -74,7 +74,7 @@ Entry is done when: `brain_search("<its literal error string>")` returns it, sta
 ## Cross-references
 
 - Capture tools: `brain_capture`, `brain_write` (general knowledge — not failure-specific)
-- Debug delegation with gotcha-doc requirement built in: [codex-handoff](../codex-handoff/SKILL.md) template B
+- Debug delegation with gotcha-doc requirement built in: internal `codex-handoff` skill, template B (not included in this public package)
 - Audit that uses closed-loop evidence: [brain-due-diligence](../brain-due-diligence/SKILL.md)
 - Exemplary existing entries: `knowledge/platform/gotchas/openai-codex-refresh-token-reused-2026-05-14.md`, `knowledge/platform/gotchas/qmd-vps-raw-overindexing-and-embed-hang-2026-06-01.md`
 

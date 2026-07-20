@@ -134,7 +134,7 @@ The employee runs the curl, pastes the key, opens Claude Desktop, applies the cu
 | Install Node + Claude Desktop | `team-join.sh` detects OS, installs fnm + Node, writes MCP config |
 | Paste API key | Script prompts for `lgm_xxx`, puts it as env var referenced by `Authorization:Bearer` header |
 | Connect to `mcp.<brand>.com/sse` | Script uses the brand's `mcp.<brand>.com/sse` — per-brand MCP |
-| Get 97 MCP tools | Get 11 brand-scoped MCP tools (brain, memory, me, status, integrations passthroughs) |
+| Get the reference deployment's 98 MCP tools | Get 11 starter brand-scoped MCP tools (brain, memory, me, status, integrations passthroughs) |
 | Custom instruction (brain-query-first, etc.) | `usecompai.com/onboarding/custom-instruction` served with same 4 rules |
 | me.md interview via skill | `me-md-interview` skill shipped in pack + invokable via Claude Desktop |
 | Notion onboarding doc | `notion-templates/01-onboarding-checklist.md` — Day 1 / Week 1 / 30-60-90 |
@@ -143,7 +143,7 @@ The employee runs the curl, pastes the key, opens Claude Desktop, applies the cu
 | Paso 6 (personal profile creation) | `02-step-6-personal-profile.md` with step-by-step |
 | Weekly check-in ritual | `03-weekly-check-in.md` Friday 15-min template |
 
-The only thing the reference deployment has that the repo doesn't automatically give you: **12 months of accumulated brain content** (4,842 docs, 373 skills, 21 Pattern Library entries). That's the non-transferable part — every brand accumulates its own over time.
+The main thing the repository cannot give you automatically is the accumulated company context behind the reference deployment: **5,235 indexed documents, 374 available skills and 21 Pattern Library entries** at the release boundary. That is the non-transferable part; every company must accumulate and govern its own.
 
 ## Pack updates
 
@@ -167,7 +167,7 @@ The brand's MCP server's `skill_read("me-md-interview")` returns the SKILL.md co
 
 ## Commercial framing (same rule)
 
-Everything in Onboarding v3.1 is in the open-source repo. No separate onboarding SKU. The pack + the wrappers ship with every deployment.
+Everything in Onboarding v3.1 is in the source-available repo. No separate onboarding SKU. The pack and wrappers ship with every deployment.
 
 The logic: the hardest part of AI adoption is not the technology, it's the habits. The onboarding pack is the lever that moves the habits. Keeping it in the base repo maximizes adoption across every brand using Compai, which in turn maximizes the Pattern Library's cross-company learning (which IS a moat).
 

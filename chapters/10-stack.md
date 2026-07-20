@@ -4,17 +4,17 @@
 
 Models, APIs and product names move quickly. The durable system is the contract between identity, memory, tools, skills, authority, verification and receipts. The reference deployment uses OpenClaw-compatible runtimes, plain files, git, MCP and multiple model providers, but none of those choices should become an excuse to hard-code a fast-expiring model SKU into the architecture.
 
-**Verified reference snapshot: 12 July 2026.**
+**Verified reference snapshot: 20 July 2026.**
 
 | Layer | Current evidence |
 |---|---|
 | Runtime topology | Seven production agent runtimes plus a founder command center |
-| Brain | 4,842 QMD documents; current embedding backlog cleared after audit remediation |
-| Skills | 373 available; 47 canonical; 45 evaluated |
-| Tools | 97 authenticated MCP tools |
-| Identity | Authentication in `enforce`; 75 human and machine keys loaded |
-| Source systems | 15 declared read-only connector smoke tests green |
-| Audit | 42,000+ action receipts |
+| Brain | 5,235 QMD documents; 24,469 vectors; 112 pending embeddings |
+| Skills | 374 available; 48 canonical; 46 with a recorded evaluation |
+| Tools | 98 authenticated MCP tools |
+| Identity | Authentication in `enforce`; independent human and machine identities |
+| Source systems | 14/14 read-only connector smoke tests plus an independent Google Workspace mail check green |
+| Audit | 46,221 action receipts |
 | Infrastructure | EU cloud hub, dedicated secondary host and encrypted private mesh |
 | Public portfolio | 66 chapters, 31 anonymized skills, 21 patterns and a 220-file kit |
 
@@ -68,11 +68,11 @@ The Brain is plain, versioned operating memory with four storage roles:
 
 Do not put large datasets, videos, credentials or opaque binaries into the markdown tree. Rows belong in the structured-data sidecar. Large artifacts belong in object or file storage. Secrets belong in a secret manager or mode-600 environment file.
 
-Queue depth is a first-class metric. The July audit found 361 embeddings pending: search still worked, but the backlog was visible rather than hidden behind the document headline. The release closeout re-indexed the collections and embedded every currently pending hash; the post-remediation backlog is zero.
+Queue depth is a first-class metric. The current release found 112 documents pending embedding: lexical and semantic search both passed, but the non-zero queue remains visible beside the document headline. A healthy retrieval layer reports and drains that queue; it does not hide it behind a cumulative count.
 
 ## MCP And Source Systems
 
-MCP gives clients and agents one authenticated protocol for reading the Brain and reaching operating systems. The current tool inventory is 97. Tool count is not the objective; useful, scoped and testable capabilities are.
+MCP gives clients and agents one authenticated protocol for reading the Brain and reaching operating systems. The current tool inventory is 98. Tool count is not the objective; useful, scoped and testable capabilities are.
 
 Every connector must declare:
 
@@ -99,7 +99,7 @@ Confidence never grants authority. Read-only retrieval can execute with citation
 
 ## Skills
 
-The swarm can discover 373 available skills, but only 47 are company-authored canonical procedures. Forty-five of those have a recorded evaluation. Availability, ownership and production approval are separate states.
+The swarm can discover 374 available skills, but only 48 are company-governed canonical procedures. Forty-six of those have a recorded evaluation. Availability, ownership and production approval are separate states.
 
 A canonical skill needs stable inputs, authority, output contract, verification, stop conditions, rollback, an owner and an independent judge. See Chapter 10ac for the promotion lifecycle.
 
@@ -108,7 +108,7 @@ A canonical skill needs stable inputs, authority, output contract, verification,
 The reference deployment uses:
 
 - git-versioned Brain changes and a change ledger;
-- encrypted backups in two failure domains;
+- layered Brain backups in separate failure domains;
 - restore verification by checksum;
 - host-level service supervision;
 - connector smoke tests;
@@ -136,9 +136,11 @@ Annual cost is EUR7,572. The Chapter 12 model estimates EUR122,944/year of recla
 
 - broad autonomous execution remains a controlled pilot;
 - fine-grained Brain Spaces enforcement is staged, not universal;
-- the native meeting transcript inventory is zero even though generated notes are covered;
-- Granola source coverage is incomplete;
-- the audit's embedding backlog was cleared during release remediation, but queue depth still requires monitoring;
+- complete native meeting-transcript coverage is not claimed even though generated notes are covered;
+- 112 documents were pending embedding at the release boundary;
+- several agent runtimes and semantic retrieval share one physical node;
+- one team channel was degraded while its runtime remained available;
+- Brain backups are layered, but runtime-home and session backup coverage remains incomplete;
 - two canonical skills had not yet received a recorded evaluation.
 
 These gaps do not erase the deployed system. Publishing them makes the strengths credible and gives the next release a measurable acceptance test.
