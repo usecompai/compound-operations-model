@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://laigam.com/schemas/outcome-receipt-v0.2.json",
+  "title": "Compai Outcome Receipt",
+  "type": "object",
+  "required": [
+    "kind",
+    "api_version",
+    "id",
+    "decision_pack_id",
+    "loop_id",
+    "created_at",
+    "action",
+    "measurement",
+    "business_result",
+    "terminal_state"
+  ],
+  "properties": {
+    "kind": {"const": "OutcomeReceipt"},
+    "api_version": {"const": "compai/v0.2"},
+    "id": {"type": "string", "minLength": 1},
+    "decision_pack_id": {"type": "string", "minLength": 1},
+    "loop_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "action": {
+      "type": "object",
+      "required": ["status", "approved_by", "applied_at", "evidence_refs"],
+      "properties": {
+        "status": {"enum": ["pending", "approved", "applied", "rejected", "not_applied"]},
+        "approved_by": {"type": ["string", "null"]},
+        "applied_at": {"type": ["string", "null"], "format": "date-time"},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "measurement": {
+      "type": "object",
+      "required": ["status", "due_at", "baseline", "observed", "source_refs"],
+      "properties": {
+        "status": {"enum": ["pending_action", "pending_window", "measured", "not_measurable"]},
+        "due_at": {"type": "string", "format": "date-time"},
+        "baseline": {"type": "object"},
+        "observed": {"type": ["object", "null"]},
+        "source_refs": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "business_result": {
+      "type": "object",
+      "required": ["status", "primary_metric_delta", "guardrails_passed", "attribution_confidence"],
+      "properties": {
+        "status": {"enum": ["pending", "improved", "degraded", "inconclusive", "not_measurable"]},
+        "primary_metric_delta": {"type": ["number", "null"]},
+        "guardrails_passed": {"type": ["boolean", "null"]},
+        "attribution_confidence": {"enum": ["none", "low", "medium", "high"]}
+      },
+      "additionalProperties": false
+    },
+    "terminal_state": {"enum": ["pending", "closed_improved", "closed_degraded", "closed_inconclusive", "closed_no_action", "failed"]}
+  },
+  "additionalProperties": false
+}

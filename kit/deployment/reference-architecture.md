@@ -2,7 +2,7 @@
 
 ## Canonical Topology
 
-Compai is packaged as seven domain agents plus Claude Code as the founder command center.
+Compai is packaged as a model-agnostic company operating layer. Domain agents and Claude, Codex or other model clients consume the same governed capabilities.
 
 - Strategy hub
 - Customer service
@@ -11,7 +11,7 @@ Compai is packaged as seven domain agents plus Claude Code as the founder comman
 - Marketing
 - Merchandising
 - HR / people ops
-- Claude Code command center
+- founder command center
 
 ## Hosting Pattern
 
@@ -39,6 +39,8 @@ Each system remains source of truth in its own domain.
 
 Agents do not replace Shopify, ERP, analytics, or helpdesk. They orchestrate across them.
 
+The Brain is operational memory: context, entities, decisions, procedures and receipts. It is not a silent cache of current operational truth.
+
 ## Required Layers
 
 ### Execution layer
@@ -47,6 +49,19 @@ Agents do not replace Shopify, ERP, analytics, or helpdesk. They orchestrate acr
 - watchdog / health checks
 - audit logging
 
+### Capability layer
+- explicit source of truth, inputs and outputs
+- read, write and approval boundaries
+- owner, sensitivity and freshness SLA
+- harmless smoke test and runtime readiness state
+- a skill is discoverable procedure, not proof that a capability is available
+
+### Decision and outcome layer
+- schema-validated decision packs
+- applied-action receipts linked to approval
+- business metrics, baselines, guardrails and observation windows
+- outcome receipts that distinguish causal, observational and not-measurable results
+
 ### Memory layer
 - shared brain
 - context tree / indexes
@@ -54,7 +69,7 @@ Agents do not replace Shopify, ERP, analytics, or helpdesk. They orchestrate acr
 - human-readable operating docs
 
 ### Interface layer
-- Claude Code for power users
+- Claude, Codex or another compatible model client for power users
 - Slack / email / helpdesk where the team already works
 - optional employee AI clients if you standardize them
 
@@ -62,9 +77,10 @@ Agents do not replace Shopify, ERP, analytics, or helpdesk. They orchestrate acr
 
 - least privilege per agent
 - write actions only where required
+- explicit human approval for consequential actions
 - hard escalation rules
 - public telemetry must be governed and anonymized
 
 ## Deployment Goal
 
-By day 30 you should have a working operating surface, not a pile of prompts.
+By day 30 you should have a working operating surface with verified capabilities and measured loops, not a pile of prompts.

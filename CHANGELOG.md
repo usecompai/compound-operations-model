@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Added a Capability Registry template and schema. A skill does not count as operational until its capability passes a harmless smoke test.
+- Added Decision Pack and Outcome Receipt schemas.
+- Upgraded the Loop template to v0.2 with source capabilities, business baselines, guardrails, observation windows and promotion evidence.
+- Made model adapters explicitly subordinate to source, permission, authority and verification contracts.
+
 ## v5.1 - Runtime Truth - 2026-07-20
 
 - Refreshed the dated public snapshot from the live reference runtime.

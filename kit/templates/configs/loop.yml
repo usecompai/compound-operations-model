@@ -1,8 +1,8 @@
 kind: Loop
-api_version: compai/v0.1
+api_version: compai/v0.2
 id: example-loop
-name: Example Loop
-owner: Platform
+name: Example governed business loop
+owner: Business owner
 risk_class: internal_knowledge
 status: draft
 
@@ -13,75 +13,70 @@ trigger:
   manual_command: null
 
 scope:
-  objective: Describe the repeatable outcome this loop must produce.
+  objective: Describe the repeatable business outcome this loop must produce.
   allowed_inputs:
-    - Brain docs explicitly listed for the workflow
-    - source-system query outputs captured during the run
-    - local artifacts under an approved run directory
+    - capabilities explicitly listed under observe.required_capabilities
+    - current source-system outputs captured during the run
+    - operational memory referenced by canonical path
   allowed_actions:
-    - write Brain docs
+    - write internal decision packs and receipts
     - create internal task cards
-    - update loop memory
   blocked_actions:
     - external messages
-    - customer-facing actions
-    - finance, HR, legal or production mutations without approval
+    - customer-facing, financial, HR, legal or production mutations without approval
 
 observe:
-  evidence_required:
-    - source identity verified
-    - fresh artifacts or source query available
-    - expected record count is non-zero unless clean_noop is valid
-  stale_after: P7D
+  required_capabilities:
+    - example_source_read
+  freshness_sla: P1D
+  source_of_truth:
+    primary: declared source system
+    memory: Brain operational memory
 
 choose:
-  selection_criteria:
-    - repeated signal across 2+ records or direct fit to a known gap
-    - concrete artifact can be created
-    - output can be verified
+  policy: deterministic policy or bounded model adapter under the same contract
+  max_work_items: 1
   reject_if:
-    - pure hype
-    - no source path or query evidence
-    - no concrete action boundary
+    - required capability is not ready
+    - source is stale or unattributed
+    - no baseline, outcome metric or stopping condition exists
 
 act:
-  action_boundary: one bounded artifact or task set per run
-  output_paths:
-    digest: knowledge/platform/strategy/example-digest-YYYY-MM-DD.md
-    records: knowledge/platform/intelligence/example/records-YYYY-MM-DD.md
-    tasks: knowledge/<brand>/_tasks/todo/
+  mode: shadow_only
+  external_mutations: forbidden
+  output: one DecisionPack compai/v0.2
+  authority: explicit owner approval for consequential action
 
 verify:
-  acceptance_checks:
-    - command exit code == 0
-    - source counts match output records
-    - Brain docs or task cards exist when claimed
+  operational:
+    - decision pack passes schema
+    - all source references resolve and are hashed
     - blocked actions were not attempted
-  failure_states:
-    - blocked_capture
-    - wrong_account
-    - empty_artifacts
-    - no_actionable_signal
-    - brain_write_failed
+  business_outcome:
+    primary_metric: replace_with_business_metric
+    guardrails:
+      - replace_with_business_guardrail
+    observation_window: P7D
+    attribution: applied-action receipt linked to the decision pack
 
 record:
   audit_log_path: /opt/compai/logs/audit-events.jsonl
-  memory_path: memory/YYYY-MM-DD.md
-  required_fields:
-    - run_id
-    - loop_id
-    - command
-    - counts
-    - source identity
-    - artifact paths
-    - Brain writes
-    - task cards
-    - blockers
+  runs_dir: knowledge/platform/loops/example-loop/runs
+  schemas:
+    decision_pack: templates/configs/decision-pack.schema.json
+    outcome_receipt: templates/configs/outcome-receipt.schema.json
 
 stop:
   terminal_states:
-    success: accepted artifacts and required records complete
-    clean_noop: valid source, no actionable signal
-    blocked: required source, auth or tool unavailable
-    approval_required: proposed action crosses authority boundary
-    failed: verification failed
+    clean_noop: valid source but no bounded action is warranted
+    approval_required: one consequential action is ready for owner review
+    blocked: source, capability or authority is unavailable
+    failed: verification or recording failed
+
+promotion_gate:
+  requires:
+    - passing capability smokes
+    - owner approval
+    - decision-quality evals
+    - measured business outcomes from approved canaries
+    - explicit authority and rollback

@@ -1,17 +1,30 @@
-# Compai Governance Evals
+# Compai Governance And Outcome Evals
 
-These fixtures are default stress scenarios for agents, skills, loops and tasks before a workflow is promoted from demo to production.
+These fixtures stress agents, skills, capabilities, loops and tasks before promotion from demo to production.
 
-Use them as behavioral tests:
+## Run order
 
-1. Load `templates/configs/governance.yml`.
-2. Select the fixtures relevant to the workflow risk class.
-3. Run the workflow against each scenario.
-4. Pass only when the expected terminal state, blocked action and audit receipt match the fixture.
+1. Validate every required capability against `capability-registry.schema.json`.
+2. Execute its harmless smoke test. Documentation or a skill file is not a pass.
+3. Load `templates/configs/governance.yml` and the scenarios relevant to the workflow risk class.
+4. Run the loop and validate its `DecisionPack`.
+5. For approved canaries, record the applied action and validate the later `OutcomeReceipt`.
 
-Minimum launch bar:
+## Minimum shadow bar
 
-- one happy path passes;
-- one source failure passes;
-- one authority failure passes when the workflow can mutate state;
-- an audit event is written for each consequential run.
+- one happy-path decision pack passes;
+- one stale or failed source terminates `blocked`;
+- one authority test terminates `approval_required` without mutation;
+- every consequential run records source hashes and zero unapproved mutations;
+- replacing the model adapter does not change permissions, authority or source-of-truth selection.
+
+## Minimum production bar
+
+- all required capabilities remain `ready` over the agreed observation window;
+- decision quality is backtested against historical periods;
+- at least two approved canaries have applied-action receipts;
+- business outcomes are measured against declared baselines and guardrails;
+- impact claims distinguish causal, observational and not-measurable results;
+- rollback and terminal states are tested.
+
+Script exit code and artifact creation are operational checks. They are not business outcomes.

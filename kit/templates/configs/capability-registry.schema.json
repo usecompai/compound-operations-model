@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://usecompai.com/schemas/capability-registry.v0.2.schema.json",
+  "title": "Compai Capability Registry",
+  "type": "object",
+  "required": ["kind", "api_version", "owner", "updated_at", "capabilities"],
+  "properties": {
+    "kind": {"const": "CapabilityRegistry"},
+    "api_version": {"const": "compai/v0.2"},
+    "owner": {"type": "string", "minLength": 1},
+    "updated_at": {"type": "string"},
+    "capabilities": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "domain", "owner", "kind", "source_of_truth", "inputs", "outputs", "permissions", "sensitivity", "authority_scope", "freshness_sla", "verification", "terminal_states", "skills", "implemented"],
+        "properties": {
+          "label": {"type": "string", "minLength": 1},
+          "domain": {"type": "string", "minLength": 1},
+          "owner": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["retrieval", "source_read", "analysis", "draft", "loop", "external_surface"]},
+          "source_of_truth": {"type": "string", "minLength": 1},
+          "inputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "outputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "permissions": {
+            "type": "object",
+            "required": ["read", "write", "approval_required"],
+            "properties": {
+              "read": {"type": "array", "items": {"type": "string"}},
+              "write": {"type": "array", "items": {"type": "string"}},
+              "approval_required": {"type": "array", "items": {"type": "string"}}
+            },
+            "additionalProperties": false
+          },
+          "sensitivity": {"enum": ["public", "internal", "sensitive", "restricted"]},
+          "authority_scope": {"enum": ["read_only", "internal_write", "approval_required", "shadow_only"]},
+          "freshness_sla": {"type": "string", "pattern": "^P"},
+          "verification": {"type": "string", "minLength": 1},
+          "terminal_states": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "skills": {"type": "array", "items": {"type": "string"}},
+          "implemented": {"type": "boolean"},
+          "smoke": {"type": ["object", "null"]}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

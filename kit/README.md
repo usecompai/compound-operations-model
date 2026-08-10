@@ -4,6 +4,13 @@ This kit is the portable asset layer behind the Compai playbook. It turns the ar
 
 It is not a hosted service, a compliance certification or a promise that every connector is production-ready in every environment. Run it first in an isolated pilot, replace the example values, and review consequential data flows with the appropriate security, privacy and legal owners.
 
+## Unreleased additions
+
+- Capability Registry contract with source, inputs, outputs, permissions, freshness, owner and smoke-test state.
+- Decision Pack and Outcome Receipt schemas for business-loop evaluation.
+- Loop v0.2 template with explicit capability dependencies, business metrics, observation windows and promotion gates.
+- Model adapters cannot change source-of-truth selection, permissions or authority.
+
 ## Release Contract
 
 Version 5.1 refreshes the evidence boundary and keeps the controls introduced in v5.0:

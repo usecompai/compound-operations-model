@@ -1,0 +1,32 @@
+kind: CapabilityRegistry
+api_version: compai/v0.2
+owner: Platform
+updated_at: YYYY-MM-DD
+
+capabilities:
+  example_source_read:
+    label: Example source read
+    domain: operations
+    owner: Business owner
+    kind: source_read
+    source_of_truth: canonical source API
+    inputs:
+      - bounded source query
+    outputs:
+      - timestamped source records
+    permissions:
+      read:
+        - canonical source API
+      write: []
+      approval_required: []
+    sensitivity: internal
+    authority_scope: read_only
+    freshness_sla: PT6H
+    verification: harmless live source smoke
+    terminal_states:
+      - success
+      - blocked
+      - failed
+    skills: []
+    implemented: false
+    smoke: null
