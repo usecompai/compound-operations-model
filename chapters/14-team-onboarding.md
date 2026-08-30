@@ -37,7 +37,7 @@ Zero API keys on employee machines. Zero training on business tools. Zero risk o
                │
 ┌──────────────▼──────────────────────┐
 │    MCP Server (your VPS)            │
-│    98 tools · role-based access     │
+│ verified capabilities · role access │
 │    all credentials server-side      │
 └──────────────┬──────────────────────┘
                │
@@ -343,13 +343,13 @@ McKinsey's September 2025 agentic-organization paper identifies **three emerging
 - COO, Head of Operations, VP Commerce, Chief of Staff
 - In smaller brands: the founder is the first M-shaped supervisor
 
-**How many per brand:** 2-5. McKinsey: *"a human team of two to five people can already supervise an agent factory of 50 to 100 specialized agents."* In the reference deployment, a small operator group steers 7 domain runtimes through 98 MCP tools and 374 available skills across the business.
+**How many per brand:** begin with one accountable operator group. The reference deployment uses seven domain agents over a shared set of verified capabilities, with explicit human boundaries for consequential work. Scale the fleet only when the review queue and Outcome Receipts show that oversight remains effective.
 
 **Typical training path (from L3):**
 - 2-3 months of cross-domain rotations (CS ↔ Finance ↔ Marketing)
 - Ownership of one SOUL.md end-to-end (writing, iterating, measuring outcomes)
 - Exposure to the compliance layer (DPIA, AI Act, Annex III)
-- Tool literacy across the relevant scoped subset of the 98 MCP tools
+- Capability literacy across the role's relevant, scoped subset
 
 ### Profile 2 — T-shaped Specialist
 

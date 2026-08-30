@@ -1,11 +1,15 @@
 # Changelog
 
-## Unreleased
+## v6.0 - Operating Layer - 2026-08-30
 
 - Added a Capability Registry template and schema. A skill does not count as operational until its capability passes a harmless smoke test.
 - Added Decision Pack and Outcome Receipt schemas.
 - Upgraded the Loop template to v0.2 with source capabilities, business baselines, guardrails, observation windows and promotion evidence.
 - Made model adapters explicitly subordinate to source, permission, authority and verification contracts.
+- Added the Company Operating Layer, Context Compiler, human work mode, durable workspaces and outcome-led execution chapters.
+- Added Company Runtime and ContextPack schemas.
+- Replaced stale July inventory claims with the dated August evidence boundary.
+- Disclosed degraded automated source synchronization at release time.
 
 ## v5.1 - Runtime Truth - 2026-07-20
 

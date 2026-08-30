@@ -34,17 +34,17 @@ This matters most for permissions and autonomy. A Brain Spaces template can be p
 
 ## A dated reference snapshot
 
-The reference deployment snapshot used for Compai v5.1 was verified on **20 July 2026**:
+The Compai v6.0 evidence boundary was verified on **28-30 August 2026**:
 
-- 5,235 documents indexed for retrieval, with 24,469 vectors and 112 pending embeddings;
-- 374 skills available across canonical, installed and vendor/community layers;
-- 48 company-governed canonical skills, 46 with a recorded evaluation;
-- 98 MCP tools;
-- seven production agent runtimes;
-- authentication in `enforce` mode;
-- 14/14 source connectors passing read-only smoke tests plus an independent Google Workspace mail check;
-- 46,221 action-ledger rows;
-- strong capture and retrieval, with autonomous closure still in a controlled pilot.
+- 46/46 core capabilities ready in the dated Capability Registry gate;
+- 20/20 lexical and 5/5 semantic retrieval canaries passing independently;
+- seven production domain agents online;
+- authentication, RBAC and audience enforcement active;
+- Context Compiler and employee work mode deployed;
+- three governed business loops in proposal/shadow mode;
+- daily offsite backup and repository checks passing;
+- automated Slack, Drive and meeting synchronization degraded at audit time;
+- broad unattended external execution not deployed.
 
 These are dated facts, not permanent copy. A future release must regenerate the snapshot from the live system or keep the old date visible.
 
@@ -67,10 +67,10 @@ The reference deployment has broad company coverage, but it still publishes its 
 Every public number or material internal claim should be reproducible from an evidence card:
 
 ```yaml
-claim: "98 MCP tools available"
+claim: "46/46 core capabilities ready"
 state: deployed
-source_class: authenticated_protocol_smoke
-verified_at: 2026-07-20T09:14:30Z
+source_class: capability_registry_smoke_report
+verified_at: 2026-08-28T15:51:10Z
 owner: platform
 fresh_for: 7d
 public_safe: true

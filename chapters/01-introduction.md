@@ -27,7 +27,7 @@ We built the operating layer inside our own operation: a multi-agent system with
 **The difference matters more than you think:**
 - A prompt-based solution breaks when the vendor changes pricing. Our system is model-agnostic and self-hosted.
 - A prompt-based solution has no memory. Our agents accumulate context over months — Month 6 is qualitatively different from Month 1.
-- A prompt-based solution runs in isolation. Our agents coordinate: the CS agent flags a shipping delay, the ops agent checks the carrier, the marketing agent pauses the campaign. Automatically.
+- A prompt-based solution runs in isolation. Compai routes work across domain agents and capabilities while consequential changes remain inside explicit authority and approval boundaries.
 - A prompt-based solution is consulting disguised as software. This architecture is infrastructure that compounds, and the working reference is published for operators to study and fork.
 
 Every improvement in the underlying AI models makes the operating layer faster, cheaper, and more capable. The Brain, contracts, skills and receipts remain company-owned while models change underneath.
@@ -42,18 +42,19 @@ We had a choice: hire 3–4 people at €35K–55K each, or try something differ
 
 We tried something different.
 
-We started with a 30-day deployment and expanded it over more than a year. The current topology is seven production agent runtimes plus a founder command center, connected to real systems through 98 authenticated MCP tools.
+We started with a 30-day deployment and expanded it over more than a year. The current topology is seven production domain agents plus a founder view, connected to company knowledge and live systems through authenticated, governed capabilities.
 
-**Current public snapshot, 20 July 2026:**
-- 5,235 Brain documents and 24,469 vectors; 112 documents pending embedding at release close
-- 374 available skills; 48 company-governed canonical; 46 with a recorded evaluation
-- 98 MCP tools with authentication in `enforce`
-- 14/14 connector smoke tests green, an independent Google Workspace mail check green and 46,221 action receipts
-- Brain maturity assessed at 6.6/10
-- Broad autonomous execution remains low and held to bounded closure-first pilots
-- ROI model: 16.2:1 under the assumptions in Chapter 12
+**Current public snapshot, 30 August 2026:**
+- 46/46 core runtime capabilities ready at the dated 28 August gate
+- 20/20 lexical and 5/5 semantic retrieval canaries passing on 30 August
+- seven production domain agents online
+- MCP authentication, RBAC and audience enforcement active
+- a Context Compiler that exposes conflict, staleness, missing evidence and permission blocks
+- three governed business loops in proposal/shadow mode, without broad autonomous execution
+- automated Slack, Drive and meeting synchronization degraded at the audit boundary
+- daily offsite backup and repository checks passing
 
-The business now has a shared operating layer across a roughly 40-person team. The evidence supports better capture, retrieval, preparation and controlled execution; it does not prove that AI alone caused growth or avoided a specific number of hires.
+The business now has a shared operating layer across a roughly 40-person team. The evidence supports capture, retrieval, preparation, governed publishing and controlled execution; it does not prove that AI alone caused growth or avoided a specific number of hires.
 
 ---
 

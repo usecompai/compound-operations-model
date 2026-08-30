@@ -1,165 +1,101 @@
 {
   "$schema": "kit/templates/configs/public-truth-manifest.schema.json",
-  "version": "5.1",
-  "verified_at": "2026-07-20T09:15:26Z",
+  "version": "6.0",
+  "verified_at": "2026-08-30T17:55:00Z",
   "claims": {
-    "brain_documents": {
-      "value": 5235,
+    "core_capabilities_ready": {
+      "value": "46/46",
       "state": "deployed",
-      "source_class": "qmd_runtime_inventory",
-      "verified_at": "2026-07-20T09:14:13Z",
+      "source_class": "capability_registry_smoke_report",
+      "verified_at": "2026-08-28T15:51:10Z",
       "fresh_for": "7d",
       "public_safe": true
     },
-    "embedding_vectors": {
-      "value": 24469,
+    "lexical_retrieval_canaries": {
+      "value": "20/20",
       "state": "deployed",
-      "source_class": "qmd_runtime_inventory",
-      "verified_at": "2026-07-20T09:14:13Z",
-      "fresh_for": "7d",
-      "public_safe": true
-    },
-    "embedding_backlog": {
-      "value": 112,
-      "state": "deployed",
-      "source_class": "qmd_runtime_inventory",
-      "verified_at": "2026-07-20T09:14:13Z",
+      "source_class": "independent_qmd_canary",
+      "verified_at": "2026-08-30T17:47:00Z",
       "fresh_for": "24h",
       "public_safe": true
     },
-    "available_skills": {
-      "value": 374,
+    "semantic_retrieval_canaries": {
+      "value": "5/5",
       "state": "deployed",
-      "source_class": "live_runtime_skill_inventory",
-      "verified_at": "2026-07-20T09:14:13Z",
-      "fresh_for": "7d",
+      "source_class": "independent_qmd_canary",
+      "verified_at": "2026-08-30T17:47:00Z",
+      "fresh_for": "24h",
       "public_safe": true
     },
-    "canonical_skills": {
-      "value": 48,
+    "production_domain_agents": {
+      "value": "7/7 online",
       "state": "deployed",
-      "source_class": "recursive_canonical_skill_inventory",
-      "verified_at": "2026-07-20T09:14:13Z",
-      "fresh_for": "7d",
+      "source_class": "independent_runtime_health_probe",
+      "verified_at": "2026-08-30T17:48:00Z",
+      "fresh_for": "24h",
       "public_safe": true
     },
-    "evaluated_canonical_skills": {
-      "value": 46,
+    "mcp_identity_policy": {
+      "value": "authentication, RBAC and audience enforcement active",
       "state": "deployed",
-      "source_class": "skill_evaluation_registry",
-      "verified_at": "2026-07-20T09:14:13Z",
-      "fresh_for": "30d",
+      "source_class": "independent_protocol_and_policy_probe",
+      "verified_at": "2026-08-30T17:48:00Z",
+      "fresh_for": "24h",
       "public_safe": true
     },
-    "mcp_tools": {
-      "value": 98,
+    "context_compiler": {
+      "value": "identity, project and job-aware ContextPacks with explicit conflict states",
       "state": "deployed",
-      "source_class": "authenticated_protocol_smoke",
-      "verified_at": "2026-07-20T09:14:30Z",
-      "fresh_for": "7d",
+      "source_class": "runtime_contract_and_acceptance_report",
+      "verified_at": "2026-08-28T15:51:10Z",
+      "fresh_for": "14d",
       "public_safe": true
     },
-    "production_agent_runtimes": {
-      "value": 7,
+    "employee_work_mode": {
+      "value": "role-permitted human execution with server-side policy enforcement",
       "state": "deployed",
-      "source_class": "runtime_and_channel_audit",
-      "verified_at": "2026-07-20T09:14:30Z",
-      "fresh_for": "7d",
+      "source_class": "identity_and_runtime_acceptance_gate",
+      "verified_at": "2026-08-28T15:51:10Z",
+      "fresh_for": "14d",
       "public_safe": true
     },
-    "agent_channels_green": {
-      "value": "6/7",
+    "governed_business_loops": {
+      "value": 3,
       "state": "pilot",
-      "source_class": "runtime_and_channel_audit",
-      "verified_at": "2026-07-20T09:14:30Z",
-      "fresh_for": "24h",
-      "public_safe": true
-    },
-    "connector_smoke_tests_green": {
-      "value": 14,
-      "state": "deployed",
-      "source_class": "read_only_connector_smoke_report",
-      "verified_at": "2026-07-20T09:15:26Z",
-      "fresh_for": "7d",
-      "public_safe": true
-    },
-    "google_workspace_mail_check": {
-      "value": "green",
-      "state": "deployed",
-      "source_class": "independent_dwd_read_probe",
-      "verified_at": "2026-07-20T09:14:14Z",
-      "fresh_for": "7d",
-      "public_safe": true
-    },
-    "action_receipts": {
-      "value": 46221,
-      "state": "deployed",
-      "source_class": "action_ledger_inventory",
-      "verified_at": "2026-07-20T09:14:13Z",
-      "fresh_for": "7d",
-      "public_safe": true
-    },
-    "mcp_authentication": {
-      "value": "enforce",
-      "state": "deployed",
-      "source_class": "live_authenticated_protocol_probe",
-      "verified_at": "2026-07-20T09:14:30Z",
-      "fresh_for": "24h",
-      "public_safe": true
-    },
-    "brain_path_confinement": {
-      "value": "enforced",
-      "state": "deployed",
-      "source_class": "path_traversal_canary",
-      "verified_at": "2026-07-20T08:58:32Z",
-      "fresh_for": "30d",
-      "public_safe": true
-    },
-    "brain_maturity_score": {
-      "value": 6.6,
-      "state": "deployed",
-      "source_class": "dated_deep_due_diligence",
-      "verified_at": "2026-07-20T08:58:32Z",
-      "fresh_for": "30d",
+      "source_class": "loop_contract_and_shadow_runtime_audit",
+      "verified_at": "2026-08-28T15:51:10Z",
+      "fresh_for": "14d",
       "public_safe": true
     },
     "broad_autonomous_execution": {
-      "value": "low_with_bounded_closure_first_pilot",
+      "value": "not deployed; external mutations remain bounded",
       "state": "pilot",
-      "source_class": "dated_deep_due_diligence",
-      "verified_at": "2026-07-20T08:58:32Z",
+      "source_class": "runtime_authority_audit",
+      "verified_at": "2026-08-30T17:48:00Z",
       "fresh_for": "14d",
       "public_safe": true
     },
-    "brain_spaces_fine_grained_scoping": {
-      "value": "staged_domain_rollout",
-      "state": "pilot",
-      "source_class": "architecture_control_audit",
-      "verified_at": "2026-07-20T08:58:32Z",
-      "fresh_for": "14d",
+    "automated_source_synchronization": {
+      "value": "degraded; Slack, Drive and meeting synchronization failures observed",
+      "state": "degraded",
+      "source_class": "independent_systemd_service_audit",
+      "verified_at": "2026-08-30T17:55:00Z",
+      "fresh_for": "24h",
       "public_safe": true
     },
-    "high_availability": {
-      "value": "not_yet_deployed",
-      "state": "pilot",
-      "source_class": "infrastructure_topology_audit",
-      "verified_at": "2026-07-20T08:58:32Z",
-      "fresh_for": "30d",
-      "public_safe": true
-    },
-    "runtime_backup_coverage": {
-      "value": "brain_layered_runtime_partial",
-      "state": "pilot",
-      "source_class": "backup_and_restore_audit",
-      "verified_at": "2026-07-20T08:58:32Z",
-      "fresh_for": "30d",
+    "durable_backup": {
+      "value": "daily backup and repository check passing; restore drill previously passing",
+      "state": "deployed",
+      "source_class": "independent_systemd_and_restic_audit",
+      "verified_at": "2026-08-30T17:55:00Z",
+      "fresh_for": "7d",
       "public_safe": true
     }
   },
   "public_package": {
-    "chapters": 66,
+    "chapters": 72,
     "skills": 31,
-    "kit_files": 220,
+    "kit_files": 226,
     "patterns": 21
   }
 }

@@ -16,7 +16,7 @@ If a consumer brand's leadership team is asking *"how do we get to the agentic o
 
 | McKinsey prescription | Reference implementation in this playbook |
 |---|---|
-| AI-first workflows drive marginal costs toward the cost of compute | 7 agents + MCP server running at **€631/month** all-in for a 8-figure brand. Marginal cost per decision ≈ €0 |
+| AI-first workflows move repeatable work toward model and infrastructure cost | Seven domain agents share one operating layer. The July cost model is inspectable in Chapter 12, but marginal cost and realized value must be measured per workflow. |
 | Proprietary data becomes a key differentiator | **Pattern Library** — cross-company anonymized operational patterns. New deployments can start from tested patterns instead of a blank page, with autonomy earned through local validation |
 | Walled garden as a superpower | Brand-scoped brain (`knowledge/<brand>/`) with 6 QMD collections — every brand's data is sealed, never leaks to competitors, never used to train anything |
 | Hyperpersonalization at scale | CS agent does per-customer brand-voice drafting; Marketing agent does per-segment campaign variants — tested production feature since Month 3 |
@@ -31,7 +31,7 @@ If a consumer brand's leadership team is asking *"how do we get to the agentic o
 | Humans "above the loop" | **ACK rule** + **review queues** + founder approval gates for high-impact actions. Humans set policy, agents execute at 24/7 cadence |
 | Flat agentic networks, not hierarchies | `agent_send` protocol = any agent can message any other. No hierarchical org chart — the brain is the shared substrate |
 | Agentic teams cross organizational boundaries | MCP Cloudflare Tunnel exposes the swarm to connected humans + partner systems. Pattern Library enables cross-brand intelligence sharing |
-| Small human teams supervise large agent populations | A small operator group steers **7 domain runtimes through 98 MCP tools and 374 available skills**, with human gates for consequential work |
+| Small human teams supervise specialized agent populations | A small operator group steers seven domain agents through verified capabilities, with human gates for consequential work |
 
 ### Pillar 3 — Governance
 
@@ -64,7 +64,7 @@ If a consumer brand's leadership team is asking *"how do we get to the agentic o
 
 | McKinsey prescription | Reference implementation in this playbook |
 |---|---|
-| Agentic AI mesh with modular agents | 7 domain SOULs + 98 MCP tools + 374 available skills. Runtime identity and authority remain separate even when context is shared |
+| Agentic AI mesh with modular agents | Seven domain roles + a shared Capability Registry. Runtime identity and authority remain separate even when context is shared |
 | Agent-to-agent protocols | **MCP** (Model Context Protocol, Anthropic open-source) as the substrate. Every agent speaks MCP. The reference implementation is documented in the repo |
 | Dynamic sourcing (no vendor lock-in) | **Registry-based multi-model routing** by task quality, privacy, latency and cost, plus an independently tested fallback. Receipts record the actual provider and model used |
 | Distributed ownership of IT and data | **Brand-owned VPS** (self-hosted, never our cloud). Founder keeps the keys. The repo documents the runtime |

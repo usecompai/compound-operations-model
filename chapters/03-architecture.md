@@ -28,9 +28,9 @@ The architecture that works is **specialized agents with a shared brain.**
         └───────────┴───────────┴───────────┴───────────────┘
                          Mac Mini (secondary host)
                     ┌─────────────────────────────┐
-                    │     SHARED BRAIN (5,235 docs)    │
-                    │   rsync ↔ every 30 minutes    │
-                    │   + MCP Server (98 tools)     │
+                    │       SHARED OPERATING LAYER      │
+                    │ context + capabilities + policy  │
+                    │    + run and outcome ledger      │
                     └─────────────────────────────┘
 ```
 
@@ -114,13 +114,13 @@ At the core, the reference system runs on **OpenClaw** — an open-source AI age
 | **Monitoring** | Built-in heartbeats + cron jobs | Self-healing, auto-restart |
 | **ERP / Accounting** | the accounting system | Invoicing, payment reconciliation, ledger |
 | **Expense Management** | the expense platform | Corporate cards, expense tracking, bank statements |
-| **Knowledge Base** | Notion + Brain Context Tree | 5,235 docs organized by domain and indexed at the release boundary |
+| **Knowledge Base** | Brain + source references | Durable context organized by domain, audience and ownership |
 | **Social Listening** | Agent-Reach + bird CLI | Twitter/X monitoring, multi-platform scanning |
 | **Semantic Search** | Exa | Better than Google for competitive research |
 | **Image Generation** | Krea AI | Product shots, creative assets |
-| **Power-User Layer** | Claude Code + MCP | Founder's direct interface — 98 tools, slash commands, subagents |
+| **Power-User Layer** | Interchangeable AI clients + MCP | Authenticated interfaces over the same context and capability contracts |
 
-**Total system cost:** €631/month all-in (infrastructure + LLM access + subscriptions). See Ch.12 for the complete cost breakdown.
+**Historical reference cost model:** €631/month for infrastructure, models and team subscriptions at the July 2026 baseline. This is not a Compai price or implementation quote. See Chapter 12 and replace every input.
 
 The current two-layer ROI model produces a 16.2:1 ratio under the documented assumptions. Chapter 12 separates hard savings from strategic capacity so readers can replace every input with their own numbers.
 

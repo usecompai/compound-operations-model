@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://laigam.com/schemas/outcome-receipt-v0.2.json",
+  "$id": "https://usecompai.com/schemas/outcome-receipt.v0.2.schema.json",
   "title": "Compai Outcome Receipt",
   "type": "object",
   "required": [

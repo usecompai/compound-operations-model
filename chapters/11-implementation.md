@@ -195,7 +195,7 @@ Monthly savings: €___
 ROI ratio: ___:1
 ```
 
-If the math does not work, stop expanding and fix the workflow. The current reference model estimates **62 agent hours/week plus 45 team hours/week reclaimed and 16.2:1 ROI**, but those numbers only matter if your own baseline validates them.
+If the math does not work, stop expanding and fix the workflow. Historical reference assumptions are available in Chapter 12, but promotion should use your own baseline and closed Outcome Receipts rather than a copied ROI headline.
 
 ## Common Implementation Mistakes
 

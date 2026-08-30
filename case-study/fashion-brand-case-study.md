@@ -2,7 +2,7 @@
 
 ## An anonymized, evidence-first account of the reference deployment
 
-**Evidence boundary:** verified 20 July 2026. Operational details are anonymized. Counts are a dated snapshot, not live telemetry.
+**Evidence boundary:** verified 28-30 August 2026. Operational details are anonymized. Results are a dated snapshot, not live telemetry.
 
 ## Company Profile
 
@@ -13,7 +13,7 @@
 | Team | Roughly 40 people |
 | Channels | Ecommerce, owned retail, department-store presence and wholesale |
 | Starting stack | Commerce, inventory, accounting, lifecycle marketing, customer care, analytics, documents and team communication systems |
-| AI operating layer | Shared Brain, 7 domain runtimes, founder command center, authenticated MCP tools and governed skills |
+| AI operating layer | Shared Brain, Context Compiler, 7 domain agents, verified capabilities, policy, run ledger and human review |
 | Time in operation | More than one year of incremental production use |
 
 The company did not begin with a blank technical stack or a dedicated internal engineering department. It began with working business systems, fragmented context and operators spending too much time reconciling the two.
@@ -42,33 +42,29 @@ The MCP layer gives people and agents a controlled way to read and, where policy
 
 Seven domain runtimes cover company direction, customer care, finance, retail, digital marketing, merchandising and people operations. They share the Brain but retain separate roles and authority boundaries.
 
-### 4. Governed procedures
+### 4. Verified capabilities
 
-Repeatable work is packaged as skills with triggers, inputs, outputs, verification and stop conditions. Availability is not treated as approval: a capability can be installed without being canonical or cleared for consequential execution.
+Repeatable work is packaged as skills with triggers, inputs, outputs, verification and stop conditions. The Capability Registry separately proves whether the required APIs, permissions and smoke tests work now.
 
-### 5. Receipts and human controls
+### 5. Compiled context, receipts and human controls
 
-The operating loop is: observe, decide, prepare or execute within authority, verify and record. Customer-facing, money, legal, people and destructive changes stop at a named human boundary unless a narrower policy explicitly allows them.
+Each job receives a sourced, permission-aware ContextPack. The operating loop is: observe, propose, approve or reject, apply, verify and record the outcome. Customer-facing, money, legal, people and destructive changes stop at a named human boundary unless a narrower promoted policy explicitly allows them.
 
 ## Current Verified Snapshot
 
-| Surface | 20 July 2026 snapshot |
+| Surface | 28-30 August 2026 snapshot |
 |---|---:|
-| Brain documents indexed | 5,235 |
-| Embedding vectors | 24,469 |
-| Pending embeddings | 112 |
-| Skills available to the swarm | 374 |
-| Company-governed canonical skills | 48 |
-| Canonical skills with a recorded evaluation | 46 |
-| Authenticated MCP tools | 98 |
-| Production agent runtimes | 7 + founder command center |
-| Read-only connector smoke | 14/14 green |
-| Independent Google Workspace mail check | Green |
-| Recorded action receipts | 46,221 |
-| MCP authentication | `enforce` |
-| Dated maturity assessment | 6.6/10 |
+| Core capabilities ready | 46/46 |
+| Lexical retrieval canaries | 20/20 passing |
+| Semantic retrieval canaries | 5/5 passing |
+| Production domain agents | 7/7 online |
+| MCP identity controls | Authentication, RBAC and audience enforcement active |
+| Context Compiler | Deployed with explicit conflict and permission states |
+| Governed business loops | 3 in proposal/shadow mode |
+| Automated source synchronization | Degraded at audit time |
+| Daily offsite backup and repository check | Passing |
 
-The public package contains 66 playbook chapters, 31 anonymized skills, 220 implementation-kit files and 21 executable patterns.
+The public package contains 72 playbook chapters, 31 anonymized skills, 226 implementation-kit files and 21 executable patterns.
 
 ## Work The System Supports
 
@@ -111,7 +107,7 @@ Compai does not claim that the system alone caused company growth or avoided a s
 
 ## Reference Economics
 
-The reference deployment models an internal Brain and swarm operating cost of **EUR631/month**, or roughly **EUR21/day**, across a company of roughly 40 people. This covers models, compute and secure infrastructure. It is not a Compai licence price or an implementation quote.
+The July 2026 reference model estimated an internal Brain and swarm operating cost of **EUR631/month** across a company of roughly 40 people. It is preserved as an inspectable historical cost model, not the price of Compai, a current operating invoice or an implementation quote.
 
 Chapter 12 models a 16.2:1 return under explicit time and cost assumptions. That figure is a planning model, not audited realized value. Every deploying company should replace the assumptions with its own loaded salaries, licences, implementation time and verified hours returned.
 
@@ -119,13 +115,12 @@ Chapter 12 models a 16.2:1 return under explicit time and cost assumptions. That
 
 The release boundary includes material limitations:
 
-1. Several agent runtimes and semantic retrieval share one physical node; tested high availability is not in place.
-2. One team channel was degraded during the latest audit, although its runtime remained available.
-3. Runtime backup coverage is incomplete even though the Brain itself has layered backup protection.
-4. The embedding queue was not empty at release time.
-5. Broad autonomous execution remains low. The system is strongest at capture, retrieval, analysis, preparation and bounded execution.
-6. Fine-grained retrieval scoping is still rolling out domain by domain.
-7. Generated meeting notes are useful, but complete native-transcript coverage is not claimed.
+1. Broad unattended execution is not deployed. The system is strongest at retrieval, analysis, preparation, governed publishing and bounded execution.
+2. Three business loops have proposal/shadow contracts but no closed Outcome Receipts proving repeatable impact.
+3. Automated Slack, Drive and meeting synchronization was degraded during the latest audit.
+4. Several services still share infrastructure failure domains; tested high availability is not claimed.
+5. Operational task queues contain stale review and ownership gaps.
+6. Generated meeting notes are useful, but complete native-transcript coverage is not claimed.
 
 These constraints matter because a Company Brain should be judged as operating infrastructure, not as a demo.
 

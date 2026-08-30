@@ -4,19 +4,19 @@
 
 Models, APIs and product names move quickly. The durable system is the contract between identity, memory, tools, skills, authority, verification and receipts. The reference deployment uses OpenClaw-compatible runtimes, plain files, git, MCP and multiple model providers, but none of those choices should become an excuse to hard-code a fast-expiring model SKU into the architecture.
 
-**Verified reference snapshot: 20 July 2026.**
+**Verified reference snapshot: 28-30 August 2026.**
 
 | Layer | Current evidence |
 |---|---|
 | Runtime topology | Seven production agent runtimes plus a founder command center |
-| Brain | 5,235 QMD documents; 24,469 vectors; 112 pending embeddings |
-| Skills | 374 available; 48 canonical; 46 with a recorded evaluation |
-| Tools | 98 authenticated MCP tools |
-| Identity | Authentication in `enforce`; independent human and machine identities |
-| Source systems | 14/14 read-only connector smoke tests plus an independent Google Workspace mail check green |
-| Audit | 46,221 action receipts |
+| Brain | Permission-aware ContextPacks; 20/20 lexical and 5/5 semantic canaries passing |
+| Capabilities | 46/46 core capabilities ready at the dated readiness gate |
+| Tools | Authenticated MCP with source, permission and verification contracts |
+| Identity | Authentication, RBAC and audience enforcement active; independent human and machine identities |
+| Source systems | Live reads available; automated Slack, Drive and meeting synchronization degraded at audit time |
+| Audit | Run ledger, Decision Pack and Outcome Receipt contracts; outcome evidence still incomplete |
 | Infrastructure | EU cloud hub, dedicated secondary host and encrypted private mesh |
-| Public portfolio | 66 chapters, 31 anonymized skills, 21 patterns and a 220-file kit |
+| Public portfolio | 72 chapters, 31 anonymized skills, 21 patterns and a 226-file kit |
 
 ## Reference Architecture
 
@@ -68,11 +68,11 @@ The Brain is plain, versioned operating memory with four storage roles:
 
 Do not put large datasets, videos, credentials or opaque binaries into the markdown tree. Rows belong in the structured-data sidecar. Large artifacts belong in object or file storage. Secrets belong in a secret manager or mode-600 environment file.
 
-Queue depth is a first-class metric. The current release found 112 documents pending embedding: lexical and semantic search both passed, but the non-zero queue remains visible beside the document headline. A healthy retrieval layer reports and drains that queue; it does not hide it behind a cumulative count.
+Queue depth is a first-class metric. The current release uses independent lexical and semantic canaries as the public retrieval proof. A healthy retrieval layer also reports and drains its queues; it does not hide them behind a cumulative document count.
 
 ## MCP And Source Systems
 
-MCP gives clients and agents one authenticated protocol for reading the Brain and reaching operating systems. The current tool inventory is 98. Tool count is not the objective; useful, scoped and testable capabilities are.
+MCP gives clients and agents one authenticated protocol for reading the Brain and reaching operating systems. Tool count is not the objective; useful, scoped and testable capabilities are.
 
 Every connector must declare:
 
@@ -89,17 +89,13 @@ The source system remains authoritative for live operational facts. The Brain st
 
 Authentication is currently in `enforce`: unauthenticated MCP calls are rejected. Each human, machine and runtime receives an independent identity so a receipt can answer who acted.
 
-Fine-grained Brain Spaces retrieval scoping is still rolling out by sensitive domain. That distinction matters:
-
-- identity enforcement is deployed;
-- the Spaces architecture contract is published;
-- universal tree-level retrieval enforcement is not yet claimed.
+Audience-aware retrieval and server-side policy enforcement are deployed. The Context Compiler still reports permission blocks explicitly instead of leaking or silently omitting protected evidence.
 
 Confidence never grants authority. Read-only retrieval can execute with citations. Analysis can execute with a receipt. External drafts default to propose. Money, employment, legal and destructive actions require a named human unless a narrowly defined capability has separately passed its promotion gate.
 
 ## Skills
 
-The swarm can discover 374 available skills, but only 48 are company-governed canonical procedures. Forty-six of those have a recorded evaluation. Availability, ownership and production approval are separate states.
+The public package ships 31 anonymized skills. The reference runtime reports 46/46 core capabilities ready. Availability, ownership, evaluation and runtime readiness are separate states.
 
 A canonical skill needs stable inputs, authority, output contract, verification, stop conditions, rollback, an owner and an independent judge. See Chapter 10ac for the promotion lifecycle.
 
@@ -118,7 +114,7 @@ The reference deployment uses:
 
 "Online" is not one boolean. Runtime readiness and channel readiness are reported separately. A runtime can be healthy while a messaging token is invalid; collapsing those states creates false confidence.
 
-## Current Cost Model
+## Historical Cost Model
 
 | Item | EUR/month |
 |---|---:|
@@ -130,18 +126,16 @@ The reference deployment uses:
 | Private mesh networking | 17 |
 | **Total** | **631** |
 
-Annual cost is EUR7,572. The Chapter 12 model estimates EUR122,944/year of reclaimed labor capacity under its stated assumptions, or 16.2:1. This is an auditable model, not a guaranteed return.
+This July 2026 baseline is included so readers can inspect the method. It is not the price of Compai, a current implementation quote or audited realized value. Recalculate it from your own subscriptions, usage, infrastructure and verified outcomes.
 
 ## Known Gaps
 
-- broad autonomous execution remains a controlled pilot;
-- fine-grained Brain Spaces enforcement is staged, not universal;
-- complete native meeting-transcript coverage is not claimed even though generated notes are covered;
-- 112 documents were pending embedding at the release boundary;
-- several agent runtimes and semantic retrieval share one physical node;
-- one team channel was degraded while its runtime remained available;
-- Brain backups are layered, but runtime-home and session backup coverage remains incomplete;
-- two canonical skills had not yet received a recorded evaluation.
+- broad autonomous execution is not deployed;
+- the three governed business loops remain proposal/shadow systems without closed Outcome Receipts;
+- automated Slack, Drive and meeting synchronization was degraded at the audit boundary;
+- complete native meeting-transcript coverage is not claimed;
+- several critical services still share infrastructure failure domains;
+- operational task queues contain stale review and ownership gaps that require active draining.
 
 These gaps do not erase the deployed system. Publishing them makes the strengths credible and gives the next release a measurable acceptance test.
 

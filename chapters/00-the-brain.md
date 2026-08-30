@@ -22,7 +22,7 @@ It has three layers and one rule.
 
 ### Layer 1 — Documents (the knowledge)
 
-**5,235 indexed documents** at the 20 July 2026 release boundary. Every one should answer a question someone might ask. Where do we file invoices? What's our refund policy for international orders? How do we onboard a new employee in retail? What patterns have we seen in returns over the last six months?
+The Brain contains thousands of indexed documents, but raw volume is no longer the public proof point. Every promoted item should answer a real operating question, retain provenance and respect audience boundaries. Retrieval is tested through lexical and semantic canaries rather than a cumulative file headline.
 
 These came from everywhere:
 - 18 months of email
@@ -37,7 +37,7 @@ Each document is markdown, versioned, tagged, and indexed. Each has a path that 
 
 ### Layer 2 — Skills (the procedures)
 
-**374 available skills**, of which 48 are company-governed canonical procedures. Each skill packages a repeatable way of working; availability alone does not grant execution authority.
+Skills package repeatable methods, but availability alone does not grant execution authority. The Capability Registry separately proves whether a source read, analysis, draft or action is operational now. The 28 August 2026 reference gate reported 46/46 core capabilities ready.
 
 A skill looks like this internally: a name, a trigger, a set of parameters, a step-by-step procedure, and a contract. Examples:
 

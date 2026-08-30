@@ -18,6 +18,7 @@ The system you are about to build, in one sentence: it captures work as it happe
 5. [The 5 Pillars](15-five-pillars.md)
 6. [Capability Maturity Ladder](00d-maturity-ladder.md)
 7. [Live Dashboard Tour](00b-live-dashboard.md)
+8. [The Company Operating Layer](23-operating-layer.md)
 
 **Ship it — do not move on until:**
 - [ ] You can explain the thesis in one sentence: capture the company, formalize it into a brain, execute on top.
@@ -26,17 +27,18 @@ The system you are about to build, in one sentence: it captures work as it happe
 
 ## 2. THE BRAIN — Capture the company as it happens, formalize it into memory, make it retrievable
 
-8. [The Company Brain](00-the-brain.md)
-9. [The capture layer — Slack, Meet, Email, Drive](10m-capture-layer.md)
-10. [The Capture Spine](10u-capture-spine.md)
-11. [Ingest Layer](11f-ingest-layer.md)
-12. [Memory Architecture](10b-memory-architecture.md)
-13. [Brain v2 — from wiki to operational memory](10l-brain-v2-living-memory.md)
-14. [The Intelligence Layer](10t-the-intelligence-layer.md)
-15. [Truth and Evidence](10aa-truth-and-evidence.md)
-16. [Domain Intelligence Indexes](10v-domain-intelligence-indexes.md)
-17. [Knowledge Mining Loop](10g-knowledge-mining.md)
-18. [Structured Data Sidecar](10y-structured-data-sidecar.md)
+9. [The Company Brain](00-the-brain.md)
+10. [Compile Context Before Work](24-context-compiler.md)
+11. [The capture layer — Slack, Meet, Email, Drive](10m-capture-layer.md)
+12. [The Capture Spine](10u-capture-spine.md)
+13. [Ingest Layer](11f-ingest-layer.md)
+14. [Memory Architecture](10b-memory-architecture.md)
+15. [Brain v2 — from wiki to operational memory](10l-brain-v2-living-memory.md)
+16. [The Intelligence Layer](10t-the-intelligence-layer.md)
+17. [Truth and Evidence](10aa-truth-and-evidence.md)
+18. [Domain Intelligence Indexes](10v-domain-intelligence-indexes.md)
+19. [Knowledge Mining Loop](10g-knowledge-mining.md)
+20. [Structured Data Sidecar](10y-structured-data-sidecar.md)
 
 **Ship it — do not move on until:**
 - [ ] A capture spine runs with at least 3 sources, each item stamped (source, timestamp, sensitivity).
@@ -47,12 +49,13 @@ The system you are about to build, in one sentence: it captures work as it happe
 
 ## 3. THE TOOLS — One protocol between the brain and every real system — hands, not just answers
 
-19. [MCP Server](10c-mcp-server.md)
-20. [Technology Stack](10-stack.md)
-21. [Consumer SME Stack Map](10k-stack-map.md)
-22. [LLM Provider Abstraction](18-llm-providers.md)
-23. [Provider Failure Semantics](10z-provider-failure-semantics.md)
-24. [Webhooks + Slack Digest](21-webhooks-digest.md)
+21. [MCP Server](10c-mcp-server.md)
+22. [Technology Stack](10-stack.md)
+23. [Consumer SME Stack Map](10k-stack-map.md)
+24. [LLM Provider Abstraction](18-llm-providers.md)
+25. [Provider Failure Semantics](10z-provider-failure-semantics.md)
+26. [Webhooks + Slack Digest](21-webhooks-digest.md)
+27. [From Skills To Verified Capabilities](25-capability-registry.md)
 
 **Ship it — do not move on until:**
 - [ ] An MCP (or equivalent) server connects the brain to at least 2 real systems.
@@ -61,17 +64,17 @@ The system you are about to build, in one sentence: it captures work as it happe
 
 ## 4. THE AGENTS — Domain agents that execute on top of shared memory, and the factory that ships them
 
-25. [Customer Service](04-agent-cs.md)
-26. [Inventory & Supply](05-agent-ops.md)
-27. [Finance & Reporting](06-agent-finance.md)
-28. [Marketing & Lifecycle](07-agent-marketing.md)
-29. [Wholesale & B2B](08-agent-wholesale.md)
-30. [Retail & Physical](09-agent-retail.md)
-31. [Merchandising](09b-agent-merchandising.md)
-32. [HR & People Ops](09c-agent-hr.md)
-33. [Agent Factory Pattern](17-agent-factory.md)
-34. [Factory Runtime](19-factory-runtime.md)
-35. [MVP Runtime](20-mvp-runtime.md)
+28. [Customer Service](04-agent-cs.md)
+29. [Inventory & Supply](05-agent-ops.md)
+30. [Finance & Reporting](06-agent-finance.md)
+31. [Marketing & Lifecycle](07-agent-marketing.md)
+32. [Wholesale & B2B](08-agent-wholesale.md)
+33. [Retail & Physical](09-agent-retail.md)
+34. [Merchandising](09b-agent-merchandising.md)
+35. [HR & People Ops](09c-agent-hr.md)
+36. [Agent Factory Pattern](17-agent-factory.md)
+37. [Factory Runtime](19-factory-runtime.md)
+38. [MVP Runtime](20-mvp-runtime.md)
 
 **Ship it — do not move on until:**
 - [ ] Your first agent runs in ONE domain, propose-only, reading its scoped index.
@@ -80,15 +83,17 @@ The system you are about to build, in one sentence: it captures work as it happe
 
 ## 5. GOVERNANCE — Bounded execution: scope, security, audit — safe to depend on
 
-36. [Agentic Governance](16-agentic-governance.md)
-37. [Hardening the Brain](10s-hardening-the-brain.md)
-38. [Brain Spaces](10x-brain-spaces.md)
-39. [Architecture Contract](10ab-architecture-contract.md)
-40. [Skill Governance](10ac-skill-governance.md)
-41. [Public-by-default — agents in the open](10q-public-by-default.md)
-42. [Governed Internal Publishing](11h-internal-publishing.md)
-43. [Organ Health Control Plane](11i-organ-health.md)
-44. [EU AI Act Compliance](11d-eu-ai-act-compliance.md)
+39. [Agentic Governance](16-agentic-governance.md)
+40. [Hardening the Brain](10s-hardening-the-brain.md)
+41. [Brain Spaces](10x-brain-spaces.md)
+42. [Architecture Contract](10ab-architecture-contract.md)
+43. [Skill Governance](10ac-skill-governance.md)
+44. [Public-by-default — agents in the open](10q-public-by-default.md)
+45. [Governed Internal Publishing](11h-internal-publishing.md)
+46. [Organ Health Control Plane](11i-organ-health.md)
+47. [EU AI Act Compliance](11d-eu-ai-act-compliance.md)
+48. [Humans And Autonomous Runtimes](26-human-work-mode.md)
+49. [Workspaces, Publishing And Rollback](27-workspaces-publishing.md)
 
 **Ship it — do not move on until:**
 - [ ] An authority matrix (read / propose / execute) exists for every agent.
@@ -100,17 +105,18 @@ The system you are about to build, in one sentence: it captures work as it happe
 
 ## 6. OPERATE — The loops that turn captured context into work — and make the system improve weekly
 
-45. [The Context-to-Work Loop](10w-context-to-work.md)
-46. [Closure-First Execution](10ad-closure-first-execution.md)
-47. [Operational compounding loop](10r-operational-compounding-loop.md)
-48. [Tasks, outputs, decisions, health](10p-tasks-outputs-health.md)
-49. [Master Prompt as source of truth](10o-master-prompt.md)
-50. [Council vs Punta de Flecha](10h-council-vs-flecha.md)
-51. [Master Calendar](10j-master-calendar.md)
-52. [Profit Throttle](10e-profit-throttle.md)
-53. [Invoice Pipeline](10i-invoice-pipeline.md)
-54. [AI-Native Team Onboarding](14-team-onboarding.md)
-55. [Onboarding Experience](22-onboarding-experience.md)
+50. [The Context-to-Work Loop](10w-context-to-work.md)
+51. [Closure-First Execution](10ad-closure-first-execution.md)
+52. [Operational compounding loop](10r-operational-compounding-loop.md)
+53. [Tasks, outputs, decisions, health](10p-tasks-outputs-health.md)
+54. [Master Prompt as source of truth](10o-master-prompt.md)
+55. [Council vs Punta de Flecha](10h-council-vs-flecha.md)
+56. [Master Calendar](10j-master-calendar.md)
+57. [Profit Throttle](10e-profit-throttle.md)
+58. [Invoice Pipeline](10i-invoice-pipeline.md)
+59. [AI-Native Team Onboarding](14-team-onboarding.md)
+60. [Onboarding Experience](22-onboarding-experience.md)
+61. [Decision Packs And Outcome Receipts](28-decision-packs-outcome-receipts.md)
 
 **Ship it — do not move on until:**
 - [ ] The context-to-work loop runs: signals become candidates, work objects, receipts.
@@ -120,12 +126,12 @@ The system you are about to build, in one sentence: it captures work as it happe
 
 ## 7. BUILD IT — The executable path: setup, bootstrap, templates, downloadable artifacts
 
-56. [Implementation Paths](11-implementation.md)
-57. [Setup 1-click](10n-setup-1-click.md)
-58. [Brand Bootstrap](11e-brand-bootstrap.md)
-59. [OpenClaw Setup Guide](11c-openclaw-setup.md)
-60. [Downloadable Artifacts](00c-artifacts-index.md)
-61. [Pattern Library](10f-pattern-library.md)
+62. [Implementation Paths](11-implementation.md)
+63. [Setup 1-click](10n-setup-1-click.md)
+64. [Brand Bootstrap](11e-brand-bootstrap.md)
+65. [OpenClaw Setup Guide](11c-openclaw-setup.md)
+66. [Downloadable Artifacts](00c-artifacts-index.md)
+67. [Pattern Library](10f-pattern-library.md)
 
 **Ship it — do not move on until:**
 - [ ] You ran the setup on your own infrastructure and adapted the templates — not copied them blind.
@@ -133,10 +139,10 @@ The system you are about to build, in one sentence: it captures work as it happe
 
 ## 8. PROOF — Honest ROI, production lessons, and the failure ledger
 
-62. [ROI Analysis](12-roi.md)
-63. [Production Lessons](11b-production-lessons.md)
-64. [Failure Ledger](11g-failure-ledger.md)
-65. [Advanced Capabilities](10d-advanced-capabilities.md)
+68. [ROI Analysis](12-roi.md)
+69. [Production Lessons](11b-production-lessons.md)
+70. [Failure Ledger](11g-failure-ledger.md)
+71. [Advanced Capabilities](10d-advanced-capabilities.md)
 
 **Ship it — do not move on until:**
 - [ ] You keep your own two-layer ROI ledger with every cost counted — including all the seats.
@@ -144,4 +150,4 @@ The system you are about to build, in one sentence: it captures work as it happe
 
 ---
 
-**Version 5.1 — Runtime Truth** · 20 July 2026 — This release refreshes the evidence contract after a deep runtime due diligence and publishes limitations beside capabilities: 5,235 indexed Brain documents, 374 available skills, 48 canonical skills, 98 MCP tools, seven production agent runtimes, authentication in `enforce`, 14/14 connector smoke tests plus an independent Google Workspace mail check and 46,221 action receipts. Broad autonomy remains low and bounded; high availability is not yet deployed. 66 chapters including this source index. The public repo includes the full playbook plus starter-kit artifacts, templates and evals.
+**Version 6.0 — Operating Layer** · 30 August 2026 — This release updates Compai around the architecture the reference company now operates: compiled, permission-aware context; a verified Capability Registry; distinct human and autonomous authority; durable workspaces and governed publishing; Decision Packs and Outcome Receipts. The dated evidence boundary reports 46/46 core capabilities ready on 28 August, seven production domain agents online and 20/20 lexical plus 5/5 semantic retrieval canaries passing on 30 August. Automated source synchronization was degraded at the audit boundary, so it is disclosed rather than hidden. 72 chapters including this source index.

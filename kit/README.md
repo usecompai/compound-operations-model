@@ -1,19 +1,22 @@
-# Compai Implementation Kit v5.1
+# Compai Implementation Kit v6.0
 
 This kit is the portable asset layer behind the Compai playbook. It turns the architecture into templates, scripts, eval fixtures and deployment contracts that a technical operator can inspect and adapt.
 
 It is not a hosted service, a compliance certification or a promise that every connector is production-ready in every environment. Run it first in an isolated pilot, replace the example values, and review consequential data flows with the appropriate security, privacy and legal owners.
 
-## Unreleased additions
+## Operating layer contracts
 
 - Capability Registry contract with source, inputs, outputs, permissions, freshness, owner and smoke-test state.
 - Decision Pack and Outcome Receipt schemas for business-loop evaluation.
 - Loop v0.2 template with explicit capability dependencies, business metrics, observation windows and promotion gates.
 - Model adapters cannot change source-of-truth selection, permissions or authority.
+- ContextPack and Company Runtime schemas for permission-aware context compilation.
+- Separate authority contracts for authenticated human work and unattended runtimes.
+- Durable workspace, governed publishing and rollback requirements.
 
 ## Release Contract
 
-Version 5.1 refreshes the evidence boundary and keeps the controls introduced in v5.0:
+Version 6.0 updates the product around the complete operating layer and keeps the evidence controls introduced in v5.0:
 
 - `templates/configs/public-truth-manifest.schema.json` - dated claims, evidence classes and known gaps
 - `templates/configs/source-coverage.yml` - source, account and artifact-type coverage matrix
@@ -24,6 +27,11 @@ Version 5.1 refreshes the evidence boundary and keeps the controls introduced in
 - `templates/configs/loop.yml` - observe, choose, act, verify, record and stop
 - `templates/configs/governance.yml` - read, propose, execute and administer authority
 - `templates/configs/audit-event.schema.json` - machine-readable execution receipt
+- `templates/configs/context-pack.schema.json` - the minimum sourced context for one identity and job
+- `templates/configs/company-runtime.schema.json` - the complete operating-layer contract
+- `templates/configs/capability-registry.schema.json` - capabilities that are usable now, not merely documented
+- `templates/configs/decision-pack.schema.json` - evidence and authority contract for a proposed decision
+- `templates/configs/outcome-receipt.schema.json` - measured result after an approved action
 
 ## Contents
 
@@ -46,11 +54,13 @@ Version 5.1 refreshes the evidence boundary and keeps the controls introduced in
 2. Fill `templates/configs/architecture-contract.md` before installing a runtime.
 3. Inventory sources in `templates/configs/source-coverage.yml`.
 4. Complete `deployment/deployment-contract.md` and `deployment/activation-path.md`.
-5. Start with one domain agent in propose-only mode.
-6. Run the negative eval fixtures.
-7. Approve one task with `templates/configs/approved-task.yml`.
-8. Require a valid audit receipt for every consequential run.
-9. Promote authority only after ten reviewed runs reach at least 80% verified closure with no authority violations.
+5. Compile one ContextPack for a real job and expose conflicts or missing evidence.
+6. Mark only smoke-tested dependencies as `ready` in the Capability Registry.
+7. Start with one domain agent in propose-only mode.
+8. Run the negative eval fixtures.
+9. Approve one task with `templates/configs/approved-task.yml`.
+10. Require a valid audit receipt for every consequential run.
+11. Promote authority only from reviewed Outcome Receipts with no authority violations.
 
 ## Installation
 
@@ -65,7 +75,7 @@ Do not pipe a remote installer directly into a privileged shell without reviewin
 ## Governance Rules
 
 - Model confidence does not grant authority.
-- Every human and machine gets an independent identity.
+- Every human and machine gets an independent identity. Authenticated people can use stable role-permitted capabilities without one-use grants; unattended runtimes receive narrower explicit contracts.
 - Sensitive retrieval is deny-by-default.
 - Customer-facing, financial, legal, HR and destructive actions remain human-gated unless a named capability has passed its promotion gate.
 - Artifacts live in durable storage and are referenced from the Brain; they are not embedded as opaque blobs.
@@ -83,4 +93,4 @@ python3 scripts/release_audit.py --repo-root .
 
 The audit checks release counts, chapter/index parity, anonymization, stale claims, service naming and archive integrity.
 
-See Chapter 10aa for the evidence contract, 10ab for the architecture contract, 10ac for skill governance and 10ad for closure-first execution.
+See Chapters 23-28 for the current operating layer, then Chapter 10aa for the evidence contract, 10ab for the architecture contract, 10ac for skill governance and 10ad for closure-first execution.

@@ -42,6 +42,12 @@ REQUIRED_CHAPTERS = {
     "10ac-skill-governance.md",
     "10ad-closure-first-execution.md",
     "10t-the-intelligence-layer.md",
+    "23-operating-layer.md",
+    "24-context-compiler.md",
+    "25-capability-registry.md",
+    "26-human-work-mode.md",
+    "27-workspaces-publishing.md",
+    "28-decision-packs-outcome-receipts.md",
 }
 SECRET_PATTERNS = {
     "Shopify token": re.compile(r"shpat_[A-Za-z0-9]{24,}"),

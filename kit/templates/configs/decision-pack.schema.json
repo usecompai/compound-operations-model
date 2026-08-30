@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://laigam.com/schemas/decision-pack-v0.2.json",
+  "$id": "https://usecompai.com/schemas/decision-pack.v0.2.schema.json",
   "title": "Compai Decision Pack",
   "type": "object",
   "required": [
