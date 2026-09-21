@@ -44,15 +44,15 @@ We tried something different.
 
 We started with a 30-day deployment and expanded it over more than a year. The current topology is seven production domain agents plus a founder view, connected to company knowledge and live systems through authenticated, governed capabilities.
 
-**Current public snapshot, 30 August 2026:**
-- 46/46 core runtime capabilities ready at the dated 28 August gate
-- 20/20 lexical and 5/5 semantic retrieval canaries passing on 30 August
+**Current public snapshot, 15 September 2026:**
+- 45 of 55 core runtime capabilities ready; four degraded, four awaiting configuration, one blocked by a dependency and one configured but unverified
+- lexical Brain retrieval ready
 - seven production domain agents online
-- MCP authentication, RBAC and audience enforcement active
-- a Context Compiler that exposes conflict, staleness, missing evidence and permission blocks
+- authenticated MCP ready with caller identity verified
+- a degraded Context Compiler that keeps conflict, staleness, missing evidence and permission blocks visible
 - three governed business loops in proposal/shadow mode, without broad autonomous execution
-- automated Slack, Drive and meeting synchronization degraded at the audit boundary
-- daily offsite backup and repository checks passing
+- automated company-source ingestion degraded at the audit boundary
+- a full offsite restore passed in isolation on 9 September, with one inherited ledger warning still visible
 
 The business now has a shared operating layer across a roughly 40-person team. The evidence supports capture, retrieval, preparation, governed publishing and controlled execution; it does not prove that AI alone caused growth or avoided a specific number of hires.
 

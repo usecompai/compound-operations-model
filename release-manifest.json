@@ -1,99 +1,92 @@
 {
   "$schema": "kit/templates/configs/public-truth-manifest.schema.json",
-  "version": "6.0",
-  "verified_at": "2026-08-30T17:55:00Z",
+  "version": "6.2",
+  "verified_at": "2026-09-15T13:26:27Z",
   "claims": {
-    "core_capabilities_ready": {
-      "value": "46/46",
-      "state": "deployed",
-      "source_class": "capability_registry_smoke_report",
-      "verified_at": "2026-08-28T15:51:10Z",
-      "fresh_for": "7d",
-      "public_safe": true
-    },
-    "lexical_retrieval_canaries": {
-      "value": "20/20",
-      "state": "deployed",
-      "source_class": "independent_qmd_canary",
-      "verified_at": "2026-08-30T17:47:00Z",
+    "core_capability_registry": {
+      "value": "45 of 55 core entries ready; 4 degraded, 4 awaiting configuration, 1 blocked dependency and 1 configured but unverified",
+      "state": "degraded",
+      "source_class": "live_capability_registry_readiness",
+      "verified_at": "2026-09-15T13:26:27Z",
       "fresh_for": "24h",
       "public_safe": true
     },
-    "semantic_retrieval_canaries": {
-      "value": "5/5",
+    "brain_retrieval": {
+      "value": "lexical Brain retrieval ready",
       "state": "deployed",
-      "source_class": "independent_qmd_canary",
-      "verified_at": "2026-08-30T17:47:00Z",
+      "source_class": "live_capability_registry_readiness",
+      "verified_at": "2026-09-15T13:26:27Z",
       "fresh_for": "24h",
       "public_safe": true
     },
     "production_domain_agents": {
       "value": "7/7 online",
       "state": "deployed",
-      "source_class": "independent_runtime_health_probe",
-      "verified_at": "2026-08-30T17:48:00Z",
+      "source_class": "live_agent_status_probe",
+      "verified_at": "2026-09-15T13:06:01Z",
       "fresh_for": "24h",
       "public_safe": true
     },
-    "mcp_identity_policy": {
-      "value": "authentication, RBAC and audience enforcement active",
+    "authenticated_mcp": {
+      "value": "service ready and caller identity verified",
       "state": "deployed",
-      "source_class": "independent_protocol_and_policy_probe",
-      "verified_at": "2026-08-30T17:48:00Z",
+      "source_class": "authenticated_health_and_identity_probe",
+      "verified_at": "2026-09-15T13:06:01Z",
       "fresh_for": "24h",
       "public_safe": true
     },
     "context_compiler": {
-      "value": "identity, project and job-aware ContextPacks with explicit conflict states",
-      "state": "deployed",
-      "source_class": "runtime_contract_and_acceptance_report",
-      "verified_at": "2026-08-28T15:51:10Z",
-      "fresh_for": "14d",
-      "public_safe": true
-    },
-    "employee_work_mode": {
-      "value": "role-permitted human execution with server-side policy enforcement",
-      "state": "deployed",
-      "source_class": "identity_and_runtime_acceptance_gate",
-      "verified_at": "2026-08-28T15:51:10Z",
-      "fresh_for": "14d",
+      "value": "degraded; incomplete and blocked states remain explicit",
+      "state": "degraded",
+      "source_class": "live_capability_registry_readiness",
+      "verified_at": "2026-09-15T13:26:27Z",
+      "fresh_for": "24h",
       "public_safe": true
     },
     "governed_business_loops": {
       "value": 3,
       "state": "pilot",
-      "source_class": "loop_contract_and_shadow_runtime_audit",
-      "verified_at": "2026-08-28T15:51:10Z",
-      "fresh_for": "14d",
+      "source_class": "live_shadow_gate_readiness",
+      "verified_at": "2026-09-15T13:26:27Z",
+      "fresh_for": "24h",
       "public_safe": true
     },
     "broad_autonomous_execution": {
       "value": "not deployed; external mutations remain bounded",
       "state": "pilot",
-      "source_class": "runtime_authority_audit",
-      "verified_at": "2026-08-30T17:48:00Z",
+      "source_class": "runtime_authority_contract",
+      "verified_at": "2026-09-15T13:26:27Z",
       "fresh_for": "14d",
       "public_safe": true
     },
-    "automated_source_synchronization": {
-      "value": "degraded; Slack, Drive and meeting synchronization failures observed",
+    "automated_company_source_ingestion": {
+      "value": "degraded",
       "state": "degraded",
-      "source_class": "independent_systemd_service_audit",
-      "verified_at": "2026-08-30T17:55:00Z",
+      "source_class": "live_capability_registry_readiness",
+      "verified_at": "2026-09-15T13:26:27Z",
       "fresh_for": "24h",
       "public_safe": true
     },
-    "durable_backup": {
-      "value": "daily backup and repository check passing; restore drill previously passing",
+    "full_offsite_restore": {
+      "value": "passed in isolation with one inherited ledger warning",
       "state": "deployed",
-      "source_class": "independent_systemd_and_restic_audit",
-      "verified_at": "2026-08-30T17:55:00Z",
-      "fresh_for": "7d",
+      "source_class": "full_restore_drill_receipt",
+      "verified_at": "2026-09-09T10:23:10Z",
+      "fresh_for": "30d",
+      "public_safe": true
+    },
+    "codex_first_bootstrap": {
+      "value": "public guide and phase-gated bootstrap prompt",
+      "state": "pattern",
+      "source_class": "public_repository_release_audit",
+      "verified_at": "2026-09-15T13:26:27Z",
+      "fresh_for": "release",
       "public_safe": true
     }
   },
   "public_package": {
     "chapters": 72,
+    "guides": 2,
     "skills": 31,
     "kit_files": 226,
     "patterns": 21

@@ -37,7 +37,7 @@ Each document is markdown, versioned, tagged, and indexed. Each has a path that 
 
 ### Layer 2 — Skills (the procedures)
 
-Skills package repeatable methods, but availability alone does not grant execution authority. The Capability Registry separately proves whether a source read, analysis, draft or action is operational now. The 28 August 2026 reference gate reported 46/46 core capabilities ready.
+Skills package repeatable methods, but availability alone does not grant execution authority. The Capability Registry separately proves whether a source read, analysis, draft or action is operational now. The 15 September 2026 reference gate reported 45 of 55 core capabilities ready, with non-ready states kept explicit.
 
 A skill looks like this internally: a name, a trigger, a set of parameters, a step-by-step procedure, and a contract. Examples:
 

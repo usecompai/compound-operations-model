@@ -53,7 +53,7 @@ Promotion requires reviewed Outcome Receipts, no authority violations and a roll
 
 ## Current reference boundary
 
-At the 30 August 2026 audit, authentication, RBAC, audience enforcement, retrieval and seven production domain agents were healthy. Three business loops had governed proposal/shadow contracts. Broad unattended execution was not deployed, and automated source synchronization was degraded. The release publishes both sides of that boundary.
+At the 15 September 2026 audit, authenticated MCP, caller identity, lexical retrieval and seven production domain agents were ready. Three business loops had governed proposal/shadow contracts. Broad unattended execution was not deployed, while company-source ingestion and the Context Compiler were degraded. The release publishes both sides of that boundary.
 
 ## Ship it
 

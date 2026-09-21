@@ -1,5 +1,13 @@
 # Changelog
 
+## v6.2 - Codex-First Bootstrap - 2026-09-15
+
+- Added a Spanish Codex-first implementation guide and phase-gated bootstrap prompt.
+- Updated the Codex integration around current `AGENTS.md`, cloud environment, skills and authenticated MCP conventions.
+- Refreshed the public reference snapshot from live capability, identity, MCP and agent checks.
+- Expanded public truth states to report degraded and blocked dependencies without flattening them into a binary claim.
+- Added guide counts and required-guide checks to the release audit.
+
 ## v6.0 - Operating Layer - 2026-08-30
 
 - Added a Capability Registry template and schema. A skill does not count as operational until its capability passes a harmless smoke test.

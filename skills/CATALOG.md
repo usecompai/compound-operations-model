@@ -1,13 +1,13 @@
 # Skills Catalog
 
-**Compai v6.0 release snapshot: 30 August 2026**
+**Compai v6.2 release snapshot: 15 September 2026**
 
 The public package contains **31 anonymized skills**. The reference runtime no longer uses a raw skill count as proof of capability: each operational capability must declare its dependencies, permissions, owner, verification and smoke-test state in the Capability Registry.
 
 | State | Count | Meaning |
 |---|---:|---|
-| Public in this repo | 31 | Anonymized, portable procedures published with Compai v6.0 |
-| Core runtime capabilities | 46/46 ready | Live dependencies passed the dated readiness gate on 28 August 2026 |
+| Public in this repo | 31 | Anonymized, portable procedures published with Compai v6.2 |
+| Core runtime capabilities | 45/55 ready | Four degraded, four awaiting configuration, one blocked by a dependency and one configured but unverified at the dated 15 September gate |
 | Governed business loops | 3 | Contracted and available in proposal/shadow mode; not promoted as autonomous outcomes |
 
 The remaining available skills are mostly installed vendor/community capabilities or internal procedures that are private, source-specific, not yet anonymized, or not yet ready for a public contract. The latest canonical addition is an attributed adaptation of an external prospect-research workflow; it remains outside this package until its supporting assets and licence are packaged cleanly. We do not republish third-party packages as our own.

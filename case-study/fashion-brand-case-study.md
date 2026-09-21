@@ -2,7 +2,7 @@
 
 ## An anonymized, evidence-first account of the reference deployment
 
-**Evidence boundary:** verified 28-30 August 2026. Operational details are anonymized. Results are a dated snapshot, not live telemetry.
+**Evidence boundary:** operational state verified 15 September 2026; recovery drill verified 9 September 2026. Operational details are anonymized. Results are a dated snapshot, not live telemetry.
 
 ## Company Profile
 
@@ -52,19 +52,18 @@ Each job receives a sourced, permission-aware ContextPack. The operating loop is
 
 ## Current Verified Snapshot
 
-| Surface | 28-30 August 2026 snapshot |
+| Surface | 15 September 2026 snapshot |
 |---|---:|
-| Core capabilities ready | 46/46 |
-| Lexical retrieval canaries | 20/20 passing |
-| Semantic retrieval canaries | 5/5 passing |
+| Core capability registry | 45/55 ready; 4 degraded; 4 awaiting configuration; 1 blocked dependency; 1 configured but unverified |
+| Brain lexical retrieval | Ready |
 | Production domain agents | 7/7 online |
-| MCP identity controls | Authentication, RBAC and audience enforcement active |
-| Context Compiler | Deployed with explicit conflict and permission states |
+| Authenticated MCP | Ready; caller identity verified |
+| Context Compiler | Degraded, with incomplete and blocked states explicit |
 | Governed business loops | 3 in proposal/shadow mode |
-| Automated source synchronization | Degraded at audit time |
-| Daily offsite backup and repository check | Passing |
+| Automated company-source ingestion | Degraded at audit time |
+| Full offsite restore | Passed in isolation on 9 September; one inherited ledger warning remains |
 
-The public package contains 72 playbook chapters, 31 anonymized skills, 226 implementation-kit files and 21 executable patterns.
+The public package contains 72 playbook chapters, two Spanish Codex-first guides, 31 anonymized skills, 226 implementation-kit files and 21 executable patterns.
 
 ## Work The System Supports
 

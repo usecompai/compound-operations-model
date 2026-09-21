@@ -6,8 +6,8 @@ Adding a skill is easy. Knowing that a zero-context agent can trigger it, follow
 
 The reference deployment now separates three numbers that used to be collapsed into one:
 
-- **31 public skills** shipped in the Compai v6.0 repo after anonymization and licence review;
-- **46/46 core capabilities ready** in the dated 28 August reference gate;
+- **31 public skills** shipped in the Compai v6.2 repo after anonymization and licence review;
+- **45 of 55 core capabilities ready** in the dated 15 September reference gate, with four degraded, four awaiting configuration, one blocked by a dependency and one configured but unverified;
 - skills, canonical governance and runtime capability readiness treated as different states.
 
 The counts answer different questions. "Available" describes reach. "Canonical" describes ownership. "Public" describes what can be safely copied. None of them alone proves quality.

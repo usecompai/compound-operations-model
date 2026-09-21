@@ -4,19 +4,19 @@
 
 Models, APIs and product names move quickly. The durable system is the contract between identity, memory, tools, skills, authority, verification and receipts. The reference deployment uses OpenClaw-compatible runtimes, plain files, git, MCP and multiple model providers, but none of those choices should become an excuse to hard-code a fast-expiring model SKU into the architecture.
 
-**Verified reference snapshot: 28-30 August 2026.**
+**Verified reference snapshot: 15 September 2026; recovery drill: 9 September 2026.**
 
 | Layer | Current evidence |
 |---|---|
 | Runtime topology | Seven production agent runtimes plus a founder command center |
-| Brain | Permission-aware ContextPacks; 20/20 lexical and 5/5 semantic canaries passing |
-| Capabilities | 46/46 core capabilities ready at the dated readiness gate |
-| Tools | Authenticated MCP with source, permission and verification contracts |
-| Identity | Authentication, RBAC and audience enforcement active; independent human and machine identities |
-| Source systems | Live reads available; automated Slack, Drive and meeting synchronization degraded at audit time |
+| Brain | Lexical retrieval ready; permission-aware ContextPack contract |
+| Capabilities | 45/55 core capabilities ready; degraded, unconfigured and blocked dependencies remain explicit |
+| Tools | Authenticated MCP ready with source, permission and verification contracts |
+| Identity | Caller identity verified; independent human and machine identities |
+| Source systems | Live reads available; automated company-source ingestion degraded at audit time |
 | Audit | Run ledger, Decision Pack and Outcome Receipt contracts; outcome evidence still incomplete |
 | Infrastructure | EU cloud hub, dedicated secondary host and encrypted private mesh |
-| Public portfolio | 72 chapters, 31 anonymized skills, 21 patterns and a 226-file kit |
+| Public portfolio | 72 chapters, 2 Codex-first guides, 31 anonymized skills, 21 patterns and a 226-file kit |
 
 ## Reference Architecture
 
@@ -68,7 +68,7 @@ The Brain is plain, versioned operating memory with four storage roles:
 
 Do not put large datasets, videos, credentials or opaque binaries into the markdown tree. Rows belong in the structured-data sidecar. Large artifacts belong in object or file storage. Secrets belong in a secret manager or mode-600 environment file.
 
-Queue depth is a first-class metric. The current release uses independent lexical and semantic canaries as the public retrieval proof. A healthy retrieval layer also reports and drains its queues; it does not hide them behind a cumulative document count.
+Queue depth is a first-class metric. The current release uses a dated live readiness check as the public retrieval proof. A healthy retrieval layer also reports and drains its queues; it does not hide them behind a cumulative document count.
 
 ## MCP And Source Systems
 
@@ -95,7 +95,7 @@ Confidence never grants authority. Read-only retrieval can execute with citation
 
 ## Skills
 
-The public package ships 31 anonymized skills. The reference runtime reports 46/46 core capabilities ready. Availability, ownership, evaluation and runtime readiness are separate states.
+The public package ships 31 anonymized skills. The reference runtime reports 45 of 55 core capabilities ready; the other ten retain their degraded, awaiting-configuration, blocked-dependency or configured-but-unverified state. Availability, ownership, evaluation and runtime readiness are separate states.
 
 A canonical skill needs stable inputs, authority, output contract, verification, stop conditions, rollback, an owner and an independent judge. See Chapter 10ac for the promotion lifecycle.
 

@@ -1,6 +1,6 @@
 # Chapter 10x: Brain Spaces — Scoped Memory for Agents and People
 
-> **Implementation status, 30 August 2026:** Per-identity authentication, RBAC and audience enforcement are active. The Context Compiler scopes work to the current identity, project and job and emits `blocked_permission` rather than leaking protected context. The design below remains the acceptance contract for every new surface.
+> **Implementation status, 15 September 2026:** Authenticated MCP is ready and caller identity is verified. The Context Compiler remains the contract for scoping work to the current identity, project and job, but its aggregate readiness is degraded; incomplete and `blocked_permission` states remain visible rather than leaking protected context. The design below is still the acceptance contract for every new surface.
 
 ## The near-miss that convinced us
 

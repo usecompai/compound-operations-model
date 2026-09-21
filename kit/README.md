@@ -1,4 +1,4 @@
-# Compai Implementation Kit v6.0
+# Compai Implementation Kit v6.2
 
 This kit is the portable asset layer behind the Compai playbook. It turns the architecture into templates, scripts, eval fixtures and deployment contracts that a technical operator can inspect and adapt.
 
@@ -16,7 +16,7 @@ It is not a hosted service, a compliance certification or a promise that every c
 
 ## Release Contract
 
-Version 6.0 updates the product around the complete operating layer and keeps the evidence controls introduced in v5.0:
+Version 6.2 adds a Codex-first build path and explicit degraded or blocked truth states while retaining the complete operating layer introduced in v6.0:
 
 - `templates/configs/public-truth-manifest.schema.json` - dated claims, evidence classes and known gaps
 - `templates/configs/source-coverage.yml` - source, account and artifact-type coverage matrix
@@ -50,17 +50,18 @@ Version 6.0 updates the product around the complete operating layer and keeps th
 
 ## Recommended Path
 
-1. Read `deployment/prerequisites.md`.
-2. Fill `templates/configs/architecture-contract.md` before installing a runtime.
-3. Inventory sources in `templates/configs/source-coverage.yml`.
-4. Complete `deployment/deployment-contract.md` and `deployment/activation-path.md`.
-5. Compile one ContextPack for a real job and expose conflicts or missing evidence.
-6. Mark only smoke-tested dependencies as `ready` in the Capability Registry.
-7. Start with one domain agent in propose-only mode.
-8. Run the negative eval fixtures.
-9. Approve one task with `templates/configs/approved-task.yml`.
-10. Require a valid audit receipt for every consequential run.
-11. Promote authority only from reviewed Outcome Receipts with no authority violations.
+1. For a Codex-first build, read [`../guides/company-brain-with-codex.es.md`](../guides/company-brain-with-codex.es.md) and use its [`phase-gated bootstrap prompt`](../guides/codex-company-brain-bootstrap-prompt.es.md).
+2. Read `deployment/prerequisites.md`.
+3. Fill `templates/configs/architecture-contract.md` before installing a runtime.
+4. Inventory sources in `templates/configs/source-coverage.yml`.
+5. Complete `deployment/deployment-contract.md` and `deployment/activation-path.md`.
+6. Compile one ContextPack for a real job and expose conflicts or missing evidence.
+7. Mark only smoke-tested dependencies as `ready` in the Capability Registry.
+8. Start with one domain agent in propose-only mode.
+9. Run the negative eval fixtures.
+10. Approve one task with `templates/configs/approved-task.yml`.
+11. Require a valid audit receipt for every consequential run.
+12. Promote authority only from reviewed Outcome Receipts with no authority violations.
 
 ## Installation
 

@@ -62,6 +62,8 @@ When you start building your own deployment, resist the urge to go straight to "
 
 This is not a checkout funnel. There is no paid repo path in the playbook. The progression is:
 
+For a Codex-first deployment, use the [`Company Brain implementation guide`](../guides/company-brain-with-codex.es.md) and its [`phase-gated bootstrap prompt`](../guides/codex-company-brain-bootstrap-prompt.es.md). They turn the progression below into a concrete discovery, architecture, implementation and activation sequence.
+
 ```
 Read the playbook  →  Fork the repo  →  Run one local workflow  →  Connect one real tool  →  Add agents gradually
 ```

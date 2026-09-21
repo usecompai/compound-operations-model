@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Compai Brand Bootstrap — install.sh
-# Release: 5.0
+# Release: 6.2
 #
 # Usage (on a fresh Ubuntu 24.04 VPS, as root or with sudo):
 #   curl -fsSL https://usecompai.com/init | bash
@@ -48,7 +48,7 @@ ${c_gold}${c_bold}
 / /_/ / /_/ /  __/ /    / ___ \\ | |
 \\____/ .___/\\___/_/    /_/   \\_\\___|
     /_/
-${c_reset}${c_dim}Brand Bootstrap · v6.0 · usecompai.com${c_reset}
+${c_reset}${c_dim}Brand Bootstrap · v6.2 · usecompai.com${c_reset}
 
 EOF
 }

@@ -29,21 +29,26 @@ Every material capability should carry one of these states:
 | **Deployed** | Running now, with current evidence | "Running in production" |
 | **Pilot** | Bounded test with a human gate | "In controlled pilot" |
 | **Pattern** | Shipped design/template, not universal runtime state | "Available in the playbook and kit" |
+| **Degraded** | Available, but one or more acceptance checks are failing | "Running with a named limitation" |
+| **Blocked** | A dependency or permission prevents safe use | "Unavailable until the blocker clears" |
+| **Stale** | Last evidence is outside its freshness window | "Last verified on [date]" |
+| **Planned** | Accepted scope without runtime proof yet | "Planned, not deployed" |
+| **Deprecated** | Retained for history or migration only | "Do not use for new work" |
 
 This matters most for permissions and autonomy. A Brain Spaces template can be production-quality while fine-grained retrieval scoping is still being rolled out. A context-to-work contract can be shipped while broad autonomous closure remains in pilot. The pattern is real. The deployment state must be stated separately.
 
 ## A dated reference snapshot
 
-The Compai v6.0 evidence boundary was verified on **28-30 August 2026**:
+The Compai v6.2 evidence boundary was verified on **15 September 2026**, with recovery evidence from **9 September 2026**:
 
-- 46/46 core capabilities ready in the dated Capability Registry gate;
-- 20/20 lexical and 5/5 semantic retrieval canaries passing independently;
+- 45 of 55 core capabilities ready; four degraded, four awaiting configuration, one blocked by a dependency and one configured but unverified;
+- lexical Brain retrieval ready;
 - seven production domain agents online;
-- authentication, RBAC and audience enforcement active;
-- Context Compiler and employee work mode deployed;
+- authenticated MCP ready and caller identity verified;
+- Context Compiler degraded, with incomplete and blocked states still explicit;
 - three governed business loops in proposal/shadow mode;
-- daily offsite backup and repository checks passing;
-- automated Slack, Drive and meeting synchronization degraded at audit time;
+- full offsite restore passed in isolation, with one inherited ledger warning;
+- automated company-source ingestion degraded at audit time;
 - broad unattended external execution not deployed.
 
 These are dated facts, not permanent copy. A future release must regenerate the snapshot from the live system or keep the old date visible.
@@ -67,12 +72,12 @@ The reference deployment has broad company coverage, but it still publishes its 
 Every public number or material internal claim should be reproducible from an evidence card:
 
 ```yaml
-claim: "46/46 core capabilities ready"
-state: deployed
-source_class: capability_registry_smoke_report
-verified_at: 2026-08-28T15:51:10Z
+claim: "45 of 55 core capabilities ready; 10 retain explicit non-ready states"
+state: degraded
+source_class: live_capability_registry_readiness
+verified_at: 2026-09-15T13:26:27Z
 owner: platform
-fresh_for: 7d
+fresh_for: 24h
 public_safe: true
 ```
 
@@ -83,7 +88,7 @@ If the card is stale, the interface can keep the last verified number, but it mu
 - [ ] Define which source system wins for each operational fact.
 - [ ] Put current state first and historical state underneath it.
 - [ ] Give every volatile claim a verification date and freshness window.
-- [ ] Label capabilities as deployed, pilot or pattern.
+- [ ] Label capabilities as deployed, pilot, pattern, degraded, blocked, stale, planned or deprecated.
 - [ ] Treat meeting/email/chat numbers as testimony until verified.
 - [ ] Maintain a source-coverage map with explicit gaps.
 - [ ] Re-index after correcting a canonical truth and verify the old answer no longer wins.

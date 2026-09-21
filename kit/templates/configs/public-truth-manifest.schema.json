@@ -3,18 +3,19 @@
   "$id": "https://usecompai.com/schemas/public-truth-manifest.schema.json",
   "title": "Compai Public Truth Manifest",
   "type": "object",
-  "required": ["version", "verified_at", "claims", "public_package"],
+  "required": ["$schema", "version", "verified_at", "claims", "public_package"],
   "properties": {
+    "$schema": {"type": "string"},
     "version": {"type": "string"},
     "verified_at": {"type": "string", "format": "date-time"},
     "claims": {
       "type": "object",
       "additionalProperties": {
         "type": "object",
-        "required": ["value", "state", "source_class", "verified_at"],
+        "required": ["value", "state", "source_class", "verified_at", "fresh_for", "public_safe"],
         "properties": {
           "value": {},
-          "state": {"enum": ["deployed", "pilot", "pattern"]},
+          "state": {"enum": ["deployed", "pilot", "pattern", "degraded", "blocked", "stale", "planned", "deprecated"]},
           "source_class": {"type": "string"},
           "verified_at": {"type": "string", "format": "date-time"},
           "fresh_for": {"type": "string"},
@@ -25,9 +26,10 @@
     },
     "public_package": {
       "type": "object",
-      "required": ["chapters", "skills", "kit_files", "patterns"],
+      "required": ["chapters", "guides", "skills", "kit_files", "patterns"],
       "properties": {
         "chapters": {"type": "integer", "minimum": 1},
+        "guides": {"type": "integer", "minimum": 1},
         "skills": {"type": "integer", "minimum": 1},
         "kit_files": {"type": "integer", "minimum": 1},
         "patterns": {"type": "integer", "minimum": 1}

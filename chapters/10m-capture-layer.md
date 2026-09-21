@@ -16,7 +16,7 @@ The reference implementation took months to reach this shape because it had to w
 
 ## Current evidence snapshot
 
-The rollout numbers later in this chapter document how each pipeline started. The table below is a historical source-coverage audit from **12 July 2026** and must not be presented as current. At the 30 August v6.0 audit, automated Slack, Drive and meeting synchronization was degraded even though core retrieval remained healthy:
+The rollout numbers later in this chapter document how each pipeline started. The table below is a historical source-coverage audit from **12 July 2026** and must not be presented as current. At the 15 September v6.2 audit, automated company-source ingestion was degraded even though lexical Brain retrieval remained ready:
 
 | Source | Current evidence | Coverage status |
 |---|---:|---|

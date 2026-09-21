@@ -30,7 +30,7 @@ The reference layer connects:
 - private workspaces and governed internal publishing;
 - health, audit, release history and rollback.
 
-The dated 28 August 2026 registry reported **46/46 core capabilities ready**. Optional, planned and blocked connectors remain separate from that core number.
+The dated 15 September 2026 registry reported **45 of 55 core capabilities ready**. Four were degraded, four awaited configuration, one was blocked by a dependency and one was configured but unverified. Optional, planned and deprecated connectors remain separate from that core distribution.
 
 ## A capability is more than a tool
 
@@ -48,7 +48,7 @@ An API wrapper without these fields is plumbing, not an operating capability.
 
 ## Retrieval
 
-`brain_search` and `brain_vsearch` return source paths rather than unsupported prose. The independent 30 August audit passed 20/20 lexical and 5/5 semantic canaries. Operational figures still come from their live source system; the Brain supplies context and provenance.
+`brain_search` and `brain_vsearch` return source paths rather than unsupported prose. Lexical Brain retrieval was ready at the 15 September live check. Operational figures still come from their live source system; the Brain supplies context and provenance.
 
 ## Human work mode
 
@@ -72,7 +72,7 @@ A failure should update readiness and open an owned follow-up. It should not sil
 
 ## Current boundary
 
-At the 30 August 2026 release audit, MCP authentication, RBAC, audience enforcement, retrieval and seven production domain agents were healthy. Automated Slack, Drive and meeting synchronization was degraded. Direct source reads and the core operating layer remained available, but the public status reflects the capture degradation.
+At the 15 September 2026 release audit, authenticated MCP, caller identity, lexical retrieval and seven production domain agents were ready. Automated company-source ingestion and the Context Compiler were degraded. Direct source reads and most of the operating layer remained available, while each non-ready capability kept its own explicit state.
 
 ## Ship it
 

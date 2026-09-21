@@ -9,6 +9,7 @@ import re
 import sys
 import tarfile
 import zipfile
+from datetime import datetime
 from pathlib import Path
 
 
@@ -49,9 +50,17 @@ REQUIRED_CHAPTERS = {
     "27-workspaces-publishing.md",
     "28-decision-packs-outcome-receipts.md",
 }
+REQUIRED_GUIDES = {
+    "codex-company-brain-bootstrap-prompt.es.md",
+    "company-brain-with-codex.es.md",
+}
 SECRET_PATTERNS = {
+    "OpenAI token": re.compile(r"sk-(?:proj-)?[A-Za-z0-9_-]{32,}"),
+    "Anthropic token": re.compile(r"sk-ant-(?:api03|oat01)-[A-Za-z0-9_-]{20,}"),
     "Shopify token": re.compile(r"shpat_[A-Za-z0-9]{24,}"),
     "GitHub token": re.compile(r"gh[pousr]_[A-Za-z0-9]{30,}"),
+    "Slack token": re.compile(r"xox[baprs]-[A-Za-z0-9-]{20,}"),
+    "Google API key": re.compile(r"AIza[0-9A-Za-z_-]{30,}"),
     "private key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
 }
 
@@ -82,6 +91,66 @@ def relative(path: Path, root: Path) -> str:
 
 def count_files(root: Path, pattern: str) -> int:
     return sum(1 for path in root.glob(pattern) if path.is_file())
+
+
+def audit_manifest_contract(repo: Path, manifest: dict, failures: list[str]) -> None:
+    schema_ref = manifest.get("$schema")
+    if not isinstance(schema_ref, str):
+        failures.append("manifest $schema must be a repository-relative path")
+        return
+
+    schema_path = (repo / schema_ref).resolve()
+    try:
+        schema_path.relative_to(repo)
+    except ValueError:
+        failures.append("manifest $schema escapes the repository")
+        return
+    if not schema_path.is_file():
+        failures.append(f"manifest schema is missing: {schema_ref}")
+        return
+
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    allowed_top = set(schema.get("properties", {}))
+    unexpected_top = sorted(set(manifest) - allowed_top)
+    if unexpected_top:
+        failures.append(f"manifest properties absent from schema: {unexpected_top}")
+
+    for field in schema.get("required", []):
+        if field not in manifest:
+            failures.append(f"required manifest field missing: {field}")
+    try:
+        datetime.fromisoformat(str(manifest.get("verified_at")).replace("Z", "+00:00"))
+    except ValueError:
+        failures.append("manifest verified_at is invalid")
+
+    claim_schema = schema["properties"]["claims"]["additionalProperties"]
+    allowed_claim = set(claim_schema["properties"])
+    allowed_states = set(claim_schema["properties"]["state"]["enum"])
+    for name, claim in manifest.get("claims", {}).items():
+        missing = sorted(set(claim_schema["required"]) - set(claim))
+        unexpected = sorted(set(claim) - allowed_claim)
+        if missing:
+            failures.append(f"manifest claim {name} missing fields: {missing}")
+        if unexpected:
+            failures.append(f"manifest claim {name} has unknown fields: {unexpected}")
+        if claim.get("state") not in allowed_states:
+            failures.append(f"manifest claim {name} has invalid state: {claim.get('state')}")
+        try:
+            datetime.fromisoformat(str(claim.get("verified_at")).replace("Z", "+00:00"))
+        except ValueError:
+            failures.append(f"manifest claim {name} has invalid verified_at")
+
+    package_schema = schema["properties"]["public_package"]
+    package = manifest.get("public_package", {})
+    missing_package = sorted(set(package_schema["required"]) - set(package))
+    unexpected_package = sorted(set(package) - set(package_schema["properties"]))
+    if missing_package:
+        failures.append(f"manifest package fields missing: {missing_package}")
+    if unexpected_package:
+        failures.append(f"manifest package fields unknown: {unexpected_package}")
+    for name, value in package.items():
+        if not isinstance(value, int) or isinstance(value, bool) or value < 1:
+            failures.append(f"manifest package field {name} must be a positive integer")
 
 
 def audit_markdown_links(root: Path, failures: list[str]) -> None:
@@ -133,6 +202,7 @@ def audit_repo(repo: Path, failures: list[str]) -> dict:
         return {}
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    audit_manifest_contract(repo, manifest, failures)
     version = manifest["version"]
     required_release_markers = {
         "README.md": f"v{version}",
@@ -155,6 +225,7 @@ def audit_repo(repo: Path, failures: list[str]) -> dict:
     expected = manifest["public_package"]
     actual = {
         "chapters": count_files(repo / "chapters", "*.md"),
+        "guides": count_files(repo / "guides", "*.md"),
         "skills": count_files(repo / "skills", "*/SKILL.md"),
         "kit_files": sum(1 for path in (repo / "kit").rglob("*") if path.is_file()),
         "patterns": sum(
@@ -171,6 +242,11 @@ def audit_repo(repo: Path, failures: list[str]) -> dict:
     missing = sorted(REQUIRED_CHAPTERS - chapters)
     if missing:
         failures.append(f"required chapters missing: {', '.join(missing)}")
+
+    guides = {path.name for path in (repo / "guides").glob("*.md")}
+    missing_guides = sorted(REQUIRED_GUIDES - guides)
+    if missing_guides:
+        failures.append(f"required guides missing: {', '.join(missing_guides)}")
 
     index_path = repo / "chapters" / "00-index.md"
     index = index_path.read_text(encoding="utf-8")
