@@ -18,3 +18,5 @@ jobs:
           python-version: "3.12"
       - name: Audit public release
         run: python3 scripts/release_audit.py --repo-root .
+      - name: Test release audit
+        run: python3 -m unittest discover -s scripts -p 'test_*.py' -v

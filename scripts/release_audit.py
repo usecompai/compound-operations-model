@@ -55,7 +55,7 @@ REQUIRED_GUIDES = {
     "company-brain-with-codex.es.md",
 }
 SECRET_PATTERNS = {
-    "OpenAI token": re.compile(r"sk-(?:proj-)?[A-Za-z0-9_-]{32,}"),
+    "OpenAI token": re.compile(r"(?<![A-Za-z0-9_-])sk-(?:proj-)?[A-Za-z0-9_-]{32,}"),
     "Anthropic token": re.compile(r"sk-ant-(?:api03|oat01)-[A-Za-z0-9_-]{20,}"),
     "Shopify token": re.compile(r"shpat_[A-Za-z0-9]{24,}"),
     "GitHub token": re.compile(r"gh[pousr]_[A-Za-z0-9]{30,}"),
