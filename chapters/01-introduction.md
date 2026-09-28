@@ -44,8 +44,8 @@ We tried something different.
 
 We started with a 30-day deployment and expanded it over more than a year. The current topology is seven production domain agents plus a founder view, connected to company knowledge and live systems through authenticated, governed capabilities.
 
-**Current public snapshot, 15 September 2026:**
-- 45 of 55 core runtime capabilities ready; four degraded, four awaiting configuration, one blocked by a dependency and one configured but unverified
+**Current public snapshot, 28 September 2026:**
+- 49 of 56 core runtime capabilities ready; five degraded, one blocked by a dependency and one configured but unverified
 - lexical Brain retrieval ready
 - seven production domain agents online
 - authenticated MCP ready with caller identity verified

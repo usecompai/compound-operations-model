@@ -19,7 +19,7 @@ This release adds a practical Codex-first route for building the same governed o
 
 | Surface | Verified public snapshot |
 |---|---:|
-| Core capability registry | 45/55 ready; 4 degraded; 4 awaiting configuration; 1 blocked dependency; 1 configured but unverified |
+| Core capability registry | 49/56 ready; 5 degraded; 1 blocked dependency; 1 configured but unverified |
 | Brain lexical retrieval | ready |
 | Context Compiler | degraded, with incomplete states exposed |
 | Production domain agents online | 7/7 |
@@ -29,7 +29,7 @@ This release adds a practical Codex-first route for building the same governed o
 | Automated company-source ingestion | degraded at audit time |
 | Full offsite restore | passed in isolation; one inherited ledger warning remains |
 
-Capabilities, MCP and agents were checked on 15 September 2026. The isolated full-restore drill ran on 9 September 2026. These are dated results, not live telemetry. [`release-manifest.json`](release-manifest.json) is the machine-readable source.
+Capabilities, MCP and agents were checked on 28 September 2026. The isolated full-restore drill ran on 9 September 2026. These are dated results, not live telemetry. [`release-manifest.json`](release-manifest.json) is the machine-readable source.
 
 ## What Changed In v6.2
 
@@ -41,9 +41,9 @@ Capabilities, MCP and agents were checked on 15 September 2026. The isolated ful
 
 ## What Is Actually Proven
 
-The reference deployment has permission-aware retrieval, authenticated source-system access, 45 ready core capabilities out of 55, private workspaces, governed publishing and seven online domain agents. Read-only retrieval and low-risk analysis can run automatically. Customer-facing, financial, legal, HR, destructive and other consequential actions remain bounded by identity, scope, policy, verification and explicit approval.
+The reference deployment has permission-aware retrieval, authenticated source-system access, 49 ready core capabilities out of 56, private workspaces, governed publishing and seven online domain agents. Read-only retrieval and low-risk analysis can run automatically. Customer-facing, financial, legal, HR, destructive and other consequential actions remain bounded by identity, scope, policy, verification and explicit approval.
 
-The system is useful, but it is not broadly autonomous. Three business loops have contracts and shadow/proposal paths, but they do not yet have closed Outcome Receipts proving repeatable business impact. Company-source ingestion and the Context Compiler were degraded at the 15 September boundary even though Brain retrieval, MCP access and production agents were healthy. Those states remain visible until their gates pass again.
+The system is useful, but it is not broadly autonomous. Three business loops have contracts and shadow/proposal paths, but they do not yet have closed Outcome Receipts proving repeatable business impact. Company-source ingestion and the Context Compiler were degraded at the 28 September boundary even though Brain retrieval, MCP access and production agents were healthy. Those states remain visible until their gates pass again.
 
 No single company-wide autonomy percentage is claimed. Autonomy is granted per capability, and confidence never grants authority.
 

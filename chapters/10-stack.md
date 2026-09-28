@@ -4,13 +4,13 @@
 
 Models, APIs and product names move quickly. The durable system is the contract between identity, memory, tools, skills, authority, verification and receipts. The reference deployment uses OpenClaw-compatible runtimes, plain files, git, MCP and multiple model providers, but none of those choices should become an excuse to hard-code a fast-expiring model SKU into the architecture.
 
-**Verified reference snapshot: 15 September 2026; recovery drill: 9 September 2026.**
+**Verified reference snapshot: 28 September 2026; recovery drill: 9 September 2026.**
 
 | Layer | Current evidence |
 |---|---|
 | Runtime topology | Seven production agent runtimes plus a founder command center |
 | Brain | Lexical retrieval ready; permission-aware ContextPack contract |
-| Capabilities | 45/55 core capabilities ready; degraded, unconfigured and blocked dependencies remain explicit |
+| Capabilities | 49/56 core capabilities ready; degraded and blocked states remain explicit |
 | Tools | Authenticated MCP ready with source, permission and verification contracts |
 | Identity | Caller identity verified; independent human and machine identities |
 | Source systems | Live reads available; automated company-source ingestion degraded at audit time |
@@ -95,7 +95,7 @@ Confidence never grants authority. Read-only retrieval can execute with citation
 
 ## Skills
 
-The public package ships 31 anonymized skills. The reference runtime reports 45 of 55 core capabilities ready; the other ten retain their degraded, awaiting-configuration, blocked-dependency or configured-but-unverified state. Availability, ownership, evaluation and runtime readiness are separate states.
+The public package ships 31 anonymized skills. The reference runtime reports 49 of 56 core capabilities ready; the other seven retain their degraded, blocked-dependency or configured-but-unverified state. Availability, ownership, evaluation and runtime readiness are separate states.
 
 A canonical skill needs stable inputs, authority, output contract, verification, stop conditions, rollback, an owner and an independent judge. See Chapter 10ac for the promotion lifecycle.
 

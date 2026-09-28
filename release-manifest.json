@@ -1,13 +1,13 @@
 {
   "$schema": "kit/templates/configs/public-truth-manifest.schema.json",
   "version": "6.2",
-  "verified_at": "2026-09-15T13:26:27Z",
+  "verified_at": "2026-09-28T11:09:22Z",
   "claims": {
     "core_capability_registry": {
-      "value": "45 of 55 core entries ready; 4 degraded, 4 awaiting configuration, 1 blocked dependency and 1 configured but unverified",
+      "value": "49 of 56 core entries ready; 5 degraded, 1 blocked dependency and 1 configured but unverified",
       "state": "degraded",
       "source_class": "live_capability_registry_readiness",
-      "verified_at": "2026-09-15T13:26:27Z",
+      "verified_at": "2026-09-28T11:06:24Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -15,7 +15,7 @@
       "value": "lexical Brain retrieval ready",
       "state": "deployed",
       "source_class": "live_capability_registry_readiness",
-      "verified_at": "2026-09-15T13:26:27Z",
+      "verified_at": "2026-09-28T11:06:24Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -23,7 +23,7 @@
       "value": "7/7 online",
       "state": "deployed",
       "source_class": "live_agent_status_probe",
-      "verified_at": "2026-09-15T13:06:01Z",
+      "verified_at": "2026-09-28T11:09:22Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -31,7 +31,7 @@
       "value": "service ready and caller identity verified",
       "state": "deployed",
       "source_class": "authenticated_health_and_identity_probe",
-      "verified_at": "2026-09-15T13:06:01Z",
+      "verified_at": "2026-09-28T11:09:22Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -39,7 +39,7 @@
       "value": "degraded; incomplete and blocked states remain explicit",
       "state": "degraded",
       "source_class": "live_capability_registry_readiness",
-      "verified_at": "2026-09-15T13:26:27Z",
+      "verified_at": "2026-09-28T11:06:24Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -47,7 +47,7 @@
       "value": 3,
       "state": "pilot",
       "source_class": "live_shadow_gate_readiness",
-      "verified_at": "2026-09-15T13:26:27Z",
+      "verified_at": "2026-09-28T11:06:24Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -55,7 +55,7 @@
       "value": "not deployed; external mutations remain bounded",
       "state": "pilot",
       "source_class": "runtime_authority_contract",
-      "verified_at": "2026-09-15T13:26:27Z",
+      "verified_at": "2026-09-28T11:09:22Z",
       "fresh_for": "14d",
       "public_safe": true
     },
@@ -63,7 +63,7 @@
       "value": "degraded",
       "state": "degraded",
       "source_class": "live_capability_registry_readiness",
-      "verified_at": "2026-09-15T13:26:27Z",
+      "verified_at": "2026-09-28T11:06:24Z",
       "fresh_for": "24h",
       "public_safe": true
     },

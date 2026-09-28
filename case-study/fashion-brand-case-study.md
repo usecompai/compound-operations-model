@@ -2,7 +2,7 @@
 
 ## An anonymized, evidence-first account of the reference deployment
 
-**Evidence boundary:** operational state verified 15 September 2026; recovery drill verified 9 September 2026. Operational details are anonymized. Results are a dated snapshot, not live telemetry.
+**Evidence boundary:** operational state verified 28 September 2026; recovery drill verified 9 September 2026. Operational details are anonymized. Results are a dated snapshot, not live telemetry.
 
 ## Company Profile
 
@@ -52,9 +52,9 @@ Each job receives a sourced, permission-aware ContextPack. The operating loop is
 
 ## Current Verified Snapshot
 
-| Surface | 15 September 2026 snapshot |
+| Surface | 28 September 2026 snapshot |
 |---|---:|
-| Core capability registry | 45/55 ready; 4 degraded; 4 awaiting configuration; 1 blocked dependency; 1 configured but unverified |
+| Core capability registry | 49/56 ready; 5 degraded; 1 blocked dependency; 1 configured but unverified |
 | Brain lexical retrieval | Ready |
 | Production domain agents | 7/7 online |
 | Authenticated MCP | Ready; caller identity verified |
