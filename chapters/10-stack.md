@@ -4,16 +4,16 @@
 
 Models, APIs and product names move quickly. The durable system is the contract between identity, memory, tools, skills, authority, verification and receipts. The reference deployment uses OpenClaw-compatible runtimes, plain files, git, MCP and multiple model providers, but none of those choices should become an excuse to hard-code a fast-expiring model SKU into the architecture.
 
-**Verified reference snapshot: 28 September 2026; recovery drill: 9 September 2026.**
+**Verified reference snapshot: 29 September 2026; recovery drill: 9 September 2026.**
 
 | Layer | Current evidence |
 |---|---|
 | Runtime topology | Seven production agent runtimes plus a founder command center |
 | Brain | Lexical retrieval ready; permission-aware ContextPack contract |
-| Capabilities | 49/56 core capabilities ready; degraded and blocked states remain explicit |
+| Capabilities | 56/56 core capabilities passed the dated readiness gate |
 | Tools | Authenticated MCP ready with source, permission and verification contracts |
 | Identity | Caller identity verified; independent human and machine identities |
-| Source systems | Live reads available; automated company-source ingestion degraded at audit time |
+| Source systems | Live reads available; governed Slack, Meet and Drive ingestion passed the dated gate; historical email backlog still draining |
 | Audit | Run ledger, Decision Pack and Outcome Receipt contracts; outcome evidence still incomplete |
 | Infrastructure | EU cloud hub, dedicated secondary host and encrypted private mesh |
 | Public portfolio | 72 chapters, 2 Codex-first guides, 31 anonymized skills, 21 patterns and a 226-file kit |
@@ -95,7 +95,7 @@ Confidence never grants authority. Read-only retrieval can execute with citation
 
 ## Skills
 
-The public package ships 31 anonymized skills. The reference runtime reports 49 of 56 core capabilities ready; the other seven retain their degraded, blocked-dependency or configured-but-unverified state. Availability, ownership, evaluation and runtime readiness are separate states.
+The public package ships 31 anonymized skills. The reference runtime reports all 56 core capabilities ready at the dated gate. Availability, ownership, evaluation, per-job evidence and execution authority remain separate states.
 
 A canonical skill needs stable inputs, authority, output contract, verification, stop conditions, rollback, an owner and an independent judge. See Chapter 10ac for the promotion lifecycle.
 
@@ -132,7 +132,8 @@ This July 2026 baseline is included so readers can inspect the method. It is not
 
 - broad autonomous execution is not deployed;
 - the three governed business loops remain proposal/shadow systems without closed Outcome Receipts;
-- automated Slack, Drive and meeting synchronization was degraded at the audit boundary;
+- automated Slack, Drive and meeting synchronization passed the dated audit boundary;
+- the historical email backlog is still draining even though the latest bounded run completed without failures;
 - complete native meeting-transcript coverage is not claimed;
 - several critical services still share infrastructure failure domains;
 - operational task queues contain stale review and ownership gaps that require active draining.

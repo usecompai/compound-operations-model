@@ -39,16 +39,16 @@ This matters most for permissions and autonomy. A Brain Spaces template can be p
 
 ## A dated reference snapshot
 
-The Compai v6.2 evidence boundary was refreshed on **28 September 2026**, with recovery evidence from **9 September 2026**:
+The Compai v6.2 evidence boundary was refreshed on **29 September 2026**, with recovery evidence from **9 September 2026**:
 
-- 49 of 56 core capabilities ready; five degraded, one blocked by a dependency and one configured but unverified;
+- 56 of 56 core capabilities passed the dated readiness gate;
 - lexical Brain retrieval ready;
 - seven production domain agents online;
 - authenticated MCP ready and caller identity verified;
-- Context Compiler degraded, with incomplete and blocked states still explicit;
-- three governed business loops in proposal/shadow mode;
+- Context Compiler ready, with incomplete, stale, conflicting and blocked states still explicit per job;
+- three governed business loops in proposal/shadow mode, with 77 decision records but no applied-and-measured business outcome yet;
 - full offsite restore passed in isolation, with one inherited ledger warning;
-- automated company-source ingestion degraded at audit time;
+- governed Slack, Meet and Drive ingestion ready at audit time; the latest bounded email run completed without failures while its historical backlog remains;
 - broad unattended external execution not deployed.
 
 These are dated facts, not permanent copy. A future release must regenerate the snapshot from the live system or keep the old date visible.
@@ -72,10 +72,10 @@ The reference deployment has broad company coverage, but it still publishes its 
 Every public number or material internal claim should be reproducible from an evidence card:
 
 ```yaml
-claim: "49 of 56 core capabilities ready; 7 retain explicit non-ready states"
-state: degraded
+claim: "56 of 56 core capabilities passed the dated readiness gate"
+state: deployed
 source_class: live_capability_registry_readiness
-verified_at: 2026-09-28T11:06:24Z
+verified_at: 2026-09-29T11:25:00Z
 owner: platform
 fresh_for: 24h
 public_safe: true

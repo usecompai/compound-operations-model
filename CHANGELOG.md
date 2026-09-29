@@ -4,9 +4,11 @@
 
 - Added a Spanish Codex-first implementation guide and phase-gated bootstrap prompt.
 - Updated the Codex integration around current `AGENTS.md`, cloud environment, skills and authenticated MCP conventions.
-- Refreshed the public reference snapshot from live capability, identity, MCP and agent checks.
+- Refreshed the public reference snapshot on 29 September from live capability, identity, MCP, agent and ingestion checks.
 - Expanded public truth states to report degraded and blocked dependencies without flattening them into a binary claim.
 - Added guide counts and required-guide checks to the release audit.
+- Documented the current outcome boundary: 77 governed decision records, 70 closed without action, seven pending owner review and zero applied-and-measured business outcomes.
+- Repaired Drive version-race handling, bounded connector smokes, assigned-task context access and zero-quantity decision routing before promoting their readiness claims.
 
 ## v6.0 - Operating Layer - 2026-08-30
 

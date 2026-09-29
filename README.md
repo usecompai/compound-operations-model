@@ -19,17 +19,17 @@ This release adds a practical Codex-first route for building the same governed o
 
 | Surface | Verified public snapshot |
 |---|---:|
-| Core capability registry | 49/56 ready; 5 degraded; 1 blocked dependency; 1 configured but unverified |
+| Core capability registry | 56/56 core entries passed the dated readiness gate |
 | Brain lexical retrieval | ready |
-| Context Compiler | degraded, with incomplete states exposed |
-| Production domain agents online | 7/7 |
+| Context Compiler | ready; missing, stale, conflicting and permission-blocked inputs remain explicit per job |
+| Production domain AI agents online | 7/7 |
 | Public, anonymized skills in this repo | 31 |
 | Authenticated MCP | ready; caller identity verified |
 | Governed business loops | 3, proposal/shadow only |
-| Automated company-source ingestion | degraded at audit time |
+| Governed Slack, Meet and Drive ingestion | ready; email historical backlog still draining |
 | Full offsite restore | passed in isolation; one inherited ledger warning remains |
 
-Capabilities, MCP and agents were checked on 28 September 2026. The isolated full-restore drill ran on 9 September 2026. These are dated results, not live telemetry. [`release-manifest.json`](release-manifest.json) is the machine-readable source.
+Capabilities, MCP, source ingestion and agents were checked on 29 September 2026. The isolated full-restore drill ran on 9 September 2026. These are dated results, not live telemetry. [`release-manifest.json`](release-manifest.json) is the machine-readable source.
 
 ## What Changed In v6.2
 
@@ -37,13 +37,13 @@ Capabilities, MCP and agents were checked on 28 September 2026. The isolated ful
 - Made one workflow, one read-only source and explicit human approval the default bootstrap path.
 - Updated the Codex integration for current `AGENTS.md`, cloud-environment, skill and authenticated MCP conventions.
 - Expanded the public truth contract beyond `deployed`, `pilot` and `pattern` so degraded, blocked, stale, planned and deprecated states can be reported honestly.
-- Replaced the stale all-ready headline with the current registry distribution and a verified recovery-drill result.
+- Refreshed the evidence boundary after repairing source capture, context compilation, connector smokes and zero-action decision routing.
 
 ## What Is Actually Proven
 
-The reference deployment has permission-aware retrieval, authenticated source-system access, 49 ready core capabilities out of 56, private workspaces, governed publishing and seven online domain agents. Read-only retrieval and low-risk analysis can run automatically. Customer-facing, financial, legal, HR, destructive and other consequential actions remain bounded by identity, scope, policy, verification and explicit approval.
+The reference deployment has permission-aware retrieval, authenticated source-system access, 56 core capabilities through the dated readiness gate, private workspaces, governed publishing and seven online domain AI agents. Read-only retrieval and low-risk analysis can run automatically. Customer-facing, financial, legal, HR, destructive and other consequential actions remain bounded by identity, scope, policy, verification and explicit approval.
 
-The system is useful, but it is not broadly autonomous. Three business loops have contracts and shadow/proposal paths, but they do not yet have closed Outcome Receipts proving repeatable business impact. Company-source ingestion and the Context Compiler were degraded at the 28 September boundary even though Brain retrieval, MCP access and production agents were healthy. Those states remain visible until their gates pass again.
+The system is useful, but it is not broadly autonomous. Three business loops have contracts and shadow/proposal paths. They have produced 77 governed decision records: 70 closed without action and seven await an owner decision. None is presented as an applied-and-measured business outcome. Slack, Meet and Drive ingestion passed the 29 September gate; the latest bounded email run added 430 signals without failures, while a historical email backlog remains to be drained.
 
 No single company-wide autonomy percentage is claimed. Autonomy is granted per capability, and confidence never grants authority.
 

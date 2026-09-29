@@ -16,20 +16,18 @@ The reference implementation took months to reach this shape because it had to w
 
 ## Current evidence snapshot
 
-The rollout numbers later in this chapter document how each pipeline started. The table below is a historical source-coverage audit from **12 July 2026** and must not be presented as current. At the 15 September v6.2 audit, automated company-source ingestion was degraded even though lexical Brain retrieval remained ready:
+The rollout numbers later in this chapter document how each pipeline started. The table below is the **29 September 2026** operating boundary. It separates a connector passing now from historical coverage being complete:
 
 | Source | Current evidence | Coverage status |
 |---|---:|---|
-| Public chat | 80 readable public channels; 2,506 messages processed and 212 signals captured in the latest 14-day window | Green |
-| Workspace accounts | 59 active users scanned | Green |
-| Meeting notes | 423 unique notes found; 424 capture records after source reconciliation | Green for generated notes |
-| Native meeting transcripts | 0 inventoried | Gap: notes are covered; native transcript completeness is not claimed |
-| Email intelligence | 14 approved manager accounts; latest run produced 19 signals with 0 failures | Green for the approved cohort, not every mailbox |
-| Drive intelligence | 1,572 items inventoried; 772 canonical artifacts; 0 current processing failures | Green |
-| Notion | 488 documents indexed | Green |
-| Granola | 60 notes visible; 6 of 10 expected users had no current visible coverage and one was stale | Red pending account/connector remediation |
+| Public chat | Latest bounded run saw 316 captures, processed 32 and promoted 22 signals with no failures | Ready for the governed public-channel scope |
+| Meeting notes | Managed machine identity, timer, service result and freshness checks passed | Ready for generated notes; native transcript completeness is not claimed |
+| Email intelligence | Latest bounded run added 430 signals with no failures | Current window passed; historical backlog of 16,153 remains and the two-hour timer can drain up to 4,200 messages per day before new arrivals |
+| Drive intelligence | Inventory and digest service passed after stale-version and historical-failure handling were repaired | Ready for the selected high-value scope; changed files defer to a fresh inventory |
+| Notion | Complete-page retrieval accepts up to 5,000 blocks and passed its connector contract | Ready within identity and page permissions |
+| Granola | Connector smoke passed 14/14 checks | Connector ready; private ingestion remains paused pending approval for four finance-private notes |
 
-Coverage is a matrix, not a binary badge. A connector can be healthy for the accounts and artifact types it is allowed to read while still having a known organizational gap. Publishing both is more useful than calling the whole source "connected."
+Coverage is a matrix, not a binary badge. A connector can be healthy for the accounts and artifact types it is allowed to read while still having a known organizational gap or historical backlog. Publishing both is more useful than calling the whole source "connected."
 
 ## `brain_capture` as the universal contract
 

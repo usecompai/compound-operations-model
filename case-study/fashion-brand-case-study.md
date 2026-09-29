@@ -2,7 +2,7 @@
 
 ## An anonymized, evidence-first account of the reference deployment
 
-**Evidence boundary:** operational state verified 28 September 2026; recovery drill verified 9 September 2026. Operational details are anonymized. Results are a dated snapshot, not live telemetry.
+**Evidence boundary:** operational state verified 29 September 2026; recovery drill verified 9 September 2026. Operational details are anonymized. Results are a dated snapshot, not live telemetry.
 
 ## Company Profile
 
@@ -38,7 +38,7 @@ Approved information from work conversations, generated meeting notes, documents
 
 The MCP layer gives people and agents a controlled way to read and, where policy allows, prepare or execute work in company systems. Identity, scope and action risk are checked separately from model confidence.
 
-### 3. Specialist runtimes
+### 3. Domain AI agents
 
 Seven domain runtimes cover company direction, customer care, finance, retail, digital marketing, merchandising and people operations. They share the Brain but retain separate roles and authority boundaries.
 
@@ -52,15 +52,15 @@ Each job receives a sourced, permission-aware ContextPack. The operating loop is
 
 ## Current Verified Snapshot
 
-| Surface | 28 September 2026 snapshot |
+| Surface | 29 September 2026 snapshot |
 |---|---:|
-| Core capability registry | 49/56 ready; 5 degraded; 1 blocked dependency; 1 configured but unverified |
+| Core capability registry | 56/56 passed the dated readiness gate |
 | Brain lexical retrieval | Ready |
 | Production domain agents | 7/7 online |
 | Authenticated MCP | Ready; caller identity verified |
-| Context Compiler | Degraded, with incomplete and blocked states explicit |
-| Governed business loops | 3 in proposal/shadow mode |
-| Automated company-source ingestion | Degraded at audit time |
+| Context Compiler | Ready at the aggregate gate; incomplete, stale, conflicting and permission-blocked evidence remains explicit per job |
+| Governed business loops | 3 in proposal/shadow mode; 77 decision records, 70 closed without action and 7 pending owner review |
+| Automated company-source ingestion | Slack, generated meeting notes and Drive passed; the historical email backlog is still draining |
 | Full offsite restore | Passed in isolation on 9 September; one inherited ledger warning remains |
 
 The public package contains 72 playbook chapters, two Spanish Codex-first guides, 31 anonymized skills, 226 implementation-kit files and 21 executable patterns.
@@ -115,8 +115,8 @@ Chapter 12 models a 16.2:1 return under explicit time and cost assumptions. That
 The release boundary includes material limitations:
 
 1. Broad unattended execution is not deployed. The system is strongest at retrieval, analysis, preparation, governed publishing and bounded execution.
-2. Three business loops have proposal/shadow contracts but no closed Outcome Receipts proving repeatable impact.
-3. Automated Slack, Drive and meeting synchronization was degraded during the latest audit.
+2. Three business loops have proposal/shadow contracts, but none of their 77 decision records is an applied-and-measured business outcome. Seven still require an owner decision.
+3. Slack, Drive and generated-meeting-note capture passed the dated gate. Historical email ingestion is healthy but still draining a material backlog, so complete backfill is not claimed.
 4. Several services still share infrastructure failure domains; tested high availability is not claimed.
 5. Operational task queues contain stale review and ownership gaps.
 6. Generated meeting notes are useful, but complete native-transcript coverage is not claimed.
