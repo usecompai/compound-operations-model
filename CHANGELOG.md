@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased - Codex guide operations refresh - 2026-10-01
+
+- Expanded the Spanish Company Brain guide with nine production patterns introduced after the v6.2 bootstrap release.
+- Added phase prompts for personal assistants, centrally managed OAuth/MCP connectors, team execution, managed project releases and operational recovery.
+- Revalidated the Codex architecture against the current official Agents API, MCP, self-hosted environment and sandbox security documentation.
+
 ## v6.2 - Codex-First Bootstrap - 2026-09-15
 
 - Added a Spanish Codex-first implementation guide and phase-gated bootstrap prompt.

@@ -17,6 +17,8 @@ This repository documents a real operating system: a Company Brain, authenticate
 
 This release adds a practical Codex-first route for building the same governed operating layer. Start with one workflow and one read-only source, approve each phase, then expand only when the evidence and controls hold. Codex is one builder and operating surface; the Company Brain, identity, permissions, capability state and receipts remain model-independent.
 
+The Spanish Codex guide and bootstrap prompts were revised on 1 October 2026 with the latest production patterns: personal-assistant bridges, centrally managed OAuth/MCP connectors, role-and-domain access, capability-gap routing, managed project releases, bounded job recovery, index reconciliation and canonical-source drift gates.
+
 | Surface | Verified public snapshot |
 |---|---:|
 | Core capability registry | 56/56 core entries passed the dated readiness gate |
