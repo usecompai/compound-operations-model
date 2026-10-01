@@ -1,13 +1,13 @@
 {
   "$schema": "kit/templates/configs/public-truth-manifest.schema.json",
   "version": "6.2",
-  "verified_at": "2026-09-29T12:10:28Z",
+  "verified_at": "2026-09-30T19:49:44Z",
   "claims": {
     "core_capability_registry": {
       "value": "56 of 56 core entries passed the dated readiness gate",
       "state": "deployed",
       "source_class": "live_capability_registry_readiness",
-      "verified_at": "2026-09-29T12:10:18Z",
+      "verified_at": "2026-09-30T19:49:44Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -15,7 +15,7 @@
       "value": "lexical Brain retrieval ready",
       "state": "deployed",
       "source_class": "live_capability_registry_readiness",
-      "verified_at": "2026-09-29T12:10:18Z",
+      "verified_at": "2026-09-30T19:49:44Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -23,7 +23,7 @@
       "value": "7/7 online",
       "state": "deployed",
       "source_class": "live_agent_status_probe",
-      "verified_at": "2026-09-29T12:10:27Z",
+      "verified_at": "2026-09-30T19:49:44Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -31,7 +31,7 @@
       "value": "service ready and caller identity verified",
       "state": "deployed",
       "source_class": "authenticated_health_and_identity_probe",
-      "verified_at": "2026-09-29T12:10:27Z",
+      "verified_at": "2026-09-30T19:49:44Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -39,15 +39,15 @@
       "value": "aggregate gate ready; incomplete, stale, conflicting and permission-blocked evidence remains explicit per job",
       "state": "deployed",
       "source_class": "live_capability_registry_readiness",
-      "verified_at": "2026-09-29T12:10:18Z",
+      "verified_at": "2026-09-30T19:49:44Z",
       "fresh_for": "24h",
       "public_safe": true
     },
     "governed_business_loops": {
-      "value": "3 proposal/shadow loops; 77 decision records, 70 closed without action, 7 pending owner review and 0 applied-and-measured business outcomes",
+      "value": "3 proposal/shadow gates and the owner-review queue are ready; no autonomous apply is claimed",
       "state": "pilot",
       "source_class": "live_shadow_gate_readiness",
-      "verified_at": "2026-09-29T12:10:28Z",
+      "verified_at": "2026-09-30T19:49:44Z",
       "fresh_for": "24h",
       "public_safe": true
     },
@@ -60,10 +60,10 @@
       "public_safe": true
     },
     "automated_company_source_ingestion": {
-      "value": "Slack, generated meeting notes and Drive passed; the email pipeline is healthy while its historical backlog drains",
+      "value": "Slack, meeting and Drive ingestion plus Gmail context read passed their current readiness gates",
       "state": "degraded",
       "source_class": "live_capability_registry_readiness",
-      "verified_at": "2026-09-29T12:10:27Z",
+      "verified_at": "2026-09-30T19:49:44Z",
       "fresh_for": "24h",
       "public_safe": true
     },
