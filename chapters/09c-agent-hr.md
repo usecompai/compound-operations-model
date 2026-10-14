@@ -1,11 +1,13 @@
-# People workroom
+# People portal
 
-Leave requests, onboarding and personal documents need a private work surface. Identity and role determine access.
+The internal people portal supports leave requests, reviewer decisions, personal details and protected payroll documents.
 
-Separate personal, manager and administrative scopes. Check every request, including downloads and direct links. A browser-filtered list is not access control.
+Personal access and administrative review are separate. A request awaiting review is not approved. A document being available does not make it readable by every employee.
 
-Prepare forms, display permitted information and route requests. Do not automate employment decisions or infer sensitive characteristics.
+The deployed service and health endpoint were checked on 14 October 2026. Recent requests, decisions and protected-document access are recorded in the application audit. No employee identities, request contents or document contents are published.
 
-Test access to another person's record, a manager outside their team, expired sessions and revoked links. Audit without copying private document contents into logs.
+[Explore the people portal](https://usecompai.com/projects/people-portal.html). The public interface is a simplified reconstruction with fictional records, not an open copy of the private application.
 
-Demonstrations need independently fictional records. [Explore the example](https://usecompai.com/projects/people-workroom.html).
+## Applying the method elsewhere
+
+Check identity on reads, writes and downloads. Test access to another person's record and a role outside its scope. Keep document contents out of audit logs. Employment decisions require the authorised person.

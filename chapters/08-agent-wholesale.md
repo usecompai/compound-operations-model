@@ -1,11 +1,9 @@
-# Delivery desk
+# Delivery reconciliation: a design note
 
-A commercial order may split into several deliveries. Each needs its own warehouse reference, tracking and finance document.
+This is a reusable workflow design, not a verified application in the project collection. The earlier fictional Delivery desk example has been withdrawn.
 
-Read the order, warehouse status and carrier events. Resolve the invoice by explicit document reference. An order reference may not uniquely identify payment, and tracking does not prove receipt.
+A commercial order may split into several deliveries. Each needs its own warehouse reference, tracking and finance-document match. Tracking does not prove payment.
 
-Keep preparation, dispatch, delivery and exceptions distinct. Show missing references and timestamp source checks.
+Before implementing the workflow, verify the actual order, warehouse, carrier and finance integrations. Keep missing references visible and require approval for accounting writes and shipment release.
 
-Prepare an invoice or collection task, but require approval for accounting writes and shipment release. Payment state comes from finance, not a message saying the customer paid.
-
-Test split deliveries, partial fulfilment, missing stock, returned parcels and unmatched invoices. [Explore the fictional delivery desk](https://usecompai.com/projects/delivery-desk.html).
+The method does not establish an automated carrier-management system. See the [reviewed project collection](https://usecompai.com/projects.html) for tools backed by deployment and recent-use evidence.

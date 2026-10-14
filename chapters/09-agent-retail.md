@@ -1,11 +1,11 @@
-# Store pulse
+# Retail dashboard
 
-A store pulse brings sales, traffic and availability into one scoped view. Product and size detail should use stable identifiers.
+The internal retail dashboard brings store sales and footfall into a shared reporting view. The team selects a period, compares stores and checks source coverage.
 
-Define the reporting window, timezone and each field. Read sales, stock and traffic independently. Show source freshness and missing coverage instead of inventing values.
+Sales feeds and footfall feeds have different update schedules. Some locations need reviewed file imports. Missing coverage must remain visible, especially before comparing conversion.
 
-A store manager sees their location; the central team may compare permitted locations. Enforce access on direct links and data requests, not just the visible page.
+The deployed view and a working sales feed were checked on 14 October 2026. Recent feed updates and a weekly reporting workflow are documented by the retail team. This is evidence of operational use, not a claim that every source updates in real time.
 
-A size gap can create a transfer proposal. Check stock and destination before approval. The dashboard itself does not grant authority to move inventory.
+This project description does not include stock transfers, allocation or purchasing. The earlier Store pulse example overstated that scope.
 
-Test mapping, returns, delayed feeds and role restrictions. [Try the fictional example](https://usecompai.com/projects/store-pulse.html).
+The public preview is a simplified reconstruction with fictional records. [Explore the retail dashboard](https://usecompai.com/projects/retail-dashboard.html). This note shares the method, not the private application source.

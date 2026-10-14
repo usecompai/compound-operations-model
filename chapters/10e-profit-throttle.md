@@ -1,6 +1,8 @@
-# Campaign contribution
+# Campaign contribution: a design note
 
-Reported campaign revenue is not contribution. Read spend, orders, returns and product cost with compatible definitions and time windows.
+This is a reusable analysis method, not a verified application in the project collection. The earlier fictional Performance pulse example has been withdrawn.
+
+Reported campaign revenue is not contribution. A contribution analysis needs spend, orders, returns and product cost with compatible definitions and time windows.
 
 ```text
 contribution before paid spend
@@ -9,8 +11,6 @@ contribution after paid spend
   = contribution before paid spend - paid spend
 ```
 
-The actual definition belongs to the business and its accounting policy. Avoid double-counting refunds or treating platform-attributed revenue as reconciled revenue.
+The definition belongs to the business and its accounting policy. Avoid double-counting refunds or treating platform-attributed revenue as reconciled revenue.
 
-Explain what changed, its sources and remaining uncertainty. Compare consistent cohorts and account for delayed returns. Propose a bounded next check rather than a guaranteed improvement.
-
-Budget changes need the authorised owner. [Explore the fictional performance pulse](https://usecompai.com/projects/performance-pulse.html).
+This method alone proves neither a working integration nor ongoing use. Budget changes require the authorised owner. See the [reviewed project collection](https://usecompai.com/projects.html) for tools backed by deployment and recent-use evidence.

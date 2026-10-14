@@ -2,6 +2,6 @@
 redirect: 09-agent-retail
 ---
 
-# Store pulse
+# Retail dashboard
 
-This note has been consolidated into [Store pulse](09-agent-retail.md). Reusable code remains in the [starter kit](../kit/README.md).
+This note has been consolidated into [Retail dashboard](09-agent-retail.md). Reusable code remains in the [starter kit](../kit/README.md).

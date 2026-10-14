@@ -1,9 +1,9 @@
-# Product cockpit
+# Product analysis: a design note
 
-Use one checked hierarchy for collection, product and variant. The team can change the level of detail without rebuilding its analysis.
+This is a reusable analysis method, not a verified application in the project collection. The earlier fictional Product cockpit example has been withdrawn.
 
-Connect stable identifiers, sales, returns, availability and approved attributes. Version source mappings and flag unmatched variants rather than dropping them.
+A checked product hierarchy helps connect collection, product and variant data. Stable identifiers matter more than display names.
 
-Show demand and availability together. A sold-out size can make observed sales misleading. Distinguish stock on hand, reserved stock and inbound stock before a buying or transfer proposal.
+Before using a combined view, verify sales, returns and stock definitions. Distinguish on-hand, reserved and inbound stock. Keep unmatched products and missing feeds visible.
 
-Buying, allocation and markdown decisions stay with the authorised team. Test renamed products, changed categories, returns and missing feeds. [Explore the fictional cockpit](https://usecompai.com/projects/product-cockpit.html).
+Buying, allocation and markdown decisions require the authorised team. The method alone proves neither a working tool nor recent operational use. See the [reviewed project collection](https://usecompai.com/projects.html).

@@ -2,6 +2,6 @@
 redirect: 08-agent-wholesale
 ---
 
-# Delivery desk
+# Delivery reconciliation: a design note
 
-This note has been consolidated into [Delivery desk](08-agent-wholesale.md). Reusable code remains in the [starter kit](../kit/README.md).
+This note has been consolidated into [Delivery reconciliation: a design note](08-agent-wholesale.md). Reusable code remains in the [starter kit](../kit/README.md).
