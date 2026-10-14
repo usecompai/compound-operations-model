@@ -19,7 +19,7 @@
 - [Keep a record of the result](28-decision-packs-outcome-receipts.md)
 - [Retail dashboard](09-agent-retail.md)
 - [Invoice validator](10i-invoice-pipeline.md)
-- [Campaign contribution: a design note](10e-profit-throttle.md)
+- [Ads control tower](10e-profit-throttle.md)
 - [Wholesale invoicing](08-agent-wholesale.md)
 - [Receivables workspace](29-receivables.md)
 - [Hiring workspace](30-hiring.md)
