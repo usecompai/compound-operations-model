@@ -1,5 +1,12 @@
 # Changelog
 
+## Expanded project review — 14 October 2026
+
+- Added Wholesale invoicing, Receivables workspace, Hiring workspace and Returns analysis after checking deployment and operational-use evidence.
+- Featured the connected workflows on the home page, with dedicated previews and methods.
+- Kept operator-run workflows and dated analysis distinct from continuous automation.
+- Published fictional records only; no financial figures, private identities or operational volumes.
+
 ## Project provenance correction — 14 October 2026
 
 - Replaced six editorial examples with three reviewed internal tools: Retail dashboard, Invoice validator and People portal.

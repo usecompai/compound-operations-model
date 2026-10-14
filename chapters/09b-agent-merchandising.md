@@ -1,9 +1,15 @@
-# Product analysis: a design note
+# Returns analysis
 
-This is a reusable analysis method, not a verified application in the project collection. The earlier fictional Product cockpit example has been withdrawn.
+Operations built a review workspace that connects shipped items, financial refunds, product references and return reasons. It compares launches, products, sizes and markets using a reviewed snapshot.
 
-A checked product hierarchy helps connect collection, product and variant data. Stable identifiers matter more than display names.
+## Keep the populations separate
 
-Before using a combined view, verify sales, returns and stock definitions. Distinguish on-hand, reserved and inbound stock. Keep unmatched products and missing feeds visible.
+A return request is not a confirmed refund. A technical refund record does not necessarily prove that money was refunded. Join records using stable order and line identifiers, quantities and dates, and expose any unmatched items.
 
-Buying, allocation and markdown decisions require the authorised team. The method alone proves neither a working tool nor recent operational use. See the [reviewed project collection](https://usecompai.com/projects.html).
+A recent launch has had less time to accumulate returns. Compare cohorts at similar ages; do not present the observed rate as a prediction of the final rate. Keep financial and operational status separate.
+
+The operator's source checks, interface tests and authorised publication were reviewed on 14 October 2026. The deployed file matches the reviewed version used for the team's analysis. It is a dated workspace, not an automatically refreshed live feed or a certified profitability model.
+
+[Explore returns analysis](https://usecompai.com/projects/returns-analysis.html). The preview uses fictional products and states. No sales figures, return rates, product photographs or customer records are copied. The earlier Product cockpit illustration remains withdrawn.
+
+Buying decisions and refunds require their own authority. This analysis does not execute either.

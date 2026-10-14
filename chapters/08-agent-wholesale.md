@@ -1,9 +1,13 @@
-# Delivery reconciliation: a design note
+# Wholesale invoicing
 
-This is a reusable workflow design, not a verified application in the project collection. The earlier fictional Delivery desk example has been withdrawn.
+The internal tool reads warehouse orders, matches products and checks an approved price list. An operator reviews the proposed proforma or invoice before creating it in accounting.
 
-A commercial order may split into several deliveries. Each needs its own warehouse reference, tracking and finance-document match. Tracking does not prove payment.
+After creation, the workflow reads the document back and records its identifier, quantities and totals. Missing products or unapproved prices stop the process. A successful preview is not a created document.
 
-Before implementing the workflow, verify the actual order, warehouse, carrier and finance integrations. Keep missing references visible and require approval for accounting writes and shipment release.
+On 14 October 2026, the deployed service, current code and recent invoice and proforma records were checked. A recent invoice was independently found through the accounting API. This is an operator-led production workflow, not unattended order-to-cash.
 
-The method does not establish an automated carrier-management system. See the [reviewed project collection](https://usecompai.com/projects.html) for tools backed by deployment and recent-use evidence.
+[Explore wholesale invoicing](https://usecompai.com/projects/wholesale-invoicing.html). The public preview uses fictional orders and creates no document. It does not represent carrier selection, shipment release or payment collection. The earlier Delivery desk illustration remains withdrawn.
+
+## Applying the method elsewhere
+
+Keep the warehouse order, commercial terms and accounting document linked. Preserve price approvals. Check the destination before retrying an uncertain creation so a timeout cannot become a duplicate invoice. Share the method, not customer records or price lists.
