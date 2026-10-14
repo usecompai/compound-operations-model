@@ -1,0 +1,28 @@
+id: pat-ops-002
+title: Evaluate a proposed prompt change
+domain: operations
+summary: Propose prompt variants, evaluate against a held-out task set, compare failures
+  and request human review before any promotion.
+context:
+  trigger: Weekly scheduled cron job
+  industry: Any organization running customer-facing AI agents
+implementation:
+  components:
+  - Versioned prompt candidates
+  - Independent evaluation and negative cases
+  - Human approval before promotion
+  - Verified rollback
+  complexity: High
+risks:
+- Mutations may introduce unintended behavioral changes
+- Evaluation rubric must be comprehensive to avoid Goodhart problem
+- Need human review checkpoint for significant prompt changes
+tags:
+- operations
+- ai-agents
+- prompt-engineering
+- self-improvement
+- automation
+status: reference_pattern
+public_note: Reusable procedure, not measured company results. Configure and test
+  before use.

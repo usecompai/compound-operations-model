@@ -1,0 +1,14 @@
+version: "1.0"
+artifact_class: "video|pdf|deck|export|delivery-pack"
+canonical_store: "company-drive-folder-url"
+working_directory: "/path/to/ephemeral-or-data-volume-workspace"
+max_runtime_age_hours: 24
+
+closeout:
+  upload_verified: false
+  name_verified: false
+  byte_size_verified: false
+  checksum_verified_when_available: false
+  canonical_url_recorded: false
+  temporary_files_removed: false
+  storage_headroom_verified: false

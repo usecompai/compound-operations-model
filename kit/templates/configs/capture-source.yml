@@ -1,0 +1,60 @@
+# capture-source.yml
+# ---------------------------------------------------------------------------
+# Registers ONE source into the capture spine. Copy this file per source
+# (one for chat, one for email, one per source system, etc). The spine reads
+# every capture-source.yml it finds and wires up capture + interpretation.
+#
+# Golden rule: capture must keep running even when interpretation is down.
+# Never put a secret value in this file — reference env-var NAMES only.
+# ---------------------------------------------------------------------------
+
+# --- Identity -------------------------------------------------------------
+id: chat-primary                 # unique, stable, human-readable id for this source
+type: slack                      # one of: slack | email | meetings | drive | notion | system
+description: "Primary team chat workspace — decisions and corrections"
+
+# --- Connection -----------------------------------------------------------
+# Reference environment variable NAMES only. Never inline tokens or keys.
+connection:
+  auth_env: CAPTURE_CHAT_TOKEN   # name of the env var holding the credential
+  endpoint_env: CAPTURE_CHAT_URL # name of the env var holding the base URL (optional)
+
+# --- Cadence --------------------------------------------------------------
+# continuous  -> stream/webhook as events arrive
+# same-day    -> pull at least once before end of day
+# on-change   -> fire when the source signals a change
+# scheduled   -> pull deltas on a fixed interval (set `interval`)
+cadence: continuous
+interval: null                   # e.g. "15m" or "1h" when cadence: scheduled
+
+# --- Raw destination ------------------------------------------------------
+# Where raw items land. Append-only. {stamps} are filled at capture time.
+# Keep raw and curated in physically separate trees.
+raw_destination: "raw/{type}/{id}/{captured_at_date}/{item_id}.json"
+
+# --- The three stamps (applied at capture, never retroactively) -----------
+stamps:
+  source_identity: "{type}:{id}"     # traces every item back to its origin
+  captured_at: "auto"                # ISO-8601 timestamp set at capture moment
+  sensitivity: internal              # one of: public | internal | confidential | restricted
+
+# --- Interpretation stage -------------------------------------------------
+# Separate from capture. If this stage is blocked, capture MUST continue.
+interpretation:
+  model_job: promote-chat-to-curated # name of the extraction/promotion job
+  blocked_state: queue_and_retry     # on outage/quota/reauth: hold in queue, retry on recovery
+  max_retry_backoff: "6h"            # cap on retry interval; backlog drains on recovery
+
+# --- Promotion rule -------------------------------------------------------
+# How a raw item becomes a curated note. Dedup before write.
+promotion:
+  target_index: "curated/decisions"  # curated shelf agents read from
+  dedup: true                        # collapse against existing curated notes
+  reviewer: "auto"                   # "auto" for model-only, or a role for human sign-off
+
+# --- Retention ------------------------------------------------------------
+# Per source and per sensitivity. Raw is the audit trail — keep it longer.
+retention:
+  raw: "730d"                        # how long append-only raw items are kept
+  curated: "indefinite"              # curated notes persist until explicitly retired
+  restricted_override: "365d"        # tighter retention for restricted-class items

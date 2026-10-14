@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://usecompai.com/schemas/audit-event.v0.1.schema.json",
+  "title": "Compai Audit Event",
+  "type": "object",
+  "required": ["kind", "api_version", "id", "run_id", "agent", "risk_class", "action_type", "source_refs", "outputs", "approval", "verification", "terminal_state", "created_at"],
+  "properties": {
+    "kind": { "const": "AuditEvent" },
+    "api_version": { "const": "compai/v0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "loop_id": { "type": ["string", "null"] },
+    "agent": { "type": "string", "minLength": 1 },
+    "tool": { "type": ["string", "null"] },
+    "risk_class": { "enum": ["read_only", "internal_knowledge", "internal_system_write", "business_system", "customer_facing", "regulated", "production_admin"] },
+    "action_type": { "enum": ["read", "write", "send", "mutate", "delete", "execute", "propose"] },
+    "source_refs": { "type": "array", "items": { "type": "string" } },
+    "inputs_hash": { "type": ["string", "null"] },
+    "outputs": { "type": "array", "items": { "type": "string" } },
+    "approval": { "type": "object", "required": ["required", "approver", "approved_at"], "properties": { "required": { "type": "boolean" }, "approver": { "type": ["string", "null"] }, "approved_at": { "type": ["string", "null"], "format": "date-time" } }, "additionalProperties": false },
+    "verification": { "type": "object", "required": ["status", "evidence"], "properties": { "status": { "enum": ["passed", "failed", "not_applicable"] }, "evidence": { "type": "string" } }, "additionalProperties": false },
+    "terminal_state": { "enum": ["success", "clean_noop", "blocked", "approval_required", "failed"] },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

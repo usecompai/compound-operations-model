@@ -1,0 +1,23 @@
+id: pat-ret-002
+title: Read store traffic through an approved integration
+domain: retail
+summary: Read authorised traffic data through an approved integration. If the integration
+  is unavailable, report the capability gap; do not fall back to controlling an employee
+  browser.
+context:
+  trigger: Need foot traffic data from a system with no API
+  industry: Retail with physical stores using older people-counting hardware
+risks:
+- Legacy system UI changes break automation without warning
+- Session timeouts and CAPTCHAs may interrupt automated flows
+- Data format in exports may change between software versions
+- Vendor may deprecate the legacy interface entirely
+tags:
+- retail
+- scraping
+- legacy-systems
+- foot-traffic
+- browser-automation
+status: reference_pattern
+public_note: Reusable procedure, not measured company results. Configure and test
+  before use.

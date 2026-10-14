@@ -1,0 +1,48 @@
+# brain-space.yml — one Brain Space definition.
+# A space is a slice of the brain (trees + indexes) with its own membership.
+# Copy one file per space. Deny-by-default: nothing is readable unless a space names it.
+
+space:
+  id: finance-sensitive                 # unique, stable slug used by search + audit
+  description: >
+    Money-moving data: cash position, margins, vendor terms, forecasts.
+    Readable by the finance owner and the finance agent only.
+
+# --- What lives in this space -------------------------------------------------
+# Explicit allowlist. A tree not listed here is invisible to this space's members.
+trees:
+  - finance/                            # subtree of the brain
+  - vendors/terms/
+indexes:
+  - index/finance                       # domain index (see chapter 10v) scoped to this space
+
+# --- Who can READ (retrieve, cite, see snippets) ------------------------------
+read_members:
+  roles:
+    - finance-owner
+  agents:
+    - finance-agent                     # this agent's search is scoped to its granted spaces
+
+# --- Who can WRITE / PROPOSE (author or suggest changes) ----------------------
+# Distinct from read. A member may write without reading, or read without writing.
+write_members:
+  roles:
+    - finance-owner
+  agents:
+    - finance-agent                     # writes here; cannot write to spaces it isn't granted
+
+# --- Search scoping -----------------------------------------------------------
+# Enforced at RETRIEVAL, before results are formed — not a post-filter on output.
+# Documents outside this space cannot surface as a hit for a non-member.
+search_scoping: enforced
+
+# --- Crossing this boundary on purpose ----------------------------------------
+# Promotion = an explicit, reviewed WRITE of a derived artifact into a broader
+# space. Never a link to the sensitive original (that would widen its scope).
+cross_space_promotion:
+  target_space: company-public          # where promoted summaries are published
+  reviewer_role: finance-owner          # human who approves each crossing
+
+# --- Defaults -----------------------------------------------------------------
+sensitivity_default: sensitive          # new docs land sensitive unless promoted
+deny_by_default: true                   # no membership, no access — no exceptions

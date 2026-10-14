@@ -1,0 +1,24 @@
+id: PAT-CS-002
+domain: customer-service
+type: rule
+title: VIP customer detection changes the response strategy
+context: Not all customers are equal. Repeat buyers with high LTV get white-glove
+  treatment.
+pattern: 'Before responding to any ticket:
+
+  1. Look up customer by email, calculate LTV
+
+  3. For VIPs: personalize, prioritize, flag to CS lead'
+conditions:
+- Ecommerce with customer history via API
+anti_patterns:
+- Dont mention LTV to the customer
+- Dont downgrade low-LTV service, just upgrade high-LTV
+tags:
+- cs
+- vip
+- ltv
+- retention
+status: reference_pattern
+public_note: Reusable procedure, not measured company results. Configure and test
+  before use.

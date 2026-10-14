@@ -1,0 +1,31 @@
+id: pat-mkt-002
+title: Data-Driven Copy Engine from Historical Campaigns
+domain: marketing
+summary: A structured knowledge base built from analyzing 1,000+ historical email
+  marketing campaigns, extracting subject line formulas, copy patterns, and performance
+  data. Each formula is backed by real open rate, click rate, and revenue metrics.
+  Enables any team member or AI agent to generate high-performing copy by selecting
+  proven patterns rather than guessing.
+context:
+  trigger: New email campaign needs subject line or copy
+  industry: D2C ecommerce with substantial email marketing history
+implementation:
+  components:
+  - Historical campaign data export (ESP API)
+  - Analysis pipeline grouping campaigns by subject line pattern
+  - Formula catalog with performance benchmarks per pattern
+  - Integration with campaign creation workflow for formula suggestions
+  complexity: Medium
+risks:
+- Historical performance does not guarantee future results; audience fatigue is real
+- Overuse of high-performing patterns (e.g., ALL CAPS) will degrade effectiveness
+- Seasonal and product-mix differences affect comparability
+tags:
+- marketing
+- email
+- copywriting
+- data-driven
+- subject-lines
+status: reference_pattern
+public_note: Reusable procedure, not measured company results. Configure and test
+  before use.

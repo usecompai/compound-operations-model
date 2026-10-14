@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://usecompai.com/schemas/publish-receipt.schema.json",
+  "title": "Publish Receipt",
+  "description": "One receipt per published internal artifact. Emitted at publish time and written back to the brain registry, so every AI (or human) work product has a known owner, location, version history, and audit trail. Publication is a governed runtime action, not a loose LLM output.",
+  "type": "object",
+  "required": [
+    "artifact_id",
+    "title",
+    "owner_role",
+    "purpose",
+    "sensitivity",
+    "space",
+    "url",
+    "version",
+    "published_at",
+    "published_by",
+    "source_brain_path",
+    "audit_event_id"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "type": "string",
+      "description": "Stable identifier for the artifact across all its versions. Does not change on re-publish; the version field tracks each deploy.",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable name, e.g. 'Liquidity Dashboard'. What a person types when searching the registry.",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "owner_role": {
+      "type": "string",
+      "description": "The ROLE that owns this artifact, never a bare person name. Survives the individual leaving, e.g. 'finance-lead', 'merch-ops'."
+    },
+    "purpose": {
+      "type": "string",
+      "description": "One line on what the artifact is for. Enough for a stranger to know in five seconds if this is the tool they want.",
+      "minLength": 1,
+      "maxLength": 280
+    },
+    "sensitivity": {
+      "type": "string",
+      "description": "Sensitivity class from the capture spine. Drives who is allowed to open the URL; not decoration.",
+      "enum": ["public", "internal", "confidential", "restricted"]
+    },
+    "space": {
+      "type": "string",
+      "description": "Brain-space id that defines the viewing audience (see Brain Spaces). Access to the published URL follows this space, not a new hand-rolled list."
+    },
+    "url": {
+      "type": "string",
+      "description": "Company-controlled URL where the artifact is live, behind company sign-on. Never a personal hosting account or an expiring preview link.",
+      "format": "uri"
+    },
+    "version": {
+      "type": "string",
+      "description": "The version this receipt records. Explicit and current after this publish; enables one-step rollback.",
+      "pattern": "^v[0-9]+(\\.[0-9]+){0,2}$"
+    },
+    "previous_version": {
+      "type": ["string", "null"],
+      "description": "The version that was live before this publish, or null for a first publish. The rollback target.",
+      "pattern": "^v[0-9]+(\\.[0-9]+){0,2}$"
+    },
+    "published_at": {
+      "type": "string",
+      "description": "UTC timestamp of the publish action.",
+      "format": "date-time"
+    },
+    "published_by": {
+      "type": "string",
+      "description": "The ROLE (person or agent) that ran the publish, for the audit trail. A role, not a bare name."
+    },
+    "source_brain_path": {
+      "type": "string",
+      "description": "Path back into the brain to the doc/context the artifact was built from. Makes the artifact traceable, never a dead end.",
+      "pattern": "^[a-z0-9._/-]+$"
+    },
+    "rollback_path": {
+      "type": ["string", "null"],
+      "description": "How to restore the previous version in one step (e.g. a stored deploy handle for previous_version). Null on first publish.",
+      "pattern": "^[a-z0-9._/:-]+$"
+    },
+    "audit_event_id": {
+      "type": "string",
+      "description": "Id of the audit event emitted for this publish (see audit-event.schema.json). Links the receipt to the consequential-action audit trail."
+    }
+  }
+}

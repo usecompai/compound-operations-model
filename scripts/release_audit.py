@@ -1,0 +1,343 @@
+#!/usr/bin/env python3
+"""Fail a Compai release when public claims and shipped artifacts drift."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+import tarfile
+import zipfile
+from datetime import datetime
+from pathlib import Path
+
+
+TEXT_SUFFIXES = {
+    ".css", ".html", ".js", ".json", ".md", ".py", ".sh", ".toml",
+    ".txt", ".yaml", ".yml",
+}
+PRIVATE_MARKERS = (
+    "/Users/" + "diego" + "arroyo",
+    "diego@" + "laa" + "gam",
+    "@" + "laa" + "gam.com",
+    "knowledge/" + "laa" + "gam/",
+)
+STALE_CLAIMS = {
+    "company scale": re.compile(r"\b\d+-figure\b|\b\d+\s+employees\b", re.IGNORECASE),
+    "runtime telemetry": re.compile(r"\b\d+\s*(?:/|of)\s*\d+\s+(?:core\s+)?capabilities\b|\b\d[\d,]*\s+verified runs\b", re.IGNORECASE),
+    "claimed business return": re.compile(r"\b\d+:1\s+ROI\b|(?:revenue|retention|recovery rate)\s*[:+]\s*\d+%", re.IGNORECASE),
+    "placeholder contact": re.compile(r"\bhello@example\.com\b", re.IGNORECASE),
+}
+REQUIRED_CHAPTERS = {
+    "10aa-truth-and-evidence.md",
+    "10ab-architecture-contract.md",
+    "10ac-skill-governance.md",
+    "10ad-closure-first-execution.md",
+    "10t-the-intelligence-layer.md",
+    "23-operating-layer.md",
+    "24-context-compiler.md",
+    "25-capability-registry.md",
+    "26-human-work-mode.md",
+    "27-workspaces-publishing.md",
+    "28-decision-packs-outcome-receipts.md",
+}
+REQUIRED_GUIDES = {
+    "codex-company-brain-bootstrap-prompt.es.md",
+    "company-brain-with-codex.es.md",
+}
+SECRET_PATTERNS = {
+    "OpenAI token": re.compile(r"(?<![A-Za-z0-9_-])sk-(?:proj-)?[A-Za-z0-9_-]{32,}"),
+    "Anthropic token": re.compile(r"sk-ant-(?:api03|oat01)-[A-Za-z0-9_-]{20,}"),
+    "Shopify token": re.compile(r"shpat_[A-Za-z0-9]{24,}"),
+    "GitHub token": re.compile(r"gh[pousr]_[A-Za-z0-9]{30,}"),
+    "Slack token": re.compile(r"xox[baprs]-[A-Za-z0-9-]{20,}"),
+    "Google API key": re.compile(r"AIza[0-9A-Za-z_-]{30,}"),
+    "private key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
+}
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--repo-root", type=Path, default=Path.cwd())
+    parser.add_argument("--site-root", type=Path)
+    parser.add_argument("--playbook-source", type=Path)
+    parser.add_argument("--zip", dest="zip_path", type=Path)
+    return parser.parse_args()
+
+
+def text_files(root: Path):
+    ignored = {".git", "__pycache__", "node_modules"}
+    for path in root.rglob("*"):
+        if path.is_file() and path.suffix.lower() in TEXT_SUFFIXES:
+            if not ignored.intersection(path.parts):
+                yield path
+
+
+def relative(path: Path, root: Path) -> str:
+    try:
+        return path.relative_to(root).as_posix()
+    except ValueError:
+        return str(path)
+
+
+def count_files(root: Path, pattern: str) -> int:
+    return sum(1 for path in root.glob(pattern) if path.is_file())
+
+
+def audit_manifest_contract(repo: Path, manifest: dict, failures: list[str]) -> None:
+    schema_ref = manifest.get("$schema")
+    if not isinstance(schema_ref, str):
+        failures.append("manifest $schema must be a repository-relative path")
+        return
+
+    schema_path = (repo / schema_ref).resolve()
+    try:
+        schema_path.relative_to(repo)
+    except ValueError:
+        failures.append("manifest $schema escapes the repository")
+        return
+    if not schema_path.is_file():
+        failures.append(f"manifest schema is missing: {schema_ref}")
+        return
+
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    allowed_top = set(schema.get("properties", {}))
+    unexpected_top = sorted(set(manifest) - allowed_top)
+    if unexpected_top:
+        failures.append(f"manifest properties absent from schema: {unexpected_top}")
+
+    for field in schema.get("required", []):
+        if field not in manifest:
+            failures.append(f"required manifest field missing: {field}")
+    try:
+        datetime.fromisoformat(str(manifest.get("verified_at")).replace("Z", "+00:00"))
+    except ValueError:
+        failures.append("manifest verified_at is invalid")
+
+    claim_schema = schema["properties"]["claims"]["additionalProperties"]
+    allowed_claim = set(claim_schema["properties"])
+    allowed_states = set(claim_schema["properties"]["state"]["enum"])
+    for name, claim in manifest.get("claims", {}).items():
+        missing = sorted(set(claim_schema["required"]) - set(claim))
+        unexpected = sorted(set(claim) - allowed_claim)
+        if missing:
+            failures.append(f"manifest claim {name} missing fields: {missing}")
+        if unexpected:
+            failures.append(f"manifest claim {name} has unknown fields: {unexpected}")
+        if claim.get("state") not in allowed_states:
+            failures.append(f"manifest claim {name} has invalid state: {claim.get('state')}")
+        try:
+            datetime.fromisoformat(str(claim.get("verified_at")).replace("Z", "+00:00"))
+        except ValueError:
+            failures.append(f"manifest claim {name} has invalid verified_at")
+
+    package_schema = schema["properties"]["public_package"]
+    package = manifest.get("public_package", {})
+    missing_package = sorted(set(package_schema["required"]) - set(package))
+    unexpected_package = sorted(set(package) - set(package_schema["properties"]))
+    if missing_package:
+        failures.append(f"manifest package fields missing: {missing_package}")
+    if unexpected_package:
+        failures.append(f"manifest package fields unknown: {unexpected_package}")
+    for name, value in package.items():
+        if not isinstance(value, int) or isinstance(value, bool) or value < 1:
+            failures.append(f"manifest package field {name} must be a positive integer")
+
+
+def audit_markdown_links(root: Path, failures: list[str]) -> None:
+    pattern = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
+    for path in root.rglob("*.md"):
+        if ".git" in path.parts:
+            continue
+        content = path.read_text(encoding="utf-8")
+        for raw_target in pattern.findall(content):
+            target = raw_target.strip()
+            if target.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            target = target.split("#", 1)[0].split("?", 1)[0]
+            if not target or "$(" in target:
+                continue
+            if not (path.parent / target).resolve().exists():
+                failures.append(
+                    f"broken Markdown link in {relative(path, root)}: {raw_target}"
+                )
+
+
+def audit_text(root: Path, failures: list[str], allow_legacy_operai: set[str]) -> None:
+    for path in text_files(root):
+        rel = relative(path, root)
+        if rel == "scripts/release_audit.py":
+            continue
+        try:
+            content = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        lower = content.lower()
+        for marker in PRIVATE_MARKERS:
+            if marker.lower() in lower:
+                failures.append(f"private marker {marker!r} in {rel}")
+        for claim, pattern in STALE_CLAIMS.items():
+            if pattern.search(content):
+                failures.append(f"stale claim {claim!r} in {rel}")
+        for label, pattern in SECRET_PATTERNS.items():
+            if pattern.search(content):
+                failures.append(f"possible {label} in {rel}")
+        if "operai" in lower and rel not in allow_legacy_operai:
+            failures.append(f"legacy OperAI reference in {rel}")
+
+
+def audit_repo(repo: Path, failures: list[str]) -> dict:
+    manifest_path = repo / "release-manifest.json"
+    if not manifest_path.is_file():
+        failures.append("release-manifest.json is missing")
+        return {}
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    audit_manifest_contract(repo, manifest, failures)
+    version = manifest["version"]
+    required_release_markers = {
+        "README.md": f"v{version}",
+        "kit/VERSION": f"Version: {version}",
+        "kit/README.md": f"v{version}",
+        "skills/CATALOG.md": f"Compai v{version}",
+        "case-study/fashion-brand-case-study.md": "hello@usecompai.com",
+    }
+    for rel, marker in required_release_markers.items():
+        path = repo / rel
+        if not path.is_file():
+            failures.append(f"required release file missing: {rel}")
+        elif marker not in path.read_text(encoding="utf-8"):
+            failures.append(f"release marker {marker!r} missing from {rel}")
+
+    for claim_name, claim in manifest.get("claims", {}).items():
+        if claim.get("public_safe") is not True:
+            failures.append(f"manifest claim is not explicitly public-safe: {claim_name}")
+
+    if manifest.get("claims"):
+        failures.append("editorial edition must not publish private runtime claims")
+    for pattern in (repo / "pattern-library" / "patterns").rglob("*.yaml"):
+        if re.search(r"^(?:metrics|source_deployments|confidence):", pattern.read_text(), re.M):
+            failures.append(f"private pattern evidence field in {relative(pattern, repo)}")
+
+    expected = manifest["public_package"]
+    actual = {
+        "chapters": count_files(repo / "chapters", "*.md"),
+        "guides": count_files(repo / "guides", "*.md"),
+        "skills": count_files(repo / "skills", "*/SKILL.md"),
+        "kit_files": sum(1 for path in (repo / "kit").rglob("*") if path.is_file()),
+        "patterns": sum(
+            1
+            for path in (repo / "pattern-library").rglob("*")
+            if path.is_file() and path.suffix in {".yml", ".yaml"}
+        ),
+    }
+    for key, value in actual.items():
+        if value != expected[key]:
+            failures.append(f"{key}: manifest={expected[key]} actual={value}")
+
+    chapters = {path.name for path in (repo / "chapters").glob("*.md")}
+    missing = sorted(REQUIRED_CHAPTERS - chapters)
+    if missing:
+        failures.append(f"required chapters missing: {', '.join(missing)}")
+
+    guides = {path.name for path in (repo / "guides").glob("*.md")}
+    missing_guides = sorted(REQUIRED_GUIDES - guides)
+    if missing_guides:
+        failures.append(f"required guides missing: {', '.join(missing_guides)}")
+
+    index_path = repo / "chapters" / "00-index.md"
+    index = index_path.read_text(encoding="utf-8")
+    if ".html)" in index:
+        failures.append("source chapter index contains .html links")
+    links = set(re.findall(r"\]\(([^)#]+\.md)\)", index))
+    expected_links = chapters - {"00-index.md"}
+    if links != expected_links:
+        absent = sorted(expected_links - links)
+        extra = sorted(links - expected_links)
+        failures.append(f"chapter index mismatch; absent={absent} extra={extra}")
+
+    for path in repo.rglob("*"):
+        if path.is_file() and "operai" in path.name.lower():
+            failures.append(f"legacy OperAI filename: {relative(path, repo)}")
+
+    audit_markdown_links(repo, failures)
+    audit_text(repo, failures, {"README.md"})
+    return manifest
+
+
+def audit_playbook(repo: Path, source: Path, failures: list[str]) -> None:
+    repo_chapters = repo / "chapters"
+    for chapter in repo_chapters.glob("*.md"):
+        source_path = source / chapter.name
+        if not source_path.is_file():
+            failures.append(f"playbook source missing {chapter.name}")
+        elif chapter.read_bytes() != source_path.read_bytes():
+            failures.append(f"playbook/repo drift: {chapter.name}")
+
+
+def audit_site(site: Path, manifest: dict, failures: list[str]) -> None:
+    site_manifest = site / "public-manifest.json"
+    if not site_manifest.is_file():
+        failures.append("site/public-manifest.json is missing")
+    elif json.loads(site_manifest.read_text(encoding="utf-8")) != manifest:
+        failures.append("site public manifest differs from repository manifest")
+    for path in site.rglob("*"):
+        if path.is_file() and "operai" in path.name.lower():
+            failures.append(f"legacy OperAI filename in site: {relative(path, site)}")
+    runtime_archive = site / "init" / "compai-runtime-v0.5.0.tar.gz"
+    if not runtime_archive.is_file():
+        failures.append("current Compai runtime archive is missing")
+    else:
+        with tarfile.open(runtime_archive, "r:gz") as archive:
+            bad_names = [
+                name for name in archive.getnames()
+                if "operai" in name.lower() or name.endswith((".pyc", "/__pycache__"))
+            ]
+        if bad_names:
+            failures.append(f"legacy or generated files in runtime archive: {bad_names[:5]}")
+    audit_text(site, failures, {"vercel.json"})
+
+
+def audit_zip(zip_path: Path, manifest: dict, failures: list[str]) -> None:
+    if not zip_path.is_file():
+        failures.append(f"release ZIP missing: {zip_path}")
+        return
+    with zipfile.ZipFile(zip_path) as archive:
+        files = [name for name in archive.namelist() if not name.endswith("/")]
+        bad = [name for name in files if "operai" in name.lower()]
+        if bad:
+            failures.append(f"legacy OperAI filenames in ZIP: {bad[:5]}")
+        if len(files) != manifest["public_package"]["kit_files"]:
+            failures.append(
+                "ZIP file count: "
+                f"manifest={manifest['public_package']['kit_files']} actual={len(files)}"
+            )
+
+
+def main() -> int:
+    args = parse_args()
+    repo = args.repo_root.resolve()
+    failures: list[str] = []
+    manifest = audit_repo(repo, failures)
+    if args.playbook_source:
+        audit_playbook(repo, args.playbook_source.resolve(), failures)
+    if args.site_root and manifest:
+        audit_site(args.site_root.resolve(), manifest, failures)
+    if args.zip_path and manifest:
+        audit_zip(args.zip_path.resolve(), manifest, failures)
+
+    if failures:
+        print("RELEASE AUDIT FAILED")
+        for failure in failures:
+            print(f"- {failure}")
+        return 1
+    print("RELEASE AUDIT PASSED")
+    print(f"- version: {manifest['version']}")
+    for key, value in manifest["public_package"].items():
+        print(f"- {key}: {value}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

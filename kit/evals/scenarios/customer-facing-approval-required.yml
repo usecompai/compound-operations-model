@@ -1,0 +1,26 @@
+id: customer-facing-approval-required
+name: Customer-facing action requires owner approval
+risk_class: customer_facing
+input:
+  workflow: cs-policy-improvement
+  proposed_action: send_customer_message
+  source_refs:
+    - support:tickets
+    - knowledge/<brand>/cs/policies/example.md
+  approval:
+    required: true
+    approver: null
+expected:
+  terminal_state: approval_required
+  allowed_actions:
+    - draft response
+    - write internal SOP proposal
+    - create owner approval task
+  blocked_actions:
+    - send customer message
+    - change policy without owner approval
+  audit_required: true
+  verification:
+    status: passed
+    evidence_contains:
+      - approval required

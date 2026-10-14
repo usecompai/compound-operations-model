@@ -1,0 +1,82 @@
+kind: Loop
+api_version: compai/v0.2
+id: example-loop
+name: Example governed business loop
+owner: Business owner
+risk_class: internal_knowledge
+status: draft
+
+trigger:
+  type: manual
+  cadence: null
+  timezone: Europe/Madrid
+  manual_command: null
+
+scope:
+  objective: Describe the repeatable business outcome this loop must produce.
+  allowed_inputs:
+    - capabilities explicitly listed under observe.required_capabilities
+    - current source-system outputs captured during the run
+    - operational memory referenced by canonical path
+  allowed_actions:
+    - write internal decision packs and receipts
+    - create internal task cards
+  blocked_actions:
+    - external messages
+    - customer-facing, financial, HR, legal or production mutations without approval
+
+observe:
+  required_capabilities:
+    - example_source_read
+  freshness_sla: P1D
+  source_of_truth:
+    primary: declared source system
+    memory: Brain operational memory
+
+choose:
+  policy: deterministic policy or bounded model adapter under the same contract
+  max_work_items: 1
+  reject_if:
+    - required capability is not ready
+    - source is stale or unattributed
+    - no baseline, outcome metric or stopping condition exists
+
+act:
+  mode: shadow_only
+  external_mutations: forbidden
+  output: one DecisionPack compai/v0.2
+  authority: explicit owner approval for consequential action
+
+verify:
+  operational:
+    - decision pack passes schema
+    - all source references resolve and are hashed
+    - blocked actions were not attempted
+  business_outcome:
+    primary_metric: replace_with_business_metric
+    guardrails:
+      - replace_with_business_guardrail
+    observation_window: P7D
+    attribution: applied-action receipt linked to the decision pack
+
+record:
+  audit_log_path: /opt/compai/logs/audit-events.jsonl
+  runs_dir: knowledge/platform/loops/example-loop/runs
+  schemas:
+    decision_pack: templates/configs/decision-pack.schema.json
+    outcome_receipt: templates/configs/outcome-receipt.schema.json
+
+stop:
+  terminal_states:
+    clean_noop: valid source but no bounded action is warranted
+    approval_required: one consequential action is ready for owner review
+    blocked: source, capability or authority is unavailable
+    failed: verification or recording failed
+
+promotion_gate:
+  requires:
+    - passing capability smokes
+    - owner approval
+    - decision-quality evals
+    - measured business outcomes from approved canaries
+    - explicit authority and rollback

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://usecompai.com/schemas/context-pack.v0.3.schema.json",
+  "title": "Compai ContextPack",
+  "type": "object",
+  "required": ["kind", "api_version", "id", "compiled_at", "identity", "job", "sources", "facts", "issues", "capability_refs"],
+  "properties": {
+    "kind": {"const": "ContextPack"},
+    "api_version": {"const": "compai/v0.3"},
+    "id": {"type": "string", "minLength": 1},
+    "compiled_at": {"type": "string", "format": "date-time"},
+    "identity": {"type": "object", "required": ["id", "type", "roles"], "properties": {"id": {"type": "string"}, "type": {"enum": ["human", "agent", "service"]}, "roles": {"type": "array", "items": {"type": "string"}}}},
+    "job": {"type": "object", "required": ["id", "objective"], "properties": {"id": {"type": "string"}, "objective": {"type": "string"}, "project": {"type": ["string", "null"]}}},
+    "sources": {"type": "array", "items": {"type": "object", "required": ["ref", "system", "observed_at", "freshness"], "properties": {"ref": {"type": "string"}, "system": {"type": "string"}, "observed_at": {"type": "string", "format": "date-time"}, "freshness": {"enum": ["current", "stale", "unknown"]}, "audience": {"type": "array", "items": {"type": "string"}}}}},
+    "facts": {"type": "array", "items": {"type": "object", "required": ["statement", "source_refs"], "properties": {"statement": {"type": "string"}, "source_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}}}}},
+    "issues": {"type": "array", "items": {"type": "object", "required": ["state", "detail"], "properties": {"state": {"enum": ["conflict", "stale", "incomplete", "no_evidence", "blocked_permission"]}, "detail": {"type": "string"}, "source_refs": {"type": "array", "items": {"type": "string"}}}}},
+    "capability_refs": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

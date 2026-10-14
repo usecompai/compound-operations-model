@@ -1,0 +1,25 @@
+id: PAT-WHL-001
+domain: wholesale
+type: workflow
+title: Prepare overdue invoice follow-up
+context: Wholesale accounts routinely pay late. Most brands send one reminder or escalate
+  too early.
+pattern: 'Day 7: Friendly automated reminder with invoice attached
+
+  Day 21: Firm follow-up with full statement
+
+  Day 45: Escalation warning (human reviews and sends)'
+conditions:
+- B2B wholesale with net-30 or net-60 terms
+- ''
+anti_patterns:
+- Legal threats before Day 30
+- Fully automated Day 45 (needs human judgment)
+tags:
+- wholesale
+- payments
+- AR
+- collections
+status: reference_pattern
+public_note: Reusable procedure, not measured company results. Configure and test
+  before use.

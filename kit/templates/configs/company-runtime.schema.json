@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://usecompai.com/schemas/company-runtime.v0.3.schema.json",
+  "title": "Compai Company Runtime",
+  "type": "object",
+  "required": ["kind", "api_version", "company", "context", "capabilities", "policy", "ledger", "outcomes", "review_queue"],
+  "properties": {
+    "kind": {"const": "CompanyRuntime"},
+    "api_version": {"const": "compai/v0.3"},
+    "company": {"type": "object", "required": ["id", "owners"], "properties": {"id": {"type": "string"}, "owners": {"type": "array", "minItems": 1, "items": {"type": "string"}}}},
+    "context": {"type": "object", "required": ["contract", "conflict_states"], "properties": {"contract": {"const": "ContextPack"}, "conflict_states": {"type": "array", "items": {"enum": ["conflict", "stale", "incomplete", "no_evidence", "blocked_permission"]}}}},
+    "capabilities": {"type": "object", "required": ["registry", "ready_requires_smoke"], "properties": {"registry": {"const": "CapabilityRegistry"}, "ready_requires_smoke": {"const": true}}},
+    "policy": {"type": "object", "required": ["human_mode", "autonomous_mode", "confidence_grants_authority"], "properties": {"human_mode": {"enum": ["role_permitted", "approval_required"]}, "autonomous_mode": {"const": "explicit_bounded_contract"}, "confidence_grants_authority": {"const": false}}},
+    "ledger": {"type": "object", "required": ["run_states"], "properties": {"run_states": {"type": "array", "items": {"enum": ["observed", "proposed", "approved", "rejected", "applied", "impact_pending", "closed", "blocked", "failed"]}}}},
+    "outcomes": {"type": "object", "required": ["decision_contract", "receipt_contract"], "properties": {"decision_contract": {"const": "DecisionPack"}, "receipt_contract": {"const": "OutcomeReceipt"}}},
+    "review_queue": {"type": "object", "required": ["consequential_domains"], "properties": {"consequential_domains": {"type": "array", "items": {"enum": ["financial", "legal", "hr", "customer_facing", "destructive"]}}}}
+  },
+  "additionalProperties": false
+}
