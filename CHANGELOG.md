@@ -1,5 +1,17 @@
 # Changelog
 
+## Treasury, sales and collections — 16 October 2026
+
+- Added Cash position, Sales reconciliation and Collection performance, with fictional previews and method notes.
+- Repaired Cash historical reads in the private runtime; no financial data or private application code is distributed.
+- Kept tested functionality separate from confirmed operational use. Each project retains its own review date.
+- Corrected Hiring copy: a provider confirming a send does not establish inbox delivery.
+
+## Paid-media project — 14 October 2026
+
+- Added Ads control tower with read-only channel comparisons, source attribution and separately scoped economic estimates.
+- No autonomous budget action or certified campaign-profit claim.
+
 ## Expanded project review — 14 October 2026
 
 - Added Wholesale invoicing, Receivables workspace, Hiring workspace and Returns analysis after checking deployment and operational-use evidence.
