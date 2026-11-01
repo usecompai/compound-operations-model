@@ -1,6 +1,6 @@
 # Skills catalog
 
-Compai v6.2 reusable methods. These are procedures to adapt, not a list of private runtime capabilities. Configure permissions, dependencies and acceptance tests before use.
+Compai v6.3 reusable methods. These are procedures to adapt, not a list of private runtime capabilities. Configure permissions, dependencies and acceptance tests before use.
 
 ## Brain And Execution Operations
 

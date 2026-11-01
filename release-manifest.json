@@ -1,13 +1,13 @@
 {
   "$schema": "kit/templates/configs/public-truth-manifest.schema.json",
-  "version": "6.2",
-  "verified_at": "2026-10-16T07:20:00Z",
+  "version": "6.3",
+  "verified_at": "2026-11-01T12:00:00Z",
   "claims": {},
   "public_package": {
-    "chapters": 77,
+    "chapters": 81,
     "guides": 2,
     "skills": 31,
-    "kit_files": 226,
+    "kit_files": 229,
     "patterns": 21
   }
 }

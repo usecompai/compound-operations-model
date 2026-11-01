@@ -1,13 +1,21 @@
-# Hiring workspace
+# Hiring and onboarding
 
-A public application form feeds a private manager workspace. Applications have an owner, stage, permitted documents and a history. Managers can prepare an interview invitation or business-case email and review its effect before confirming it.
+The hiring workspace keeps applications, interview invitations and the team's decisions. The new handoff connects the selected application to an offer, document review and onboarding tasks.
 
-An invitation is recorded only after the connected interview service returns a valid result. A business-case stage change waits for the email provider to confirm sending. That is not proof of inbox delivery. Selection, rejection and hiring decisions remain human. A stage label does not imply that an offer, calendar event or onboarding was created.
+## Keep the original application
 
-The live connector, application dashboard, recent intake and invitation history were read on 14 October 2026. The deployed manager interface and its confirmation rules were inspected. This establishes a working recruiting workflow, not autonomous hiring.
+Carry the application and job description into the hiring record by exact reference. Keep the reviewed terms and signed documents with their versions. Discovering an application at the offer stage creates a record, not a hire.
 
-[Explore the hiring workspace](https://usecompai.com/projects/hiring-workspace.html). Public applications are fictional; no candidate details or private documents are copied.
+People staff check the signed offer before requesting administrative details. They check the employment documents before approving activation. A confirmed approval can then enter the existing account-setup workflow. An AI agent can help assemble and check the record; it does not choose the candidate or sign for anyone.
 
-## Applying the method elsewhere
+## Finish the handoff
 
-Check identity before opening documents or changing stages. Show the recipient, message and consequences before sending. Keep the provider's send result and a retry key to avoid duplicate invitations. Do not advance the stage on a failed send.
+People, the manager and office operations have assigned tasks. Each person sees the work they need, not salary or identity documents. Completion requires the tasks, system links and first access to be checked. Sending an invitation is not the same as a person successfully starting work.
+
+Save the approved intent before calling another system. After an interrupted request, reconcile the existing record before trying again, so the same approval does not create a second person.
+
+## What is verified
+
+Recruiting has recorded intake and invitation activity. The connected onboarding handoff is deployed and passed a fictional end-to-end test; a real completed hire through that new route has not been verified. Offer preparation, signed-document review and some provider steps remain manual. No automatic e-signature service, payroll calculation or international employment coverage is claimed.
+
+[Explore the example](https://usecompai.com/projects/hiring-workspace.html). [Starter checks](../kit/patterns/checked-work/README.md) demonstrate the completion rules without creating accounts or sending messages.

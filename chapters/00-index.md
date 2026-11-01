@@ -2,6 +2,11 @@
 
 ## Current notes
 
+- [Working notes: November 2026](37-november-update.md)
+- [Shipment tracking](34-shipment-tracking.md)
+- [Creative work](35-creative-work.md)
+- [Finishing work safely](36-checked-work.md)
+
 - [Compai, from inside LAAGAM](01-introduction.md)
 - [The architecture](03-architecture.md)
 - [Capture company context](10m-capture-layer.md)
@@ -22,13 +27,13 @@
 - [Ads control tower](10e-profit-throttle.md)
 - [Wholesale invoicing](08-agent-wholesale.md)
 - [Receivables workspace](29-receivables.md)
-- [Hiring workspace](30-hiring.md)
+- [Hiring and onboarding](30-hiring.md)
 - [Cash position](31-cash-position.md)
 - [Sales reconciliation](32-sales-reconciliation.md)
 - [Collection performance](33-collection-performance.md)
 - [Returns analysis](09b-agent-merchandising.md)
 - [People portal](09c-agent-hr.md)
-- [Customer care drafts](04-agent-cs.md)
+- [Customer care workspace](04-agent-cs.md)
 - [Checks that make the system usable](11b-production-lessons.md)
 - [Evaluate your own deployment](12-roi.md)
 - [Start with one useful job](11-implementation.md)

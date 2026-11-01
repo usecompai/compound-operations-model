@@ -1,13 +1,17 @@
 # People portal
 
-The internal people portal supports leave requests, reviewer decisions, personal details and protected payroll documents.
+One private place for time records, leave, personal details and documents. Employees see their own information. Managers handle the requests assigned to them. People staff have a separate administrative view.
 
-Personal access and administrative review are separate. A request awaiting review is not approved. A document being available does not make it readable by every employee.
+## A request, not an employment decision
 
-The deployed service and health endpoint were checked on 14 October 2026. Recent requests, decisions and protected-document access are recorded in the application audit. No employee identities, request contents or document contents are published.
+An absence can be reported before supporting documents are available. The request keeps its history and next reviewer. A manager may need to know that someone is unavailable without seeing the medical reason or attachment.
 
-[Explore the people portal](https://usecompai.com/projects/people-portal.html). The public interface is a simplified reconstruction with fictional records, not an open copy of the private application.
+Time corrections retain the original record. Declared time and a calculated administrative schedule remain distinct. Personal details and payroll documents have additional access checks; a shared calendar must not expose their contents.
 
-## Applying the method elsewhere
+## Policy and code have to agree
 
-Check identity on reads, writes and downloads. Test access to another person's record and a role outside its scope. Keep document contents out of audit logs. Employment decisions require the authorised person.
+A policy change has an effective date, an audience and a unit. Calendar days, working days and hours cannot be added together or silently converted. Preserve approved historical requests when changing a future rule.
+
+The portal is deployed and its request, review and private-access flows have operating records. The November review also found differences between a newly communicated policy and the current calculation rules. Those changes remain separate work, not a completed legal-compliance feature. No public example includes employee records or company entitlements.
+
+[Explore the portal](https://usecompai.com/projects/people-portal.html). For the handoff from recruiting, read [Hiring and onboarding](30-hiring.md).

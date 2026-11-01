@@ -1,4 +1,4 @@
-# Compai Implementation Kit v6.2
+# Compai Implementation Kit v6.3
 
 This kit is the portable asset layer behind the Compai playbook. It turns the architecture into templates, scripts, eval fixtures and deployment contracts that a technical operator can inspect and adapt.
 
@@ -85,6 +85,13 @@ Do not pipe a remote installer directly into a privileged shell without reviewin
 - Compliance templates are starting points for qualified review, not legal advice or certification.
 
 ## Verification
+
+Version 6.3 adds [checked-work examples](patterns/checked-work/README.md) for source-bound drafts, uncertain retries and hiring handoffs. Run their tests without connecting to any company system:
+
+```bash
+cd kit/patterns/checked-work
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v
+```
 
 From the repository root:
 

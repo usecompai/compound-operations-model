@@ -6,6 +6,8 @@ The collection includes cash position, versioned sales reconciliation and collec
 
 The [project collection](https://usecompai.com/projects.html) uses simplified interface reconstructions with fictional records. These are not live company screens or independently installable copies of the applications. A dated verification note explains the scope of each project.
 
+The November update adds customer-care drafts with order and policy checks, parcel-event histories and reproducible creative edits. It also documents the newer hiring handoff and the people portal's remaining policy-calculation gaps. Those additions are not claims of autonomous customer service, completed real hires through the new flow or measured creative uplift. [Read the update](../chapters/37-november-update.md).
+
 Business figures, costs, employee records and runtime telemetry are not published. Demos use independently fictional records and no live company connection.
 
 The materials use CC BY-NC-SA 4.0. Implementation enquiries: hello@usecompai.com.
