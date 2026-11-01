@@ -16,6 +16,12 @@ A draft refers to particular source versions. Before presenting it, check whethe
 
 A connector working for an administrator does not prove it works for the employee or agent who needs it. Test with that identity, in its workspace, and read the result back. A successful tool response alone does not establish that the business task is finished.
 
+Applications also need their own restricted operating-system users. Moving a service away from administrator access is not finished until its real readers and writers still work with the intended file permissions. A passing health check cannot establish that.
+
+## Check the handoff to the person
+
+For an agent working through chat, keep the incoming request, completed task, final answer and destination linked. Check that the intended answer was accepted by the delivery service. That is not proof that the person read it, and an internal audit record is not a substitute for the answer.
+
 ## Try the checks
 
 [The checked-work example](../kit/patterns/checked-work/README.md) includes executable tests for source changes, revoked access, uncertain attempts and hiring handoffs. It is deliberately a small decision layer, not a production queue or permission system.

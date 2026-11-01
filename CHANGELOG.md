@@ -5,6 +5,7 @@
 - Added customer care, shipment tracking and creative-work cases with fictional records and explicit coverage limits.
 - Expanded hiring from recruiting to the tested offer-to-onboarding handoff. A real completed hire through the new handoff remains unverified.
 - Updated the people portal notes, including unresolved policy-calculation differences.
+- Added the bounded departure-access flow, shared retail-proposal limits and chat-delivery verification to the working notes.
 - Added executable checks for source-bound drafts, revoked access, uncertain retries and onboarding evidence.
 - Updated finance forecast and source-freshness lessons without publishing company figures.
 - Kept the website, source chapters, demo examples and starter kit on the same reviewed version. This is a public reference update, not a release of the private applications.

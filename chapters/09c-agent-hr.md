@@ -14,4 +14,10 @@ A policy change has an effective date, an audience and a unit. Calendar days, wo
 
 The portal is deployed and its request, review and private-access flows have operating records. The November review also found differences between a newly communicated policy and the current calculation rules. Those changes remain separate work, not a completed legal-compliance feature. No public example includes employee records or company entitlements.
 
+## When someone leaves
+
+An approved departure can schedule removal of company-memory access and disable the person's cloud workspace after their last working day. Work files are preserved. The process checks that access was removed; changing the employee record later does not silently restore it.
+
+This event-driven flow was deployed and tested with fictional identities. The review did not remove a real person's access just to test it. It does not close external email, chat or other software accounts: those need their own checked offboarding steps.
+
 [Explore the portal](https://usecompai.com/projects/people-portal.html). For the handoff from recruiting, read [Hiring and onboarding](30-hiring.md).
